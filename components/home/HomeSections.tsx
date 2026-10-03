@@ -834,28 +834,32 @@ function LeadershipSection() {
       <div className="work-wrapper">
         <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-16">
           <div data-reveal className="reveal">
-            <p className="section-label mb-4">Leadership</p>
-            <h2 className="max-w-[330px] text-[clamp(2.2rem,3.6vw,4.1rem)] font-medium leading-[.94] tracking-[-0.05em]">
-              Meet the
-              <span className="block">— Leadership</span>
+            <p className="section-label mb-4">Meet the Team</p>
+            <h2 className="max-w-[370px] text-[clamp(2.2rem,3.6vw,4.1rem)] font-medium leading-[.94] tracking-[-0.05em]">
+              The minds behind
+              <span className="block">— Cubixmet</span>
             </h2>
-
-            
           </div>
 
           <div className="divide-y divide-white/8">
             {leaders.map((leader, index) => (
               <article
-                key={`${leader.name}-${index}`}
+                key={leader.name}
                 data-reveal
                 data-scroll-card
                 data-scroll-delay={index * 100}
-                className="reveal scroll-card grid gap-6 py-7 first:pt-0 md:grid-cols-[1fr_150px] md:items-center md:gap-10"
+                className="reveal scroll-card grid gap-6 py-8 first:pt-0 md:grid-cols-[1fr_150px] md:items-center md:gap-10"
               >
                 <div>
-                  <h3 className="text-[16px] font-medium text-white md:text-[18px]">{leader.name}</h3>
-                  <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-white/34">{leader.role}</p>
-                  <p className="mt-6 max-w-[470px] text-[11px] leading-5 text-white/38 md:text-[12px] md:leading-6">
+                  <h3 className="text-[18px] font-semibold text-white md:text-[20px]">
+                    {leader.name}
+                  </h3>
+
+                  <p className="mt-1 text-[10px] font-medium uppercase leading-5 tracking-[0.1em] text-white/38">
+                    {leader.role}
+                  </p>
+
+                  <p className="mt-6 max-w-[500px] text-[11px] leading-5 text-white/38 md:text-[12px] md:leading-6">
                     {leader.copy}
                   </p>
                 </div>
@@ -867,36 +871,32 @@ function LeadershipSection() {
                     role="img"
                     aria-label={leader.name}
                   >
-                    <defs>
-                      <clipPath id={`leader-blob-${index}`} clipPathUnits="userSpaceOnUse">
-                        <path d="M31 8C39 8 44 13 50 18C56 13 61 8 69 8C83 8 92 19 92 33C92 41 87 46 82 50C87 54 92 59 92 67C92 81 81 92 67 92C59 92 54 87 50 82C46 87 41 92 33 92C19 92 8 81 8 67C8 59 13 54 18 50C13 46 8 41 8 33C8 19 19 8 31 8Z" />
-                      </clipPath>
-                    </defs>
-
-                    <image
-                      href={leader.image}
-                      x="0"
-                      y="0"
-                      width="100"
-                      height="100"
-                      preserveAspectRatio="xMidYMid slice"
-                      clipPath={`url(#leader-blob-${index})`}
-                      className="grayscale"
-                    />
-
                     <path
                       d="M31 8C39 8 44 13 50 18C56 13 61 8 69 8C83 8 92 19 92 33C92 41 87 46 82 50C87 54 92 59 92 67C92 81 81 92 67 92C59 92 54 87 50 82C46 87 41 92 33 92C19 92 8 81 8 67C8 59 13 54 18 50C13 46 8 41 8 33C8 19 19 8 31 8Z"
-                      fill="none"
-                      stroke="rgba(255,255,255,.1)"
+                      fill="#0d0d0d"
+                      stroke="rgba(255,255,255,.12)"
                       strokeWidth="1"
                     />
+                    <text
+                      x="50"
+                      y="56"
+                      textAnchor="middle"
+                      fill="#1677FF"
+                      fontSize="22"
+                      fontWeight="700"
+                      letterSpacing="-1"
+                    >
+                      {leader.initials}
+                    </text>
                   </svg>
 
-                  {index === 1 && (
-                    <span className="absolute bottom-0 right-0 grid h-8 w-8 place-items-center rounded-full bg-[#1677FF] text-[9px] text-white">
-                      <Arrow />
-                    </span>
-                  )}
+                  <a
+                    href={leader.href}
+                    aria-label={`Open ${leader.name} profile`}
+                    className="absolute bottom-0 right-0 grid h-8 w-8 place-items-center rounded-full bg-[#1677FF] text-[9px] text-white transition hover:scale-105"
+                  >
+                    <Arrow />
+                  </a>
                 </div>
               </article>
             ))}
