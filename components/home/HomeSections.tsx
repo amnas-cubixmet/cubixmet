@@ -39,8 +39,10 @@ function AboutSection() {
   return (
     <section id="about" className="section-space">
       <div data-reveal className="reveal about-wrapper">
-        <div className="overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b]">
-          <div className="grid gap-10 px-5 pb-8 pt-7 md:px-10 md:pb-10 md:pt-9 lg:grid-cols-[1.12fr_.88fr] lg:gap-16 xl:px-12 xl:pb-12 xl:pt-11">
+        <div className="relative overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b]">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(22,119,255,.08),transparent_20%),radial-gradient(circle_at_88%_82%,rgba(105,255,120,.16),transparent_22%),linear-gradient(180deg,rgba(255,255,255,.01),rgba(255,255,255,0))]" />
+          <div className="pointer-events-none absolute right-0 top-0 h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,.12),rgba(255,255,255,0)_70%)] blur-xl" />
+          <div className="relative z-10 grid gap-10 px-5 pb-8 pt-7 md:px-10 md:pb-10 md:pt-9 lg:grid-cols-[1.12fr_.88fr] lg:gap-16 xl:px-12 xl:pb-12 xl:pt-11">
             <div>
               <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.18em] text-[#1677FF]">About us</p>
               <h2 className="max-w-[720px] text-[clamp(2.7rem,4.8vw,5.5rem)] font-medium leading-[0.94] tracking-[-0.055em]">
@@ -56,7 +58,7 @@ function AboutSection() {
             </div>
           </div>
 
-          <div className="grid gap-px border-y border-white/8 bg-white/8 sm:grid-cols-3">
+          <div className="relative z-10 grid gap-px border-y border-white/8 bg-white/8 sm:grid-cols-3">
             {[["4x","Faster design-to-build workflow"],["2x","Lean collaborative process"],["100%","Responsive by default"]].map(([value,label]) => (
               <div key={value} className="bg-[#0d0d0d] px-5 py-6 md:px-8 md:py-7">
                 <p className="max-w-[180px] text-[11px] leading-5 text-white/38">{label}</p>
@@ -65,7 +67,7 @@ function AboutSection() {
             ))}
           </div>
 
-          <div className="flex flex-wrap gap-x-8 gap-y-3 px-5 py-5 text-[10px] uppercase tracking-[0.14em] text-white/40 md:px-10 xl:px-12">
+          <div className="relative z-10 flex flex-wrap gap-x-8 gap-y-3 px-5 py-5 text-[10px] uppercase tracking-[0.14em] text-white/40 md:px-10 xl:px-12">
             <span>/ Results driven solutions</span>
             <span>/ Strategic experiences</span>
             <span>/ Purposeful design</span>
