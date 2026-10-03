@@ -6,4 +6,5 @@ export * from "./marquee";
 export * from "./testimonials";
 export * from "./leaders";
 export * from "./insights";
+export * from "./impact";
 export * from "./ventures";
