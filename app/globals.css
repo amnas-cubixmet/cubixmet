@@ -372,3 +372,22 @@ a {
     width: calc(100% - 28px);
   }
 }
+
+
+.work-wrapper {
+  width: 80%;
+  max-width: 1500px;
+  margin-inline: auto;
+}
+
+@media (max-width: 1023px) {
+  .work-wrapper {
+    width: 88%;
+  }
+}
+
+@media (max-width: 767px) {
+  .work-wrapper {
+    width: calc(100% - 28px);
+  }
+}
