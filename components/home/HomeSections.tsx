@@ -228,15 +228,7 @@ function VenturesSection() {
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-6">
           <div data-reveal className="reveal lg:col-span-3">
             <p className="section-label">Our Ventures</p>
-            <h2 className="max-w-[360px] text-[clamp(2.6rem,4.7vw,5.2rem)] font-medium leading-[.9] tracking-[-0.06em]">
-              Three
-              <span className="block">specialized</span>
-              <span className="block">verticals.</span>
-            </h2>
 
-            <p className="mt-7 max-w-[270px] text-[12px] leading-6 text-white/38">
-              One unified mission — structured innovation at scale.
-            </p>
           </div>
 
           <div className="lg:col-span-9">
