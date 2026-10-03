@@ -1,19 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Arrow from "./Arrow";
-
-const HeroCanvas = dynamic(() => import("../HeroCanvas"), { ssr: false });
 
 export default function HeroSection() {
   return (
     <section id="top" className="relative min-h-[100svh] overflow-hidden bg-[#050505] pt-[54px] md:pt-[58px]">
-      <div className="absolute inset-0 opacity-45">
-        <HeroCanvas />
-      </div>
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_62%_37%,rgba(22,119,255,.24),transparent_27%),radial-gradient(circle_at_25%_24%,rgba(255,255,255,.035),transparent_18%),linear-gradient(180deg,rgba(0,0,0,.16),rgba(0,0,0,.68)_78%,#050505_100%)]" />
-      <div className="pointer-events-none absolute right-[18%] top-[20%] h-[170px] w-[170px] rounded-full border border-white/5 opacity-40 blur-[1px] md:h-[260px] md:w-[260px]" />
-
       <div className="site-wrapper relative z-10 flex min-h-[calc(100svh-54px)] flex-col md:min-h-[calc(100svh-58px)]">
         <div className="grid flex-1 items-center gap-8 pb-8 pt-10 md:pb-10 md:pt-12 lg:grid-cols-[1fr_360px]">
           <div className="max-w-[900px]">
