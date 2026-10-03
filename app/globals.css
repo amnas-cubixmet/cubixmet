@@ -3,7 +3,7 @@
 :root {
   --background: #050505;
   --foreground: #f5f5f5;
-  --accent: #d7ff25;
+  --accent: #1677FF;
 }
 
 * {
@@ -75,7 +75,7 @@ a {
   position: absolute;
   inset: -30%;
   background:
-    radial-gradient(circle at 50% 50%, rgba(215, 255, 37, 0.09), transparent 30%),
+    radial-gradient(circle at 50% 50%, rgba(22, 119, 255, 0.09), transparent 30%),
     conic-gradient(from 20deg, transparent 0deg 60deg, rgba(255, 255, 255, 0.035) 80deg, transparent 110deg 360deg);
   animation: orbit 16s linear infinite;
 }
