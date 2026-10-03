@@ -213,7 +213,7 @@ function VenturesSection() {
                     ? "lg:absolute lg:left-[41.667%] lg:top-0 lg:w-[58.333%]"
                     : index === 1
                       ? "lg:absolute lg:-left-[30%] lg:top-[230px] lg:w-[58.333%]"
-                      : "lg:absolute lg:left-[24%] lg:top-[665px] lg:w-[58.333%]";
+                      : "lg:absolute lg:left-[35%] lg:top-[665px] lg:w-[58.333%]";
 
                 return (
                   <article
