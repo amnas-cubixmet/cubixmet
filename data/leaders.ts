@@ -6,6 +6,12 @@ export type Leader = {
   href: string;
 };
 
+export type TeamMember = {
+  initials: string;
+  name: string;
+  role: string;
+};
+
 export const leaders: Leader[] = [
   {
     initials: "FA",
@@ -27,5 +33,29 @@ export const leaders: Leader[] = [
     role: "Founder & Chief Operating Officer (COO)",
     copy: "Exceptional operational strategist executing company plans with flawless precision.",
     href: "#",
+  },
+];
+
+
+export const teamMembers: TeamMember[] = [
+  {
+    initials: "VA",
+    name: "Vafa",
+    role: "Founder & Chief Product Officer (CPO)",
+  },
+  {
+    initials: "NA",
+    name: "Najid",
+    role: "Head of Digital Marketing",
+  },
+  {
+    initials: "AA",
+    name: "Amnas Ali",
+    role: "Developer",
+  },
+  {
+    initials: "MS",
+    name: "Muhammed Salman",
+    role: "Developer",
   },
 ];
