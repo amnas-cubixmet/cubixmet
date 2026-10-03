@@ -208,3 +208,16 @@ a {
     padding-inline: 40px;
   }
 }
+
+
+.hero-text-wrapper {
+  width: 80%;
+  max-width: 1500px;
+  margin-inline: auto;
+}
+
+@media (max-width: 767px) {
+  .hero-text-wrapper {
+    width: calc(100% - 40px);
+  }
+}
