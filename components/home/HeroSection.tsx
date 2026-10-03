@@ -37,7 +37,7 @@ export default function HeroSection() {
             </h1>
 
             <div className="mt-7 lg:hidden">
-              <div className="inline-flex items-center gap-3">
+              <div className="hidden items-center gap-3">
                 <div className="grid h-[74px] w-[74px] place-items-center rounded-[24px] bg-[#171c13] text-center">
                   <span className="text-[7px] leading-3 text-white/45">
                     <strong className="block text-[24px] leading-none text-white">12+</strong>
