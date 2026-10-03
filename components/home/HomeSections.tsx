@@ -9,7 +9,7 @@ import { projects } from "../../data/projects";
 import { whyChoose } from "../../data/whyChoose";
 import { marqueeItems } from "../../data/marquee";
 import { testimonials } from "../../data/testimonials";
-import { leaders } from "../../data/leaders";
+import { leaders, teamMembers } from "../../data/leaders";
 import { impactStats } from "../../data/impact";
 
 function FlowerSeparator() {
@@ -902,6 +902,43 @@ function LeadershipSection() {
             ))}
           </div>
         </div>
+
+        {teamMembers.length > 0 && (
+          <div className="mt-12 border-t border-white/8 pt-8 md:mt-16 md:pt-10">
+            <div className="mb-6 flex items-center justify-between gap-4">
+              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
+                Team Members
+              </p>
+              <p className="text-[10px] uppercase tracking-[0.14em] text-white/22">
+                Auto loop
+              </p>
+            </div>
+
+            <div className="team-slider-viewport overflow-hidden">
+              <div className="team-slider-track flex w-max gap-3">
+                {[...teamMembers, ...teamMembers].map((member, index) => (
+                  <article
+                    key={`${member.name}-${index}`}
+                    className="flex w-[250px] shrink-0 items-center gap-4 border border-white/8 bg-[#0b0b0b] p-4 md:w-[310px] md:p-5"
+                  >
+                    <div className="grid h-12 w-12 shrink-0 place-items-center border border-[#1677FF]/25 bg-[#1677FF]/5 text-[12px] font-semibold text-[#1677FF]">
+                      {member.initials}
+                    </div>
+
+                    <div className="min-w-0">
+                      <h3 className="truncate text-[15px] font-semibold tracking-[-0.025em] text-white md:text-[17px]">
+                        {member.name}
+                      </h3>
+                      <p className="mt-1 line-clamp-2 text-[9px] uppercase leading-4 tracking-[0.08em] text-white/38 md:text-[10px]">
+                        {member.role}
+                      </p>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
