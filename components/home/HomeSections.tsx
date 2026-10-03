@@ -830,7 +830,7 @@ function TestimonialsSection() {
 
 function LeadershipSection() {
   return (
-    <section className="pb-20 pt-12 md:pb-28 md:pt-16">
+    <section id="team" className="pb-20 pt-12 md:pb-28 md:pt-16">
       <div className="work-wrapper">
         <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-16">
           <div data-reveal className="reveal">
