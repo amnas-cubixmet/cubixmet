@@ -179,26 +179,76 @@ function ServicesSection() {
 
 function ProcessSection() {
   return (
-    <section id="process" className="section-space">
-      <div data-reveal className="reveal site-wrapper grid gap-10 rounded-[24px] border border-white/8 bg-[#0b0b0b] p-5 md:p-9 lg:grid-cols-[1.05fr_.95fr]">
-        <div>
-          <p className="section-label">Work process</p>
-          <h2 className="section-title mt-5 max-w-xl">Our process, designed and delivered simply.</h2>
-          <div className="mt-10">
-            {process.map(([no,title,copy]) => (
-              <div key={no} className="grid grid-cols-[38px_1fr] gap-3 border-t border-white/10 py-5">
-                <span className="text-xs text-[#1677FF]">{no}</span>
-                <div><h3 className="text-lg font-medium">{title}</h3><p className="mt-2 max-w-md text-xs leading-5 text-white/40">{copy}</p></div>
+    <section id="process" className="pb-20 pt-10 md:pb-28 md:pt-14">
+      <div data-reveal className="reveal about-wrapper">
+        <div className="relative overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b]">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_58%_52%,rgba(22,119,255,.11),transparent_28%),radial-gradient(circle_at_92%_12%,rgba(255,255,255,.035),transparent_18%)]" />
+
+          <div className="relative z-10 grid gap-10 p-5 md:p-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-12 xl:p-10">
+            <div className="flex flex-col">
+              <div>
+                <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.18em] text-[#1677FF]">Work process</p>
+                <h2 className="max-w-[520px] text-[clamp(2.2rem,4.2vw,4.8rem)] font-medium leading-[.96] tracking-[-0.055em]">
+                  Our Process design, and Deliver Simplified
+                </h2>
               </div>
-            ))}
+
+              <div className="mt-10 md:mt-14">
+                {process.map(([no,title,copy], index) => (
+                  <div key={no} className="group relative grid grid-cols-[30px_1fr] gap-4 py-4 first:pt-0">
+                    {index !== process.length - 1 && (
+                      <span className="absolute left-[9px] top-8 h-[calc(100%-12px)] w-px bg-white/10" />
+                    )}
+                    <span className="relative z-10 mt-0.5 grid h-5 w-5 place-items-center rounded-full border border-[#1677FF]/55 bg-[#0b0b0b] text-[8px] text-[#1677FF]">
+                      {index + 1}
+                    </span>
+                    <div>
+                      <h3 className="text-[15px] font-medium text-white md:text-[17px]">{title}</h3>
+                      {index === 1 && (
+                        <p className="mt-2 max-w-[390px] text-[11px] leading-5 text-white/38 md:text-[12px]">
+                          {copy}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <p className="mt-auto hidden pt-10 text-[9px] uppercase tracking-[0.22em] text-white/25 lg:block [writing-mode:vertical-rl]">
+                Strategy / Design / Development
+              </p>
+            </div>
+
+            <div className="flex flex-col">
+              <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
+                <p className="max-w-[430px] text-[12px] leading-5 text-white/42 md:text-[13px] md:leading-6">
+                  We follow a simple, results-driven process to bring your vision to life. From understanding your goals to designing and developing, we focus on clarity, collaboration, and strong execution at every stage.
+                </p>
+                <a
+                  href="#contact"
+                  className="inline-flex w-fit items-center gap-2 rounded-full bg-[#1677FF] px-4 py-2.5 text-[10px] font-semibold text-white"
+                >
+                  Let&apos;s talk <Arrow />
+                </a>
+              </div>
+
+              <div className="group relative mt-8 overflow-hidden rounded-[16px] border border-white/8 bg-[#111] md:mt-10">
+                <div className="aspect-[1.12/1] overflow-hidden">
+                  <img
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=84"
+                    alt="Cubixmet team discussing a project"
+                    className="h-full w-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
+                  />
+                </div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
+                <div className="absolute bottom-4 left-4 rounded-full border border-white/15 bg-black/45 px-3 py-1.5 text-[9px] uppercase tracking-[0.14em] text-white/65 backdrop-blur">
+                  Collaborate → Build
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-        <div className="relative min-h-[420px] overflow-hidden rounded-[20px] bg-[radial-gradient(circle_at_70%_25%,rgba(22,119,255,.18),transparent_25%),linear-gradient(145deg,#242524,#0b0b0b)] md:min-h-[600px]">
-          <div className="absolute left-[12%] top-[12%] h-[68%] w-[65%] rotate-[-7deg] rounded-[22px] border border-white/10 bg-[#131313] shadow-2xl" />
-          <div className="absolute bottom-[10%] right-[10%] w-[58%] rounded-[18px] border border-white/10 bg-black/70 p-5">
-            <span className="text-[10px] uppercase tracking-[0.16em] text-[#1677FF]">Strategy → Design → Build</span>
-            <p className="mt-8 text-2xl font-medium tracking-[-0.04em]">Built around the next move, not the last trend.</p>
-          </div>
+
+          <div className="pointer-events-none absolute -right-8 -top-10 h-28 w-28 rounded-full border border-white/7 opacity-30 md:h-40 md:w-40" />
         </div>
       </div>
     </section>
