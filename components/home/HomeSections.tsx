@@ -824,49 +824,76 @@ function TestimonialsSection() {
 function LeadershipSection() {
   return (
     <section className="pb-20 pt-12 md:pb-28 md:pt-16">
-      <div className="about-wrapper">
-        <div data-reveal className="reveal grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
-          <div>
-            <p className="section-label">Meet the Team</p>
-            <h2 className="max-w-[720px] text-[clamp(2.7rem,5vw,5.6rem)] font-medium leading-[.93] tracking-[-0.055em]">
-              The minds behind Cubixmet&apos;s structured innovation engine.
+      <div className="work-wrapper">
+        <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-16">
+          <div data-reveal className="reveal">
+            <p className="section-label mb-4">Leadership</p>
+            <h2 className="max-w-[330px] text-[clamp(2.2rem,3.6vw,4.1rem)] font-medium leading-[.94] tracking-[-0.05em]">
+              Meet the
+              <span className="block">— Leadership</span>
             </h2>
-          </div>
-        </div>
 
-        <div className="mt-10 grid gap-px overflow-hidden border border-white/8 bg-white/8 sm:grid-cols-2 lg:grid-cols-3">
-          {leaders.map((leader, index) => (
-            <article
-              key={leader.name}
-              data-scroll-card
-              data-scroll-delay={(index % 6) * 70}
-              className="scroll-card min-h-[300px] bg-[#0b0b0b] p-6 md:min-h-[330px] md:p-7"
-            >
-              <div className="flex items-start justify-between gap-4">
-                <div className="grid h-14 w-14 place-items-center border border-[#1677FF]/25 bg-[#1677FF]/5 text-[15px] font-semibold tracking-[-0.03em] text-[#1677FF]">
-                  {leader.initials}
+            
+          </div>
+
+          <div className="divide-y divide-white/8">
+            {leaders.map((leader, index) => (
+              <article
+                key={`${leader.name}-${index}`}
+                data-reveal
+                data-scroll-card
+                data-scroll-delay={index * 100}
+                className="reveal scroll-card grid gap-6 py-7 first:pt-0 md:grid-cols-[1fr_150px] md:items-center md:gap-10"
+              >
+                <div>
+                  <h3 className="text-[16px] font-medium text-white md:text-[18px]">{leader.name}</h3>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-white/34">{leader.role}</p>
+                  <p className="mt-6 max-w-[470px] text-[11px] leading-5 text-white/38 md:text-[12px] md:leading-6">
+                    {leader.copy}
+                  </p>
                 </div>
 
-                <span className="text-[10px] font-semibold tracking-[0.12em] text-white/18">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-              </div>
+                <div className="relative mx-auto h-[136px] w-[136px] md:mx-0 md:justify-self-end">
+                  <svg
+                    viewBox="0 0 100 100"
+                    className="h-full w-full overflow-visible"
+                    role="img"
+                    aria-label={leader.name}
+                  >
+                    <defs>
+                      <clipPath id={`leader-blob-${index}`} clipPathUnits="userSpaceOnUse">
+                        <path d="M31 8C39 8 44 13 50 18C56 13 61 8 69 8C83 8 92 19 92 33C92 41 87 46 82 50C87 54 92 59 92 67C92 81 81 92 67 92C59 92 54 87 50 82C46 87 41 92 33 92C19 92 8 81 8 67C8 59 13 54 18 50C13 46 8 41 8 33C8 19 19 8 31 8Z" />
+                      </clipPath>
+                    </defs>
 
-              <div className="mt-10">
-                <h3 className="text-[26px] font-semibold leading-none tracking-[-0.045em] text-white md:text-[30px]">
-                  {leader.name}
-                </h3>
+                    <image
+                      href={leader.image}
+                      x="0"
+                      y="0"
+                      width="100"
+                      height="100"
+                      preserveAspectRatio="xMidYMid slice"
+                      clipPath={`url(#leader-blob-${index})`}
+                      className="grayscale"
+                    />
 
-                <p className="mt-3 max-w-[290px] text-[10px] font-medium uppercase leading-5 tracking-[0.08em] text-white/42">
-                  {leader.role}
-                </p>
+                    <path
+                      d="M31 8C39 8 44 13 50 18C56 13 61 8 69 8C83 8 92 19 92 33C92 41 87 46 82 50C87 54 92 59 92 67C92 81 81 92 67 92C59 92 54 87 50 82C46 87 41 92 33 92C19 92 8 81 8 67C8 59 13 54 18 50C13 46 8 41 8 33C8 19 19 8 31 8Z"
+                      fill="none"
+                      stroke="rgba(255,255,255,.1)"
+                      strokeWidth="1"
+                    />
+                  </svg>
 
-                <p className="mt-7 max-w-[330px] text-[12px] leading-6 text-white/42">
-                  {leader.copy}
-                </p>
-              </div>
-            </article>
-          ))}
+                  {index === 1 && (
+                    <span className="absolute bottom-0 right-0 grid h-8 w-8 place-items-center rounded-full bg-[#1677FF] text-[9px] text-white">
+                      <Arrow />
+                    </span>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
