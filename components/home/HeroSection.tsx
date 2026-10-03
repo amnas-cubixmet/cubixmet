@@ -63,7 +63,7 @@ export default function HeroSection() {
       <div className="relative z-10 flex min-h-[calc(100svh-54px)] flex-col md:min-h-[calc(100svh-58px)]">
         <div className="hero-text-wrapper grid flex-1 items-center gap-8 pb-8 pt-10 md:pb-10 md:pt-12 lg:grid-cols-[1fr_360px]">
           <div className="max-w-[900px]">
-            <h1 className="text-[clamp(3rem,7.4vw,7.4rem)] font-semibold leading-[0.9] tracking-[-0.065em]">
+            <h1 className="text-[clamp(2.7rem,6.2vw,6.1rem)] font-semibold leading-[0.92] tracking-[-0.055em]">
               <span className="block">Engineering Growth.</span>
               <span className="block">Structuring Innovation.</span>
             </h1>
