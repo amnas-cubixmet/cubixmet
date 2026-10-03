@@ -141,7 +141,7 @@ export default function HeroSection() {
                   onClick={() => setActiveCard(project.index)}
                   tabIndex={0}
                   onFocus={() => setActiveCard(project.index)}
-                  className={"hero-card hero-project-card group relative cursor-pointer overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " + position + (isActive ? " hero-project-card-active" : "")}
+                  className={"hero-card hero-project-card group relative cursor-pointer overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " + position + (isActive ? " hero-project-card-active" : " hero-project-card-inactive")}
                 >
                   <div className={slot === 2 ? "aspect-[1.7/1]" : "aspect-[.78/1]"}>
                     <img
