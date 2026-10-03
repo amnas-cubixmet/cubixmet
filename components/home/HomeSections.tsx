@@ -23,21 +23,39 @@ function FlowerSeparator() {
 const services = [
   {
     no: "01",
-    title: "Branding",
-    copy: "Distinctive brand systems built to create recognition, consistency and a clear visual identity across every touchpoint.",
-    meta: ["Brand Strategy", "Logo & Identity", "Visual Branding", "Brand Guidelines", "Campaign Creative"],
+    title: "Web & App Development",
+    copy: "Full-stack web apps, SPAs, progressive web applications and digital platforms built with modern frameworks for performance and scale.",
+    meta: ["Full-stack Web Apps", "SPAs & PWAs", "Frontend Development", "Backend & API", "Cloud Deployment"],
   },
   {
     no: "02",
-    title: "UI / UX Design",
-    copy: "Clear, intuitive digital experiences designed around real user journeys, business goals and responsive interaction.",
-    meta: ["UX Research", "UI Design", "Web & App Design", "Wireframes & Prototypes", "Design Systems"],
+    title: "Product Engineering",
+    copy: "End-to-end product development from early ideation and UX through engineering, deployment and long-term scaling.",
+    meta: ["Product Strategy", "UI / UX Design", "MVP Development", "System Architecture", "Scale & Optimization"],
   },
   {
     no: "03",
-    title: "Web Development",
-    copy: "Fast, scalable websites and digital products developed with modern frameworks, clean architecture and reliable integrations.",
-    meta: ["Next.js Development", "Frontend Development", "CMS & Ecommerce", "API Integration", "Performance & SEO"],
+    title: "Digital Marketing",
+    copy: "Integrated digital campaigns designed to attract the right audience, build visibility and convert attention into measurable growth.",
+    meta: ["Social Media Management", "Paid Advertising", "Campaign Strategy", "Lead Generation", "Marketing Automation"],
+  },
+  {
+    no: "04",
+    title: "Brand Growth",
+    copy: "Data-backed positioning, performance marketing and conversion strategy built to strengthen brands and accelerate market growth.",
+    meta: ["Brand Growth Strategy", "Performance Marketing", "Conversion Funnels", "Google & Meta Ads", "Market Penetration"],
+  },
+  {
+    no: "05",
+    title: "Creative & Content",
+    copy: "Graphic design, content systems and campaign-ready visual communication created for modern brands across digital channels.",
+    meta: ["Graphic Design", "Content Creation", "Branding", "Video Editing", "AI-assisted Creative"],
+  },
+  {
+    no: "06",
+    title: "Tech & AI Training",
+    copy: "Practical career-focused learning in digital marketing, Python full stack development, AI tools and modern automation workflows.",
+    meta: ["Python Full Stack", "AI Vibe Coding", "Digital Marketing", "Automation", "Project-based Learning"],
   },
 ];
 
@@ -189,8 +207,11 @@ function AboutSection() {
 
 function ServicesSection() {
   const serviceVisuals = [
-    "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=900&q=82",
-    "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=82",
+    "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=900&q=82",
+    "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=900&q=82",
+    "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=82",
+    "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=82",
+    "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=900&q=82",
     "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=82",
   ];
 
@@ -200,10 +221,10 @@ function ServicesSection() {
         <div data-reveal className="reveal mb-12 grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
           <p className="section-label">Services</p>
           <div className="lg:justify-self-end lg:pr-[6%]">
-            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/55">We Deliver</p>
-            <h2 className="mt-2 max-w-[560px] text-[clamp(2rem,3.8vw,4rem)] font-medium leading-[1.02] tracking-[-0.05em]">
-              <span className="text-white">Comprehensive</span>
-              <span className="text-white/38"> solutions to help businesses grow and thrive.</span>
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/55">One innovation ecosystem</p>
+            <h2 className="mt-2 max-w-[620px] text-[clamp(2rem,3.8vw,4rem)] font-medium leading-[1.02] tracking-[-0.05em]">
+              <span className="text-white">Build. Market. Learn.</span>
+              <span className="text-white/38"> Six focused services across technology, digital growth and practical training.</span>
             </h2>
           </div>
         </div>
