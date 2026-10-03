@@ -25,10 +25,30 @@ const services = [
 ];
 
 const projects = [
-  { name: "Northframe", type: "Brand + Digital", size: "lg" },
-  { name: "Skylora", type: "Learning Platform", size: "sm" },
-  { name: "Kleid.in", type: "Ecommerce", size: "sm" },
-  { name: "CubixGear", type: "Operations Product", size: "lg" },
+  {
+    name: "Northframe",
+    type: "Branding / Strategy",
+    size: "wide",
+    image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1400&q=84",
+  },
+  {
+    name: "Kleid.in",
+    type: "Website",
+    size: "small",
+    image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=900&q=84",
+  },
+  {
+    name: "Skylora",
+    type: "App Development",
+    size: "small",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=84",
+  },
+  {
+    name: "CubixGear",
+    type: "Web Development",
+    size: "wide",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1400&q=84",
+  },
 ];
 
 const process = [
@@ -257,25 +277,64 @@ function ProcessSection() {
 
 function WorkSection() {
   return (
-    <section id="work" className="section-space">
-      <div className="site-wrapper">
-        <div data-reveal className="reveal mb-10 grid gap-5 lg:grid-cols-2 lg:items-end">
-          <div><p className="section-label">Our work</p><h2 className="section-title mt-4">Selected creative work.</h2></div>
-          <p className="max-w-md text-sm leading-6 text-white/45 lg:justify-self-end">A mix of brands, ecommerce, product interfaces and operational systems shaped by one multidisciplinary team.</p>
+    <section id="work" className="pb-20 pt-10 md:pb-28 md:pt-14">
+      <div className="about-wrapper">
+        <div data-reveal className="reveal mb-10 grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+          <p className="section-label">Our work</p>
+
+          <div className="lg:justify-self-end">
+            <h2 className="max-w-[560px] text-[clamp(2.4rem,4.6vw,5rem)] font-medium leading-[.95] tracking-[-0.055em]">
+              See Our <span className="font-serif font-normal italic">All Latest</span>
+              <span className="block">Creative Work</span>
+            </h2>
+
+            <a
+              href="#work-grid"
+              className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#1677FF] px-4 py-2 text-[10px] font-semibold text-white"
+            >
+              View all <Arrow />
+            </a>
+          </div>
         </div>
-        <div className="grid gap-4 md:grid-cols-2">
-          {projects.map((project,index) => (
-            <article key={project.name} data-reveal className={"reveal group overflow-hidden rounded-[22px] border border-white/8 bg-[#0d0d0d] " + (project.size === "lg" ? "md:row-span-2" : "")}>
-              <div className={"relative overflow-hidden bg-[linear-gradient(145deg,#191a19,#080808)] " + (project.size === "lg" ? "min-h-[360px] md:min-h-[620px]" : "min-h-[280px]")}>
-                <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,rgba(22,119,255,.12),transparent_28%)] transition duration-500 group-hover:scale-110" />
-                <div className="absolute left-1/2 top-1/2 grid h-[45%] w-[62%] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-xl border border-white/10 bg-black/50 text-[clamp(2rem,7vw,7rem)] font-semibold tracking-[-0.07em] text-white/80">0{index + 1}</div>
-              </div>
-              <div className="flex items-end justify-between gap-4 p-5">
-                <div><p className="text-[10px] uppercase tracking-[0.14em] text-white/35">{project.type}</p><h3 className="mt-1 text-xl font-medium">{project.name}</h3></div>
-                <span className="grid h-9 w-9 place-items-center rounded-full bg-[#1677FF] text-sm text-white transition group-hover:rotate-45"><Arrow /></span>
-              </div>
-            </article>
-          ))}
+
+        <div id="work-grid" className="grid gap-3 md:grid-cols-3 md:auto-rows-[230px] lg:auto-rows-[270px]">
+          {projects.map((project, index) => {
+            const layout =
+              index === 0
+                ? "md:col-span-2"
+                : index === 1
+                  ? "md:col-span-1"
+                  : index === 2
+                    ? "md:col-span-1"
+                    : "md:col-span-2";
+
+            return (
+              <article
+                key={project.name}
+                data-reveal
+                className={"reveal group relative overflow-hidden rounded-[14px] border border-white/8 bg-[#0d0d0d] " + layout}
+              >
+                <img
+                  src={project.image}
+                  alt={project.name}
+                  className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                />
+
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/5" />
+
+                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-4 md:p-5">
+                  <div>
+                    <p className="text-[9px] uppercase tracking-[0.14em] text-white/45">{project.type}</p>
+                    <h3 className="mt-1 text-[15px] font-medium text-white md:text-[18px]">{project.name}</h3>
+                  </div>
+
+                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#1677FF] text-[10px] text-white transition duration-300 group-hover:rotate-45">
+                    <Arrow />
+                  </span>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
