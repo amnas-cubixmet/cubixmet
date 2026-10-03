@@ -5,8 +5,8 @@ import Arrow from "./Arrow";
 export default function HeroSection() {
   return (
     <section id="top" className="relative min-h-[100svh] overflow-hidden bg-[#050505] pt-[54px] md:pt-[58px]">
-      <div className="site-wrapper relative z-10 flex min-h-[calc(100svh-54px)] flex-col md:min-h-[calc(100svh-58px)]">
-        <div className="grid flex-1 items-center gap-8 pb-8 pt-10 md:pb-10 md:pt-12 lg:grid-cols-[1fr_360px]">
+      <div className="relative z-10 flex min-h-[calc(100svh-54px)] flex-col md:min-h-[calc(100svh-58px)]">
+        <div className="hero-text-wrapper grid flex-1 items-center gap-8 pb-8 pt-10 md:pb-10 md:pt-12 lg:grid-cols-[1fr_360px]">
           <div className="max-w-[900px]">
             <h1 className="text-[clamp(3.15rem,8.3vw,8.1rem)] font-semibold leading-[0.88] tracking-[-0.068em]">
               <span className="block">We Build</span>
@@ -32,7 +32,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-[.72fr_1.65fr_.82fr] items-end gap-2 pb-3 md:gap-4 md:pb-5">
+        <div className="grid grid-cols-[.72fr_1.65fr_.82fr] items-end gap-2 px-5 pb-3 md:gap-4 md:px-8 md:pb-5 xl:px-10">
           <div className="hero-card h-[120px] translate-y-4 overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] p-2 sm:h-[170px] md:h-[230px] md:rounded-[14px] md:p-3">
             <div className="flex h-full items-end rounded-[8px] bg-[linear-gradient(145deg,#1a1a1a,#090909)] p-2">
               <div className="h-[68%] w-[52%] rounded-[8px] border border-white/10 bg-[linear-gradient(160deg,#e8e8e8,#b9b9b9_48%,#161616_49%)]" />
@@ -55,7 +55,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="pb-7 pt-6 lg:hidden">
+        <div className="hero-text-wrapper pb-7 pt-6 lg:hidden">
           <div className="flex items-end justify-between gap-5">
             <p className="max-w-[260px] text-[11px] leading-5 text-white/50">
               Strategy, design and development for brands that want to stand out and grow.
