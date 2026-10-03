@@ -5,7 +5,7 @@ import Arrow from "./Arrow";
 
 function FlowerSeparator() {
   return (
-    <span className="mx-[0.16em] inline-flex h-[0.72em] w-[0.72em] translate-y-[0.04em] items-center justify-center align-middle text-white/22">
+    <span className="inline-flex h-[0.66em] w-[0.66em] shrink-0 translate-y-[0.03em] items-center justify-center align-middle text-[#1677FF]">
       <svg viewBox="0 0 100 100" className="h-full w-full" aria-hidden="true">
         <g fill="currentColor">
           <ellipse cx="50" cy="20" rx="10" ry="22" />
@@ -359,26 +359,21 @@ function WorkSection() {
 }
 
 function MarqueeSection() {
+  const marqueeItems = ["Digital Products", "Brand Systems", "Web Experiences"];
+
   return (
     <section className="overflow-hidden border-y border-white/8 py-8 md:py-12">
       <div className="marquee items-center whitespace-nowrap text-[clamp(3rem,8vw,8rem)] font-semibold leading-none tracking-[-0.065em]">
-        <span className="mr-12 inline-flex items-center">
-          <span>Digital Products</span>
-          <FlowerSeparator />
-          <span>Brand Systems</span>
-          <FlowerSeparator />
-          <span>Web Experiences</span>
-          <FlowerSeparator />
-        </span>
-
-        <span className="inline-flex items-center">
-          <span>Digital Products</span>
-          <FlowerSeparator />
-          <span>Brand Systems</span>
-          <FlowerSeparator />
-          <span>Web Experiences</span>
-          <FlowerSeparator />
-        </span>
+        {[0, 1].map((loop) => (
+          <span key={loop} className="mr-[0.18em] inline-flex items-center gap-[0.18em]">
+            {marqueeItems.map((item) => (
+              <span key={item} className="inline-flex items-center gap-[0.18em]">
+                <span className="text-[#fff]">{item}</span>
+                <FlowerSeparator />
+              </span>
+            ))}
+          </span>
+        ))}
       </div>
     </section>
   );
