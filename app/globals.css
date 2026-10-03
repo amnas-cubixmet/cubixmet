@@ -530,3 +530,46 @@ a {
     touch-action: pan-y;
   }
 }
+
+
+/* Leadership team auto-loop slider */
+.team-slider-viewport {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 5%, #000 95%, transparent);
+}
+
+.team-slider-track {
+  animation: team-slider-loop 24s linear infinite;
+  will-change: transform;
+}
+
+.team-slider-viewport:hover .team-slider-track {
+  animation-play-state: paused;
+}
+
+@keyframes team-slider-loop {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (max-width: 767px) {
+  .team-slider-track {
+    animation-duration: 18s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .team-slider-viewport {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+
+  .team-slider-track {
+    animation: none;
+  }
+}
