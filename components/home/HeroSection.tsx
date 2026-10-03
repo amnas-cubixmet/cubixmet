@@ -114,12 +114,12 @@ export default function HeroSection() {
             {visibleProjects.map((project, slot) => {
               const position =
                 slot === 0
-                  ? "translate-y-4"
+                  ? "translate-y-8"
                   : slot === 1
-                    ? "translate-y-8"
+                    ? "translate-y-4"
                     : slot === 2
-                      ? ""
-                      : "translate-y-7";
+                      ? "-translate-y-2"
+                      : "translate-y-6";
 
               const isActive = project.index === activeCard;
 
@@ -131,7 +131,17 @@ export default function HeroSection() {
                   onFocus={() => setActiveCard(project.index)}
                   className={"hero-card hero-project-card group relative cursor-pointer overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " + position + (isActive ? " hero-project-card-active" : " hero-project-card-inactive")}
                 >
-                  <div className={slot === 2 ? "aspect-[1.7/1]" : "aspect-[.78/1]"}>
+                  <div
+                    className={
+                      slot === 2
+                        ? "aspect-[1.72/1]"
+                        : slot === 1
+                          ? "aspect-[.86/1]"
+                          : slot === 0
+                            ? "aspect-[.72/1]"
+                            : "aspect-[.8/1]"
+                    }
+                  >
                     <img
                       src={project.image}
                       alt={project.title}
