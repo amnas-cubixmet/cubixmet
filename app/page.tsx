@@ -1,88 +1,512 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useRef } from "react";
+import { useEffect, useState } from "react";
 
 const HeroCanvas = dynamic(() => import("../components/HeroCanvas"), { ssr: false });
 
+const services = [
+  {
+    no: "01",
+    title: "Branding",
+    copy: "Identity systems, brand direction and visual language built to make your business easy to remember.",
+    meta: ["Brand Strategy", "Visual Identity", "Campaign Direction"],
+  },
+  {
+    no: "02",
+    title: "UI / UX Design",
+    copy: "Digital interfaces shaped around clarity, speed and conversion across every screen size.",
+    meta: ["Product Design", "UX Systems", "Design Systems"],
+  },
+  {
+    no: "03",
+    title: "Web Development",
+    copy: "Fast, scalable websites and web products engineered with modern stacks and dependable performance.",
+    meta: ["Next.js", "Commerce", "Custom Platforms"],
+  },
+];
+
+const projects = [
+  { code: "01", name: "Northframe", type: "Brand + Digital", size: "lg" },
+  { code: "02", name: "Skylora", type: "Learning Platform", size: "sm" },
+  { code: "03", name: "Kleid.in", type: "Ecommerce", size: "sm" },
+  { code: "04", name: "CubixGear", type: "Operations Product", size: "lg" },
+];
+
+const process = [
+  ["01", "Discovery", "We understand the business, users, goals and the problem worth solving."],
+  ["02", "Ideas & Concepts", "We define the creative and technical direction before production starts."],
+  ["03", "Design", "We shape clear, responsive interfaces with a strong visual system."],
+  ["04", "Development", "We build, test and refine the experience for speed and reliability."],
+];
+
+const insights = [
+  ["Design", "How sharper UX decisions improve conversion without adding more screens."],
+  ["Technology", "Why modern websites should feel fast before they look impressive."],
+  ["Growth", "Building a digital brand system that stays consistent while you scale."],
+];
+
+function Arrow() {
+  return <span aria-hidden="true">↗</span>;
+}
+
 export default function Home() {
-  const heroRef = useRef<HTMLElement>(null);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => {
-      if (!heroRef.current) return;
-      const p = Math.min(window.scrollY / window.innerHeight, 1);
-      heroRef.current.style.setProperty("--scroll", String(p));
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("is-visible");
+        });
+      },
+      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    nodes.forEach((node) => observer.observe(node));
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <main className="bg-[#02050a] text-white">
-      <section ref={heroRef} className="hero relative min-h-[100svh] overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <HeroCanvas />
-        </div>
-
-        <div className="pointer-events-none absolute inset-0 z-[1] bg-[radial-gradient(circle_at_65%_45%,rgba(22,119,255,.08),transparent_34%),linear-gradient(180deg,rgba(2,5,10,.08),rgba(2,5,10,.3))]" />
-        <div className="pointer-events-none absolute inset-0 z-[1] opacity-[.14] [background-image:linear-gradient(rgba(255,255,255,.08)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.08)_1px,transparent_1px)] [background-size:72px_72px] [mask-image:linear-gradient(to_bottom,black,transparent_82%)]" />
-
-        <header className="absolute left-0 top-0 z-20 flex w-full items-center justify-between px-5 py-6 md:px-10 md:py-8">
-          <a href="#" className="text-[15px] font-semibold tracking-[.24em]">CUBIXMET</a>
-          <nav className="hidden items-center gap-8 text-[11px] font-medium tracking-[.16em] text-white/65 md:flex">
-            <a className="transition hover:text-white" href="#work">WORK</a>
-            <a className="transition hover:text-white" href="#services">SERVICES</a>
-            <a className="transition hover:text-white" href="#about">ABOUT</a>
-          </nav>
-          <a href="#contact" className="rounded-full border border-white/20 px-4 py-2 text-[10px] font-semibold tracking-[.13em] backdrop-blur-md transition hover:border-[#1677ff] hover:bg-[#1677ff] md:px-5">
-            START A PROJECT
+    <main className="overflow-x-hidden bg-[#050505] text-white">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-black/45 backdrop-blur-xl">
+        <div className="mx-auto flex h-[72px] max-w-[1500px] items-center justify-between px-5 md:px-8 xl:px-10">
+          <a href="#top" className="relative z-50 text-[15px] font-black tracking-[-0.03em]">
+            CUBIXMET<span className="text-[#d7ff25]">.</span>
           </a>
-        </header>
 
-        <div className="relative z-10 flex min-h-[100svh] flex-col justify-end px-5 pb-8 pt-28 md:px-10 md:pb-10">
-          <div className="hero-copy max-w-[1180px]">
-            <p className="mb-5 text-[10px] font-medium tracking-[.24em] text-[#6ea8ff] md:mb-7 md:text-xs">
-              TECHNOLOGY × DEVELOPMENT × DIGITAL GROWTH
-            </p>
-            <h1 className="hero-title max-w-[1100px] text-[clamp(3.4rem,10.2vw,9.5rem)] font-medium uppercase leading-[.78] tracking-[-.075em]">
-              <span className="block">Building</span>
-              <span className="block text-white/95">Digital</span>
-              <span className="block text-white/45">Futures.</span>
-            </h1>
+          <nav className="hidden items-center gap-7 text-[11px] font-medium text-white/60 md:flex">
+            <a className="transition hover:text-white" href="#about">About</a>
+            <a className="transition hover:text-white" href="#services">Services</a>
+            <a className="transition hover:text-white" href="#work">Work</a>
+            <a className="transition hover:text-white" href="#process">Process</a>
+            <a className="transition hover:text-white" href="#journal">Insights</a>
+          </nav>
+
+          <div className="hidden items-center gap-3 md:flex">
+            <span className="text-[10px] uppercase tracking-[0.18em] text-white/35">Available for projects</span>
+            <a href="#contact" className="rounded-full bg-[#d7ff25] px-4 py-2 text-[11px] font-bold text-black transition hover:scale-[1.03]">
+              Let&apos;s talk <Arrow />
+            </a>
           </div>
 
-          <div className="mt-8 flex items-end justify-between gap-6 border-t border-white/15 pt-5 md:mt-10">
-            <p className="max-w-[420px] text-sm leading-6 text-white/58 md:text-base">
-              We design and develop digital products, software and intelligent experiences for ambitious businesses.
-            </p>
-            <div className="hidden items-center gap-3 text-[10px] tracking-[.18em] text-white/45 sm:flex">
-              <span className="h-2 w-2 rounded-full bg-[#1677ff] shadow-[0_0_18px_#1677ff]" />
-              SCROLL TO EXPLORE
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            onClick={() => setMenuOpen((value) => !value)}
+            className="relative z-50 grid h-10 w-10 place-items-center rounded-full border border-white/10 md:hidden"
+          >
+            <span className="flex w-4 flex-col gap-1.5">
+              <span className={"h-px w-full bg-white transition " + (menuOpen ? "translate-y-[3.5px] rotate-45" : "")} />
+              <span className={"h-px w-full bg-white transition " + (menuOpen ? "-translate-y-[3.5px] -rotate-45" : "")} />
+            </span>
+          </button>
+        </div>
+
+        <div className={"absolute inset-x-0 top-0 min-h-[100svh] bg-[#050505] px-5 pb-8 pt-28 transition duration-500 md:hidden " + (menuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none")}>
+          <div className="flex flex-col gap-3 text-[clamp(2.6rem,14vw,4.8rem)] font-semibold leading-none tracking-[-0.06em]">
+            {[
+              ["#about", "About"],
+              ["#services", "Services"],
+              ["#work", "Work"],
+              ["#process", "Process"],
+              ["#journal", "Insights"],
+              ["#contact", "Contact"],
+            ].map(([href, label]) => (
+              <a key={href} onClick={() => setMenuOpen(false)} href={href} className="border-b border-white/10 pb-3">
+                {label}
+              </a>
+            ))}
+          </div>
+        </div>
+      </header>
+
+      <section id="top" className="relative min-h-[100svh] overflow-hidden pt-[72px]">
+        <div className="absolute inset-0 opacity-70">
+          <HeroCanvas />
+        </div>
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_62%_42%,rgba(154,203,70,.17),transparent_28%),linear-gradient(180deg,rgba(5,5,5,.05),#050505_92%)]" />
+        <div className="pointer-events-none absolute left-[-12%] top-[12%] h-[300px] w-[300px] rounded-full border border-white/5 md:h-[520px] md:w-[520px]" />
+
+        <div className="relative z-10 mx-auto flex min-h-[calc(100svh-72px)] max-w-[1500px] flex-col justify-between px-5 pb-7 pt-16 md:px-8 md:pb-10 md:pt-24 xl:px-10">
+          <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-end">
+            <div>
+              <p className="mb-5 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#d7ff25]">
+                <span className="h-1.5 w-1.5 rounded-full bg-[#d7ff25]" />
+                Digital studio for ambitious brands
+              </p>
+              <h1 className="max-w-[1000px] text-[clamp(4rem,10.8vw,10rem)] font-semibold leading-[0.78] tracking-[-0.075em]">
+                We Build
+                <span className="block font-serif font-normal italic text-white/75">— Brands that</span>
+                <span className="block">Stand Out</span>
+              </h1>
+            </div>
+
+            <div className="mb-2 max-w-[320px] lg:justify-self-end">
+              <div className="mb-5 grid h-24 w-24 place-items-center rounded-full border border-white/10 bg-white/[0.025] text-center text-[11px] text-white/60 backdrop-blur">
+                <span><strong className="block text-2xl text-white">12+</strong>projects shipped</span>
+              </div>
+              <p className="text-sm leading-6 text-white/50">
+                Strategy, design and development for digital products that need to look sharp and work even harder.
+              </p>
+              <a href="#work" className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#d7ff25] px-4 py-2 text-xs font-bold text-black">
+                Explore work <Arrow />
+              </a>
+            </div>
+          </div>
+
+          <div className="mt-14 grid grid-cols-3 gap-2 md:gap-4">
+            <div className="hero-card min-h-[150px] overflow-hidden rounded-[18px] border border-white/10 bg-[#0c0d0c] p-3 md:min-h-[250px] md:p-5">
+              <div className="h-full rounded-[12px] bg-[linear-gradient(135deg,#171918,#090909)] p-3">
+                <div className="h-2 w-10 rounded-full bg-white/10" />
+                <div className="mt-7 h-16 rounded-xl border border-white/5 bg-black/40 md:mt-12 md:h-28" />
+              </div>
+            </div>
+            <div className="hero-card min-h-[150px] overflow-hidden rounded-[18px] border border-white/10 bg-[#0c0d0c] p-3 md:min-h-[250px] md:p-5">
+              <div className="grid h-full place-items-center rounded-[12px] bg-[radial-gradient(circle_at_50%_40%,#27341b,#11130f_60%,#090909)]">
+                <div className="grid h-20 w-28 place-items-center rounded-md border border-white/10 bg-black/50 text-2xl font-semibold md:h-32 md:w-48 md:text-5xl">022</div>
+              </div>
+            </div>
+            <div className="hero-card min-h-[150px] overflow-hidden rounded-[18px] border border-white/10 bg-[#0c0d0c] p-3 md:min-h-[250px] md:p-5">
+              <div className="flex h-full items-end justify-center rounded-[12px] bg-[linear-gradient(145deg,#1b1c1b,#080808)]">
+                <div className="mb-3 h-24 w-12 rounded-t-md border border-white/10 bg-[#171717] md:h-40 md:w-20" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="services" className="relative z-10 flex min-h-screen items-center bg-[#f3f3ef] px-5 py-24 text-[#080b10] md:px-10">
-        <div className="mx-auto w-full max-w-[1500px]">
-          <p className="mb-7 text-xs tracking-[.2em] text-black/45">01 / WHAT WE DO</p>
-          <h2 className="max-w-6xl text-[clamp(3rem,8vw,8rem)] font-medium uppercase leading-[.85] tracking-[-.065em]">
-            Code. Design.<br />Growth.
-          </h2>
-          <p className="ml-auto mt-10 max-w-xl text-base leading-7 text-black/55 md:text-xl md:leading-8">
-            From first idea to working product, Cubixmet combines software engineering, AI, design and digital growth in one team.
-          </p>
+      <section id="about" className="px-5 py-20 md:px-8 md:py-28 xl:px-10">
+        <div data-reveal className="reveal mx-auto max-w-[1500px] rounded-[24px] border border-white/8 bg-[#0b0b0b] p-5 md:p-9">
+          <div className="grid gap-12 lg:grid-cols-[1.2fr_.8fr]">
+            <div>
+              <p className="mb-5 text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">About us</p>
+              <h2 className="max-w-[760px] text-[clamp(2.5rem,5.3vw,6.2rem)] font-medium leading-[0.95] tracking-[-0.055em]">
+                Smart, fast, and creative
+                <span className="block text-white/45">— digital experiences with purpose.</span>
+              </h2>
+            </div>
+            <p className="max-w-md self-end text-sm leading-7 text-white/45 md:text-base">
+              Cubixmet combines strategy, interface design and modern development to create focused digital experiences for growing businesses.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-3 sm:grid-cols-3">
+            {[
+              ["4x", "Faster design-to-build workflow"],
+              ["2x", "Lean collaborative process"],
+              ["100%", "Responsive by default"],
+            ].map(([value, label]) => (
+              <div key={value} className="rounded-[18px] border border-white/8 bg-[#101010] p-5 md:p-6">
+                <p className="text-[11px] leading-5 text-white/38">{label}</p>
+                <p className="mt-10 text-[clamp(2rem,4vw,4rem)] font-semibold tracking-[-0.05em]">{value}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 border-t border-white/8 pt-5 text-[10px] uppercase tracking-[0.14em] text-white/45">
+            <span>/ Results driven solutions</span>
+            <span>/ Strategic experiences</span>
+            <span>/ Purposeful design</span>
+          </div>
         </div>
       </section>
 
-      <section id="contact" className="flex min-h-[70vh] items-end bg-[#02050a] px-5 py-12 md:px-10">
-        <div>
-          <p className="mb-5 text-xs tracking-[.2em] text-[#6ea8ff]">HAVE AN IDEA?</p>
-          <h2 className="text-[clamp(3.2rem,9vw,9rem)] font-medium uppercase leading-[.84] tracking-[-.07em]">Let&apos;s build<br />what&apos;s next.</h2>
+      <section id="services" className="px-5 py-20 md:px-8 md:py-28 xl:px-10">
+        <div className="mx-auto max-w-[1500px]">
+          <div data-reveal className="reveal mb-14 grid gap-6 lg:grid-cols-2">
+            <p className="text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">Services</p>
+            <div>
+              <p className="text-[11px] uppercase tracking-[0.16em] text-white/35">We deliver</p>
+              <h2 className="mt-2 max-w-xl text-[clamp(2rem,4vw,4rem)] font-medium leading-[1.02] tracking-[-0.05em]">
+                Comprehensive solutions to help businesses grow and thrive.
+              </h2>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {services.map((service) => (
+              <article key={service.no} data-reveal className="reveal grid gap-6 border-t border-white/10 py-8 md:grid-cols-[.7fr_1.1fr_1fr] md:items-center md:py-12">
+                <div>
+                  <span className="mb-3 block text-xs text-[#d7ff25]">{service.no}</span>
+                  <h3 className="text-[clamp(2rem,4.5vw,4.8rem)] font-semibold tracking-[-0.055em]">{service.title}</h3>
+                </div>
+
+                <div className="service-visual relative min-h-[210px] overflow-hidden rounded-[22px] border border-white/10 bg-[#0f0f0f] md:min-h-[300px]">
+                  <div className="absolute inset-8 rounded-2xl border border-white/10 bg-[radial-gradient(circle_at_50%_30%,rgba(215,255,37,.1),transparent_40%),#0b0b0b]" />
+                  <div className="absolute left-1/2 top-1/2 grid h-24 w-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-black/60 text-4xl font-semibold">
+                    {service.no}
+                  </div>
+                </div>
+
+                <div className="md:pl-8">
+                  <p className="max-w-sm text-sm leading-6 text-white/50">{service.copy}</p>
+                  <div className="mt-7 space-y-2 text-[11px] text-white/55">
+                    {service.meta.map((item) => (
+                      <div key={item} className="flex items-center justify-between border-b border-white/8 pb-2">
+                        <span>{item}</span>
+                        <Arrow />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
+
+      <section id="process" className="px-5 py-20 md:px-8 md:py-28 xl:px-10">
+        <div data-reveal className="reveal mx-auto grid max-w-[1500px] gap-10 rounded-[24px] border border-white/8 bg-[#0b0b0b] p-5 md:p-9 lg:grid-cols-[1.05fr_.95fr]">
+          <div>
+            <p className="text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">Work process</p>
+            <h2 className="mt-5 max-w-xl text-[clamp(2.4rem,5vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.055em]">
+              Our process, designed and delivered simply.
+            </h2>
+
+            <div className="mt-10">
+              {process.map(([no, title, copy]) => (
+                <div key={no} className="grid grid-cols-[38px_1fr] gap-3 border-t border-white/10 py-5">
+                  <span className="text-xs text-[#d7ff25]">{no}</span>
+                  <div>
+                    <h3 className="text-lg font-medium">{title}</h3>
+                    <p className="mt-2 max-w-md text-xs leading-5 text-white/40">{copy}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="relative min-h-[420px] overflow-hidden rounded-[20px] bg-[radial-gradient(circle_at_70%_25%,rgba(215,255,37,.18),transparent_25%),linear-gradient(145deg,#242524,#0b0b0b)] md:min-h-[600px]">
+            <div className="absolute left-[12%] top-[12%] h-[68%] w-[65%] rotate-[-7deg] rounded-[22px] border border-white/10 bg-[#131313] shadow-2xl" />
+            <div className="absolute bottom-[10%] right-[10%] w-[58%] rounded-[18px] border border-white/10 bg-black/70 p-5">
+              <span className="text-[10px] uppercase tracking-[0.16em] text-[#d7ff25]">Strategy → Design → Build</span>
+              <p className="mt-8 text-2xl font-medium tracking-[-0.04em]">Built around the next move, not the last trend.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="work" className="px-5 py-20 md:px-8 md:py-28 xl:px-10">
+        <div className="mx-auto max-w-[1500px]">
+          <div data-reveal className="reveal mb-10 grid gap-5 lg:grid-cols-2 lg:items-end">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">Our work</p>
+              <h2 className="mt-4 text-[clamp(2.8rem,6vw,6.5rem)] font-medium leading-[0.9] tracking-[-0.06em]">
+                Selected creative work.
+              </h2>
+            </div>
+            <p className="max-w-md text-sm leading-6 text-white/45 lg:justify-self-end">
+              A mix of brands, ecommerce, product interfaces and operational systems shaped by one multidisciplinary team.
+            </p>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {projects.map((project, index) => (
+              <article
+                key={project.code}
+                data-reveal
+                className={"reveal group overflow-hidden rounded-[22px] border border-white/8 bg-[#0d0d0d] " + (project.size === "lg" ? "md:row-span-2" : "")}
+              >
+                <div className={"relative overflow-hidden bg-[linear-gradient(145deg,#191a19,#080808)] " + (project.size === "lg" ? "min-h-[360px] md:min-h-[620px]" : "min-h-[280px]")}>
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,rgba(215,255,37,.12),transparent_28%)] transition duration-500 group-hover:scale-110" />
+                  <div className="absolute left-1/2 top-1/2 grid h-[45%] w-[62%] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-xl border border-white/10 bg-black/50 text-[clamp(2rem,7vw,7rem)] font-semibold tracking-[-0.07em] text-white/80">
+                    0{index + 1}
+                  </div>
+                </div>
+                <div className="flex items-end justify-between gap-4 p-5">
+                  <div>
+                    <p className="text-[10px] uppercase tracking-[0.14em] text-white/35">{project.type}</p>
+                    <h3 className="mt-1 text-xl font-medium">{project.name}</h3>
+                  </div>
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-[#d7ff25] text-sm text-black transition group-hover:rotate-45"><Arrow /></span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="overflow-hidden border-y border-white/8 py-8 md:py-12">
+        <div className="marquee whitespace-nowrap text-[clamp(3rem,8vw,8rem)] font-semibold leading-none tracking-[-0.065em]">
+          <span className="mr-12">Digital Products <span className="font-serif italic text-white/25">×</span> Brand Systems <span className="font-serif italic text-white/25">×</span> Web Experiences <span className="font-serif italic text-white/25">×</span></span>
+          <span>Digital Products <span className="font-serif italic text-white/25">×</span> Brand Systems <span className="font-serif italic text-white/25">×</span> Web Experiences <span className="font-serif italic text-white/25">×</span></span>
+        </div>
+      </section>
+
+      <section className="px-5 py-20 md:px-8 md:py-28 xl:px-10">
+        <div className="mx-auto max-w-[1500px]">
+          <div data-reveal className="reveal text-center">
+            <p className="text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">Client stories</p>
+            <h2 className="mt-4 text-[clamp(2.2rem,5vw,5rem)] font-medium tracking-[-0.055em]">
+              Trusted by teams. Backed by outcomes.
+            </h2>
+          </div>
+
+          <div className="mt-10 grid gap-3 md:grid-cols-3">
+            {[
+              ["The team made a complex product feel clear and simple from the first design round.", "Product Lead"],
+              ["Fast communication, practical decisions and a final build that performs beautifully.", "Founder"],
+              ["Cubixmet gave us a sharper digital direction without losing the personality of our brand.", "Marketing Lead"],
+            ].map(([quote, role]) => (
+              <blockquote key={quote} data-reveal className="reveal rounded-[20px] border border-white/8 bg-[#0b0b0b] p-6">
+                <span className="text-3xl text-[#d7ff25]">“</span>
+                <p className="mt-6 text-base leading-7 text-white/65">{quote}</p>
+                <footer className="mt-10 border-t border-white/8 pt-4 text-[11px] uppercase tracking-[0.14em] text-white/35">{role}</footer>
+              </blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="px-5 py-20 md:px-8 md:py-28 xl:px-10">
+        <div className="mx-auto grid max-w-[1500px] gap-10 lg:grid-cols-[.75fr_1.25fr]">
+          <div data-reveal className="reveal">
+            <p className="text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">Leadership</p>
+            <h2 className="mt-4 text-[clamp(2.5rem,5vw,5.5rem)] font-medium leading-[0.94] tracking-[-0.055em]">
+              Meet the people behind the work.
+            </h2>
+          </div>
+
+          <div className="space-y-2">
+            {[
+              ["Creative Direction", "Brand, positioning and visual systems."],
+              ["Product & UX", "Interface direction and user experience systems."],
+              ["Technology", "Architecture, engineering and delivery."],
+            ].map(([title, copy], index) => (
+              <div key={title} data-reveal className="reveal grid gap-5 rounded-[20px] border border-white/8 bg-[#0b0b0b] p-5 sm:grid-cols-[90px_1fr_auto] sm:items-center">
+                <div className="grid h-[72px] w-[72px] place-items-center rounded-full bg-[radial-gradient(circle,#d7ff25_0_38%,#273014_39%_62%,#111_63%)] text-sm font-bold text-black">
+                  0{index + 1}
+                </div>
+                <div>
+                  <h3 className="text-xl font-medium">{title}</h3>
+                  <p className="mt-2 text-sm text-white/40">{copy}</p>
+                </div>
+                <span className="text-white/30"><Arrow /></span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="journal" className="px-5 py-20 md:px-8 md:py-28 xl:px-10">
+        <div className="mx-auto max-w-[1500px]">
+          <div data-reveal className="reveal grid gap-6 lg:grid-cols-2">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">Journal</p>
+              <h2 className="mt-4 text-[clamp(2.5rem,5vw,5.5rem)] font-medium leading-[0.94] tracking-[-0.055em]">
+                Insight from the studio.
+              </h2>
+            </div>
+            <p className="max-w-md self-end text-sm leading-6 text-white/45 lg:justify-self-end">
+              Short notes on design, product thinking, technology and digital growth.
+            </p>
+          </div>
+
+          <div className="mt-10 grid gap-3 md:grid-cols-3">
+            {insights.map(([tag, title], index) => (
+              <article key={title} data-reveal className="reveal group flex min-h-[330px] flex-col justify-between rounded-[20px] border border-white/8 bg-[#0b0b0b] p-5 transition hover:-translate-y-1 hover:border-white/20">
+                <span className="w-fit rounded-full bg-[#d7ff25] px-3 py-1 text-[10px] font-bold text-black">{tag}</span>
+                <div>
+                  <p className="mb-5 text-[11px] text-white/25">0{index + 1} / 2026</p>
+                  <h3 className="text-2xl font-medium leading-tight tracking-[-0.04em]">{title}</h3>
+                  <div className="mt-6 flex items-center justify-between text-xs text-white/40">
+                    <span>Read insight</span>
+                    <Arrow />
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" className="px-3 pb-3 pt-10 md:px-5 md:pb-5">
+        <div className="overflow-hidden rounded-[28px] bg-[#d7ff25] text-black">
+          <div className="mx-auto grid max-w-[1500px] gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[.9fr_1.1fr] xl:px-10">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.18em]">Start a project</p>
+              <h2 className="mt-5 max-w-xl text-[clamp(3rem,6.5vw,7rem)] font-semibold leading-[0.86] tracking-[-0.065em]">
+                Have a project in mind? Let&apos;s talk.
+              </h2>
+              <p className="mt-6 max-w-md text-sm leading-6 text-black/60">
+                Share the goal, challenge or rough idea. We&apos;ll help shape the next step.
+              </p>
+              <a href="mailto:hello@cubixmet.com" className="mt-8 inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-xs font-bold text-white">
+                hello@cubixmet.com <Arrow />
+              </a>
+            </div>
+
+            <form className="rounded-[22px] bg-white p-5 md:p-7" onSubmit={(event) => event.preventDefault()}>
+              <div className="grid gap-5 sm:grid-cols-2">
+                <label className="text-xs font-medium">
+                  Your name
+                  <input className="mt-2 w-full border-b border-black/15 bg-transparent py-3 text-sm outline-none placeholder:text-black/30 focus:border-black" placeholder="Name" />
+                </label>
+                <label className="text-xs font-medium">
+                  Email
+                  <input type="email" className="mt-2 w-full border-b border-black/15 bg-transparent py-3 text-sm outline-none placeholder:text-black/30 focus:border-black" placeholder="you@company.com" />
+                </label>
+                <label className="text-xs font-medium sm:col-span-2">
+                  What can we help with?
+                  <input className="mt-2 w-full border-b border-black/15 bg-transparent py-3 text-sm outline-none placeholder:text-black/30 focus:border-black" placeholder="Brand, website, product, growth..." />
+                </label>
+                <label className="text-xs font-medium sm:col-span-2">
+                  Tell us about the project
+                  <textarea rows={4} className="mt-2 w-full resize-none border-b border-black/15 bg-transparent py-3 text-sm outline-none placeholder:text-black/30 focus:border-black" placeholder="A short project summary" />
+                </label>
+              </div>
+              <button type="submit" className="mt-7 inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-xs font-bold text-white">
+                Send project <Arrow />
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      <footer className="px-5 py-10 md:px-8 md:py-14 xl:px-10">
+        <div className="mx-auto max-w-[1500px]">
+          <div className="border-b border-white/8 pb-8">
+            <p className="text-[clamp(2.8rem,7.2vw,7.5rem)] font-semibold leading-none tracking-[-0.07em]">
+              Get in touch <span className="text-white/18">for what&apos;s next.</span>
+            </p>
+          </div>
+
+          <div className="grid gap-10 py-10 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <p className="font-bold">CUBIXMET<span className="text-[#d7ff25]">.</span></p>
+              <p className="mt-4 max-w-xs text-xs leading-5 text-white/35">Brand, design and technology for ambitious businesses.</p>
+            </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.16em] text-white/25">Navigate</p>
+              <div className="mt-4 space-y-2 text-sm text-white/55">
+                <a className="block hover:text-white" href="#about">About</a>
+                <a className="block hover:text-white" href="#services">Services</a>
+                <a className="block hover:text-white" href="#work">Work</a>
+              </div>
+            </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.16em] text-white/25">Social</p>
+              <div className="mt-4 space-y-2 text-sm text-white/55">
+                <span className="block">Instagram</span>
+                <span className="block">LinkedIn</span>
+                <span className="block">Behance</span>
+              </div>
+            </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.16em] text-white/25">Contact</p>
+              <p className="mt-4 text-sm text-white/55">hello@cubixmet.com</p>
+              <p className="mt-2 text-sm text-white/55">Kerala, India</p>
+            </div>
+          </div>
+
+          <div className="flex flex-col gap-3 border-t border-white/8 pt-5 text-[10px] uppercase tracking-[0.12em] text-white/25 sm:flex-row sm:items-center sm:justify-between">
+            <span>© 2026 Cubixmet</span>
+            <span>Designed & built for every screen</span>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
