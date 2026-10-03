@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Arrow from "./Arrow";
 import { services } from "../../data/services";
-import { aboutContent, aboutPillars, projects, process, marqueeItems, testimonials, leaders, insights } from "../../data/home";
+import { aboutContent, aboutPillars, ventures, projects, process, marqueeItems, testimonials, leaders, insights } from "../../data/home";
 
 function FlowerSeparator() {
   return (
@@ -173,6 +173,103 @@ function AboutSection() {
               </article>
             ))}
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function VentureIcon({ type }: { type: "tech" | "digital" | "academy" }) {
+  if (type === "tech") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" aria-hidden="true">
+        <rect x="3.5" y="4" width="17" height="12" rx="2" stroke="currentColor" strokeWidth="1.4" />
+        <path d="M8 20h8M10 16v4M14 16v4M8 10l2-2m-2 2 2 2M16 8l-2 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  if (type === "digital") {
+    return (
+      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" aria-hidden="true">
+        <path d="M4 17V7M4 17h16" stroke="currentColor" strokeWidth="1.4" />
+        <path d="m7 14 3-3 3 2 4-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M15 8h2v2" stroke="currentColor" strokeWidth="1.4" />
+        <circle cx="18.5" cy="5.5" r="1.5" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" aria-hidden="true">
+      <path d="m3 9 9-5 9 5-9 5-9-5Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+      <path d="M7 12.2v4.2c2.8 2.1 7.2 2.1 10 0v-4.2M21 9v5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+function VenturesSection() {
+  return (
+    <section id="ventures" className="pb-20 pt-4 md:pb-28 md:pt-10">
+      <div className="about-wrapper">
+        <div data-reveal className="reveal grid gap-8 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
+          <div>
+            <p className="section-label">Our Ventures</p>
+            <h2 className="max-w-[640px] text-[clamp(2.5rem,4.5vw,5rem)] font-medium leading-[.94] tracking-[-0.055em]">
+              Three specialized verticals.
+            </h2>
+          </div>
+
+          <p className="max-w-[520px] text-[13px] leading-6 text-white/45 md:text-[15px] md:leading-7 lg:justify-self-end">
+            One unified mission — structured innovation at scale.
+          </p>
+        </div>
+
+        <div className="mt-10 grid gap-4 lg:grid-cols-3">
+          {ventures.map((venture, index) => (
+            <article
+              key={venture.name}
+              data-scroll-card
+              data-scroll-delay={index * 90}
+              className="scroll-card group relative flex min-h-[520px] flex-col overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b] p-5 md:p-7"
+            >
+              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_12%,rgba(22,119,255,.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,.015),transparent_45%)]" />
+
+              <div className="relative z-10">
+                <div className="grid h-12 w-12 place-items-center rounded-full border border-[#1677FF]/25 bg-[#1677FF]/5 text-[#1677FF]">
+                  <VentureIcon type={venture.icon} />
+                </div>
+
+                <h3 className="mt-7 text-[clamp(1.8rem,2.4vw,2.8rem)] font-semibold leading-[.95] tracking-[-0.045em]">
+                  {venture.name}
+                </h3>
+
+                <p className="mt-3 text-[13px] font-medium text-white/75">{venture.tagline}</p>
+
+                <p className="mt-6 max-w-[360px] text-[12px] leading-6 text-white/40">
+                  {venture.copy}
+                </p>
+              </div>
+
+              <div className="relative z-10 mt-8 space-y-3 border-t border-white/8 pt-6">
+                {venture.services.map((item) => (
+                  <div key={item} className="flex items-start gap-3 text-[11px] leading-5 text-white/52">
+                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <a
+                href={venture.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative z-10 mt-auto inline-flex w-fit items-center gap-2 pt-10 text-[11px] font-semibold text-white transition-colors duration-300 hover:text-[#1677FF]"
+              >
+                Learn More <Arrow />
+              </a>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -643,6 +740,7 @@ export default function HomeSections() {
   return (
     <>
       <AboutSection />
+      <VenturesSection />
       <ServicesSection />
       <ProcessSection />
       <WorkSection />
