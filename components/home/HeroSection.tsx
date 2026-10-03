@@ -17,13 +17,16 @@ export default function HeroSection() {
 
           <div className="relative hidden self-center lg:block">
             <div className="relative mb-12 ml-10 h-32 w-32">
-              <div className="pointer-events-none absolute inset-0 opacity-90 [filter:drop-shadow(0_0_28px_rgba(110,130,55,.12))]">
-                <span className="absolute left-[8%] top-[8%] h-[62%] w-[62%] rounded-full bg-[rgba(30,35,24,.76)]" />
-                <span className="absolute right-[8%] top-[8%] h-[62%] w-[62%] rounded-full bg-[rgba(30,35,24,.76)]" />
-                <span className="absolute bottom-[8%] left-[8%] h-[62%] w-[62%] rounded-full bg-[rgba(30,35,24,.76)]" />
-                <span className="absolute bottom-[8%] right-[8%] h-[62%] w-[62%] rounded-full bg-[rgba(30,35,24,.76)]" />
-                <span className="absolute left-[25%] top-[25%] h-1/2 w-1/2 bg-[rgba(30,35,24,.76)]" />
-              </div>
+              <svg
+                viewBox="0 0 100 100"
+                className="pointer-events-none absolute inset-0 h-full w-full overflow-visible [filter:drop-shadow(0_0_26px_rgba(89,105,45,.10))]"
+                aria-hidden="true"
+              >
+                <path
+                  d="M 8.70 6.24 L 5.42 9.69 L 2.96 13.46 L 0.99 18.23 L 0 23.48 L 0.82 32.18 L 2.79 37.27 L 7.06 43.68 L 8.05 47.62 L 7.55 54.84 L 2.30 63.88 L 0.16 71.92 L 0.33 78 L 1.64 83.25 L 3.78 87.68 L 7.22 92.12 L 14.45 97.37 L 18.88 99.01 L 23.81 99.84 L 28.90 99.67 L 34.32 98.36 L 38.75 96.22 L 42.86 93.27 L 47.45 91.95 L 52.55 91.95 L 55.50 92.61 L 64.04 97.70 L 68.47 99.18 L 72.91 99.84 L 77.83 99.67 L 83.09 98.36 L 86.70 96.72 L 91.30 93.43 L 94.91 89.49 L 97.54 85.06 L 99.18 80.30 L 99.84 75.70 L 99.51 70.11 L 98.03 64.86 L 93.10 56.98 L 91.79 52.55 L 92.28 44.99 L 97.70 35.80 L 99.34 30.71 L 99.84 26.93 L 99.51 21.35 L 98.36 16.91 L 95.57 11.33 L 93.10 8.21 L 89 4.60 L 85.06 2.30 L 81.61 0.99 L 76.19 0 L 70.77 0.16 L 66.50 1.15 L 61.41 3.45 L 56.65 6.73 L 51.56 7.88 L 45.16 7.39 L 42.53 6.40 L 35.47 1.97 L 27.42 0 L 22 0.16 L 18.23 0.99 L 13.14 3.12 Z"
+                  fill="rgba(30,35,24,.80)"
+                />
+              </svg>
               <div className="relative z-10 grid h-full w-full place-items-center text-center">
                 <span className="text-[9px] leading-4 text-white/45">
                   <strong className="block text-[34px] leading-none text-white">12+</strong>
