@@ -274,23 +274,28 @@ a {
 
 
 .hero-slider-step {
-  animation: hero-slide-in 620ms cubic-bezier(0.2, 0.65, 0.25, 1) both;
+  transform: translate3d(-2%, 0, 0);
+  animation: hero-slide-in 980ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
 }
 
 @keyframes hero-slide-in {
-  from {
-    opacity: 0.72;
-    transform: translate3d(2%, 0, 0);
+  0% {
+    opacity: 0.7;
+    transform: translate3d(1.2%, 0, 0) scale(0.995);
   }
-  to {
+  55% {
+    opacity: 0.96;
+  }
+  100% {
     opacity: 1;
-    transform: translate3d(-2%, 0, 0);
+    transform: translate3d(-2%, 0, 0) scale(1);
   }
 }
 
 @media (max-width: 767px) {
   .hero-slider-step {
-    animation-duration: 480ms;
+    animation-duration: 760ms;
   }
 }
 
