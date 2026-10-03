@@ -46,11 +46,10 @@ export default function HeroSection() {
   const [paused, setPaused] = useState(false);
 
   const goNext = () => setActiveCard((current) => (current + 1) % heroProjects.length);
-  const goPrev = () => setActiveCard((current) => (current - 1 + heroProjects.length) % heroProjects.length);
 
   useEffect(() => {
     if (paused) return;
-    const timer = window.setInterval(goNext, 3200);
+    const timer = window.setInterval(goNext, 3600);
     return () => window.clearInterval(timer);
   }, [paused]);
 
@@ -123,7 +122,7 @@ export default function HeroSection() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <div key={activeCard} className="hero-slider-step mx-auto grid w-[104%] -translate-x-[2%] grid-cols-[.72fr_.9fr_1.55fr_.9fr] items-end gap-3 md:gap-4">
+          <div key={activeCard} className="hero-slider-step mx-auto grid w-[104%] grid-cols-[.72fr_.9fr_1.55fr_.9fr] items-end gap-3 md:gap-4">
             {visibleProjects.map((project, slot) => {
               const position =
                 slot === 0
@@ -172,37 +171,7 @@ export default function HeroSection() {
             })}
           </div>
 
-          <div className="mt-5 flex items-center justify-center gap-3">
-            <button
-              type="button"
-              onClick={goPrev}
-              aria-label="Previous project"
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/15 text-sm text-white/70 transition hover:border-[#1677FF] hover:bg-[#1677FF] hover:text-white"
-            >
-              ←
-            </button>
 
-            <div className="flex items-center gap-1.5">
-              {heroProjects.map((project, index) => (
-                <button
-                  key={project.title}
-                  type="button"
-                  onClick={() => setActiveCard(index)}
-                  aria-label={`Show ${project.title}`}
-                  className={"h-1.5 rounded-full transition-all duration-300 " + (activeCard === index ? "w-7 bg-[#1677FF]" : "w-1.5 bg-white/20 hover:bg-white/45")}
-                />
-              ))}
-            </div>
-
-            <button
-              type="button"
-              onClick={goNext}
-              aria-label="Next project"
-              className="grid h-9 w-9 place-items-center rounded-full border border-white/15 text-sm text-white/70 transition hover:border-[#1677FF] hover:bg-[#1677FF] hover:text-white"
-            >
-              →
-            </button>
-          </div>
         </div>
 
         <div className="hero-text-wrapper pb-7 pt-6 lg:hidden">
