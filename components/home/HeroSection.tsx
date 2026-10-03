@@ -61,7 +61,7 @@ export default function HeroSection() {
   return (
     <section id="top" className="relative min-h-[88svh] overflow-hidden bg-[#050505] pt-[54px] md:min-h-[82svh] md:pt-[58px]">
       <div className="relative z-10 flex min-h-[calc(88svh-54px)] flex-col md:min-h-[calc(82svh-58px)]">
-        <div className="hero-text-wrapper grid flex-1 items-center gap-8 pb-5 pt-7 md:pb-6 md:pt-8 lg:grid-cols-[1fr_360px]">
+        <div className="hero-text-wrapper grid flex-1 items-center gap-8 pb-8 pt-12 md:pb-10 md:pt-14 lg:grid-cols-[1fr_360px]">
           <div className="max-w-[900px]">
             <h1 className="text-[clamp(2.9rem,6.4vw,6.3rem)] font-semibold leading-[0.92] tracking-[-0.055em]">
               <span className="block">Growth Through</span>
