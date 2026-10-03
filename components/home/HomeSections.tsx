@@ -571,10 +571,35 @@ function LeadershipSection() {
             </h2>
 
             <div className="mt-16 hidden lg:block">
-              <div className="relative h-24 w-24 opacity-60">
-                <span className="absolute left-1/2 top-1/2 h-16 w-7 -translate-x-1/2 -translate-y-1/2 rotate-12 rounded-full border border-white/15" />
-                <span className="absolute left-1/2 top-1/2 h-16 w-7 -translate-x-1/2 -translate-y-1/2 rotate-[72deg] rounded-full border border-white/15" />
-                <span className="absolute left-1/2 top-1/2 h-16 w-7 -translate-x-1/2 -translate-y-1/2 rotate-[132deg] rounded-full border border-white/15" />
+              <div className="relative h-28 w-28 opacity-70">
+                <svg
+                  viewBox="0 0 120 120"
+                  className="h-full w-full"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M100 58
+                       C100 33 80 14 57 16
+                       C35 18 20 35 20 56
+                       C20 80 40 99 64 98
+                       C84 97 98 82 98 64
+                       C98 47 84 34 68 34
+                       C52 34 40 46 40 61
+                       C40 75 51 85 64 85
+                       C76 85 85 76 85 65
+                       C85 55 77 47 67 47
+                       C58 47 51 54 51 63
+                       C51 71 57 77 65 77
+                       C72 77 77 72 77 65
+                       C77 60 73 56 68 56
+                       C63 56 60 60 60 64"
+                    fill="none"
+                    stroke="#1677FF"
+                    strokeWidth="10"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
               </div>
             </div>
           </div>
