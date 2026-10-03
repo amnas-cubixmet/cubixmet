@@ -38,7 +38,7 @@ function useReveal() {
 function AboutSection() {
   return (
     <section id="about" className="section-space">
-      <div data-reveal className="reveal site-wrapper">
+      <div data-reveal className="reveal about-wrapper">
         <div className="overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b]">
           <div className="grid gap-10 px-5 pb-8 pt-7 md:px-10 md:pb-10 md:pt-9 lg:grid-cols-[1.12fr_.88fr] lg:gap-16 xl:px-12 xl:pb-12 xl:pt-11">
             <div>
