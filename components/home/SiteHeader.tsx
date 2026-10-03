@@ -1,9 +1,30 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeLink, setActiveLink] = useState("#top");
+
+  useEffect(() => {
+    const sectionIds = ["top", "about", "services", "process", "work", "journal", "contact"];
+    const sections = sectionIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible?.target?.id) setActiveLink(`#${visible.target.id}`);
+      },
+      { rootMargin: "-35% 0px -50% 0px", threshold: [0, 0.15, 0.35, 0.6] }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-black/20 backdrop-blur-[2px]">
@@ -12,12 +33,32 @@ export default function SiteHeader() {
           CUBIXMET<span className="text-[#1677FF]">.</span>
         </a>
 
-        <nav className="hidden items-center gap-6 text-[9px] font-medium text-white/55 md:flex">
-          <a className="transition hover:text-white" href="#about">Home</a>
-          <a className="transition hover:text-white" href="#services">Services</a>
-          <a className="transition hover:text-white" href="#work">Portfolio</a>
-          <a className="transition hover:text-white" href="#journal">Blog</a>
-          <a className="transition hover:text-white" href="#contact">Contact</a>
+        <nav className="hidden items-center gap-6 text-[9px] font-medium md:flex">
+          {[
+            ["#top", "Home"],
+            ["#services", "Services"],
+            ["#work", "Portfolio"],
+            ["#journal", "Blog"],
+            ["#contact", "Contact"],
+          ].map(([href, label]) => (
+            <a
+              key={href}
+              href={href}
+              onClick={() => setActiveLink(href)}
+              className={
+                "relative transition-colors duration-300 " +
+                (activeLink === href ? "text-[#1677FF]" : "text-white/55 hover:text-white")
+              }
+            >
+              {label}
+              <span
+                className={
+                  "absolute -bottom-2 left-1/2 h-[2px] -translate-x-1/2 rounded-full bg-[#1677FF] transition-all duration-300 " +
+                  (activeLink === href ? "w-4 opacity-100" : "w-0 opacity-0")
+                }
+              />
+            </a>
+          ))}
         </nav>
 
         <div className="hidden items-center gap-2 md:flex">
