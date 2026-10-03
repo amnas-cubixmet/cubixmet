@@ -82,7 +82,7 @@ export default function HeroSection() {
               return (
                 <article
                   key={src}
-                  className={"hero-card group relative overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " + position}
+                  className={"hero-card hero-project-card group relative overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " + position + (index === 2 ? " hero-project-card-active" : "")}
                 >
                   <div className={index === 2 ? "aspect-[1.7/1]" : "aspect-[.78/1]"}>
                     <img
