@@ -571,35 +571,15 @@ function LeadershipSection() {
             </h2>
 
             <div className="mt-16 hidden lg:block">
-              <div className="relative h-28 w-28 opacity-70">
-                <svg
-                  viewBox="0 0 120 120"
-                  className="h-full w-full"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M100 58
-                       C100 33 80 14 57 16
-                       C35 18 20 35 20 56
-                       C20 80 40 99 64 98
-                       C84 97 98 82 98 64
-                       C98 47 84 34 68 34
-                       C52 34 40 46 40 61
-                       C40 75 51 85 64 85
-                       C76 85 85 76 85 65
-                       C85 55 77 47 67 47
-                       C58 47 51 54 51 63
-                       C51 71 57 77 65 77
-                       C72 77 77 72 77 65
-                       C77 60 73 56 68 56
-                       C63 56 60 60 60 64"
-                    fill="none"
-                    stroke="#1677FF"
-                    strokeWidth="10"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+              <div className="relative h-32 w-32">
+                {[0, 45, 90, 135].map((angle) => (
+                  <span
+                    key={angle}
+                    className="absolute left-1/2 top-1/2 h-[94px] w-[28px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[linear-gradient(90deg,#7d1f1f_0%,#b63b3b_24%,#ff6b6b_52%,#a52e2e_78%,#671919_100%)] shadow-[inset_8px_0_10px_rgba(255,255,255,.12),inset_-8px_0_12px_rgba(0,0,0,.28),0_10px_24px_rgba(0,0,0,.28)]"
+                    style={{ transform: `translate(-50%, -50%) rotate(${angle}deg)` }}
                   />
-                </svg>
+                ))}
+                <span className="absolute left-1/2 top-1/2 h-11 w-11 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_35%_30%,#ff7979,#b13a3a_55%,#7a1f1f_100%)] shadow-[inset_6px_6px_10px_rgba(255,255,255,.12),inset_-6px_-6px_10px_rgba(0,0,0,.28)]" />
               </div>
             </div>
           </div>
