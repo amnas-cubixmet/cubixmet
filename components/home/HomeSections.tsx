@@ -3,6 +3,23 @@
 import { useEffect } from "react";
 import Arrow from "./Arrow";
 
+function FlowerSeparator() {
+  return (
+    <span className="mx-[0.16em] inline-flex h-[0.72em] w-[0.72em] translate-y-[0.04em] items-center justify-center align-middle text-white/22">
+      <svg viewBox="0 0 100 100" className="h-full w-full" aria-hidden="true">
+        <g fill="currentColor">
+          <ellipse cx="50" cy="20" rx="10" ry="22" />
+          <ellipse cx="50" cy="80" rx="10" ry="22" />
+          <ellipse cx="24" cy="35" rx="10" ry="22" transform="rotate(-55 24 35)" />
+          <ellipse cx="76" cy="35" rx="10" ry="22" transform="rotate(55 76 35)" />
+          <ellipse cx="24" cy="65" rx="10" ry="22" transform="rotate(55 24 65)" />
+          <ellipse cx="76" cy="65" rx="10" ry="22" transform="rotate(-55 76 65)" />
+        </g>
+      </svg>
+    </span>
+  );
+}
+
 const services = [
   {
     no: "01",
@@ -344,9 +361,24 @@ function WorkSection() {
 function MarqueeSection() {
   return (
     <section className="overflow-hidden border-y border-white/8 py-8 md:py-12">
-      <div className="marquee whitespace-nowrap text-[clamp(3rem,8vw,8rem)] font-semibold leading-none tracking-[-0.065em]">
-        <span className="mr-12">Digital Products <span className="font-serif italic text-white/25">×</span> Brand Systems <span className="font-serif italic text-white/25">×</span> Web Experiences <span className="font-serif italic text-white/25">×</span></span>
-        <span>Digital Products <span className="font-serif italic text-white/25">×</span> Brand Systems <span className="font-serif italic text-white/25">×</span> Web Experiences <span className="font-serif italic text-white/25">×</span></span>
+      <div className="marquee items-center whitespace-nowrap text-[clamp(3rem,8vw,8rem)] font-semibold leading-none tracking-[-0.065em]">
+        <span className="mr-12 inline-flex items-center">
+          <span>Digital Products</span>
+          <FlowerSeparator />
+          <span>Brand Systems</span>
+          <FlowerSeparator />
+          <span>Web Experiences</span>
+          <FlowerSeparator />
+        </span>
+
+        <span className="inline-flex items-center">
+          <span>Digital Products</span>
+          <FlowerSeparator />
+          <span>Brand Systems</span>
+          <FlowerSeparator />
+          <span>Web Experiences</span>
+          <FlowerSeparator />
+        </span>
       </div>
     </section>
   );
