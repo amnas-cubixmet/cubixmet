@@ -14,6 +14,12 @@ html {
   background: var(--background);
   color: var(--foreground);
   scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
 }
 
 body {
@@ -477,5 +483,29 @@ a {
     transform: none;
     filter: none;
     transition: none;
+  }
+}
+
+
+.hero-slider-step-mobile {
+  transform: translate3d(-4%, 0, 0);
+  animation: hero-mobile-slide-in 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  will-change: transform, opacity;
+}
+
+@keyframes hero-mobile-slide-in {
+  from {
+    opacity: 0.68;
+    transform: translate3d(-1%, 0, 0) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(-4%, 0, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slider-step-mobile {
+    animation: none;
   }
 }
