@@ -27,14 +27,38 @@ export default function HeroSection() {
   });
 
   return (
-    <section id="top" className="relative min-h-[88svh] overflow-hidden bg-[#050505] pt-[54px] md:min-h-[82svh] md:pt-[58px]">
-      <div className="relative z-10 flex min-h-[calc(88svh-54px)] flex-col md:min-h-[calc(82svh-58px)]">
-        <div className="hero-text-wrapper grid min-h-[52svh] flex-1 items-center gap-8 pb-10 pt-14 md:min-h-[56svh] md:pb-12 md:pt-16 lg:min-h-[58svh] lg:grid-cols-[1fr_360px]">
+    <section id="top" className="relative min-h-[100svh] overflow-hidden bg-[#050505] pt-[54px] md:min-h-[82svh] md:pt-[58px]">
+      <div className="relative z-10 flex min-h-[calc(100svh-54px)] flex-col md:min-h-[calc(82svh-58px)]">
+        <div className="hero-text-wrapper grid flex-1 content-center gap-7 pb-5 pt-8 md:min-h-[56svh] md:pb-12 md:pt-16 lg:min-h-[58svh] lg:grid-cols-[1fr_360px]">
           <div className="max-w-[900px]">
             <h1 className="text-[clamp(2.9rem,6.4vw,6.3rem)] font-semibold leading-[0.92] tracking-[-0.055em]">
               <span className="block">Growth Through</span>
               <span className="block">Innovation.</span>
             </h1>
+
+            <div className="mt-7 lg:hidden">
+              <div className="inline-flex items-center gap-3">
+                <div className="grid h-[74px] w-[74px] place-items-center rounded-[24px] bg-[#171c13] text-center">
+                  <span className="text-[7px] leading-3 text-white/45">
+                    <strong className="block text-[24px] leading-none text-white">12+</strong>
+                    Your trust builds us
+                  </span>
+                </div>
+              </div>
+
+              <p className="mt-5 max-w-[310px] text-[11px] leading-[1.6] text-white/48">
+                Cubixmet is a multi-venture innovation ecosystem in Pandikkad, Malappuram delivering software development, digital marketing, and IT training solutions across The World.
+              </p>
+
+              <a
+                href="https://api.whatsapp.com/send/?phone=918921592742&text=Hi+Cubixmet%21+I%27d+like+to+get+started.&type=phone_number&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#1677FF] px-4 py-2 text-[10px] font-bold text-white"
+              >
+                Let&apos;s Talk <Arrow />
+              </a>
+            </div>
           </div>
 
           <div className="relative hidden self-center lg:block">
@@ -74,14 +98,14 @@ export default function HeroSection() {
         </div>
 
         <div
-          className="relative overflow-hidden pb-4 md:pb-5"
+          className="relative mt-auto overflow-hidden pb-2 md:mt-0 md:pb-5"
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
           {/* Mobile: exactly 3 cards, active card centered */}
           <div
             key={`mobile-${activeCard}`}
-            className="hero-slider-step-mobile mx-auto grid w-[116%] grid-cols-[.72fr_1.7fr_.72fr] items-end gap-2 md:hidden"
+            className="hero-slider-step-mobile mx-auto grid w-[108%] grid-cols-[.72fr_1.7fr_.72fr] items-end gap-2 md:hidden"
           >
             {mobileProjects.map((project, slot) => {
               const isActive = project.index === activeCard;
@@ -181,21 +205,7 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="hero-text-wrapper pb-7 pt-6 lg:hidden">
-          <div className="flex items-end justify-between gap-5">
-            <p className="max-w-[260px] text-[11px] leading-5 text-white/50">
-              Strategy, design and development for brands that want to stand out and grow.
-            </p>
-            <a
-              href="https://api.whatsapp.com/send/?phone=918921592742&text=Hi+Cubixmet%21+I%27d+like+to+get+started.&type=phone_number&app_absent=0"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#1677FF] px-3.5 py-2 text-[10px] font-bold text-white"
-            >
-              Let&apos;s Talk <Arrow />
-            </a>
-          </div>
-        </div>
+
       </div>
     </section>
   );
