@@ -73,7 +73,7 @@ export default function Home() {
       <header className="fixed inset-x-0 top-0 z-50 bg-black/20 backdrop-blur-[2px]">
         <div className="mx-auto flex h-[54px] max-w-[1500px] items-center justify-between px-5 md:h-[58px] md:px-8 xl:px-10">
           <a href="#top" className="relative z-50 text-[12px] font-black tracking-[-0.035em] md:text-[13px]">
-            CUBIXMET<span className="text-[#d7ff25]">.</span>
+            CUBIXMET<span className="text-[#1677FF]">.</span>
           </a>
 
           <nav className="hidden items-center gap-6 text-[9px] font-medium text-white/55 md:flex">
@@ -85,8 +85,8 @@ export default function Home() {
           </nav>
 
           <div className="hidden items-center gap-2 md:flex">
-            <span className="h-2 w-2 rounded-full bg-[#d7ff25]" />
-            <a href="#contact" className="rounded-full border border-white/25 px-3 py-1.5 text-[9px] font-semibold text-white transition hover:border-[#d7ff25] hover:text-[#d7ff25]">
+            <span className="h-2 w-2 rounded-full bg-[#1677FF]" />
+            <a href="#contact" className="rounded-full border border-white/25 px-3 py-1.5 text-[9px] font-semibold text-white transition hover:border-[#1677FF] hover:text-[#1677FF]">
               Let&apos;s Talk
             </a>
           </div>
@@ -117,7 +117,7 @@ export default function Home() {
         <div className="absolute inset-0 opacity-45">
           <HeroCanvas />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_62%_37%,rgba(133,170,45,.24),transparent_27%),radial-gradient(circle_at_25%_24%,rgba(255,255,255,.035),transparent_18%),linear-gradient(180deg,rgba(0,0,0,.16),rgba(0,0,0,.68)_78%,#050505_100%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_62%_37%,rgba(22,119,255,.24),transparent_27%),radial-gradient(circle_at_25%_24%,rgba(255,255,255,.035),transparent_18%),linear-gradient(180deg,rgba(0,0,0,.16),rgba(0,0,0,.68)_78%,#050505_100%)]" />
         <div className="pointer-events-none absolute right-[18%] top-[20%] h-[170px] w-[170px] rounded-full border border-white/5 opacity-40 blur-[1px] md:h-[260px] md:w-[260px]" />
 
         <div className="relative z-10 mx-auto flex min-h-[calc(100svh-54px)] max-w-[1500px] flex-col px-5 md:min-h-[calc(100svh-58px)] md:px-8 xl:px-10">
@@ -138,9 +138,9 @@ export default function Home() {
               <div className="max-w-[330px]">
                 <p className="text-[11px] leading-[1.55] text-white/52">
                   Easily connect your SEO-optimized content to your WordPress effortless publishing —
-                  <span className="text-[#d7ff25]"> helping you stay consistent, save time, and grow faster.</span>
+                  <span className="text-[#1677FF]"> helping you stay consistent, save time, and grow faster.</span>
                 </p>
-                <a href="#contact" className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#d7ff25] px-4 py-2 text-[10px] font-bold text-black">
+                <a href="#contact" className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#1677FF] px-4 py-2 text-[10px] font-bold text-black">
                   Let&apos;s Talk <Arrow />
                 </a>
               </div>
@@ -155,9 +155,9 @@ export default function Home() {
             </div>
 
             <div className="hero-card h-[150px] overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] p-2 sm:h-[205px] md:h-[280px] md:rounded-[14px] md:p-3">
-              <div className="relative grid h-full place-items-center rounded-[8px] bg-[radial-gradient(circle_at_50%_30%,#313920,#171a12_42%,#090909_82%)]">
+              <div className="relative grid h-full place-items-center rounded-[8px] bg-[radial-gradient(circle_at_50%_30%,#112a46,#0b1520_42%,#090909_82%)]">
                 <div className="grid h-[56%] w-[62%] place-items-center rounded-[8px] border border-white/10 bg-black/45 text-[clamp(1.6rem,5vw,5rem)] font-semibold tracking-[-0.06em]">022</div>
-                <span className="absolute bottom-3 grid h-9 w-9 place-items-center rounded-full bg-[#d7ff25] text-[10px] font-bold text-black md:h-12 md:w-12">↗</span>
+                <span className="absolute bottom-3 grid h-9 w-9 place-items-center rounded-full bg-[#1677FF] text-[10px] font-bold text-black md:h-12 md:w-12">↗</span>
               </div>
             </div>
 
@@ -175,7 +175,7 @@ export default function Home() {
               <p className="max-w-[260px] text-[11px] leading-5 text-white/50">
                 Strategy, design and development for brands that want to stand out and grow.
               </p>
-              <a href="#contact" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#d7ff25] px-3.5 py-2 text-[10px] font-bold text-black">
+              <a href="#contact" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#1677FF] px-3.5 py-2 text-[10px] font-bold text-black">
                 Let&apos;s Talk <Arrow />
               </a>
             </div>
@@ -187,7 +187,7 @@ export default function Home() {
         <div data-reveal className="reveal mx-auto max-w-[1500px] rounded-[24px] border border-white/8 bg-[#0b0b0b] p-5 md:p-9">
           <div className="grid gap-12 lg:grid-cols-[1.2fr_.8fr]">
             <div>
-              <p className="mb-5 text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">About us</p>
+              <p className="mb-5 text-[10px] uppercase tracking-[0.18em] text-[#1677FF]">About us</p>
               <h2 className="max-w-[760px] text-[clamp(2.5rem,5.3vw,6.2rem)] font-medium leading-[0.95] tracking-[-0.055em]">
                 Smart, fast, and creative
                 <span className="block text-white/45">— digital experiences with purpose.</span>
@@ -222,7 +222,7 @@ export default function Home() {
       <section id="services" className="px-5 py-20 md:px-8 md:py-28 xl:px-10">
         <div className="mx-auto max-w-[1500px]">
           <div data-reveal className="reveal mb-14 grid gap-6 lg:grid-cols-2">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">Services</p>
+            <p className="text-[10px] uppercase tracking-[0.18em] text-[#1677FF]">Services</p>
             <div>
               <p className="text-[11px] uppercase tracking-[0.16em] text-white/35">We deliver</p>
               <h2 className="mt-2 max-w-xl text-[clamp(2rem,4vw,4rem)] font-medium leading-[1.02] tracking-[-0.05em]">
@@ -235,12 +235,12 @@ export default function Home() {
             {services.map((service) => (
               <article key={service.no} data-reveal className="reveal grid gap-6 border-t border-white/10 py-8 md:grid-cols-[.7fr_1.1fr_1fr] md:items-center md:py-12">
                 <div>
-                  <span className="mb-3 block text-xs text-[#d7ff25]">{service.no}</span>
+                  <span className="mb-3 block text-xs text-[#1677FF]">{service.no}</span>
                   <h3 className="text-[clamp(2rem,4.5vw,4.8rem)] font-semibold tracking-[-0.055em]">{service.title}</h3>
                 </div>
 
                 <div className="service-visual relative min-h-[210px] overflow-hidden rounded-[22px] border border-white/10 bg-[#0f0f0f] md:min-h-[300px]">
-                  <div className="absolute inset-8 rounded-2xl border border-white/10 bg-[radial-gradient(circle_at_50%_30%,rgba(215,255,37,.1),transparent_40%),#0b0b0b]" />
+                  <div className="absolute inset-8 rounded-2xl border border-white/10 bg-[radial-gradient(circle_at_50%_30%,rgba(22,119,255,.10),transparent_40%),#0b0b0b]" />
                   <div className="absolute left-1/2 top-1/2 grid h-24 w-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-black/60 text-4xl font-semibold">
                     {service.no}
                   </div>
@@ -266,7 +266,7 @@ export default function Home() {
       <section id="process" className="px-5 py-20 md:px-8 md:py-28 xl:px-10">
         <div data-reveal className="reveal mx-auto grid max-w-[1500px] gap-10 rounded-[24px] border border-white/8 bg-[#0b0b0b] p-5 md:p-9 lg:grid-cols-[1.05fr_.95fr]">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">Work process</p>
+            <p className="text-[10px] uppercase tracking-[0.18em] text-[#1677FF]">Work process</p>
             <h2 className="mt-5 max-w-xl text-[clamp(2.4rem,5vw,5.5rem)] font-medium leading-[0.95] tracking-[-0.055em]">
               Our process, designed and delivered simply.
             </h2>
@@ -274,7 +274,7 @@ export default function Home() {
             <div className="mt-10">
               {process.map(([no, title, copy]) => (
                 <div key={no} className="grid grid-cols-[38px_1fr] gap-3 border-t border-white/10 py-5">
-                  <span className="text-xs text-[#d7ff25]">{no}</span>
+                  <span className="text-xs text-[#1677FF]">{no}</span>
                   <div>
                     <h3 className="text-lg font-medium">{title}</h3>
                     <p className="mt-2 max-w-md text-xs leading-5 text-white/40">{copy}</p>
@@ -284,10 +284,10 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative min-h-[420px] overflow-hidden rounded-[20px] bg-[radial-gradient(circle_at_70%_25%,rgba(215,255,37,.18),transparent_25%),linear-gradient(145deg,#242524,#0b0b0b)] md:min-h-[600px]">
+          <div className="relative min-h-[420px] overflow-hidden rounded-[20px] bg-[radial-gradient(circle_at_70%_25%,rgba(22,119,255,.18),transparent_25%),linear-gradient(145deg,#242524,#0b0b0b)] md:min-h-[600px]">
             <div className="absolute left-[12%] top-[12%] h-[68%] w-[65%] rotate-[-7deg] rounded-[22px] border border-white/10 bg-[#131313] shadow-2xl" />
             <div className="absolute bottom-[10%] right-[10%] w-[58%] rounded-[18px] border border-white/10 bg-black/70 p-5">
-              <span className="text-[10px] uppercase tracking-[0.16em] text-[#d7ff25]">Strategy → Design → Build</span>
+              <span className="text-[10px] uppercase tracking-[0.16em] text-[#1677FF]">Strategy → Design → Build</span>
               <p className="mt-8 text-2xl font-medium tracking-[-0.04em]">Built around the next move, not the last trend.</p>
             </div>
           </div>
@@ -298,7 +298,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px]">
           <div data-reveal className="reveal mb-10 grid gap-5 lg:grid-cols-2 lg:items-end">
             <div>
-              <p className="text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">Our work</p>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-[#1677FF]">Our work</p>
               <h2 className="mt-4 text-[clamp(2.8rem,6vw,6.5rem)] font-medium leading-[0.9] tracking-[-0.06em]">
                 Selected creative work.
               </h2>
@@ -316,7 +316,7 @@ export default function Home() {
                 className={"reveal group overflow-hidden rounded-[22px] border border-white/8 bg-[#0d0d0d] " + (project.size === "lg" ? "md:row-span-2" : "")}
               >
                 <div className={"relative overflow-hidden bg-[linear-gradient(145deg,#191a19,#080808)] " + (project.size === "lg" ? "min-h-[360px] md:min-h-[620px]" : "min-h-[280px]")}>
-                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,rgba(215,255,37,.12),transparent_28%)] transition duration-500 group-hover:scale-110" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_35%,rgba(22,119,255,.12),transparent_28%)] transition duration-500 group-hover:scale-110" />
                   <div className="absolute left-1/2 top-1/2 grid h-[45%] w-[62%] -translate-x-1/2 -translate-y-1/2 place-items-center rounded-xl border border-white/10 bg-black/50 text-[clamp(2rem,7vw,7rem)] font-semibold tracking-[-0.07em] text-white/80">
                     0{index + 1}
                   </div>
@@ -326,7 +326,7 @@ export default function Home() {
                     <p className="text-[10px] uppercase tracking-[0.14em] text-white/35">{project.type}</p>
                     <h3 className="mt-1 text-xl font-medium">{project.name}</h3>
                   </div>
-                  <span className="grid h-9 w-9 place-items-center rounded-full bg-[#d7ff25] text-sm text-black transition group-hover:rotate-45"><Arrow /></span>
+                  <span className="grid h-9 w-9 place-items-center rounded-full bg-[#1677FF] text-sm text-black transition group-hover:rotate-45"><Arrow /></span>
                 </div>
               </article>
             ))}
@@ -344,7 +344,7 @@ export default function Home() {
       <section className="px-5 py-20 md:px-8 md:py-28 xl:px-10">
         <div className="mx-auto max-w-[1500px]">
           <div data-reveal className="reveal text-center">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">Client stories</p>
+            <p className="text-[10px] uppercase tracking-[0.18em] text-[#1677FF]">Client stories</p>
             <h2 className="mt-4 text-[clamp(2.2rem,5vw,5rem)] font-medium tracking-[-0.055em]">
               Trusted by teams. Backed by outcomes.
             </h2>
@@ -357,7 +357,7 @@ export default function Home() {
               ["Cubixmet gave us a sharper digital direction without losing the personality of our brand.", "Marketing Lead"],
             ].map(([quote, role]) => (
               <blockquote key={quote} data-reveal className="reveal rounded-[20px] border border-white/8 bg-[#0b0b0b] p-6">
-                <span className="text-3xl text-[#d7ff25]">“</span>
+                <span className="text-3xl text-[#1677FF]">“</span>
                 <p className="mt-6 text-base leading-7 text-white/65">{quote}</p>
                 <footer className="mt-10 border-t border-white/8 pt-4 text-[11px] uppercase tracking-[0.14em] text-white/35">{role}</footer>
               </blockquote>
@@ -369,7 +369,7 @@ export default function Home() {
       <section className="px-5 py-20 md:px-8 md:py-28 xl:px-10">
         <div className="mx-auto grid max-w-[1500px] gap-10 lg:grid-cols-[.75fr_1.25fr]">
           <div data-reveal className="reveal">
-            <p className="text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">Leadership</p>
+            <p className="text-[10px] uppercase tracking-[0.18em] text-[#1677FF]">Leadership</p>
             <h2 className="mt-4 text-[clamp(2.5rem,5vw,5.5rem)] font-medium leading-[0.94] tracking-[-0.055em]">
               Meet the people behind the work.
             </h2>
@@ -382,7 +382,7 @@ export default function Home() {
               ["Technology", "Architecture, engineering and delivery."],
             ].map(([title, copy], index) => (
               <div key={title} data-reveal className="reveal grid gap-5 rounded-[20px] border border-white/8 bg-[#0b0b0b] p-5 sm:grid-cols-[90px_1fr_auto] sm:items-center">
-                <div className="grid h-[72px] w-[72px] place-items-center rounded-full bg-[radial-gradient(circle,#d7ff25_0_38%,#273014_39%_62%,#111_63%)] text-sm font-bold text-black">
+                <div className="grid h-[72px] w-[72px] place-items-center rounded-full bg-[radial-gradient(circle,#1677FF_0_38%,#0e2744_39%_62%,#111_63%)] text-sm font-bold text-black">
                   0{index + 1}
                 </div>
                 <div>
@@ -400,7 +400,7 @@ export default function Home() {
         <div className="mx-auto max-w-[1500px]">
           <div data-reveal className="reveal grid gap-6 lg:grid-cols-2">
             <div>
-              <p className="text-[10px] uppercase tracking-[0.18em] text-[#d7ff25]">Journal</p>
+              <p className="text-[10px] uppercase tracking-[0.18em] text-[#1677FF]">Journal</p>
               <h2 className="mt-4 text-[clamp(2.5rem,5vw,5.5rem)] font-medium leading-[0.94] tracking-[-0.055em]">
                 Insight from the studio.
               </h2>
@@ -413,7 +413,7 @@ export default function Home() {
           <div className="mt-10 grid gap-3 md:grid-cols-3">
             {insights.map(([tag, title], index) => (
               <article key={title} data-reveal className="reveal group flex min-h-[330px] flex-col justify-between rounded-[20px] border border-white/8 bg-[#0b0b0b] p-5 transition hover:-translate-y-1 hover:border-white/20">
-                <span className="w-fit rounded-full bg-[#d7ff25] px-3 py-1 text-[10px] font-bold text-black">{tag}</span>
+                <span className="w-fit rounded-full bg-[#1677FF] px-3 py-1 text-[10px] font-bold text-black">{tag}</span>
                 <div>
                   <p className="mb-5 text-[11px] text-white/25">0{index + 1} / 2026</p>
                   <h3 className="text-2xl font-medium leading-tight tracking-[-0.04em]">{title}</h3>
@@ -429,7 +429,7 @@ export default function Home() {
       </section>
 
       <section id="contact" className="px-3 pb-3 pt-10 md:px-5 md:pb-5">
-        <div className="overflow-hidden rounded-[28px] bg-[#d7ff25] text-black">
+        <div className="overflow-hidden rounded-[28px] bg-[#1677FF] text-black">
           <div className="mx-auto grid max-w-[1500px] gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[.9fr_1.1fr] xl:px-10">
             <div>
               <p className="text-[10px] uppercase tracking-[0.18em]">Start a project</p>
@@ -481,7 +481,7 @@ export default function Home() {
 
           <div className="grid gap-10 py-10 sm:grid-cols-2 lg:grid-cols-4">
             <div>
-              <p className="font-bold">CUBIXMET<span className="text-[#d7ff25]">.</span></p>
+              <p className="font-bold">CUBIXMET<span className="text-[#1677FF]">.</span></p>
               <p className="mt-4 max-w-xs text-xs leading-5 text-white/35">Brand, design and technology for ambitious businesses.</p>
             </div>
             <div>
