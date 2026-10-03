@@ -210,66 +210,106 @@ function VentureIcon({ type }: { type: "tech" | "digital" | "academy" }) {
 
 function VenturesSection() {
   return (
-    <section id="ventures" className="pb-20 pt-4 md:pb-28 md:pt-10">
-      <div className="about-wrapper">
-        <div data-reveal className="reveal grid gap-8 lg:grid-cols-[.85fr_1.15fr] lg:items-end">
-          <div>
+    <section id="ventures" className="relative overflow-hidden pb-24 pt-10 md:pb-36 md:pt-16">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <svg
+          viewBox="0 0 1200 900"
+          className="absolute right-[-18%] top-[4%] h-[86%] w-auto text-white/[0.035] md:right-[-8%]"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <path d="M980 0 760 220h440V0Z" />
+          <path d="M220 220 0 440v460h220l220-220H220V440h440l220-220Z" />
+          <path d="m440 680 220-220h440v220Z" />
+        </svg>
+      </div>
+
+      <div className="about-wrapper relative z-10">
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-6">
+          <div data-reveal className="reveal lg:col-span-3">
             <p className="section-label">Our Ventures</p>
-            <h2 className="max-w-[640px] text-[clamp(2.5rem,4.5vw,5rem)] font-medium leading-[.94] tracking-[-0.055em]">
-              Three specialized verticals.
+            <h2 className="max-w-[360px] text-[clamp(2.6rem,4.7vw,5.2rem)] font-medium leading-[.9] tracking-[-0.06em]">
+              Three
+              <span className="block">specialized</span>
+              <span className="block">verticals.</span>
             </h2>
+
+            <p className="mt-7 max-w-[270px] text-[12px] leading-6 text-white/38">
+              One unified mission — structured innovation at scale.
+            </p>
           </div>
 
-          <p className="max-w-[520px] text-[13px] leading-6 text-white/45 md:text-[15px] md:leading-7 lg:justify-self-end">
-            One unified mission — structured innovation at scale.
-          </p>
-        </div>
+          <div className="lg:col-span-9">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-12 lg:gap-5">
+              {ventures.map((venture, index) => {
+                const placement =
+                  index === 0
+                    ? "lg:col-span-6 lg:col-start-4"
+                    : index === 1
+                      ? "lg:col-span-6 lg:col-start-1 lg:-mt-8"
+                      : "lg:col-span-6 lg:col-start-7 lg:mt-8";
 
-        <div className="mt-10 grid gap-4 lg:grid-cols-3">
-          {ventures.map((venture, index) => (
-            <article
-              key={venture.name}
-              data-scroll-card
-              data-scroll-delay={index * 90}
-              className="scroll-card group relative flex min-h-[520px] flex-col overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b] p-5 md:p-7"
-            >
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_85%_12%,rgba(22,119,255,.12),transparent_24%),linear-gradient(180deg,rgba(255,255,255,.015),transparent_45%)]" />
+                return (
+                  <article
+                    key={venture.name}
+                    data-scroll-card
+                    data-scroll-delay={index * 100}
+                    className={
+                      "scroll-card group relative overflow-hidden rounded-[18px] border border-white/8 bg-[#101010] p-6 md:p-7 " +
+                      placement
+                    }
+                  >
+                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.018),transparent_38%)]" />
 
-              <div className="relative z-10">
-                <div className="grid h-12 w-12 place-items-center rounded-full border border-[#1677FF]/25 bg-[#1677FF]/5 text-[#1677FF]">
-                  <VentureIcon type={venture.icon} />
-                </div>
+                    <div className="relative z-10">
+                      <div className="flex items-start justify-between gap-5">
+                        <span className="inline-flex min-w-10 items-center justify-center bg-[#1677FF] px-2.5 py-1 text-[10px] font-bold text-white">
+                          0{index + 1}
+                        </span>
 
-                <h3 className="mt-7 text-[clamp(1.8rem,2.4vw,2.8rem)] font-semibold leading-[.95] tracking-[-0.045em]">
-                  {venture.name}
-                </h3>
+                        <div className="text-[#1677FF]">
+                          <VentureIcon type={venture.icon} />
+                        </div>
+                      </div>
 
-                <p className="mt-3 text-[13px] font-medium text-white/75">{venture.tagline}</p>
+                      <h3 className="mt-8 text-[clamp(2rem,3.3vw,4rem)] font-semibold leading-[.92] tracking-[-0.055em] text-white">
+                        {venture.name}
+                      </h3>
 
-                <p className="mt-6 max-w-[360px] text-[12px] leading-6 text-white/40">
-                  {venture.copy}
-                </p>
-              </div>
+                      <p className="mt-3 text-[13px] font-medium text-white/68">
+                        {venture.tagline}
+                      </p>
 
-              <div className="relative z-10 mt-8 space-y-3 border-t border-white/8 pt-6">
-                {venture.services.map((item) => (
-                  <div key={item} className="flex items-start gap-3 text-[11px] leading-5 text-white/52">
-                    <span className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
+                      <p className="mt-6 max-w-[470px] text-[12px] leading-6 text-white/40">
+                        {venture.copy}
+                      </p>
 
-              <a
-                href={venture.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="relative z-10 mt-auto inline-flex w-fit items-center gap-2 pt-10 text-[11px] font-semibold text-white transition-colors duration-300 hover:text-[#1677FF]"
-              >
-                Learn More <Arrow />
-              </a>
-            </article>
-          ))}
+                      <div className="mt-7 grid gap-2.5 border-t border-white/8 pt-6">
+                        {venture.services.map((item) => (
+                          <div
+                            key={item}
+                            className="flex items-start gap-3 text-[11px] leading-5 text-white/50"
+                          >
+                            <span className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <a
+                        href={venture.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-8 inline-flex items-center gap-2 text-[11px] font-semibold text-white transition-colors duration-300 hover:text-[#1677FF]"
+                      >
+                        Learn More <Arrow />
+                      </a>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
