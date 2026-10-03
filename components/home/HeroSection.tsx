@@ -1,10 +1,63 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Arrow from "./Arrow";
+
+const heroProjects = [
+  {
+    title: "Brand System",
+    type: "Branding",
+    image: "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=1000&q=82",
+  },
+  {
+    title: "Mobile Product",
+    type: "UI / UX",
+    image: "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=1000&q=82",
+  },
+  {
+    title: "Digital Platform",
+    type: "Web",
+    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1300&q=82",
+  },
+  {
+    title: "Creative Studio",
+    type: "Campaign",
+    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1000&q=82",
+  },
+  {
+    title: "Workspace",
+    type: "Experience",
+    image: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1000&q=82",
+  },
+  {
+    title: "Product Story",
+    type: "Content",
+    image: "https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1000&q=82",
+  },
+  {
+    title: "Launch Campaign",
+    type: "Growth",
+    image: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1000&q=82",
+  },
+];
 
 export default function HeroSection() {
   const [activeCard, setActiveCard] = useState(2);
+  const [paused, setPaused] = useState(false);
+
+  const goNext = () => setActiveCard((current) => (current + 1) % heroProjects.length);
+  const goPrev = () => setActiveCard((current) => (current - 1 + heroProjects.length) % heroProjects.length);
+
+  useEffect(() => {
+    if (paused) return;
+    const timer = window.setInterval(goNext, 3200);
+    return () => window.clearInterval(timer);
+  }, [paused]);
+
+  const visibleProjects = [-2, -1, 0, 1].map((offset) => {
+    const index = (activeCard + offset + heroProjects.length) % heroProjects.length;
+    return { ...heroProjects[index], index, offset };
+  });
 
   return (
     <section id="top" className="relative min-h-[100svh] overflow-hidden bg-[#050505] pt-[54px] md:pt-[58px]">
@@ -65,48 +118,90 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden pb-5">
-          <div className="mx-auto grid w-[104%] -translate-x-[2%] grid-cols-[.72fr_.9fr_1.55fr_.9fr] items-end gap-3 md:gap-4">
-            {[
-              "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=900&q=80",
-              "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=900&q=80",
-              "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
-              "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80",
-            ].map((src, index) => {
+        <div
+          className="relative overflow-hidden pb-8"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <div key={activeCard} className="hero-slider-step mx-auto grid w-[104%] -translate-x-[2%] grid-cols-[.72fr_.9fr_1.55fr_.9fr] items-end gap-3 md:gap-4">
+            {visibleProjects.map((project, slot) => {
               const position =
-                index === 0
+                slot === 0
                   ? "translate-y-4"
-                  : index === 1
+                  : slot === 1
                     ? "translate-y-8"
-                    : index === 2
+                    : slot === 2
                       ? ""
                       : "translate-y-7";
 
+              const isActive = project.index === activeCard;
+
               return (
                 <article
-                  key={src}
-                  onClick={() => setActiveCard(index)}
+                  key={`${project.index}-${slot}`}
+                  onClick={() => setActiveCard(project.index)}
                   tabIndex={0}
-                  onFocus={() => setActiveCard(index)}
-                  className={"hero-card hero-project-card group relative cursor-pointer overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " + position + (activeCard === index ? " hero-project-card-active" : "")}
+                  onFocus={() => setActiveCard(project.index)}
+                  className={"hero-card hero-project-card group relative cursor-pointer overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " + position + (isActive ? " hero-project-card-active" : "")}
                 >
-                  <div className={index === 2 ? "aspect-[1.7/1]" : "aspect-[.78/1]"}>
+                  <div className={slot === 2 ? "aspect-[1.7/1]" : "aspect-[.78/1]"}>
                     <img
-                      src={src}
-                      alt={`Cubixmet project demo ${index + 1}`}
-                      loading={index < 3 ? "eager" : "lazy"}
+                      src={project.image}
+                      alt={project.title}
+                      loading={slot < 3 ? "eager" : "lazy"}
                       className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                     />
                   </div>
 
-                  {activeCard === index && (
-                    <span className="absolute bottom-3 left-1/2 grid h-10 w-10 -translate-x-1/2 place-items-center rounded-full bg-[#1677FF] text-[10px] font-bold text-white md:h-12 md:w-12">
-                      ↗
-                    </span>
-                  )}
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
+
+                  <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3">
+                    <div className={isActive ? "block" : "hidden md:block"}>
+                      <p className="text-[8px] uppercase tracking-[0.14em] text-white/45">{project.type}</p>
+                      <p className="mt-0.5 text-[10px] font-medium text-white/85 md:text-xs">{project.title}</p>
+                    </div>
+
+                    {isActive && (
+                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#1677FF] text-[10px] font-bold text-white md:h-12 md:w-12">
+                        ↗
+                      </span>
+                    )}
+                  </div>
                 </article>
               );
             })}
+          </div>
+
+          <div className="mt-5 flex items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={goPrev}
+              aria-label="Previous project"
+              className="grid h-9 w-9 place-items-center rounded-full border border-white/15 text-sm text-white/70 transition hover:border-[#1677FF] hover:bg-[#1677FF] hover:text-white"
+            >
+              ←
+            </button>
+
+            <div className="flex items-center gap-1.5">
+              {heroProjects.map((project, index) => (
+                <button
+                  key={project.title}
+                  type="button"
+                  onClick={() => setActiveCard(index)}
+                  aria-label={`Show ${project.title}`}
+                  className={"h-1.5 rounded-full transition-all duration-300 " + (activeCard === index ? "w-7 bg-[#1677FF]" : "w-1.5 bg-white/20 hover:bg-white/45")}
+                />
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={goNext}
+              aria-label="Next project"
+              className="grid h-9 w-9 place-items-center rounded-full border border-white/15 text-sm text-white/70 transition hover:border-[#1677FF] hover:bg-[#1677FF] hover:text-white"
+            >
+              →
+            </button>
           </div>
         </div>
 
