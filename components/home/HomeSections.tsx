@@ -425,7 +425,7 @@ function ServicesSection() {
                       type="button"
                       onClick={() => scrollToService(index)}
                       className={
-                        "service-nav-title relative z-10 flex h-12 w-full items-center justify-center whitespace-nowrap rounded-full px-5 text-center transition-colors duration-500 " +
+                        "service-nav-title relative z-10 flex h-12 w-full items-center justify-center whitespace-nowrap rounded-full p-0 text-center transition-colors duration-500 " +
                         (isActive
                           ? "text-black"
                           : "text-white/48 hover:text-white")
