@@ -256,14 +256,7 @@ function VenturesSection() {
                         ))}
                       </div>
 
-                      <a
-                        href={venture.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-auto inline-flex w-fit items-center gap-2 pt-8 text-[11px] font-semibold text-white transition-colors duration-300 hover:text-[#1677FF]"
-                      >
-                        Learn More <Arrow />
-                      </a>
+
                     </div>
                   </article>
                 );
