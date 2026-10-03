@@ -7,6 +7,12 @@ export type Project = {
 
 export type ProcessStep = [string, string, string];
 
+export type WhyChooseItem = {
+  title: string;
+  copy: string;
+  icon: "growth" | "ecosystem" | "talent" | "partnership" | "ethics";
+};
+
 export type Testimonial = {
   quote: string;
   name: string;
@@ -107,6 +113,34 @@ export const process: ProcessStep[] = [
   ["02", "Ideas & Concepts", "We define the creative and technical direction before production starts."],
   ["03", "Design", "We shape clear, responsive interfaces with a strong visual system."],
   ["04", "Development", "We build, test and refine the experience for speed and reliability."],
+];
+
+export const whyChoose: WhyChooseItem[] = [
+  {
+    title: "Structured Growth Approach",
+    copy: "Systematic methodology for sustainable business growth.",
+    icon: "growth",
+  },
+  {
+    title: "Integrated Service Ecosystem",
+    copy: "Interconnected verticals that amplify each other's impact.",
+    icon: "ecosystem",
+  },
+  {
+    title: "Talent Built In-House",
+    copy: "We train, hire, and grow talent through our own academy.",
+    icon: "talent",
+  },
+  {
+    title: "Long-term Partnership Mindset",
+    copy: "We invest in relationships, not transactions.",
+    icon: "partnership",
+  },
+  {
+    title: "Transparent & Ethical Practices",
+    copy: "Integrity-first operations across every venture.",
+    icon: "ethics",
+  },
 ];
 
 export const marqueeItems = ["Digital Products", "Brand Systems", "Web Experiences"] as const;
