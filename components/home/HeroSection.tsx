@@ -1,8 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Arrow from "./Arrow";
 
 export default function HeroSection() {
+  const [activeCard, setActiveCard] = useState(2);
+
   return (
     <section id="top" className="relative min-h-[100svh] overflow-hidden bg-[#050505] pt-[54px] md:pt-[58px]">
       <div className="pointer-events-none absolute left-3 top-[72px] z-[5] hidden h-24 w-24 opacity-55 md:block xl:left-5 xl:h-28 xl:w-28">
@@ -82,7 +85,10 @@ export default function HeroSection() {
               return (
                 <article
                   key={src}
-                  className={"hero-card hero-project-card group relative overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " + position + (index === 2 ? " hero-project-card-active" : "")}
+                  onClick={() => setActiveCard(index)}
+                  tabIndex={0}
+                  onFocus={() => setActiveCard(index)}
+                  className={"hero-card hero-project-card group relative cursor-pointer overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " + position + (activeCard === index ? " hero-project-card-active" : "")}
                 >
                   <div className={index === 2 ? "aspect-[1.7/1]" : "aspect-[.78/1]"}>
                     <img
@@ -93,7 +99,7 @@ export default function HeroSection() {
                     />
                   </div>
 
-                  {index === 2 && (
+                  {activeCard === index && (
                     <span className="absolute bottom-3 left-1/2 grid h-10 w-10 -translate-x-1/2 place-items-center rounded-full bg-[#1677FF] text-[10px] font-bold text-white md:h-12 md:w-12">
                       ↗
                     </span>
