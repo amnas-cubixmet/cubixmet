@@ -23,10 +23,10 @@ export type Testimonial = {
 };
 
 export type Leader = {
-  initials: string;
   name: string;
   role: string;
   copy: string;
+  image: string;
 };
 
 export type Insight = [string, string];
@@ -298,46 +298,22 @@ export const testimonials: Testimonial[] = [
 
 export const leaders: Leader[] = [
   {
-    initials: "FA",
-    name: "Fadhil",
-    role: "Founder & Chief Executive Officer (CEO)",
-    copy: "Visionary leader driving company growth and strategic IT initiatives excellently.",
+    name: "Alex Showrob",
+    role: "Project Manager",
+    copy: "Alex is a results-driven project lead focused on clarity, momentum and smooth delivery across creative and technical teams.",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=84",
   },
   {
-    initials: "SH",
-    name: "Shahid",
-    role: "Founder & Managing Director",
-    copy: "Strategic powerhouse strengthening long-term growth and business development masterfully.",
+    name: "Alex Showrob",
+    role: "Project Manager",
+    copy: "Alex brings structure to every project, keeping strategy, design and development aligned from first discussion to final launch.",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=84",
   },
   {
-    initials: "IJ",
-    name: "Ijas",
-    role: "Founder & Chief Operating Officer (COO)",
-    copy: "Exceptional operational strategist executing company plans with flawless precision.",
-  },
-  {
-    initials: "VA",
-    name: "Vafa",
-    role: "Founder & Chief Product Officer (CPO)",
-    copy: "Mastermind of impactful product strategy and academy development operations.",
-  },
-  {
-    initials: "NA",
-    name: "Najid",
-    role: "Head of Digital Marketing",
-    copy: "Brilliant digital marketing lead driving unparalleled brand growth consistently.",
-  },
-  {
-    initials: "AA",
-    name: "Amnas Ali",
-    role: "Developer",
-    copy: "Highly skilled developer engineering high-performance, flawless technical solutions.",
-  },
-  {
-    initials: "MS",
-    name: "Muhammed Salman",
-    role: "Developer",
-    copy: "Expert full-stack developer building robust, innovative applications effortlessly.",
+    name: "Alex Showrob",
+    role: "Project Manager",
+    copy: "Alex works closely with clients and the studio team to turn complex requirements into focused, practical digital outcomes.",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=84",
   },
 ];
 
