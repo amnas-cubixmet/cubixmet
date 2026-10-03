@@ -409,7 +409,7 @@ function ServicesSection() {
                     type="button"
                     onClick={() => scrollToService(index)}
                     className={
-                      "whitespace-nowrap text-left text-[32px] font-semibold leading-[1.02] tracking-[-0.045em] transition-all duration-300 " +
+                      "whitespace-nowrap text-left text-[40px] font-semibold leading-[1.02] tracking-[-0.045em] transition-all duration-300 " +
                       (isActive
                         ? "translate-x-3 text-white opacity-100"
                         : "text-white opacity-18 hover:opacity-50")
