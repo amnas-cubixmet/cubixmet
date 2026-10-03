@@ -393,8 +393,8 @@ function ServicesSection() {
 
       {/* Desktop: pinned scroll-driven services stage */}
       <div className="sticky top-0 hidden h-[100svh] overflow-hidden bg-[#050505] lg:flex">
-        <div className="about-wrapper grid h-full grid-cols-12 items-center gap-8 py-12 xl:gap-10">
-          <div className="col-span-5 flex h-full flex-col justify-center">
+        <div className="about-wrapper grid h-full min-h-0 grid-cols-12 items-center gap-8 py-8 xl:gap-10 xl:py-10">
+          <div className="col-span-5 flex h-full min-h-0 flex-col justify-center">
             <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
               Services
             </p>
@@ -409,7 +409,7 @@ function ServicesSection() {
                     type="button"
                     onClick={() => scrollToService(index)}
                     className={
-                      "whitespace-nowrap text-left text-[clamp(2rem,3.35vw,4rem)] font-semibold leading-[1.04] tracking-[-0.055em] transition-all duration-300 " +
+                      "whitespace-nowrap text-left text-[clamp(1.7rem,2.8vw,3.35rem)] font-semibold leading-[1.03] tracking-[-0.055em] transition-all duration-300 " +
                       (isActive
                         ? "translate-x-3 text-white opacity-100"
                         : "text-white opacity-18 hover:opacity-50")
@@ -422,7 +422,7 @@ function ServicesSection() {
             </div>
           </div>
 
-          <div className="col-span-2 flex h-[72%] flex-col items-center justify-between">
+          <div className="col-span-2 flex h-[68%] min-h-0 flex-col items-center justify-between">
             <div className="relative h-full w-px overflow-hidden bg-white/12">
               <div
                 className="absolute left-0 top-0 w-px bg-white transition-[height] duration-150"
@@ -437,8 +437,8 @@ function ServicesSection() {
             </div>
           </div>
 
-          <div className="col-span-5 flex h-full flex-col justify-center">
-            <div className="relative h-[38vh] min-h-[310px] overflow-hidden bg-[#101010]">
+          <div className="col-span-5 flex h-full min-h-0 flex-col justify-center">
+            <div className="relative h-[34svh] min-h-[210px] max-h-[340px] overflow-hidden bg-[#101010]">
               {services.map((service, index) => (
                 <img
                   key={service.no}
@@ -449,14 +449,14 @@ function ServicesSection() {
                     (index === activeService
                       ? "translate-y-0 scale-100 opacity-100"
                       : index < activeService
-                        ? "-translate-y-full scale-[1.02] opacity-0"
-                        : "translate-y-full scale-[1.02] opacity-0")
+                        ? "-translate-y-[105%] scale-[1.01] opacity-0"
+                        : "translate-y-[105%] scale-[1.01] opacity-0")
                   }
                 />
               ))}
             </div>
 
-            <div className="relative mt-8 min-h-[210px]">
+            <div className="relative mt-6 min-h-[170px]">
               {services.map((service, index) => (
                 <div
                   key={service.no}
@@ -472,13 +472,13 @@ function ServicesSection() {
                       <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1677FF]">
                         {service.no} / Service
                       </p>
-                      <p className="mt-4 max-w-[520px] text-[13px] leading-6 text-white/55">
+                      <p className="mt-3 max-w-[520px] text-[12px] leading-5 text-white/55">
                         {service.copy}
                       </p>
                     </div>
                   </div>
 
-                  <div className="mt-6 grid grid-cols-2 gap-x-5 gap-y-2.5">
+                  <div className="mt-5 grid grid-cols-2 gap-x-5 gap-y-2">
                     {service.meta.map((item) => (
                       <div
                         key={item}
