@@ -70,24 +70,24 @@ export default function Home() {
 
   return (
     <main className="overflow-x-hidden bg-[#050505] text-white">
-      <header className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-black/45 backdrop-blur-xl">
-        <div className="mx-auto flex h-[72px] max-w-[1500px] items-center justify-between px-5 md:px-8 xl:px-10">
-          <a href="#top" className="relative z-50 text-[15px] font-black tracking-[-0.03em]">
+      <header className="fixed inset-x-0 top-0 z-50 bg-black/20 backdrop-blur-[2px]">
+        <div className="mx-auto flex h-[54px] max-w-[1500px] items-center justify-between px-5 md:h-[58px] md:px-8 xl:px-10">
+          <a href="#top" className="relative z-50 text-[12px] font-black tracking-[-0.035em] md:text-[13px]">
             CUBIXMET<span className="text-[#d7ff25]">.</span>
           </a>
 
-          <nav className="hidden items-center gap-7 text-[11px] font-medium text-white/60 md:flex">
-            <a className="transition hover:text-white" href="#about">About</a>
+          <nav className="hidden items-center gap-6 text-[9px] font-medium text-white/55 md:flex">
+            <a className="transition hover:text-white" href="#about">Home</a>
             <a className="transition hover:text-white" href="#services">Services</a>
-            <a className="transition hover:text-white" href="#work">Work</a>
-            <a className="transition hover:text-white" href="#process">Process</a>
-            <a className="transition hover:text-white" href="#journal">Insights</a>
+            <a className="transition hover:text-white" href="#work">Portfolio</a>
+            <a className="transition hover:text-white" href="#journal">Blog</a>
+            <a className="transition hover:text-white" href="#contact">Contact</a>
           </nav>
 
-          <div className="hidden items-center gap-3 md:flex">
-            <span className="text-[10px] uppercase tracking-[0.18em] text-white/35">Available for projects</span>
-            <a href="#contact" className="rounded-full bg-[#d7ff25] px-4 py-2 text-[11px] font-bold text-black transition hover:scale-[1.03]">
-              Let&apos;s talk <Arrow />
+          <div className="hidden items-center gap-2 md:flex">
+            <span className="h-2 w-2 rounded-full bg-[#d7ff25]" />
+            <a href="#contact" className="rounded-full border border-white/25 px-3 py-1.5 text-[9px] font-semibold text-white transition hover:border-[#d7ff25] hover:text-[#d7ff25]">
+              Let&apos;s Talk
             </a>
           </div>
 
@@ -95,7 +95,7 @@ export default function Home() {
             type="button"
             aria-label="Toggle menu"
             onClick={() => setMenuOpen((value) => !value)}
-            className="relative z-50 grid h-10 w-10 place-items-center rounded-full border border-white/10 md:hidden"
+            className="relative z-50 grid h-9 w-9 place-items-center rounded-full border border-white/10 md:hidden"
           >
             <span className="flex w-4 flex-col gap-1.5">
               <span className={"h-px w-full bg-white transition " + (menuOpen ? "translate-y-[3.5px] rotate-45" : "")} />
@@ -104,74 +104,80 @@ export default function Home() {
           </button>
         </div>
 
-        <div className={"absolute inset-x-0 top-0 min-h-[100svh] bg-[#050505] px-5 pb-8 pt-28 transition duration-500 md:hidden " + (menuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none")}>
+        <div className={"absolute inset-x-0 top-0 min-h-[100svh] bg-[#050505] px-5 pb-8 pt-24 transition duration-500 md:hidden " + (menuOpen ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none")}>
           <div className="flex flex-col gap-3 text-[clamp(2.6rem,14vw,4.8rem)] font-semibold leading-none tracking-[-0.06em]">
-            {[
-              ["#about", "About"],
-              ["#services", "Services"],
-              ["#work", "Work"],
-              ["#process", "Process"],
-              ["#journal", "Insights"],
-              ["#contact", "Contact"],
-            ].map(([href, label]) => (
-              <a key={href} onClick={() => setMenuOpen(false)} href={href} className="border-b border-white/10 pb-3">
-                {label}
-              </a>
+            {[["#about","About"],["#services","Services"],["#work","Work"],["#process","Process"],["#journal","Insights"],["#contact","Contact"]].map(([href,label]) => (
+              <a key={href} onClick={() => setMenuOpen(false)} href={href} className="border-b border-white/10 pb-3">{label}</a>
             ))}
           </div>
         </div>
       </header>
 
-      <section id="top" className="relative min-h-[100svh] overflow-hidden pt-[72px]">
-        <div className="absolute inset-0 opacity-70">
+      <section id="top" className="relative min-h-[100svh] overflow-hidden bg-[#050505] pt-[54px] md:pt-[58px]">
+        <div className="absolute inset-0 opacity-45">
           <HeroCanvas />
         </div>
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_62%_42%,rgba(154,203,70,.17),transparent_28%),linear-gradient(180deg,rgba(5,5,5,.05),#050505_92%)]" />
-        <div className="pointer-events-none absolute left-[-12%] top-[12%] h-[300px] w-[300px] rounded-full border border-white/5 md:h-[520px] md:w-[520px]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_62%_37%,rgba(133,170,45,.24),transparent_27%),radial-gradient(circle_at_25%_24%,rgba(255,255,255,.035),transparent_18%),linear-gradient(180deg,rgba(0,0,0,.16),rgba(0,0,0,.68)_78%,#050505_100%)]" />
+        <div className="pointer-events-none absolute right-[18%] top-[20%] h-[170px] w-[170px] rounded-full border border-white/5 opacity-40 blur-[1px] md:h-[260px] md:w-[260px]" />
 
-        <div className="relative z-10 mx-auto flex min-h-[calc(100svh-72px)] max-w-[1500px] flex-col justify-between px-5 pb-7 pt-16 md:px-8 md:pb-10 md:pt-24 xl:px-10">
-          <div className="grid gap-8 lg:grid-cols-[1fr_320px] lg:items-end">
-            <div>
-              <p className="mb-5 flex items-center gap-2 text-[10px] uppercase tracking-[0.2em] text-[#d7ff25]">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#d7ff25]" />
-                Digital studio for ambitious brands
-              </p>
-              <h1 className="max-w-[1000px] text-[clamp(4rem,10.8vw,10rem)] font-semibold leading-[0.78] tracking-[-0.075em]">
-                We Build
-                <span className="block font-serif font-normal italic text-white/75">— Brands that</span>
+        <div className="relative z-10 mx-auto flex min-h-[calc(100svh-54px)] max-w-[1500px] flex-col px-5 md:min-h-[calc(100svh-58px)] md:px-8 xl:px-10">
+          <div className="grid flex-1 items-center gap-8 pb-8 pt-10 md:pb-10 md:pt-12 lg:grid-cols-[1fr_360px]">
+            <div className="max-w-[900px]">
+              <h1 className="text-[clamp(3.15rem,8.3vw,8.1rem)] font-semibold leading-[0.88] tracking-[-0.068em]">
+                <span className="block">We Build</span>
+                <span className="block"><span className="font-serif font-normal italic">— Brands</span> that</span>
                 <span className="block">Stand Out</span>
               </h1>
             </div>
 
-            <div className="mb-2 max-w-[320px] lg:justify-self-end">
-              <div className="mb-5 grid h-24 w-24 place-items-center rounded-full border border-white/10 bg-white/[0.025] text-center text-[11px] text-white/60 backdrop-blur">
-                <span><strong className="block text-2xl text-white">12+</strong>projects shipped</span>
+            <div className="relative hidden self-center lg:block">
+              <div className="mb-12 ml-10 grid h-28 w-28 place-items-center rounded-full border border-white/10 bg-black/20 text-center backdrop-blur">
+                <span className="text-[9px] leading-4 text-white/45"><strong className="block text-[34px] leading-none text-white">12+</strong>Your trust builds us</span>
               </div>
-              <p className="text-sm leading-6 text-white/50">
-                Strategy, design and development for digital products that need to look sharp and work even harder.
-              </p>
-              <a href="#work" className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#d7ff25] px-4 py-2 text-xs font-bold text-black">
-                Explore work <Arrow />
-              </a>
+
+              <div className="max-w-[330px]">
+                <p className="text-[11px] leading-[1.55] text-white/52">
+                  Easily connect your SEO-optimized content to your WordPress effortless publishing —
+                  <span className="text-[#d7ff25]"> helping you stay consistent, save time, and grow faster.</span>
+                </p>
+                <a href="#contact" className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#d7ff25] px-4 py-2 text-[10px] font-bold text-black">
+                  Let&apos;s Talk <Arrow />
+                </a>
+              </div>
             </div>
           </div>
 
-          <div className="mt-14 grid grid-cols-3 gap-2 md:gap-4">
-            <div className="hero-card min-h-[150px] overflow-hidden rounded-[18px] border border-white/10 bg-[#0c0d0c] p-3 md:min-h-[250px] md:p-5">
-              <div className="h-full rounded-[12px] bg-[linear-gradient(135deg,#171918,#090909)] p-3">
-                <div className="h-2 w-10 rounded-full bg-white/10" />
-                <div className="mt-7 h-16 rounded-xl border border-white/5 bg-black/40 md:mt-12 md:h-28" />
+          <div className="grid grid-cols-[.72fr_1.65fr_.82fr] items-end gap-2 pb-3 md:gap-4 md:pb-5">
+            <div className="hero-card h-[120px] translate-y-4 overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] p-2 sm:h-[170px] md:h-[230px] md:rounded-[14px] md:p-3">
+              <div className="flex h-full items-end rounded-[8px] bg-[linear-gradient(145deg,#1a1a1a,#090909)] p-2">
+                <div className="h-[68%] w-[52%] rounded-[8px] border border-white/10 bg-[linear-gradient(160deg,#e8e8e8,#b9b9b9_48%,#161616_49%)]" />
               </div>
             </div>
-            <div className="hero-card min-h-[150px] overflow-hidden rounded-[18px] border border-white/10 bg-[#0c0d0c] p-3 md:min-h-[250px] md:p-5">
-              <div className="grid h-full place-items-center rounded-[12px] bg-[radial-gradient(circle_at_50%_40%,#27341b,#11130f_60%,#090909)]">
-                <div className="grid h-20 w-28 place-items-center rounded-md border border-white/10 bg-black/50 text-2xl font-semibold md:h-32 md:w-48 md:text-5xl">022</div>
+
+            <div className="hero-card h-[150px] overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] p-2 sm:h-[205px] md:h-[280px] md:rounded-[14px] md:p-3">
+              <div className="relative grid h-full place-items-center rounded-[8px] bg-[radial-gradient(circle_at_50%_30%,#313920,#171a12_42%,#090909_82%)]">
+                <div className="grid h-[56%] w-[62%] place-items-center rounded-[8px] border border-white/10 bg-black/45 text-[clamp(1.6rem,5vw,5rem)] font-semibold tracking-[-0.06em]">022</div>
+                <span className="absolute bottom-3 grid h-9 w-9 place-items-center rounded-full bg-[#d7ff25] text-[10px] font-bold text-black md:h-12 md:w-12">↗</span>
               </div>
             </div>
-            <div className="hero-card min-h-[150px] overflow-hidden rounded-[18px] border border-white/10 bg-[#0c0d0c] p-3 md:min-h-[250px] md:p-5">
-              <div className="flex h-full items-end justify-center rounded-[12px] bg-[linear-gradient(145deg,#1b1c1b,#080808)]">
-                <div className="mb-3 h-24 w-12 rounded-t-md border border-white/10 bg-[#171717] md:h-40 md:w-20" />
+
+            <div className="hero-card h-[128px] translate-y-3 overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] p-2 sm:h-[180px] md:h-[242px] md:rounded-[14px] md:p-3">
+              <div className="flex h-full items-end justify-center rounded-[8px] bg-[linear-gradient(145deg,#1b1b1b,#080808)]">
+                <div className="mb-2 h-[72%] w-[46%] rounded-t-[6px] border border-white/10 bg-[#171717] shadow-2xl">
+                  <div className="mt-[45%] text-center text-[clamp(1rem,3vw,2.8rem)] font-semibold text-white/75">000</div>
+                </div>
               </div>
+            </div>
+          </div>
+
+          <div className="pb-7 pt-6 lg:hidden">
+            <div className="flex items-end justify-between gap-5">
+              <p className="max-w-[260px] text-[11px] leading-5 text-white/50">
+                Strategy, design and development for brands that want to stand out and grow.
+              </p>
+              <a href="#contact" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#d7ff25] px-3.5 py-2 text-[10px] font-bold text-black">
+                Let&apos;s Talk <Arrow />
+              </a>
             </div>
           </div>
         </div>
