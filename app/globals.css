@@ -391,3 +391,53 @@ a {
     width: calc(100% - 28px);
   }
 }
+
+
+/* Scroll-triggered component/card motion */
+.scroll-card {
+  opacity: 0;
+  transform: translate3d(0, 42px, 0) scale(0.975);
+  filter: blur(6px);
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 800ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 700ms ease,
+    border-color 350ms ease,
+    box-shadow 450ms ease;
+  will-change: transform, opacity, filter;
+}
+
+.scroll-card.is-card-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0) scale(1);
+  filter: blur(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .scroll-card.is-card-visible:hover {
+    transform: translate3d(0, -6px, 0) scale(1.01);
+  }
+}
+
+@media (max-width: 767px) {
+  .scroll-card {
+    transform: translate3d(0, 24px, 0) scale(0.99);
+    filter: blur(3px);
+    transition-duration: 560ms;
+  }
+
+  .scroll-card.is-card-visible {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-card,
+  .scroll-card.is-card-visible,
+  .scroll-card.is-card-visible:hover {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
