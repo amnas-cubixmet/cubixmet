@@ -38,26 +38,38 @@ function useReveal() {
 function AboutSection() {
   return (
     <section id="about" className="section-space">
-      <div data-reveal className="reveal site-wrapper rounded-[24px] border border-white/8 bg-[#0b0b0b] p-5 md:p-9">
-        <div className="grid gap-12 lg:grid-cols-[1.2fr_.8fr]">
-          <div>
-            <p className="section-label">About us</p>
-            <h2 className="section-title max-w-[760px]">Smart, fast, and creative <span className="block text-white/45">— digital experiences with purpose.</span></h2>
-          </div>
-          <p className="max-w-md self-end text-sm leading-7 text-white/45 md:text-base">
-            Cubixmet combines strategy, interface design and modern development to create focused digital experiences for growing businesses.
-          </p>
-        </div>
-        <div className="mt-14 grid gap-3 sm:grid-cols-3">
-          {[["4x","Faster design-to-build workflow"],["2x","Lean collaborative process"],["100%","Responsive by default"]].map(([value,label]) => (
-            <div key={value} className="rounded-[18px] border border-white/8 bg-[#101010] p-5 md:p-6">
-              <p className="text-[11px] leading-5 text-white/38">{label}</p>
-              <p className="mt-10 text-[clamp(2rem,4vw,4rem)] font-semibold tracking-[-0.05em]">{value}</p>
+      <div data-reveal className="reveal site-wrapper">
+        <div className="overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b]">
+          <div className="grid gap-10 px-5 pb-8 pt-7 md:px-10 md:pb-10 md:pt-9 lg:grid-cols-[1.12fr_.88fr] lg:gap-16 xl:px-12 xl:pb-12 xl:pt-11">
+            <div>
+              <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.18em] text-[#1677FF]">About us</p>
+              <h2 className="max-w-[720px] text-[clamp(2.7rem,4.8vw,5.5rem)] font-medium leading-[0.94] tracking-[-0.055em]">
+                Smart, fast, and creative
+                <span className="mt-1 block text-white/38">— digital experiences with purpose.</span>
+              </h2>
             </div>
-          ))}
-        </div>
-        <div className="mt-8 flex flex-wrap gap-x-8 gap-y-3 border-t border-white/8 pt-5 text-[10px] uppercase tracking-[0.14em] text-white/45">
-          <span>/ Results driven solutions</span><span>/ Strategic experiences</span><span>/ Purposeful design</span>
+
+            <div className="flex items-end lg:justify-end">
+              <p className="max-w-[430px] text-[13px] leading-6 text-white/45 md:text-[15px] md:leading-7">
+                Cubixmet combines strategy, interface design and modern development to create focused digital experiences for growing businesses.
+              </p>
+            </div>
+          </div>
+
+          <div className="grid gap-px border-y border-white/8 bg-white/8 sm:grid-cols-3">
+            {[["4x","Faster design-to-build workflow"],["2x","Lean collaborative process"],["100%","Responsive by default"]].map(([value,label]) => (
+              <div key={value} className="bg-[#0d0d0d] px-5 py-6 md:px-8 md:py-7">
+                <p className="max-w-[180px] text-[11px] leading-5 text-white/38">{label}</p>
+                <p className="mt-7 text-[clamp(2.4rem,3.8vw,4.4rem)] font-semibold leading-none tracking-[-0.055em]">{value}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap gap-x-8 gap-y-3 px-5 py-5 text-[10px] uppercase tracking-[0.14em] text-white/40 md:px-10 xl:px-12">
+            <span>/ Results driven solutions</span>
+            <span>/ Strategic experiences</span>
+            <span>/ Purposeful design</span>
+          </div>
         </div>
       </div>
     </section>
