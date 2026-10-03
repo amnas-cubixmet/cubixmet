@@ -156,8 +156,8 @@ export default function HeroSection() {
 
                   <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3">
                     <div className={isActive ? "block" : "hidden md:block"}>
-                      <p className="text-[8px] uppercase tracking-[0.14em] text-white/45">{project.type}</p>
-                      <p className="mt-0.5 text-[10px] font-medium text-white/85 md:text-xs">{project.title}</p>
+                      <p className="text-[10px] uppercase tracking-[0.14em] text-white/50 md:text-[11px]">{project.type}</p>
+                      <p className="mt-1 text-[14px] font-semibold leading-tight text-white md:text-[18px]">{project.title}</p>
                     </div>
 
                     {isActive && (
