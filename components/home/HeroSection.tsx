@@ -62,27 +62,30 @@ export default function HeroSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-[.72fr_1.65fr_.82fr] items-end gap-2 px-5 pb-3 md:gap-4 md:px-8 md:pb-5 xl:px-10">
-          <div className="hero-card h-[120px] translate-y-4 overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] p-2 sm:h-[170px] md:h-[230px] md:rounded-[14px] md:p-3">
-            <div className="flex h-full items-end rounded-[8px] bg-[linear-gradient(145deg,#1a1a1a,#090909)] p-2">
-              <div className="h-[68%] w-[52%] rounded-[8px] border border-white/10 bg-[linear-gradient(160deg,#e8e8e8,#b9b9b9_48%,#161616_49%)]" />
-            </div>
-          </div>
-
-          <div className="hero-card h-[150px] overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] p-2 sm:h-[205px] md:h-[280px] md:rounded-[14px] md:p-3">
-            <div className="relative grid h-full place-items-center rounded-[8px] bg-[radial-gradient(circle_at_50%_30%,#112a46,#0b1520_42%,#090909_82%)]">
-              <div className="grid h-[56%] w-[62%] place-items-center rounded-[8px] border border-white/10 bg-black/45 text-[clamp(1.6rem,5vw,5rem)] font-semibold tracking-[-0.06em]">022</div>
-              <span className="absolute bottom-3 grid h-9 w-9 place-items-center rounded-full bg-[#1677FF] text-[10px] font-bold text-white md:h-12 md:w-12">↗</span>
-            </div>
-          </div>
-
-          <div className="hero-card h-[128px] translate-y-3 overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] p-2 sm:h-[180px] md:h-[242px] md:rounded-[14px] md:p-3">
-            <div className="flex h-full items-end justify-center rounded-[8px] bg-[linear-gradient(145deg,#1b1b1b,#080808)]">
-              <div className="mb-2 h-[72%] w-[46%] rounded-t-[6px] border border-white/10 bg-[#171717] shadow-2xl">
-                <div className="mt-[45%] text-center text-[clamp(1rem,3vw,2.8rem)] font-semibold text-white/75">000</div>
+        <div className="grid grid-cols-2 gap-2 px-5 pb-3 sm:grid-cols-3 md:gap-4 md:px-8 md:pb-5 lg:grid-cols-5 xl:px-10">
+          {[
+            "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80",
+            "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80",
+          ].map((src, index) => (
+            <article key={src} className={"hero-card group relative overflow-hidden rounded-[12px] border border-white/10 bg-[#0c0d0c] " + (index === 4 ? "col-span-2 sm:col-span-1" : "")}>
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={src}
+                  alt={`Cubixmet project demo ${index + 1}`}
+                  loading={index < 3 ? "eager" : "lazy"}
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                />
               </div>
-            </div>
-          </div>
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between">
+                <span className="text-[10px] font-medium uppercase tracking-[0.12em] text-white/75">Project 0{index + 1}</span>
+                <span className="grid h-7 w-7 place-items-center rounded-full bg-[#1677FF] text-[9px] text-white">↗</span>
+              </div>
+            </article>
+          ))}
         </div>
 
         <div className="hero-text-wrapper pb-7 pt-6 lg:hidden">
