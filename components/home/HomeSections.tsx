@@ -371,7 +371,7 @@ function ServicesSection() {
                 />
               </div>
 
-              <p className="mt-6 max-w-[560px] text-[12px] leading-6 text-white/52">
+              <p className="mt-6 max-w-[560px] text-[14px] leading-6 text-white/55">
                 {service.copy}
               </p>
 
@@ -379,7 +379,7 @@ function ServicesSection() {
                 {service.meta.map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-2 text-[11px] text-white/55"
+                    className="flex items-center gap-2 text-[13px] leading-5 text-white/58"
                   >
                     <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
                     <span>{item}</span>
@@ -395,7 +395,7 @@ function ServicesSection() {
       <div className="sticky top-0 hidden h-[100svh] overflow-hidden bg-[#050505] lg:flex">
         <div className="about-wrapper grid h-full min-h-0 grid-cols-12 items-center gap-8 py-8 xl:gap-10 xl:py-10">
           <div className="col-span-5 flex h-full min-h-0 flex-col justify-center">
-            <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
+            <p className="mb-8 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#1677FF]">
               Services
             </p>
 
@@ -409,7 +409,7 @@ function ServicesSection() {
                     type="button"
                     onClick={() => scrollToService(index)}
                     className={
-                      "whitespace-nowrap text-left text-[clamp(2rem,3.4vw,4.25rem)] font-semibold leading-[1.01] tracking-[-0.06em] transition-all duration-300 " +
+                      "whitespace-nowrap text-left text-[clamp(2.35rem,4vw,5.1rem)] font-semibold leading-[.98] tracking-[-0.065em] transition-all duration-300 " +
                       (isActive
                         ? "translate-x-3 text-white opacity-100"
                         : "text-white opacity-18 hover:opacity-50")
@@ -430,7 +430,7 @@ function ServicesSection() {
               />
             </div>
 
-            <div className="mt-5 flex items-center gap-2 bg-black px-2 py-1 text-[10px] font-semibold text-white">
+            <div className="mt-5 flex items-center gap-2 bg-black px-2.5 py-1.5 text-[12px] font-semibold text-white">
               <span>{String(activeService + 1).padStart(2, "0")}</span>
               <span className="h-px w-5 bg-[#1677FF]" />
               <span>{String(services.length).padStart(2, "0")}</span>
@@ -469,10 +469,10 @@ function ServicesSection() {
                 >
                   <div className="flex items-start justify-between gap-6">
                     <div>
-                      <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1677FF]">
+                      <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[#1677FF]">
                         {service.no} / Service
                       </p>
-                      <p className="mt-3 max-w-[520px] text-[12px] leading-5 text-white/55">
+                      <p className="mt-4 max-w-[560px] text-[15px] leading-7 text-white/58">
                         {service.copy}
                       </p>
                     </div>
@@ -482,7 +482,7 @@ function ServicesSection() {
                     {service.meta.map((item) => (
                       <div
                         key={item}
-                        className="flex items-center gap-2 text-[11px] text-white/55"
+                        className="flex items-center gap-2 text-[13px] leading-5 text-white/58"
                       >
                         <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
                         <span>{item}</span>
