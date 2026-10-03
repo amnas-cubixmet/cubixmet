@@ -60,21 +60,6 @@ export default function HeroSection() {
 
   return (
     <section id="top" className="relative min-h-[100svh] overflow-hidden bg-[#050505] pt-[54px] md:pt-[58px]">
-      <div className="pointer-events-none absolute left-3 top-[72px] z-[5] hidden h-24 w-24 opacity-55 md:block xl:left-5 xl:h-28 xl:w-28">
-        <div className="relative h-full w-full rotate-[-12deg]">
-          {[0, 34, 72, 112, 154, 202].map((angle, index) => (
-            <span
-              key={angle}
-              className="absolute left-1/2 top-1/2 h-[58%] w-[24%] origin-[50%_8%] rounded-full bg-[linear-gradient(90deg,#0b2f63_0%,#1677FF_46%,#0f4fb0_100%)] shadow-[inset_-8px_-8px_16px_rgba(0,0,0,.28),inset_7px_6px_12px_rgba(255,255,255,.16)]"
-              style={{
-                transform: `translate(-50%,-6%) rotate(${angle}deg)`,
-                zIndex: index % 2 === 0 ? 2 : 1,
-              }}
-            />
-          ))}
-          <span className="absolute left-1/2 top-1/2 z-[3] h-[34%] w-[34%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_35%_28%,#4da2ff,#1677FF_55%,#0b3f8a_100%)] shadow-[inset_-6px_-7px_12px_rgba(0,0,0,.25)]" />
-        </div>
-      </div>
       <div className="relative z-10 flex min-h-[calc(100svh-54px)] flex-col md:min-h-[calc(100svh-58px)]">
         <div className="hero-text-wrapper grid flex-1 items-center gap-8 pb-8 pt-10 md:pb-10 md:pt-12 lg:grid-cols-[1fr_360px]">
           <div className="max-w-[900px]">
