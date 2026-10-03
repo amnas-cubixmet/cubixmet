@@ -10,7 +10,7 @@ import { whyChoose } from "../../data/whyChoose";
 import { marqueeItems } from "../../data/marquee";
 import { testimonials } from "../../data/testimonials";
 import { leaders } from "../../data/leaders";
-import { insights } from "../../data/insights";
+import { impactStats } from "../../data/impact";
 
 function FlowerSeparator() {
   return (
@@ -907,21 +907,50 @@ function LeadershipSection() {
   );
 }
 
-function JournalSection() {
+function ImpactSection() {
   return (
-    <section id="journal" className="section-space">
-      <div className="site-wrapper">
-        <div data-reveal className="reveal grid gap-6 lg:grid-cols-2">
-          <div><p className="section-label">Journal</p><h2 className="section-title mt-4">Insight from the studio.</h2></div>
-          <p className="max-w-md self-end text-sm leading-6 text-white/45 lg:justify-self-end">Short notes on design, product thinking, technology and digital growth.</p>
-        </div>
-        <div className="mt-10 grid gap-3 md:grid-cols-3">
-          {insights.map(([tag,title],index) => (
-            <article key={title} data-reveal data-scroll-card data-scroll-delay={index * 90} className="reveal scroll-card group flex min-h-[330px] flex-col justify-between rounded-[20px] border border-white/8 bg-[#0b0b0b] p-5 transition hover:-translate-y-1 hover:border-white/20">
-              <span className="w-fit rounded-full bg-[#1677FF] px-3 py-1 text-[10px] font-bold text-white">{tag}</span>
-              <div><p className="mb-5 text-[11px] text-white/25">0{index + 1} / 2026</p><h3 className="text-2xl font-medium leading-tight tracking-[-0.04em]">{title}</h3><div className="mt-6 flex items-center justify-between text-xs text-white/40"><span>Read insight</span><Arrow /></div></div>
-            </article>
-          ))}
+    <section id="impact" className="section-space">
+      <div className="about-wrapper">
+        <div
+          data-reveal
+          className="reveal relative overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b]"
+        >
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(22,119,255,.10),transparent_26%),radial-gradient(circle_at_86%_84%,rgba(22,119,255,.06),transparent_24%)]" />
+
+          <div className="relative z-10 grid gap-8 px-5 py-8 md:px-8 md:py-10 lg:grid-cols-[.9fr_1.1fr] lg:items-end xl:px-10">
+            <div>
+              <p className="section-label">Our Impact</p>
+              <h2 className="max-w-[620px] text-[clamp(2.8rem,5vw,5.6rem)] font-medium leading-[.93] tracking-[-0.055em]">
+                Numbers that reflect our commitment to excellence and growth.
+              </h2>
+            </div>
+          </div>
+
+          <div className="relative z-10 grid border-t border-white/8 sm:grid-cols-2 lg:grid-cols-4">
+            {impactStats.map((item, index) => (
+              <article
+                key={item.label}
+                data-scroll-card
+                data-scroll-delay={index * 80}
+                className="scroll-card min-h-[190px] border-white/8 p-5 sm:border-r sm:nth-[2n]:border-r-0 md:min-h-[220px] md:p-7 lg:min-h-[240px] lg:border-r lg:last:border-r-0"
+              >
+                <div className="flex h-full flex-col justify-between">
+                  <span className="text-[10px] font-semibold tracking-[0.14em] text-white/20">
+                    0{index + 1}
+                  </span>
+
+                  <div>
+                    <strong className="block text-[clamp(3rem,5.5vw,6.5rem)] font-semibold leading-none tracking-[-0.065em] text-[#1677FF]">
+                      {item.value}
+                    </strong>
+                    <p className="mt-4 text-[13px] font-medium text-white/58 md:text-[14px]">
+                      {item.label}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
@@ -966,7 +995,7 @@ export default function HomeSections() {
       <MarqueeSection />
       <TestimonialsSection />
       <LeadershipSection />
-      <JournalSection />
+      <ImpactSection />
       <ContactSection />
     </>
   );
