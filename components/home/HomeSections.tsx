@@ -85,31 +85,73 @@ function AboutSection() {
 }
 
 function ServicesSection() {
+  const serviceVisuals = [
+    "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?auto=format&fit=crop&w=900&q=82",
+    "https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=82",
+    "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=900&q=82",
+  ];
+
   return (
     <section id="services" className="section-space">
-      <div className="site-wrapper">
-        <div data-reveal className="reveal mb-14 grid gap-6 lg:grid-cols-2">
+      <div className="about-wrapper">
+        <div data-reveal className="reveal mb-12 grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
           <p className="section-label">Services</p>
-          <div>
-            <p className="text-[11px] uppercase tracking-[0.16em] text-white/35">We deliver</p>
-            <h2 className="mt-2 max-w-xl text-[clamp(2rem,4vw,4rem)] font-medium leading-[1.02] tracking-[-0.05em]">Comprehensive solutions to help businesses grow and thrive.</h2>
+          <div className="lg:justify-self-end">
+            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/55">We Deliver</p>
+            <h2 className="mt-2 max-w-[560px] text-[clamp(2rem,3.8vw,4rem)] font-medium leading-[1.02] tracking-[-0.05em]">
+              <span className="text-white">Comprehensive</span>
+              <span className="text-white/38"> solutions to help businesses grow and thrive.</span>
+            </h2>
           </div>
         </div>
-        <div className="space-y-4">
-          {services.map((service) => (
-            <article key={service.no} data-reveal className="reveal grid gap-6 border-t border-white/10 py-8 md:grid-cols-[.7fr_1.1fr_1fr] md:items-center md:py-12">
-              <div>
-                <span className="mb-3 block text-xs text-[#1677FF]">{service.no}</span>
-                <h3 className="text-[clamp(2rem,4.5vw,4.8rem)] font-semibold tracking-[-0.055em]">{service.title}</h3>
+
+        <div className="space-y-8 md:space-y-10">
+          {services.map((service, index) => (
+            <article
+              key={service.no}
+              data-reveal
+              className="reveal grid items-center gap-5 md:grid-cols-[.9fr_1fr_1.1fr] md:gap-8 lg:grid-cols-[.82fr_1fr_1.08fr]"
+            >
+              <div className="flex items-start gap-4">
+                <span className="mt-2 grid h-5 w-5 shrink-0 place-items-center rounded-full border border-[#1677FF]/40 text-[9px] text-[#1677FF]">
+                  {service.no}
+                </span>
+                <h3 className="text-[clamp(1.9rem,3vw,3.4rem)] font-semibold leading-[.95] tracking-[-0.05em]">
+                  {service.title}
+                </h3>
               </div>
-              <div className="service-visual relative min-h-[210px] overflow-hidden rounded-[22px] border border-white/10 bg-[#0f0f0f] md:min-h-[300px]">
-                <div className="absolute inset-8 rounded-2xl border border-white/10 bg-[radial-gradient(circle_at_50%_30%,rgba(22,119,255,.10),transparent_40%),#0b0b0b]" />
-                <div className="absolute left-1/2 top-1/2 grid h-24 w-24 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border border-white/10 bg-black/60 text-4xl font-semibold">{service.no}</div>
+
+              <div className="group relative overflow-hidden rounded-[14px] border border-white/8 bg-[#0d0d0d]">
+                <div className="aspect-[1.55/1] overflow-hidden">
+                  <img
+                    src={serviceVisuals[index]}
+                    alt={service.title}
+                    className="h-full w-full object-cover opacity-85 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
+                  />
+                </div>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/10" />
+                <span className="absolute bottom-3 right-3 grid h-10 w-10 place-items-center rounded-full bg-[#1677FF] text-[10px] font-bold text-white">
+                  <Arrow />
+                </span>
               </div>
-              <div className="md:pl-8">
-                <p className="max-w-sm text-sm leading-6 text-white/50">{service.copy}</p>
-                <div className="mt-7 space-y-2 text-[11px] text-white/55">
-                  {service.meta.map((item) => <div key={item} className="flex items-center justify-between border-b border-white/8 pb-2"><span>{item}</span><Arrow /></div>)}
+
+              <div className="md:pl-2">
+                <div className="mb-4 flex items-center gap-3">
+                  <span className="h-px w-8 bg-[#1677FF]/60" />
+                  <p className="text-[10px] uppercase tracking-[0.16em] text-white/70">
+                    {service.title} Services
+                  </p>
+                </div>
+
+                <p className="max-w-sm text-[12px] leading-5 text-white/42">{service.copy}</p>
+
+                <div className="mt-5 space-y-2.5">
+                  {service.meta.map((item) => (
+                    <div key={item} className="flex items-center gap-2 text-[11px] text-white/55">
+                      <span className="h-1 w-1 rounded-full bg-[#1677FF]" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </article>
