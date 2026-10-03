@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Arrow from "./Arrow";
 import { services } from "../../data/services";
-import { aboutStats, aboutTags, projects, process, marqueeItems, testimonials, leaders, insights } from "../../data/home";
+import { aboutContent, aboutPillars, projects, process, marqueeItems, testimonials, leaders, insights } from "../../data/home";
 
 function FlowerSeparator() {
   return (
@@ -85,47 +85,92 @@ function useReveal() {
   }, []);
 }
 
+function AboutIcon({ type }: { type: string }) {
+  const common = "h-6 w-6";
+
+  if (type === "layers") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
+        <path d="m12 3 8 4-8 4-8-4 8-4Z" stroke="currentColor" strokeWidth="1.4" />
+        <path d="m4 12 8 4 8-4M4 17l8 4 8-4" stroke="currentColor" strokeWidth="1.4" />
+      </svg>
+    );
+  }
+
+  if (type === "orbit") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
+        <circle cx="12" cy="12" r="2" fill="currentColor" />
+        <ellipse cx="12" cy="12" rx="9" ry="4.3" stroke="currentColor" strokeWidth="1.2" />
+        <ellipse cx="12" cy="12" rx="9" ry="4.3" stroke="currentColor" strokeWidth="1.2" transform="rotate(60 12 12)" />
+        <ellipse cx="12" cy="12" rx="9" ry="4.3" stroke="currentColor" strokeWidth="1.2" transform="rotate(120 12 12)" />
+      </svg>
+    );
+  }
+
+  if (type === "chart") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
+        <path d="M4 19V5M4 19h16" stroke="currentColor" strokeWidth="1.4" />
+        <path d="m7 15 4-4 3 2 5-6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M16 7h3v3" stroke="currentColor" strokeWidth="1.4" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
+      <path d="M3 12s3.5-6 9-6 9 6 9 6-3.5 6-9 6-9-6-9-6Z" stroke="currentColor" strokeWidth="1.4" />
+      <circle cx="12" cy="12" r="2.6" stroke="currentColor" strokeWidth="1.4" />
+    </svg>
+  );
+}
+
 function AboutSection() {
   return (
     <section id="about" className="section-space">
-      <div data-reveal className="reveal about-wrapper">
-        <div className="relative overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(22,119,255,.08),transparent_20%),radial-gradient(circle_at_88%_82%,rgba(105,255,120,.16),transparent_22%),linear-gradient(180deg,rgba(255,255,255,.01),rgba(255,255,255,0))]" />
-          <div className="pointer-events-none absolute right-0 top-0 h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,.12),rgba(255,255,255,0)_70%)] blur-xl" />
-          <img
-            src="/about-ribbon.webp"
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute -right-5 -top-7 z-[2] w-[110px] rotate-[14deg] opacity-75 [filter:grayscale(1)_brightness(.28)_contrast(1.45)] md:-right-2 md:-top-10 md:w-[150px] lg:w-[180px]"
-          />
-          <div className="relative z-10 grid gap-10 px-5 pb-8 pt-7 md:px-10 md:pb-10 md:pt-9 lg:grid-cols-[1.12fr_.88fr] lg:gap-16 xl:px-12 xl:pb-12 xl:pt-11">
+      <div className="about-wrapper">
+        <div
+          data-reveal
+          className="reveal relative overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b]"
+        >
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_18%,rgba(22,119,255,.08),transparent_24%),radial-gradient(circle_at_88%_82%,rgba(22,119,255,.08),transparent_26%)]" />
+
+          <div className="relative z-10 grid gap-10 px-5 py-8 md:px-10 md:py-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-16 xl:px-12">
             <div>
-              <p className="mb-5 text-[10px] font-medium uppercase tracking-[0.18em] text-[#1677FF]">About us</p>
-              <h2 className="max-w-[720px] text-[clamp(2.7rem,4.8vw,5.5rem)] font-medium leading-[0.94] tracking-[-0.055em]">
-                Smart, fast, and creative
-                <span className="mt-1 block text-white/38">— digital experiences with purpose.</span>
+              <p className="section-label">{aboutContent.label}</p>
+              <h2 className="max-w-[720px] text-[clamp(2.6rem,4.6vw,5.3rem)] font-medium leading-[.94] tracking-[-0.055em]">
+                {aboutContent.title}
               </h2>
             </div>
 
             <div className="flex items-end lg:justify-end">
-              <p className="max-w-[430px] text-[13px] leading-6 text-white/45 md:text-[15px] md:leading-7">
-                Cubixmet combines strategy, interface design and modern development to create focused digital experiences for growing businesses.
+              <p className="max-w-[560px] text-[13px] leading-6 text-white/46 md:text-[15px] md:leading-7">
+                {aboutContent.description}
               </p>
             </div>
           </div>
 
-          <div className="relative z-10 grid gap-px border-y border-white/8 bg-white/8 sm:grid-cols-3">
-            {aboutStats.map(([value,label]) => (
-              <div key={value} data-scroll-card className="scroll-card bg-[#0d0d0d] px-5 py-6 md:px-8 md:py-7">
-                <p className="max-w-[180px] text-[11px] leading-5 text-white/38">{label}</p>
-                <p className="mt-7 text-[clamp(2.4rem,3.8vw,4.4rem)] font-semibold leading-none tracking-[-0.055em]">{value}</p>
-              </div>
-            ))}
-          </div>
+          <div className="relative z-10 grid border-t border-white/8 sm:grid-cols-2 lg:grid-cols-4">
+            {aboutPillars.map((item, index) => (
+              <article
+                key={item.title}
+                data-scroll-card
+                data-scroll-delay={index * 80}
+                className="scroll-card min-h-[210px] border-white/8 p-5 sm:border-r sm:last:border-r-0 md:p-7 lg:min-h-[230px]"
+              >
+                <div className="grid h-11 w-11 place-items-center rounded-full border border-[#1677FF]/25 bg-[#1677FF]/5 text-[#1677FF]">
+                  <AboutIcon type={item.icon} />
+                </div>
 
-          <div className="relative z-10 flex flex-wrap gap-x-8 gap-y-3 px-5 py-5 text-[10px] uppercase tracking-[0.14em] text-white/40 md:px-10 xl:px-12">
-            {aboutTags.map((tag) => (
-              <span key={tag}>/ {tag}</span>
+                <h3 className="mt-8 text-[18px] font-medium tracking-[-0.025em] text-white md:text-[20px]">
+                  {item.title}
+                </h3>
+
+                <p className="mt-3 max-w-[250px] text-[11px] leading-5 text-white/38 md:text-[12px]">
+                  {item.copy}
+                </p>
+              </article>
             ))}
           </div>
         </div>
