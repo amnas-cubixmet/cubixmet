@@ -907,6 +907,58 @@ function LeadershipSection() {
   );
 }
 
+function ImpactCounter({ value }: { value: string }) {
+  const numberRef = useRef<HTMLSpanElement>(null);
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    const node = numberRef.current;
+    if (!node) return;
+
+    const target = Number.parseInt(value.replace(/\D/g, ""), 10) || 0;
+    let frame = 0;
+    let started = false;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || started) return;
+        started = true;
+
+        const startedAt = performance.now();
+        const duration = 1000;
+
+        const animate = (now: number) => {
+          const progress = Math.min((now - startedAt) / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          setCount(Math.round(target * eased));
+
+          if (progress < 1) {
+            frame = requestAnimationFrame(animate);
+          }
+        };
+
+        frame = requestAnimationFrame(animate);
+        observer.unobserve(node);
+      },
+      { threshold: 0.45 }
+    );
+
+    observer.observe(node);
+
+    return () => {
+      observer.disconnect();
+      if (frame) cancelAnimationFrame(frame);
+    };
+  }, [value]);
+
+  return (
+    <span ref={numberRef}>
+      {count}
+      {value.includes("+") ? "+" : ""}
+    </span>
+  );
+}
+
 function ImpactSection() {
   return (
     <section id="impact" className="section-space">
@@ -917,13 +969,8 @@ function ImpactSection() {
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(22,119,255,.10),transparent_26%),radial-gradient(circle_at_86%_84%,rgba(22,119,255,.06),transparent_24%)]" />
 
-          <div className="relative z-10 grid gap-8 px-5 py-8 md:px-8 md:py-10 lg:grid-cols-[.9fr_1.1fr] lg:items-end xl:px-10">
-            <div>
-              <p className="section-label">Our Impact</p>
-              <h2 className="max-w-[620px] text-[clamp(2.8rem,5vw,5.6rem)] font-medium leading-[.93] tracking-[-0.055em]">
-                Numbers that reflect our commitment to excellence and growth.
-              </h2>
-            </div>
+          <div className="relative z-10 px-5 py-8 md:px-8 md:py-10 xl:px-10">
+            <p className="section-label mb-0">Our Impact</p>
           </div>
 
           <div className="relative z-10 grid border-t border-white/8 sm:grid-cols-2 lg:grid-cols-4">
@@ -941,7 +988,7 @@ function ImpactSection() {
 
                   <div>
                     <strong className="block text-[clamp(3rem,5.5vw,6.5rem)] font-semibold leading-none tracking-[-0.065em] text-[#1677FF]">
-                      {item.value}
+                      <ImpactCounter value={item.value} />
                     </strong>
                     <p className="mt-4 text-[13px] font-medium text-white/58 md:text-[14px]">
                       {item.label}
