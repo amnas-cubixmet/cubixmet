@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Arrow from "./Arrow";
 import { services } from "../../data/services";
 import { aboutContent, aboutPillars, ventures, projects, process, marqueeItems, testimonials, leaders, insights } from "../../data/home";
@@ -30,7 +30,7 @@ function useReveal() {
       document.querySelectorAll<HTMLElement>(
         "main h1, main h2, main h3, main h4, main p, main blockquote footer"
       )
-    ).filter((node) => !node.closest("header"));
+    ).filter((node) => !node.closest("header") && !node.closest("[data-no-text-reveal]"));
 
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -270,73 +270,227 @@ function VenturesSection() {
 }
 
 function ServicesSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const [activeService, setActiveService] = useState(0);
+  const [serviceProgress, setServiceProgress] = useState(0);
+
+  useEffect(() => {
+    let frame = 0;
+
+    const update = () => {
+      frame = 0;
+      const section = sectionRef.current;
+      if (!section || window.innerWidth < 1024) return;
+
+      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+      const scrollRange = Math.max(section.offsetHeight - window.innerHeight, 1);
+      const raw = (window.scrollY - sectionTop) / scrollRange;
+      const progress = Math.min(1, Math.max(0, raw));
+      const index = Math.min(
+        services.length - 1,
+        Math.floor(progress * services.length)
+      );
+
+      setServiceProgress(progress);
+      setActiveService(index);
+    };
+
+    const requestUpdate = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
+
+    return () => {
+      window.removeEventListener("scroll", requestUpdate);
+      window.removeEventListener("resize", requestUpdate);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  const scrollToService = (index: number) => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+    const scrollRange = Math.max(section.offsetHeight - window.innerHeight, 1);
+    const targetProgress =
+      services.length === 1 ? 0 : index / (services.length - 1);
+
+    window.scrollTo({
+      top: sectionTop + scrollRange * targetProgress,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <section id="services" className="pb-20 pt-6 md:pb-28 md:pt-10">
-      <div className="about-wrapper">
-        <div data-reveal className="reveal mb-12 grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
-          <p className="section-label">Services</p>
-          <div className="lg:justify-self-end lg:pr-[6%]">
-            <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/55">One innovation ecosystem</p>
-            <h2 className="mt-2 max-w-[620px] text-[clamp(2rem,3.8vw,4rem)] font-medium leading-[1.02] tracking-[-0.05em]">
-              <span className="text-white">Build. Market. Learn.</span>
-              <span className="text-white/38"> Six focused services across technology, digital growth and practical training.</span>
-            </h2>
-          </div>
+    <section
+      ref={sectionRef}
+      id="services"
+      className="relative bg-white text-black lg:h-[600svh]"
+      data-no-text-reveal
+    >
+      {/* Mobile / tablet: normal flow, no pinning */}
+      <div className="about-wrapper py-20 lg:hidden">
+        <div className="mb-10">
+          <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
+            Services
+          </p>
+          <h2 className="max-w-[520px] text-[clamp(2.7rem,8vw,4.7rem)] font-semibold leading-[.92] tracking-[-0.055em]">
+            What we build, grow and teach.
+          </h2>
         </div>
 
-        <div className="space-y-8 md:space-y-10">
+        <div className="divide-y divide-black/10">
           {services.map((service, index) => (
             <article
               key={service.no}
-              data-reveal
               data-scroll-card
-              data-scroll-delay={index * 90}
-              className="reveal scroll-card grid items-center gap-5 md:grid-cols-[.9fr_1fr_1.1fr] md:gap-8 lg:grid-cols-[.82fr_1fr_1.08fr]"
+              data-scroll-delay={index * 70}
+              className="scroll-card py-9 first:pt-0"
             >
-              <div className="flex items-start gap-4">
-                <span className="mt-2 grid h-5 w-5 shrink-0 place-items-center rounded-full border border-[#1677FF]/40 text-[9px] text-[#1677FF]">
-                  {service.no}
-                </span>
-                <h3 className="text-[clamp(1.9rem,3vw,3.4rem)] font-semibold leading-[.95] tracking-[-0.05em]">
+              <div className="flex items-start justify-between gap-4">
+                <h3 className="max-w-[280px] text-[clamp(2rem,8vw,3.2rem)] font-semibold leading-[.92] tracking-[-0.05em]">
                   {service.title}
                 </h3>
-              </div>
-
-              <div className="group relative overflow-hidden rounded-[14px] border border-white/8 bg-[#0d0d0d]">
-                <div className="aspect-[1.55/1] overflow-hidden">
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="h-full w-full object-cover opacity-85 transition duration-700 group-hover:scale-105 group-hover:opacity-100"
-                  />
-                </div>
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/10" />
-                <span className="absolute bottom-3 right-3 grid h-10 w-10 place-items-center rounded-full bg-[#1677FF] text-[10px] font-bold text-white">
-                  <Arrow />
+                <span className="text-[12px] font-semibold text-[#1677FF]">
+                  {service.no}
                 </span>
               </div>
 
-              <div className="md:pl-2">
-                <div className="mb-4 flex items-center gap-3">
-                  <span className="h-px w-8 bg-[#1677FF]/60" />
-                  <p className="text-[10px] uppercase tracking-[0.16em] text-white/70">
-                    {service.title} Services
-                  </p>
-                </div>
+              <div className="mt-6 aspect-[1.35/1] overflow-hidden bg-[#efefef]">
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  className="h-full w-full object-cover"
+                />
+              </div>
 
-                <p className="max-w-sm text-[12px] leading-5 text-white/42">{service.copy}</p>
+              <p className="mt-6 max-w-[560px] text-[12px] leading-6 text-black/55">
+                {service.copy}
+              </p>
 
-                <div className="mt-5 space-y-2.5">
-                  {service.meta.map((item) => (
-                    <div key={item} className="flex items-center gap-2 text-[11px] text-white/55">
-                      <span className="h-1 w-1 rounded-full bg-[#1677FF]" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
+              <div className="mt-5 grid gap-2 sm:grid-cols-2">
+                {service.meta.map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-center gap-2 text-[11px] text-black/55"
+                  >
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
+                    <span>{item}</span>
+                  </div>
+                ))}
               </div>
             </article>
           ))}
+        </div>
+      </div>
+
+      {/* Desktop: pinned scroll-driven services stage */}
+      <div className="sticky top-0 hidden h-screen overflow-hidden lg:flex">
+        <div className="about-wrapper grid h-full grid-cols-12 items-center gap-8 py-12 xl:gap-10">
+          <div className="col-span-5 flex h-full flex-col justify-center">
+            <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
+              Services
+            </p>
+
+            <div className="flex flex-col items-start">
+              {services.map((service, index) => {
+                const isActive = index === activeService;
+
+                return (
+                  <button
+                    key={service.no}
+                    type="button"
+                    onClick={() => scrollToService(index)}
+                    className={
+                      "whitespace-nowrap text-left text-[clamp(2rem,3.35vw,4rem)] font-semibold leading-[1.04] tracking-[-0.055em] transition-all duration-300 " +
+                      (isActive
+                        ? "translate-x-3 text-black opacity-100"
+                        : "text-black opacity-15 hover:opacity-45")
+                    }
+                  >
+                    {service.title}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="col-span-2 flex h-[72%] flex-col items-center justify-between">
+            <div className="relative h-full w-px overflow-hidden bg-black/10">
+              <div
+                className="absolute left-0 top-0 w-px bg-black transition-[height] duration-150"
+                style={{ height: `${Math.max(serviceProgress * 100, 2)}%` }}
+              />
+            </div>
+
+            <div className="mt-5 flex items-center gap-2 bg-black px-2 py-1 text-[10px] font-semibold text-white">
+              <span>{String(activeService + 1).padStart(2, "0")}</span>
+              <span className="h-px w-5 bg-[#1677FF]" />
+              <span>{String(services.length).padStart(2, "0")}</span>
+            </div>
+          </div>
+
+          <div className="col-span-5 flex h-full flex-col justify-center">
+            <div className="relative h-[38vh] min-h-[310px] overflow-hidden bg-[#ececec]">
+              {services.map((service, index) => (
+                <img
+                  key={service.no}
+                  src={service.image}
+                  alt={service.title}
+                  className={
+                    "absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] " +
+                    (index === activeService
+                      ? "translate-y-0 scale-100 opacity-100"
+                      : index < activeService
+                        ? "-translate-y-[14%] scale-[1.03] opacity-0"
+                        : "translate-y-[14%] scale-[1.03] opacity-0")
+                  }
+                />
+              ))}
+            </div>
+
+            <div className="relative mt-8 min-h-[210px]">
+              {services.map((service, index) => (
+                <div
+                  key={service.no}
+                  className={
+                    "absolute inset-0 transition-all duration-500 " +
+                    (index === activeService
+                      ? "translate-y-0 opacity-100"
+                      : "pointer-events-none translate-y-6 opacity-0")
+                  }
+                >
+                  <div className="flex items-start justify-between gap-6">
+                    <div>
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1677FF]">
+                        {service.no} / Service
+                      </p>
+                      <p className="mt-4 max-w-[520px] text-[13px] leading-6 text-black/60">
+                        {service.copy}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-6 grid grid-cols-2 gap-x-5 gap-y-2.5">
+                    {service.meta.map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-center gap-2 text-[11px] text-black/55"
+                      >
+                        <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>
