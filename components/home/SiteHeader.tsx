@@ -7,7 +7,7 @@ export default function SiteHeader() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 bg-black/20 backdrop-blur-[2px]">
-      <div className="site-wrapper flex h-[54px] items-center justify-between md:h-[58px]">
+      <div className="header-wrapper flex h-[54px] items-center justify-between md:h-[58px]">
         <a href="#top" className="relative z-50 text-[12px] font-black tracking-[-0.035em] md:text-[13px]">
           CUBIXMET<span className="text-[#1677FF]">.</span>
         </a>
