@@ -213,14 +213,18 @@ function VenturesSection() {
     <section id="ventures" className="relative overflow-hidden pb-24 pt-10 md:pb-36 md:pt-16">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <svg
-          viewBox="0 0 1200 900"
-          className="absolute right-[-18%] top-[4%] h-[86%] w-auto text-white/[0.035] md:right-[-8%]"
+          viewBox="0 0 640 640"
+          className="absolute right-[-12%] top-[8%] h-[78%] w-auto text-white/[0.035] md:right-[-2%] md:top-[4%] md:h-[90%]"
           fill="currentColor"
           aria-hidden="true"
         >
-          <path d="M980 0 760 220h440V0Z" />
-          <path d="M220 220 0 440v460h220l220-220H220V440h440l220-220Z" />
-          <path d="m440 680 220-220h440v220Z" />
+          <g transform="translate(64 92)">
+            <path d="M40 70 212 170 212 270 40 170Z" />
+            <path d="M472 70 300 170 300 270 472 170Z" />
+            <path d="M40 210 212 310 212 410 40 310Z" />
+            <path d="M472 210 300 310 300 410 472 310Z" />
+            <path d="M212 170 256 196 300 170 300 270 256 296 212 270Z" />
+          </g>
         </svg>
       </div>
 
