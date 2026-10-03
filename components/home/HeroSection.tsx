@@ -21,6 +21,11 @@ export default function HeroSection() {
     return { ...heroProjects[index], index, offset };
   });
 
+  const mobileProjects = [-1, 0, 1].map((offset) => {
+    const index = (activeCard + offset + heroProjects.length) % heroProjects.length;
+    return { ...heroProjects[index], index, offset };
+  });
+
   return (
     <section id="top" className="relative min-h-[88svh] overflow-hidden bg-[#050505] pt-[54px] md:min-h-[82svh] md:pt-[58px]">
       <div className="relative z-10 flex min-h-[calc(88svh-54px)] flex-col md:min-h-[calc(82svh-58px)]">
@@ -73,7 +78,53 @@ export default function HeroSection() {
           onMouseEnter={() => setPaused(true)}
           onMouseLeave={() => setPaused(false)}
         >
-          <div key={activeCard} className="hero-slider-step mx-auto grid w-[104%] grid-cols-[.72fr_.9fr_1.55fr_.9fr] items-end gap-3 md:gap-4">
+          {/* Mobile: exactly 3 cards, active card centered */}
+          <div
+            key={`mobile-${activeCard}`}
+            className="hero-slider-step-mobile mx-auto grid w-[116%] grid-cols-[.72fr_1.7fr_.72fr] items-end gap-2 md:hidden"
+          >
+            {mobileProjects.map((project, slot) => {
+              const isActive = project.index === activeCard;
+              const position = slot === 1 ? "-translate-y-1" : "translate-y-3";
+
+              return (
+                <article
+                  key={`mobile-${project.index}-${slot}`}
+                  className={
+                    "hero-card hero-project-card group relative overflow-hidden rounded-[9px] border border-white/10 bg-[#0c0d0c] " +
+                    position +
+                    (isActive ? " hero-project-card-active" : " hero-project-card-inactive")
+                  }
+                >
+                  <div className={isActive ? "aspect-[1.42/1]" : "aspect-[.68/1]"}>
+                    <img
+                      src={project.image}
+                      alt={project.title}
+                      loading="eager"
+                      className="h-full w-full object-cover"
+                    />
+                  </div>
+
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+
+                  <div className="absolute bottom-2 left-2 right-2">
+                    <p className="text-[8px] uppercase tracking-[0.12em] text-white/45">
+                      {project.type}
+                    </p>
+                    <p className="mt-0.5 truncate text-[12px] font-semibold leading-tight text-white">
+                      {project.title}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+
+          {/* Tablet/Desktop: keep the 4-card composition */}
+          <div
+            key={`desktop-${activeCard}`}
+            className="hero-slider-step mx-auto hidden w-[104%] grid-cols-[.72fr_.9fr_1.55fr_.9fr] items-end gap-3 md:grid md:gap-4"
+          >
             {visibleProjects.map((project, slot) => {
               const position =
                 slot === 0
@@ -89,7 +140,11 @@ export default function HeroSection() {
               return (
                 <article
                   key={`${project.index}-${slot}`}
-                  className={"hero-card hero-project-card group relative overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " + position + (isActive ? " hero-project-card-active" : " hero-project-card-inactive")}
+                  className={
+                    "hero-card hero-project-card group relative overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " +
+                    position +
+                    (isActive ? " hero-project-card-active" : " hero-project-card-inactive")
+                  }
                 >
                   <div
                     className={
@@ -112,20 +167,18 @@ export default function HeroSection() {
 
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
 
-                  <div className="absolute bottom-3 left-3 right-3 flex items-end justify-between gap-3">
-                    <div className={isActive ? "block" : "hidden md:block"}>
-                      <p className="text-[10px] uppercase tracking-[0.14em] text-white/50 md:text-[11px]">{project.type}</p>
-                      <p className="mt-1 text-[14px] font-semibold leading-tight text-white md:text-[18px]">{project.title}</p>
-                    </div>
-
-
+                  <div className="absolute bottom-3 left-3 right-3">
+                    <p className="text-[10px] uppercase tracking-[0.14em] text-white/50 md:text-[11px]">
+                      {project.type}
+                    </p>
+                    <p className="mt-1 text-[14px] font-semibold leading-tight text-white md:text-[18px]">
+                      {project.title}
+                    </p>
                   </div>
                 </article>
               );
             })}
           </div>
-
-
         </div>
 
         <div className="hero-text-wrapper pb-7 pt-6 lg:hidden">
