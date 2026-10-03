@@ -235,18 +235,19 @@ a {
 }
 
 .hero-project-card-inactive {
-  transform: scale(0.94);
-  opacity: 0.72;
-  filter: brightness(0.82);
+  transform: scale(0.9);
+  opacity: 0.58;
+  filter: brightness(0.72) saturate(0.78);
   z-index: 1;
 }
 
 .hero-project-card-active {
-  z-index: 20;
-  border-color: rgba(22, 119, 255, 0.72);
+  z-index: 30;
+  border-color: rgba(22, 119, 255, 0.9);
   box-shadow:
-    0 28px 70px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(22, 119, 255, 0.12);
+    0 34px 85px rgba(0, 0, 0, 0.58),
+    0 0 0 1px rgba(22, 119, 255, 0.2),
+    0 0 34px rgba(22, 119, 255, 0.12);
   animation: hero-active-pop 980ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
@@ -257,14 +258,14 @@ a {
     filter: brightness(0.82);
   }
   58% {
-    transform: scale(1.14) translateY(-8px);
+    transform: scale(1.18) translateY(-12px);
     opacity: 1;
-    filter: brightness(1.06);
+    filter: brightness(1.08);
   }
   100% {
-    transform: scale(1.1) translateY(-5px);
+    transform: scale(1.14) translateY(-9px);
     opacity: 1;
-    filter: brightness(1);
+    filter: brightness(1.02);
   }
 }
 
@@ -276,14 +277,14 @@ a {
 
 .hero-project-card-inactive:hover,
 .hero-project-card-inactive:focus-within {
-  transform: scale(1.02) translateY(-3px);
-  opacity: 0.95;
-  filter: brightness(0.96);
+  transform: scale(0.96) translateY(-3px);
+  opacity: 0.82;
+  filter: brightness(0.9) saturate(0.9);
 }
 
 .hero-project-card-active:hover,
 .hero-project-card-active:focus-within {
-  transform: scale(1.12) translateY(-7px);
+  transform: scale(1.16) translateY(-11px);
 }
 
 .hero-project-card:active {
