@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Arrow from "./Arrow";
 import { services } from "../../data/services";
-import { aboutContent, aboutPillars, ventures, projects, process, whyChoose, marqueeItems, testimonials, leaders, insights } from "../../data/home";
+import { aboutContent, aboutPillars, ventures, projects, process, marqueeItems, testimonials, leaders, insights } from "../../data/home";
 
 function FlowerSeparator() {
   return (
@@ -577,106 +577,6 @@ function ProcessSection() {
   );
 }
 
-function WhyChooseIcon({ type }: { type: string }) {
-  const common = "h-6 w-6";
-
-  if (type === "growth") {
-    return (
-      <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
-        <path d="M4 19V5M4 19h16" stroke="currentColor" strokeWidth="1.4" />
-        <path d="m7 15 4-4 3 2 5-6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M16 7h3v3" stroke="currentColor" strokeWidth="1.4" />
-      </svg>
-    );
-  }
-
-  if (type === "ecosystem") {
-    return (
-      <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
-        <circle cx="6" cy="12" r="2" stroke="currentColor" strokeWidth="1.4" />
-        <circle cx="18" cy="7" r="2" stroke="currentColor" strokeWidth="1.4" />
-        <circle cx="18" cy="17" r="2" stroke="currentColor" strokeWidth="1.4" />
-        <path d="m8 11 8-3M8 13l8 3" stroke="currentColor" strokeWidth="1.4" />
-      </svg>
-    );
-  }
-
-  if (type === "talent") {
-    return (
-      <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
-        <circle cx="12" cy="8" r="3" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M5 19c.8-4 3-6 7-6s6.2 2 7 6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        <path d="M18 3v4M16 5h4" stroke="currentColor" strokeWidth="1.4" />
-      </svg>
-    );
-  }
-
-  if (type === "partnership") {
-    return (
-      <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
-        <path d="m8 12 2.2 2.2a2.5 2.5 0 0 0 3.6 0L16 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-        <path d="m3 10 4-4 4 1 2-1 4 4-3 3M21 10l-4-4-4 1" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
-      <path d="M12 3 19 6v5c0 4.4-2.8 7.5-7 10-4.2-2.5-7-5.6-7-10V6l7-3Z" stroke="currentColor" strokeWidth="1.4" />
-      <path d="m9 12 2 2 4-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
-function WhyChooseSection() {
-  return (
-    <section className="relative overflow-hidden bg-[#050505] py-20 md:py-28">
-      <div className="about-wrapper">
-        <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:gap-16">
-          <div data-reveal className="reveal lg:sticky lg:top-28 lg:self-start">
-            <p className="section-label">Why Choose Cubixmet</p>
-            <h2 className="max-w-[520px] text-[clamp(2.5rem,4.8vw,5.4rem)] font-medium leading-[.93] tracking-[-0.055em] text-white">
-              We don&apos;t just deliver services —
-              <span className="block text-white/38">we engineer growth ecosystems.</span>
-            </h2>
-          </div>
-
-          <div className="grid gap-px overflow-hidden border border-white/8 bg-white/8 md:grid-cols-2">
-            {whyChoose.map((item, index) => (
-              <article
-                key={item.title}
-                data-scroll-card
-                data-scroll-delay={index * 80}
-                className={
-                  "scroll-card min-h-[240px] bg-[#0b0b0b] p-6 md:min-h-[280px] md:p-8 " +
-                  (index === whyChoose.length - 1 ? "md:col-span-2" : "")
-                }
-              >
-                <div className="flex items-start justify-between gap-4">
-                  <div className="grid h-11 w-11 place-items-center border border-[#1677FF]/25 text-[#1677FF]">
-                    <WhyChooseIcon type={item.icon} />
-                  </div>
-                  <span className="text-[12px] font-semibold text-white/20">
-                    0{index + 1}
-                  </span>
-                </div>
-
-                <h3 className="mt-12 max-w-[320px] text-[22px] font-medium leading-[1.05] tracking-[-0.035em] text-white md:text-[26px]">
-                  {item.title}
-                </h3>
-
-                <p className="mt-4 max-w-[360px] text-[12px] leading-6 text-white/42">
-                  {item.copy}
-                </p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function WorkSection() {
   return (
     <section id="work" className="pb-20 pt-4 md:pb-28 md:pt-8">
@@ -992,7 +892,6 @@ export default function HomeSections() {
       <VenturesSection />
       <ServicesSection />
       <ProcessSection />
-      <WhyChooseSection />
       <WorkSection />
       <MarqueeSection />
       <TestimonialsSection />
