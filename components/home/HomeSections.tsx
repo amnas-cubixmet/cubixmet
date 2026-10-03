@@ -179,35 +179,6 @@ function AboutSection() {
   );
 }
 
-function VentureIcon({ type }: { type: "tech" | "digital" | "academy" }) {
-  if (type === "tech") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" aria-hidden="true">
-        <rect x="3.5" y="4" width="17" height="12" rx="2" stroke="currentColor" strokeWidth="1.4" />
-        <path d="M8 20h8M10 16v4M14 16v4M8 10l2-2m-2 2 2 2M16 8l-2 4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    );
-  }
-
-  if (type === "digital") {
-    return (
-      <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" aria-hidden="true">
-        <path d="M4 17V7M4 17h16" stroke="currentColor" strokeWidth="1.4" />
-        <path d="m7 14 3-3 3 2 4-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M15 8h2v2" stroke="currentColor" strokeWidth="1.4" />
-        <circle cx="18.5" cy="5.5" r="1.5" fill="currentColor" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg viewBox="0 0 24 24" className="h-7 w-7" fill="none" aria-hidden="true">
-      <path d="m3 9 9-5 9 5-9 5-9-5Z" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
-      <path d="M7 12.2v4.2c2.8 2.1 7.2 2.1 10 0v-4.2M21 9v5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
-    </svg>
-  );
-}
-
 function VenturesSection() {
   return (
     <section id="ventures" className="relative overflow-hidden pb-24 pt-10 md:pb-36 md:pt-16">
@@ -232,18 +203,17 @@ function VenturesSection() {
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-6">
           <div data-reveal className="reveal lg:col-span-3">
             <p className="section-label">Our Ventures</p>
-
           </div>
 
           <div className="lg:col-span-9">
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-12 lg:gap-5">
+            <div className="grid gap-6 md:grid-cols-2 lg:relative lg:block lg:min-h-[1180px]">
               {ventures.map((venture, index) => {
                 const placement =
                   index === 0
-                    ? "lg:col-span-6 lg:col-start-4"
+                    ? "lg:absolute lg:left-[33.333%] lg:top-0 lg:w-[66.667%]"
                     : index === 1
-                      ? "lg:col-span-6 lg:col-start-1 lg:-mt-8"
-                      : "lg:col-span-6 lg:col-start-7 lg:mt-8";
+                      ? "lg:absolute lg:left-0 lg:top-[230px] lg:w-[66.667%]"
+                      : "lg:absolute lg:right-0 lg:top-[730px] lg:w-[66.667%]";
 
                 return (
                   <article
@@ -251,23 +221,18 @@ function VenturesSection() {
                     data-scroll-card
                     data-scroll-delay={index * 100}
                     className={
-                      "scroll-card group relative flex min-h-[420px] flex-col overflow-hidden border border-white/8 bg-[#101010] p-6 md:min-h-[460px] md:p-7 " +
+                      "scroll-card group relative flex min-h-[410px] flex-col overflow-hidden border border-white/8 bg-[#101010] p-6 md:min-h-[430px] md:p-8 " +
                       placement
                     }
                   >
                     <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.018),transparent_38%)]" />
 
-                    <div className="relative z-10">
-                      <div className="mb-6 h-[150px] w-full bg-[#151515] md:h-[170px]">
-                        <div className="flex h-full w-full items-center justify-between p-6">
-                          <span className="text-[11px] font-bold text-[#1677FF]">0{index + 1}</span>
-                          <div className="grid h-16 w-16 place-items-center border border-[#1677FF]/25 text-[#1677FF]">
-                            <VentureIcon type={venture.icon} />
-                          </div>
-                        </div>
-                      </div>
+                    <div className="relative z-10 flex h-full flex-col">
+                      <span className="text-[clamp(2.2rem,4vw,4.6rem)] font-semibold leading-none tracking-[-0.06em] text-[#1677FF]">
+                        0{index + 1}
+                      </span>
 
-                      <h3 className="text-[clamp(2rem,3.3vw,4rem)] font-semibold leading-[.92] tracking-[-0.055em] text-white">
+                      <h3 className="mt-8 text-[clamp(2rem,3.3vw,4rem)] font-semibold leading-[.92] tracking-[-0.055em] text-white">
                         {venture.name}
                       </h3>
 
@@ -275,7 +240,7 @@ function VenturesSection() {
                         {venture.tagline}
                       </p>
 
-                      <p className="mt-6 max-w-[470px] text-[12px] leading-6 text-white/40">
+                      <p className="mt-5 max-w-[470px] text-[12px] leading-6 text-white/40">
                         {venture.copy}
                       </p>
 
@@ -295,7 +260,7 @@ function VenturesSection() {
                         href={venture.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-7 inline-flex items-center gap-2 text-[11px] font-semibold text-white transition-colors duration-300 hover:text-[#1677FF]"
+                        className="mt-auto inline-flex w-fit items-center gap-2 pt-8 text-[11px] font-semibold text-white transition-colors duration-300 hover:text-[#1677FF]"
                       >
                         Learn More <Arrow />
                       </a>
