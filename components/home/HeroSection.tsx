@@ -63,31 +63,28 @@ export default function HeroSection() {
         </div>
 
         <div className="relative overflow-hidden pb-5">
-          <div className="mx-auto grid w-[108%] -translate-x-[4%] grid-cols-[.72fr_.88fr_1.7fr_.88fr_.72fr] items-end gap-3 px-0 md:gap-4">
+          <div className="mx-auto grid w-[104%] -translate-x-[2%] grid-cols-[.72fr_.9fr_1.55fr_.9fr] items-end gap-3 md:gap-4">
             {[
               "https://images.unsplash.com/photo-1460661419201-fd4cecdf8a8b?auto=format&fit=crop&w=900&q=80",
               "https://images.unsplash.com/photo-1558655146-9f40138edfeb?auto=format&fit=crop&w=900&q=80",
               "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80",
               "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=900&q=80",
-              "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=80",
             ].map((src, index) => {
               const position =
                 index === 0
-                  ? "translate-y-5"
+                  ? "translate-y-4"
                   : index === 1
-                    ? "translate-y-9"
+                    ? "translate-y-8"
                     : index === 2
                       ? ""
-                      : index === 3
-                        ? "translate-y-6"
-                        : "translate-y-10";
+                      : "translate-y-7";
 
               return (
                 <article
                   key={src}
                   className={"hero-card group relative overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " + position}
                 >
-                  <div className={index === 2 ? "aspect-[1.72/1]" : "aspect-[.78/1]"}>
+                  <div className={index === 2 ? "aspect-[1.7/1]" : "aspect-[.78/1]"}>
                     <img
                       src={src}
                       alt={`Cubixmet project demo ${index + 1}`}
