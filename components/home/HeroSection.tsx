@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Arrow from "./Arrow";
-import { heroProjects } from "../../data/services";
+import { heroProjects } from "../../data/heroProjects";
 
 export default function HeroSection() {
   const [activeCard, setActiveCard] = useState(2);
