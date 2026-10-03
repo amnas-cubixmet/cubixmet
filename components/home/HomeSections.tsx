@@ -606,67 +606,102 @@ function ProcessSection() {
 }
 
 function WorkSection() {
+  const [portfolioFilter, setPortfolioFilter] = useState<
+    "All" | "Dynamic Website" | "Digital Marketing"
+  >("All");
+
+  const filters = ["All", "Dynamic Website", "Digital Marketing"] as const;
+  const filteredProjects =
+    portfolioFilter === "All"
+      ? projects
+      : projects.filter((project) => project.category === portfolioFilter);
+
   return (
-    <section id="work" className="pb-20 pt-4 md:pb-28 md:pt-8">
-      <div className="work-wrapper">
-        <div data-reveal className="reveal mb-6 grid gap-6 lg:grid-cols-[.78fr_1.22fr] lg:items-start">
-          <div><p className="section-label mb-0">Case Studies</p><p className="mt-3 hidden max-w-[220px] text-[11px] leading-5 text-white/32 lg:block">Selected brand, product and digital work from across the studio.</p></div>
-
-          <div className="lg:justify-self-start lg:pl-[4%]">
-            <h2 className="max-w-[420px] text-[clamp(2rem,3.25vw,3.6rem)] font-medium leading-[.94] tracking-[-0.05em]">
-              See Our <span className="font-serif font-normal italic">All Latest</span>
-              <span className="block">Creative Work</span>
+    <section id="work" className="pb-20 pt-8 md:pb-28 md:pt-12" data-no-text-reveal>
+      <div className="about-wrapper">
+        <div data-reveal className="reveal grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
+          <div>
+            <p className="section-label">Our Portfolio</p>
+            <h2 className="max-w-[720px] text-[clamp(2.8rem,5.1vw,5.8rem)] font-medium leading-[.92] tracking-[-0.06em]">
+              Selected work across web and digital growth.
             </h2>
-
-            <a
-              href="#work-grid"
-              className="mt-3 inline-flex items-center gap-2 rounded-full bg-[#1677FF] px-3.5 py-2 text-[9px] font-semibold text-white"
-            >
-              View all <Arrow />
-            </a>
           </div>
+
+          <p className="max-w-[540px] text-[13px] leading-6 text-white/45 md:text-[15px] md:leading-7 lg:justify-self-end">
+            A selection of projects showcasing our web development and digital marketing capabilities.
+          </p>
         </div>
 
-        <div id="work-grid" className="grid w-full gap-3 md:grid-cols-3 md:auto-rows-[210px] lg:auto-rows-[235px]">
-          {projects.map((project, index) => {
-            const layout =
-              index === 0
-                ? "md:col-span-2"
-                : index === 1
-                  ? "md:col-span-1"
-                  : index === 2
-                    ? "md:col-span-1"
-                    : "md:col-span-2";
+        <div className="mt-10 flex flex-wrap gap-2 border-y border-white/8 py-4">
+          {filters.map((filter) => {
+            const active = portfolioFilter === filter;
 
             return (
-              <article
-                key={project.name}
-                data-reveal
-                data-scroll-card
-                data-scroll-delay={index * 90}
-                className={"reveal scroll-card group relative overflow-hidden rounded-[14px] border border-white/8 bg-[#0d0d0d] " + layout}
+              <button
+                key={filter}
+                type="button"
+                onClick={() => setPortfolioFilter(filter)}
+                className={
+                  "rounded-full border px-4 py-2 text-[11px] font-medium transition-all duration-300 " +
+                  (active
+                    ? "border-[#1677FF] bg-[#1677FF] text-white"
+                    : "border-white/10 text-white/45 hover:border-white/25 hover:text-white")
+                }
               >
+                {filter}
+              </button>
+            );
+          })}
+        </div>
+
+        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+          {filteredProjects.map((project, index) => (
+            <article
+              key={project.id}
+              data-scroll-card
+              data-scroll-delay={(index % 6) * 70}
+              className="scroll-card group overflow-hidden border border-white/8 bg-[#0b0b0b]"
+            >
+              <div className="relative aspect-[1.35/1] overflow-hidden bg-[#101010]">
                 <img
                   src={project.image}
                   alt={project.name}
-                  className="absolute inset-0 h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                 />
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                <span className="absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-white/72 backdrop-blur">
+                  {project.category}
+                </span>
+              </div>
 
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-black/5" />
+              <div className="p-5 md:p-6">
+                <div className="flex items-start justify-between gap-5">
+                  <h3 className="text-[26px] font-semibold leading-[.98] tracking-[-0.045em] text-white md:text-[30px]">
+                    {project.name}
+                  </h3>
 
-                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-4 p-4 md:p-5">
-                  <div>
-                    <p className="text-[9px] uppercase tracking-[0.14em] text-white/45">{project.type}</p>
-                    <h3 className="mt-1 text-[15px] font-medium text-white md:text-[18px]">{project.name}</h3>
-                  </div>
-
-                  <span className="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-[#1677FF] text-[10px] text-white transition duration-300 group-hover:rotate-45">
-                    <Arrow />
+                  <span className="text-[10px] font-medium text-white/22">
+                    {String(index + 1).padStart(2, "0")}
                   </span>
                 </div>
-              </article>
-            );
-          })}
+
+                <p className="mt-5 min-h-[72px] text-[12px] leading-6 text-white/42">
+                  {project.description}
+                </p>
+
+                <div className="mt-6 flex flex-wrap gap-2 border-t border-white/8 pt-5">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-white/10 px-2.5 py-1 text-[9px] text-white/52"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
