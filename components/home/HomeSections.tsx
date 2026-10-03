@@ -77,13 +77,40 @@ const process = [
 
 function useReveal() {
   useEffect(() => {
-    const nodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
-    const observer = new IntersectionObserver(
-      (entries) => entries.forEach((entry) => entry.isIntersecting && entry.target.classList.add("is-visible")),
-      { threshold: 0.16, rootMargin: "0px 0px -8% 0px" }
+    const revealNodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
+    const cardNodes = Array.from(document.querySelectorAll<HTMLElement>("[data-scroll-card]"));
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          revealObserver.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.12, rootMargin: "0px 0px -10% 0px" }
     );
-    nodes.forEach((node) => observer.observe(node));
-    return () => observer.disconnect();
+
+    const cardObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const node = entry.target as HTMLElement;
+          const delay = Number(node.dataset.scrollDelay || 0);
+          window.setTimeout(() => node.classList.add("is-card-visible"), delay);
+          cardObserver.unobserve(node);
+        });
+      },
+      { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
+    );
+
+    revealNodes.forEach((node) => revealObserver.observe(node));
+    cardNodes.forEach((node) => cardObserver.observe(node));
+
+    return () => {
+      revealObserver.disconnect();
+      cardObserver.disconnect();
+    };
   }, []);
 }
 
@@ -118,7 +145,7 @@ function AboutSection() {
 
           <div className="relative z-10 grid gap-px border-y border-white/8 bg-white/8 sm:grid-cols-3">
             {[["4x","Faster design-to-build workflow"],["2x","Lean collaborative process"],["100%","Responsive by default"]].map(([value,label]) => (
-              <div key={value} className="bg-[#0d0d0d] px-5 py-6 md:px-8 md:py-7">
+              <div key={value} data-scroll-card className="scroll-card bg-[#0d0d0d] px-5 py-6 md:px-8 md:py-7">
                 <p className="max-w-[180px] text-[11px] leading-5 text-white/38">{label}</p>
                 <p className="mt-7 text-[clamp(2.4rem,3.8vw,4.4rem)] font-semibold leading-none tracking-[-0.055em]">{value}</p>
               </div>
@@ -162,7 +189,9 @@ function ServicesSection() {
             <article
               key={service.no}
               data-reveal
-              className="reveal grid items-center gap-5 md:grid-cols-[.9fr_1fr_1.1fr] md:gap-8 lg:grid-cols-[.82fr_1fr_1.08fr]"
+              data-scroll-card
+              data-scroll-delay={index * 90}
+              className="reveal scroll-card grid items-center gap-5 md:grid-cols-[.9fr_1fr_1.1fr] md:gap-8 lg:grid-cols-[.82fr_1fr_1.08fr]"
             >
               <div className="flex items-start gap-4">
                 <span className="mt-2 grid h-5 w-5 shrink-0 place-items-center rounded-full border border-[#1677FF]/40 text-[9px] text-[#1677FF]">
@@ -329,7 +358,9 @@ function WorkSection() {
               <article
                 key={project.name}
                 data-reveal
-                className={"reveal group relative overflow-hidden rounded-[14px] border border-white/8 bg-[#0d0d0d] " + layout}
+                data-scroll-card
+                data-scroll-delay={index * 90}
+                className={"reveal scroll-card group relative overflow-hidden rounded-[14px] border border-white/8 bg-[#0d0d0d] " + layout}
               >
                 <img
                   src={project.image}
@@ -474,7 +505,9 @@ function TestimonialsSection() {
                     return (
                       <blockquote
                         key={`${card.name}-${offset}`}
-                        className="flex min-h-[260px] flex-col justify-between rounded-[16px] border border-white/8 bg-[#0b0b0b] p-5 md:min-h-[280px] md:p-6"
+                        data-scroll-card
+                        data-scroll-delay={offset * 80}
+                        className="scroll-card flex min-h-[260px] flex-col justify-between rounded-[16px] border border-white/8 bg-[#0b0b0b] p-5 md:min-h-[280px] md:p-6"
                       >
                         <div>
                           <span className="text-[18px] leading-none text-[#1677FF]">“</span>
@@ -578,7 +611,9 @@ function LeadershipSection() {
               <article
                 key={`${leader.name}-${index}`}
                 data-reveal
-                className="reveal grid gap-6 py-7 first:pt-0 md:grid-cols-[1fr_150px] md:items-center md:gap-10"
+                data-scroll-card
+                data-scroll-delay={index * 100}
+                className="reveal scroll-card grid gap-6 py-7 first:pt-0 md:grid-cols-[1fr_150px] md:items-center md:gap-10"
               >
                 <div>
                   <h3 className="text-[16px] font-medium text-white md:text-[18px]">{leader.name}</h3>
@@ -646,7 +681,7 @@ function JournalSection() {
         </div>
         <div className="mt-10 grid gap-3 md:grid-cols-3">
           {insights.map(([tag,title],index) => (
-            <article key={title} data-reveal className="reveal group flex min-h-[330px] flex-col justify-between rounded-[20px] border border-white/8 bg-[#0b0b0b] p-5 transition hover:-translate-y-1 hover:border-white/20">
+            <article key={title} data-reveal data-scroll-card data-scroll-delay={index * 90} className="reveal scroll-card group flex min-h-[330px] flex-col justify-between rounded-[20px] border border-white/8 bg-[#0b0b0b] p-5 transition hover:-translate-y-1 hover:border-white/20">
               <span className="w-fit rounded-full bg-[#1677FF] px-3 py-1 text-[10px] font-bold text-white">{tag}</span>
               <div><p className="mb-5 text-[11px] text-white/25">0{index + 1} / 2026</p><h3 className="text-2xl font-medium leading-tight tracking-[-0.04em]">{title}</h3><div className="mt-6 flex items-center justify-between text-xs text-white/40"><span>Read insight</span><Arrow /></div></div>
             </article>
