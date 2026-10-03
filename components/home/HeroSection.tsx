@@ -16,8 +16,20 @@ export default function HeroSection() {
           </div>
 
           <div className="relative hidden self-center lg:block">
-            <div className="mb-12 ml-10 grid h-28 w-28 place-items-center rounded-full border border-white/10 bg-black/20 text-center backdrop-blur">
-              <span className="text-[9px] leading-4 text-white/45"><strong className="block text-[34px] leading-none text-white">12+</strong>Your trust builds us</span>
+            <div className="relative mb-12 ml-10 h-32 w-32">
+              <div className="pointer-events-none absolute inset-0 opacity-90 [filter:drop-shadow(0_0_28px_rgba(110,130,55,.12))]">
+                <span className="absolute left-[8%] top-[8%] h-[62%] w-[62%] rounded-full bg-[rgba(30,35,24,.76)]" />
+                <span className="absolute right-[8%] top-[8%] h-[62%] w-[62%] rounded-full bg-[rgba(30,35,24,.76)]" />
+                <span className="absolute bottom-[8%] left-[8%] h-[62%] w-[62%] rounded-full bg-[rgba(30,35,24,.76)]" />
+                <span className="absolute bottom-[8%] right-[8%] h-[62%] w-[62%] rounded-full bg-[rgba(30,35,24,.76)]" />
+                <span className="absolute left-[25%] top-[25%] h-1/2 w-1/2 bg-[rgba(30,35,24,.76)]" />
+              </div>
+              <div className="relative z-10 grid h-full w-full place-items-center text-center">
+                <span className="text-[9px] leading-4 text-white/45">
+                  <strong className="block text-[34px] leading-none text-white">12+</strong>
+                  Your trust builds us
+                </span>
+              </div>
             </div>
 
             <div className="max-w-[330px]">
