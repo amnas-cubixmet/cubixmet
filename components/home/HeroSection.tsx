@@ -10,14 +10,14 @@ export default function HeroSection() {
           {[0, 34, 72, 112, 154, 202].map((angle, index) => (
             <span
               key={angle}
-              className="absolute left-1/2 top-1/2 h-[58%] w-[24%] origin-[50%_8%] rounded-full bg-[linear-gradient(90deg,#401616_0%,#ff6666_46%,#8c2424_100%)] shadow-[inset_-8px_-8px_16px_rgba(0,0,0,.28),inset_7px_6px_12px_rgba(255,255,255,.16)]"
+              className="absolute left-1/2 top-1/2 h-[58%] w-[24%] origin-[50%_8%] rounded-full bg-[linear-gradient(90deg,#0b2f63_0%,#1677FF_46%,#0f4fb0_100%)] shadow-[inset_-8px_-8px_16px_rgba(0,0,0,.28),inset_7px_6px_12px_rgba(255,255,255,.16)]"
               style={{
                 transform: `translate(-50%,-6%) rotate(${angle}deg)`,
                 zIndex: index % 2 === 0 ? 2 : 1,
               }}
             />
           ))}
-          <span className="absolute left-1/2 top-1/2 z-[3] h-[34%] w-[34%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_35%_28%,#ff7777,#b43232_55%,#6f1e1e_100%)] shadow-[inset_-6px_-7px_12px_rgba(0,0,0,.25)]" />
+          <span className="absolute left-1/2 top-1/2 z-[3] h-[34%] w-[34%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_35%_28%,#4da2ff,#1677FF_55%,#0b3f8a_100%)] shadow-[inset_-6px_-7px_12px_rgba(0,0,0,.25)]" />
         </div>
       </div>
       <div className="relative z-10 flex min-h-[calc(100svh-54px)] flex-col md:min-h-[calc(100svh-58px)]">
