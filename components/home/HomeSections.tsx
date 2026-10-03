@@ -381,24 +381,84 @@ function MarqueeSection() {
 
 function TestimonialsSection() {
   const items = [
-    ["The team made a complex product feel clear and simple from the first design round.","Product Lead"],
-    ["Fast communication, practical decisions and a final build that performs beautifully.","Founder"],
-    ["Cubixmet gave us a sharper digital direction without losing the personality of our brand.","Marketing Lead"],
+    {
+      quote: "The team understood our direction quickly and turned it into a clean, focused digital experience that feels genuinely premium.",
+      name: "Shane Watson",
+      role: "Founder / Director",
+      avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=120&q=80",
+    },
+    {
+      quote: "The process was clear from strategy through delivery. Communication stayed sharp and every design decision had a reason behind it.",
+      name: "Valentina Syunko",
+      role: "Product Manager",
+      avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80",
+    },
+    {
+      quote: "We needed a stronger digital presence without losing the character of our brand. Cubixmet gave us exactly that balance.",
+      name: "Shane Wilson",
+      role: "CEO & Founder",
+      avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80",
+    },
   ];
+
   return (
-    <section className="section-space">
-      <div className="site-wrapper">
+    <section className="pb-20 pt-12 md:pb-28 md:pt-16">
+      <div className="work-wrapper">
         <div data-reveal className="reveal text-center">
-          <p className="section-label">Client stories</p>
-          <h2 className="section-title mt-4">Trusted by teams. Backed by outcomes.</h2>
+          <p className="section-label mb-3">Client stories</p>
+          <h2 className="mx-auto max-w-[520px] text-[clamp(2rem,3.3vw,3.8rem)] font-medium leading-[.96] tracking-[-0.05em]">
+            Trusted by Brands, Backed
+            <span className="block">by Stories</span>
+          </h2>
         </div>
-        <div className="mt-10 grid gap-3 md:grid-cols-3">
-          {items.map(([quote,role]) => (
-            <blockquote key={quote} data-reveal className="reveal rounded-[20px] border border-white/8 bg-[#0b0b0b] p-6">
-              <span className="text-3xl text-[#1677FF]">“</span><p className="mt-6 text-base leading-7 text-white/65">{quote}</p>
-              <footer className="mt-10 border-t border-white/8 pt-4 text-[11px] uppercase tracking-[0.14em] text-white/35">{role}</footer>
+
+        <div className="mt-8 grid gap-3 md:grid-cols-3">
+          {items.map((item) => (
+            <blockquote
+              key={item.name}
+              data-reveal
+              className="reveal flex min-h-[250px] flex-col justify-between rounded-[14px] border border-white/8 bg-[#0b0b0b] p-5 md:min-h-[280px] md:p-6"
+            >
+              <div>
+                <span className="text-[18px] leading-none text-[#1677FF]">“</span>
+                <p className="mt-5 text-[12px] leading-6 text-white/52 md:text-[13px]">
+                  {item.quote}
+                </p>
+              </div>
+
+              <footer className="mt-8 flex items-center gap-3 border-t border-white/7 pt-4">
+                <img
+                  src={item.avatar}
+                  alt={item.name}
+                  className="h-9 w-9 rounded-full object-cover"
+                />
+                <div>
+                  <p className="text-[12px] font-medium text-white">{item.name}</p>
+                  <p className="mt-0.5 text-[10px] text-white/32">{item.role}</p>
+                </div>
+              </footer>
             </blockquote>
           ))}
+        </div>
+
+        <div className="mt-5 flex items-center gap-3">
+          <button
+            type="button"
+            aria-label="Previous testimonial"
+            className="grid h-8 w-8 place-items-center rounded-full border border-white/10 text-[11px] text-white/45 transition hover:border-[#1677FF]/60 hover:text-white"
+          >
+            ←
+          </button>
+          <button
+            type="button"
+            aria-label="Next testimonial"
+            className="grid h-8 w-8 place-items-center rounded-full bg-[#1677FF] text-[11px] text-white transition hover:scale-105"
+          >
+            →
+          </button>
+          <div className="ml-1 h-px w-24 bg-white/10">
+            <div className="h-px w-1/3 bg-[#1677FF]" />
+          </div>
         </div>
       </div>
     </section>
