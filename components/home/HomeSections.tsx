@@ -79,6 +79,11 @@ function useReveal() {
   useEffect(() => {
     const revealNodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     const cardNodes = Array.from(document.querySelectorAll<HTMLElement>("[data-scroll-card]"));
+    const textNodes = Array.from(
+      document.querySelectorAll<HTMLElement>(
+        "main h1, main h2, main h3, main h4, main p, main blockquote footer"
+      )
+    ).filter((node) => !node.closest("header"));
 
     const revealObserver = new IntersectionObserver(
       (entries) => {
@@ -104,12 +109,31 @@ function useReveal() {
       { threshold: 0.14, rootMargin: "0px 0px -8% 0px" }
     );
 
+    const textObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          const node = entry.target as HTMLElement;
+          node.classList.add("is-text-visible");
+          textObserver.unobserve(node);
+        });
+      },
+      { threshold: 0.08, rootMargin: "0px 0px -7% 0px" }
+    );
+
+    textNodes.forEach((node, index) => {
+      node.classList.add("text-scroll-reveal");
+      node.style.setProperty("--text-delay", `${Math.min(index % 4, 3) * 55}ms`);
+      textObserver.observe(node);
+    });
+
     revealNodes.forEach((node) => revealObserver.observe(node));
     cardNodes.forEach((node) => cardObserver.observe(node));
 
     return () => {
       revealObserver.disconnect();
       cardObserver.disconnect();
+      textObserver.disconnect();
     };
   }, []);
 }
