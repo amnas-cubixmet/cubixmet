@@ -89,10 +89,7 @@ export default function HeroSection() {
               return (
                 <article
                   key={`${project.index}-${slot}`}
-                  onClick={() => setActiveCard(project.index)}
-                  tabIndex={0}
-                  onFocus={() => setActiveCard(project.index)}
-                  className={"hero-card hero-project-card group relative cursor-pointer overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " + position + (isActive ? " hero-project-card-active" : " hero-project-card-inactive")}
+                  className={"hero-card hero-project-card group relative overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " + position + (isActive ? " hero-project-card-active" : " hero-project-card-inactive")}
                 >
                   <div
                     className={
@@ -121,11 +118,7 @@ export default function HeroSection() {
                       <p className="mt-1 text-[14px] font-semibold leading-tight text-white md:text-[18px]">{project.title}</p>
                     </div>
 
-                    {isActive && (
-                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-full bg-[#1677FF] text-[10px] font-bold text-white md:h-12 md:w-12">
-                        ↗
-                      </span>
-                    )}
+
                   </div>
                 </article>
               );
