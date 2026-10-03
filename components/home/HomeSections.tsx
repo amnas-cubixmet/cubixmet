@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Arrow from "./Arrow";
 import { services } from "../../data/services";
-import { aboutContent, aboutPillars, ventures, projects, process, marqueeItems, testimonials, leaders, insights } from "../../data/home";
+import { aboutContent, aboutPillars, ventures, projects, whyChoose, marqueeItems, testimonials, leaders, insights } from "../../data/home";
 
 function FlowerSeparator() {
   return (
@@ -499,78 +499,104 @@ function ServicesSection() {
   );
 }
 
+function WhyChooseIcon({ type }: { type: string }) {
+  const common = "h-6 w-6";
+
+  if (type === "growth") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
+        <path d="M4 19V5M4 19h16" stroke="currentColor" strokeWidth="1.4" />
+        <path d="m7 15 4-4 3 2 5-6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M16 7h3v3" stroke="currentColor" strokeWidth="1.4" />
+      </svg>
+    );
+  }
+
+  if (type === "ecosystem") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
+        <circle cx="6" cy="12" r="2" stroke="currentColor" strokeWidth="1.4" />
+        <circle cx="18" cy="7" r="2" stroke="currentColor" strokeWidth="1.4" />
+        <circle cx="18" cy="17" r="2" stroke="currentColor" strokeWidth="1.4" />
+        <path d="m8 11 8-3M8 13l8 3" stroke="currentColor" strokeWidth="1.4" />
+      </svg>
+    );
+  }
+
+  if (type === "talent") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
+        <circle cx="12" cy="8" r="3" stroke="currentColor" strokeWidth="1.4" />
+        <path d="M5 19c.8-4 3-6 7-6s6.2 2 7 6" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        <path d="M18 3v4M16 5h4" stroke="currentColor" strokeWidth="1.4" />
+      </svg>
+    );
+  }
+
+  if (type === "partnership") {
+    return (
+      <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
+        <path d="m8 12 2.2 2.2a2.5 2.5 0 0 0 3.6 0L16 12" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" />
+        <path d="m3 10 4-4 4 1 2-1 4 4-3 3M21 10l-4-4-4 1" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" className={common} fill="none" aria-hidden="true">
+      <path d="M12 3 19 6v5c0 4.4-2.8 7.5-7 10-4.2-2.5-7-5.6-7-10V6l7-3Z" stroke="currentColor" strokeWidth="1.4" />
+      <path d="m9 12 2 2 4-5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 function ProcessSection() {
   return (
     <section id="process" className="relative z-10 bg-[#050505] pb-20 pt-10 md:pb-28 md:pt-14">
       <div data-reveal className="reveal about-wrapper">
         <div className="relative overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b]">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_58%_52%,rgba(22,119,255,.11),transparent_28%),radial-gradient(circle_at_92%_12%,rgba(255,255,255,.035),transparent_18%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(22,119,255,.11),transparent_24%),radial-gradient(circle_at_88%_84%,rgba(22,119,255,.08),transparent_26%)]" />
 
-          <div className="relative z-10 grid gap-10 p-5 md:p-8 lg:grid-cols-[1.05fr_.95fr] lg:gap-12 xl:p-10">
-            <div className="flex flex-col">
-              <div>
-                <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.18em] text-[#1677FF]">Work process</p>
-                <h2 className="max-w-[520px] text-[clamp(2.2rem,4.2vw,4.8rem)] font-medium leading-[.96] tracking-[-0.055em]">
-                  Our Process design, and Deliver Simplified
-                </h2>
-              </div>
-
-              <div className="mt-10 md:mt-14">
-                {process.map(([no,title,copy], index) => (
-                  <div key={no} className="group relative grid grid-cols-[30px_1fr] gap-4 py-4 first:pt-0">
-                    {index !== process.length - 1 && (
-                      <span className="absolute left-[9px] top-8 h-[calc(100%-12px)] w-px bg-white/10" />
-                    )}
-                    <span className="relative z-10 mt-0.5 grid h-5 w-5 place-items-center rounded-full border border-[#1677FF]/55 bg-[#0b0b0b] text-[8px] text-[#1677FF]">
-                      {index + 1}
-                    </span>
-                    <div>
-                      <h3 className="text-[15px] font-medium text-white md:text-[17px]">{title}</h3>
-                      {index === 1 && (
-                        <p className="mt-2 max-w-[390px] text-[11px] leading-5 text-white/38 md:text-[12px]">
-                          {copy}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <p className="mt-auto hidden pt-10 text-[9px] uppercase tracking-[0.22em] text-white/25 lg:block [writing-mode:vertical-rl]">
-                Strategy / Design / Development
+          <div className="relative z-10 grid gap-10 p-5 md:p-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-14 xl:p-10">
+            <div className="lg:sticky lg:top-28 lg:self-start">
+              <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.18em] text-[#1677FF]">
+                Why Choose Cubixmet
               </p>
+
+              <h2 className="max-w-[560px] text-[clamp(2.4rem,4.2vw,4.8rem)] font-medium leading-[.96] tracking-[-0.055em]">
+                We don&apos;t just deliver services —
+                <span className="block text-white/38">we engineer growth ecosystems.</span>
+              </h2>
             </div>
 
-            <div className="flex flex-col">
-              <div className="flex flex-col gap-5 md:flex-row md:items-start md:justify-between">
-                <p className="max-w-[430px] text-[12px] leading-5 text-white/42 md:text-[13px] md:leading-6">
-                  We follow a simple, results-driven process to bring your vision to life. From understanding your goals to designing and developing, we focus on clarity, collaboration, and strong execution at every stage.
-                </p>
-                <a
-                  href="#contact"
-                  className="inline-flex w-fit items-center gap-2 rounded-full bg-[#1677FF] px-4 py-2.5 text-[10px] font-semibold text-white"
+            <div className="divide-y divide-white/8 border-t border-white/8 lg:border-t-0">
+              {whyChoose.map((item, index) => (
+                <article
+                  key={item.title}
+                  data-scroll-card
+                  data-scroll-delay={index * 80}
+                  className="scroll-card grid gap-5 py-6 first:pt-6 md:grid-cols-[54px_1fr_auto] md:items-start md:py-7"
                 >
-                  Let&apos;s talk <Arrow />
-                </a>
-              </div>
+                  <div className="grid h-11 w-11 place-items-center border border-[#1677FF]/25 bg-[#1677FF]/5 text-[#1677FF]">
+                    <WhyChooseIcon type={item.icon} />
+                  </div>
 
-              <div className="group relative mt-8 overflow-hidden rounded-[16px] border border-white/8 bg-[#111] md:mt-10">
-                <div className="aspect-[1.12/1] overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=84"
-                    alt="Cubixmet team discussing a project"
-                    className="h-full w-full object-cover grayscale transition duration-700 group-hover:scale-105 group-hover:grayscale-0"
-                  />
-                </div>
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-black/10" />
-                <div className="absolute bottom-4 left-4 rounded-full border border-white/15 bg-black/45 px-3 py-1.5 text-[9px] uppercase tracking-[0.14em] text-white/65 backdrop-blur">
-                  Collaborate → Build
-                </div>
-              </div>
+                  <div>
+                    <h3 className="text-[18px] font-medium tracking-[-0.03em] text-white md:text-[22px]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-2 max-w-[500px] text-[11px] leading-5 text-white/40 md:text-[12px] md:leading-6">
+                      {item.copy}
+                    </p>
+                  </div>
+
+                  <span className="text-[10px] font-semibold tracking-[0.12em] text-white/20">
+                    0{index + 1}
+                  </span>
+                </article>
+              ))}
             </div>
           </div>
-
-          <div className="pointer-events-none absolute -right-8 -top-10 h-28 w-28 rounded-full border border-white/7 opacity-30 md:h-40 md:w-40" />
         </div>
       </div>
     </section>
