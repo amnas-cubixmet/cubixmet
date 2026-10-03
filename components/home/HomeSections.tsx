@@ -330,7 +330,7 @@ function ServicesSection() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative bg-white text-black lg:h-[600svh]"
+      className="relative isolate bg-[#050505] text-white lg:h-[600svh]"
       data-no-text-reveal
     >
       {/* Mobile / tablet: normal flow, no pinning */}
@@ -344,7 +344,7 @@ function ServicesSection() {
           </h2>
         </div>
 
-        <div className="divide-y divide-black/10">
+        <div className="divide-y divide-white/10">
           {services.map((service, index) => (
             <article
               key={service.no}
@@ -361,7 +361,7 @@ function ServicesSection() {
                 </span>
               </div>
 
-              <div className="mt-6 aspect-[1.35/1] overflow-hidden bg-[#efefef]">
+              <div className="mt-6 aspect-[1.35/1] overflow-hidden bg-[#101010]">
                 <img
                   src={service.image}
                   alt={service.title}
@@ -369,7 +369,7 @@ function ServicesSection() {
                 />
               </div>
 
-              <p className="mt-6 max-w-[560px] text-[12px] leading-6 text-black/55">
+              <p className="mt-6 max-w-[560px] text-[12px] leading-6 text-white/52">
                 {service.copy}
               </p>
 
@@ -377,7 +377,7 @@ function ServicesSection() {
                 {service.meta.map((item) => (
                   <div
                     key={item}
-                    className="flex items-center gap-2 text-[11px] text-black/55"
+                    className="flex items-center gap-2 text-[11px] text-white/55"
                   >
                     <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
                     <span>{item}</span>
@@ -390,7 +390,7 @@ function ServicesSection() {
       </div>
 
       {/* Desktop: pinned scroll-driven services stage */}
-      <div className="sticky top-0 hidden h-screen overflow-hidden lg:flex">
+      <div className="sticky top-0 hidden h-screen overflow-hidden bg-[#050505] lg:flex">
         <div className="about-wrapper grid h-full grid-cols-12 items-center gap-8 py-12 xl:gap-10">
           <div className="col-span-5 flex h-full flex-col justify-center">
             <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
@@ -409,8 +409,8 @@ function ServicesSection() {
                     className={
                       "whitespace-nowrap text-left text-[clamp(2rem,3.35vw,4rem)] font-semibold leading-[1.04] tracking-[-0.055em] transition-all duration-300 " +
                       (isActive
-                        ? "translate-x-3 text-black opacity-100"
-                        : "text-black opacity-15 hover:opacity-45")
+                        ? "translate-x-3 text-white opacity-100"
+                        : "text-white opacity-18 hover:opacity-50")
                     }
                   >
                     {service.title}
@@ -421,9 +421,9 @@ function ServicesSection() {
           </div>
 
           <div className="col-span-2 flex h-[72%] flex-col items-center justify-between">
-            <div className="relative h-full w-px overflow-hidden bg-black/10">
+            <div className="relative h-full w-px overflow-hidden bg-white/12">
               <div
-                className="absolute left-0 top-0 w-px bg-black transition-[height] duration-150"
+                className="absolute left-0 top-0 w-px bg-white transition-[height] duration-150"
                 style={{ height: `${Math.max(serviceProgress * 100, 2)}%` }}
               />
             </div>
@@ -436,7 +436,7 @@ function ServicesSection() {
           </div>
 
           <div className="col-span-5 flex h-full flex-col justify-center">
-            <div className="relative h-[38vh] min-h-[310px] overflow-hidden bg-[#ececec]">
+            <div className="relative h-[38vh] min-h-[310px] overflow-hidden bg-[#101010]">
               {services.map((service, index) => (
                 <img
                   key={service.no}
@@ -470,7 +470,7 @@ function ServicesSection() {
                       <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1677FF]">
                         {service.no} / Service
                       </p>
-                      <p className="mt-4 max-w-[520px] text-[13px] leading-6 text-black/60">
+                      <p className="mt-4 max-w-[520px] text-[13px] leading-6 text-white/55">
                         {service.copy}
                       </p>
                     </div>
@@ -480,7 +480,7 @@ function ServicesSection() {
                     {service.meta.map((item) => (
                       <div
                         key={item}
-                        className="flex items-center gap-2 text-[11px] text-black/55"
+                        className="flex items-center gap-2 text-[11px] text-white/55"
                       >
                         <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
                         <span>{item}</span>
@@ -499,7 +499,7 @@ function ServicesSection() {
 
 function ProcessSection() {
   return (
-    <section id="process" className="pb-20 pt-10 md:pb-28 md:pt-14">
+    <section id="process" className="relative z-10 bg-[#050505] pb-20 pt-10 md:pb-28 md:pt-14">
       <div data-reveal className="reveal about-wrapper">
         <div className="relative overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b]">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_58%_52%,rgba(22,119,255,.11),transparent_28%),radial-gradient(circle_at_92%_12%,rgba(255,255,255,.035),transparent_18%)]" />
