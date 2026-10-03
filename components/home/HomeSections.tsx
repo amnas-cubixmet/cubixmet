@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Arrow from "./Arrow";
 
 function FlowerSeparator() {
@@ -443,63 +443,90 @@ function TestimonialsSection() {
     },
   ];
 
+  const [current, setCurrent] = useState(0);
+
+  const nextSlide = () => setCurrent((prev) => (prev + 1) % items.length);
+  const prevSlide = () => setCurrent((prev) => (prev - 1 + items.length) % items.length);
+
   return (
-    <section className="pb-20 pt-12 md:pb-28 md:pt-16">
-      <div className="work-wrapper">
-        <div data-reveal className="reveal text-center">
+    <section className="overflow-hidden pb-20 pt-12 md:pb-28 md:pt-16">
+      <div className="w-full">
+        <div data-reveal className="reveal mx-auto max-w-[900px] px-4 text-center md:px-8">
           <p className="section-label mb-3">Client stories</p>
-          <h2 className="mx-auto max-w-[520px] text-[clamp(2rem,3.3vw,3.8rem)] font-medium leading-[.96] tracking-[-0.05em]">
+          <h2 className="mx-auto max-w-[580px] text-[clamp(2rem,3.6vw,4.2rem)] font-medium leading-[.94] tracking-[-0.05em]">
             Trusted by Brands, Backed
             <span className="block">by Stories</span>
           </h2>
         </div>
 
-        <div className="mt-8 grid gap-3 md:grid-cols-3">
-          {items.map((item) => (
-            <blockquote
-              key={item.name}
-              data-reveal
-              className="reveal flex min-h-[250px] flex-col justify-between rounded-[14px] border border-white/8 bg-[#0b0b0b] p-5 md:min-h-[280px] md:p-6"
-            >
-              <div>
-                <span className="text-[18px] leading-none text-[#1677FF]">“</span>
-                <p className="mt-5 text-[12px] leading-6 text-white/52 md:text-[13px]">
-                  {item.quote}
-                </p>
-              </div>
+        <div className="mt-10 overflow-hidden">
+          <div
+            className="flex transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)]"
+            style={{ transform: `translateX(-${current * 100}%)` }}
+          >
+            {items.map((_, index) => (
+              <div key={index} className="w-full shrink-0 px-4 md:px-6 lg:px-8">
+                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+                  {[0, 1, 2].map((offset) => {
+                    const itemIndex = (index + offset) % items.length;
+                    const card = items[itemIndex];
 
-              <footer className="mt-8 flex items-center gap-3 border-t border-white/7 pt-4">
-                <img
-                  src={item.avatar}
-                  alt={item.name}
-                  className="h-9 w-9 rounded-full object-cover"
-                />
-                <div>
-                  <p className="text-[12px] font-medium text-white">{item.name}</p>
-                  <p className="mt-0.5 text-[10px] text-white/32">{item.role}</p>
+                    return (
+                      <blockquote
+                        key={`${card.name}-${offset}`}
+                        className="flex min-h-[260px] flex-col justify-between rounded-[16px] border border-white/8 bg-[#0b0b0b] p-5 md:min-h-[280px] md:p-6"
+                      >
+                        <div>
+                          <span className="text-[18px] leading-none text-[#1677FF]">“</span>
+                          <p className="mt-5 text-[12px] leading-6 text-white/52 md:text-[13px]">
+                            {card.quote}
+                          </p>
+                        </div>
+
+                        <footer className="mt-8 flex items-center gap-3 border-t border-white/7 pt-4">
+                          <img
+                            src={card.avatar}
+                            alt={card.name}
+                            className="h-10 w-10 rounded-full object-cover"
+                          />
+                          <div>
+                            <p className="text-[12px] font-medium text-white">{card.name}</p>
+                            <p className="mt-0.5 text-[10px] text-white/32">{card.role}</p>
+                          </div>
+                        </footer>
+                      </blockquote>
+                    );
+                  })}
                 </div>
-              </footer>
-            </blockquote>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
 
-        <div className="mt-5 flex items-center gap-3">
+        <div className="mx-auto mt-6 flex w-full max-w-[1400px] items-center gap-3 px-4 md:px-6 lg:px-8">
           <button
             type="button"
+            onClick={prevSlide}
             aria-label="Previous testimonial"
-            className="grid h-8 w-8 place-items-center rounded-full border border-white/10 text-[11px] text-white/45 transition hover:border-[#1677FF]/60 hover:text-white"
+            className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-[13px] text-white/45 transition hover:border-[#1677FF]/60 hover:text-white"
           >
             ←
           </button>
+
           <button
             type="button"
+            onClick={nextSlide}
             aria-label="Next testimonial"
-            className="grid h-8 w-8 place-items-center rounded-full bg-[#1677FF] text-[11px] text-white transition hover:scale-105"
+            className="grid h-10 w-10 place-items-center rounded-full bg-[#1677FF] text-[13px] text-white transition hover:scale-105"
           >
             →
           </button>
-          <div className="ml-1 h-px w-24 bg-white/10">
-            <div className="h-px w-1/3 bg-[#1677FF]" />
+
+          <div className="ml-1 h-px flex-1 bg-white/10">
+            <div
+              className="h-px bg-[#1677FF] transition-all duration-500"
+              style={{ width: `${((current + 1) / items.length) * 100}%` }}
+            />
           </div>
         </div>
       </div>
