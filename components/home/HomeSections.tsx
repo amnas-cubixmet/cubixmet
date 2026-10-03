@@ -247,24 +247,23 @@ function VenturesSection() {
                     data-scroll-card
                     data-scroll-delay={index * 100}
                     className={
-                      "scroll-card group relative overflow-hidden rounded-[18px] border border-white/8 bg-[#101010] p-6 md:p-7 " +
+                      "scroll-card group relative flex min-h-[620px] flex-col overflow-hidden border border-white/8 bg-[#101010] p-6 md:min-h-[660px] md:p-7 " +
                       placement
                     }
                   >
                     <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.018),transparent_38%)]" />
 
                     <div className="relative z-10">
-                      <div className="flex items-start justify-between gap-5">
-                        <span className="inline-flex min-w-10 items-center justify-center bg-[#1677FF] px-2.5 py-1 text-[10px] font-bold text-white">
-                          0{index + 1}
-                        </span>
-
-                        <div className="text-[#1677FF]">
-                          <VentureIcon type={venture.icon} />
+                      <div className="mb-8 aspect-square w-full bg-[#151515]">
+                        <div className="flex h-full w-full items-center justify-between p-6">
+                          <span className="text-[11px] font-bold text-[#1677FF]">0{index + 1}</span>
+                          <div className="grid h-16 w-16 place-items-center border border-[#1677FF]/25 text-[#1677FF]">
+                            <VentureIcon type={venture.icon} />
+                          </div>
                         </div>
                       </div>
 
-                      <h3 className="mt-8 text-[clamp(2rem,3.3vw,4rem)] font-semibold leading-[.92] tracking-[-0.055em] text-white">
+                      <h3 className="text-[clamp(2rem,3.3vw,4rem)] font-semibold leading-[.92] tracking-[-0.055em] text-white">
                         {venture.name}
                       </h3>
 
