@@ -402,31 +402,39 @@ function ServicesSection() {
       <div className="sticky top-0 hidden h-[100svh] overflow-hidden bg-[#050505] lg:flex">
         <div className="about-wrapper grid h-full min-h-0 grid-cols-12 items-center gap-8 py-8 xl:gap-10 xl:py-10">
           <div className="col-span-5 flex h-full min-h-0 items-center justify-center">
-            <div className="w-fit">
-              <p className="mb-8 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#1677FF]">
+            <div className="w-full max-w-[420px] text-center">
+              <p className="mb-7 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#1677FF]">
                 Services
               </p>
 
-              <div className="flex flex-col items-start gap-[2px]">
-              {services.map((service, index) => {
-                const isActive = index === activeService;
+              <div className="relative flex flex-col gap-1">
+                <span
+                  aria-hidden="true"
+                  className="service-active-indicator absolute left-0 top-0 h-12 w-full rounded-full bg-white"
+                  style={{
+                    transform: `translate3d(0, ${activeService * 52}px, 0)`,
+                  }}
+                />
 
-                return (
-                  <button
-                    key={service.no}
-                    type="button"
-                    onClick={() => scrollToService(index)}
-                    className={
-                      "service-nav-title block w-full whitespace-nowrap text-left transition-all duration-300 " +
-                      (isActive
-                        ? "text-white opacity-100"
-                        : "text-white opacity-18 hover:opacity-50")
-                    }
-                  >
-                    {service.title}
-                  </button>
-                );
-              })}
+                {services.map((service, index) => {
+                  const isActive = index === activeService;
+
+                  return (
+                    <button
+                      key={service.no}
+                      type="button"
+                      onClick={() => scrollToService(index)}
+                      className={
+                        "service-nav-title relative z-10 flex h-12 w-full items-center justify-center whitespace-nowrap rounded-full px-5 text-center transition-colors duration-500 " +
+                        (isActive
+                          ? "text-black"
+                          : "text-white/48 hover:text-white")
+                      }
+                    >
+                      {service.title}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           </div>
