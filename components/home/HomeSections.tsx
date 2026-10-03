@@ -508,17 +508,93 @@ function TestimonialsSection() {
 }
 
 function LeadershipSection() {
+  const leaders = [
+    {
+      name: "Alex Showrob",
+      role: "Project Manager",
+      copy: "Alex is a results-driven project lead focused on clarity, momentum and smooth delivery across creative and technical teams.",
+      image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&q=84",
+      tone: "bg-[#5f674c]",
+    },
+    {
+      name: "Alex Showrob",
+      role: "Project Manager",
+      copy: "Alex brings structure to every project, keeping strategy, design and development aligned from first discussion to final launch.",
+      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=84",
+      tone: "bg-[#d8ef7f]",
+    },
+    {
+      name: "Alex Showrob",
+      role: "Project Manager",
+      copy: "Alex works closely with clients and the studio team to turn complex requirements into focused, practical digital outcomes.",
+      image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=84",
+      tone: "bg-[#68714f]",
+    },
+  ];
+
   return (
-    <section className="section-space">
-      <div className="site-wrapper grid gap-10 lg:grid-cols-[.75fr_1.25fr]">
-        <div data-reveal className="reveal"><p className="section-label">Leadership</p><h2 className="section-title mt-4">Meet the people behind the work.</h2></div>
-        <div className="space-y-2">
-          {[["Creative Direction","Brand, positioning and visual systems."],["Product & UX","Interface direction and user experience systems."],["Technology","Architecture, engineering and delivery."]].map(([title,copy],index) => (
-            <div key={title} data-reveal className="reveal grid gap-5 rounded-[20px] border border-white/8 bg-[#0b0b0b] p-5 sm:grid-cols-[90px_1fr_auto] sm:items-center">
-              <div className="grid h-[72px] w-[72px] place-items-center rounded-full bg-[radial-gradient(circle,#1677FF_0_38%,#0e2744_39%_62%,#111_63%)] text-sm font-bold text-white">0{index + 1}</div>
-              <div><h3 className="text-xl font-medium">{title}</h3><p className="mt-2 text-sm text-white/40">{copy}</p></div><span className="text-white/30"><Arrow /></span>
+    <section className="pb-20 pt-12 md:pb-28 md:pt-16">
+      <div className="work-wrapper">
+        <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-16">
+          <div data-reveal className="reveal">
+            <p className="section-label mb-4">Leadership</p>
+            <h2 className="max-w-[330px] text-[clamp(2.2rem,3.6vw,4.1rem)] font-medium leading-[.94] tracking-[-0.05em]">
+              Meet the
+              <span className="block">— Leadership</span>
+            </h2>
+
+            <div className="mt-16 hidden lg:block">
+              <div className="relative h-24 w-24 opacity-60">
+                <span className="absolute left-1/2 top-1/2 h-16 w-7 -translate-x-1/2 -translate-y-1/2 rotate-12 rounded-full border border-white/15" />
+                <span className="absolute left-1/2 top-1/2 h-16 w-7 -translate-x-1/2 -translate-y-1/2 rotate-[72deg] rounded-full border border-white/15" />
+                <span className="absolute left-1/2 top-1/2 h-16 w-7 -translate-x-1/2 -translate-y-1/2 rotate-[132deg] rounded-full border border-white/15" />
+              </div>
             </div>
-          ))}
+          </div>
+
+          <div className="divide-y divide-white/8">
+            {leaders.map((leader, index) => (
+              <article
+                key={`${leader.name}-${index}`}
+                data-reveal
+                className="reveal grid gap-6 py-7 first:pt-0 md:grid-cols-[1fr_150px] md:items-center md:gap-10"
+              >
+                <div>
+                  <h3 className="text-[16px] font-medium text-white md:text-[18px]">{leader.name}</h3>
+                  <p className="mt-1 text-[10px] uppercase tracking-[0.12em] text-white/34">{leader.role}</p>
+                  <p className="mt-6 max-w-[470px] text-[11px] leading-5 text-white/38 md:text-[12px] md:leading-6">
+                    {leader.copy}
+                  </p>
+                </div>
+
+                <div className="relative mx-auto h-[132px] w-[132px] md:mx-0 md:justify-self-end">
+                  <div className="absolute inset-0">
+                    {[0, 60, 120, 180, 240, 300].map((angle) => (
+                      <span
+                        key={angle}
+                        className={`absolute left-1/2 top-1/2 h-[58px] w-[34px] origin-[50%_85%] rounded-full ${leader.tone}`}
+                        style={{ transform: `translate(-50%, -92%) rotate(${angle}deg)` }}
+                      />
+                    ))}
+                  </div>
+
+                  <div className="absolute left-1/2 top-1/2 h-[78px] w-[78px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border border-white/10 bg-[#111]">
+                    <img
+                      src={leader.image}
+                      alt={leader.name}
+                      className="h-full w-full object-cover grayscale"
+                    />
+                  </div>
+
+                  {index === 1 && (
+                    <span className="absolute bottom-1 right-1 grid h-8 w-8 place-items-center rounded-full bg-[#1677FF] text-[9px] text-white">
+                      <Arrow />
+                    </span>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         </div>
       </div>
     </section>
