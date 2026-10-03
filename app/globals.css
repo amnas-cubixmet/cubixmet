@@ -441,3 +441,40 @@ a {
     transition: none;
   }
 }
+
+
+/* Global text reveal motion across page content */
+.text-scroll-reveal {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  filter: blur(4px);
+  transition:
+    opacity 620ms cubic-bezier(0.22, 1, 0.36, 1) var(--text-delay, 0ms),
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1) var(--text-delay, 0ms),
+    filter 620ms ease var(--text-delay, 0ms);
+  will-change: transform, opacity, filter;
+}
+
+.text-scroll-reveal.is-text-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+}
+
+@media (max-width: 767px) {
+  .text-scroll-reveal {
+    transform: translate3d(0, 14px, 0);
+    filter: blur(2px);
+    transition-duration: 520ms;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .text-scroll-reveal,
+  .text-scroll-reveal.is-text-visible {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
