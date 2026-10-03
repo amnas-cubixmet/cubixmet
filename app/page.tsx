@@ -5,7 +5,7 @@ import SiteFooter from "../components/home/SiteFooter";
 
 export default function Home() {
   return (
-    <main className="overflow-x-hidden bg-[#050505] text-white">
+    <main className="overflow-x-clip bg-[#050505] text-white">
       <SiteHeader />
       <HeroSection />
       <HomeSections />
