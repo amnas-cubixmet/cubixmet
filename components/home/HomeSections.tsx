@@ -594,27 +594,40 @@ function LeadershipSection() {
                   </p>
                 </div>
 
-                <div className="relative mx-auto h-[132px] w-[132px] md:mx-0 md:justify-self-end">
-                  <div className="absolute inset-0">
-                    {[0, 60, 120, 180, 240, 300].map((angle) => (
-                      <span
-                        key={angle}
-                        className={`absolute left-1/2 top-1/2 h-[58px] w-[34px] origin-[50%_85%] rounded-full ${leader.tone}`}
-                        style={{ transform: `translate(-50%, -92%) rotate(${angle}deg)` }}
-                      />
-                    ))}
-                  </div>
+                <div className="relative mx-auto h-[136px] w-[136px] md:mx-0 md:justify-self-end">
+                  <svg
+                    viewBox="0 0 100 100"
+                    className="h-full w-full overflow-visible"
+                    role="img"
+                    aria-label={leader.name}
+                  >
+                    <defs>
+                      <clipPath id={`leader-blob-${index}`} clipPathUnits="userSpaceOnUse">
+                        <path d="M31 8C39 8 44 13 50 18C56 13 61 8 69 8C83 8 92 19 92 33C92 41 87 46 82 50C87 54 92 59 92 67C92 81 81 92 67 92C59 92 54 87 50 82C46 87 41 92 33 92C19 92 8 81 8 67C8 59 13 54 18 50C13 46 8 41 8 33C8 19 19 8 31 8Z" />
+                      </clipPath>
+                    </defs>
 
-                  <div className="absolute left-1/2 top-1/2 h-[78px] w-[78px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-full border border-white/10 bg-[#111]">
-                    <img
-                      src={leader.image}
-                      alt={leader.name}
-                      className="h-full w-full object-cover grayscale"
+                    <image
+                      href={leader.image}
+                      x="0"
+                      y="0"
+                      width="100"
+                      height="100"
+                      preserveAspectRatio="xMidYMid slice"
+                      clipPath={`url(#leader-blob-${index})`}
+                      className="grayscale"
                     />
-                  </div>
+
+                    <path
+                      d="M31 8C39 8 44 13 50 18C56 13 61 8 69 8C83 8 92 19 92 33C92 41 87 46 82 50C87 54 92 59 92 67C92 81 81 92 67 92C59 92 54 87 50 82C46 87 41 92 33 92C19 92 8 81 8 67C8 59 13 54 18 50C13 46 8 41 8 33C8 19 19 8 31 8Z"
+                      fill="none"
+                      stroke="rgba(255,255,255,.1)"
+                      strokeWidth="1"
+                    />
+                  </svg>
 
                   {index === 1 && (
-                    <span className="absolute bottom-1 right-1 grid h-8 w-8 place-items-center rounded-full bg-[#1677FF] text-[9px] text-white">
+                    <span className="absolute bottom-0 right-0 grid h-8 w-8 place-items-center rounded-full bg-[#1677FF] text-[9px] text-white">
                       <Arrow />
                     </span>
                   )}
