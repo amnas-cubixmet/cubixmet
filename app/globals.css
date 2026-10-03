@@ -359,3 +359,16 @@ a {
     animation: none;
   }
 }
+
+
+.about-wrapper {
+  width: 90%;
+  max-width: 1500px;
+  margin-inline: auto;
+}
+
+@media (max-width: 767px) {
+  .about-wrapper {
+    width: calc(100% - 28px);
+  }
+}
