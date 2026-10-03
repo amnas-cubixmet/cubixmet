@@ -213,7 +213,7 @@ function VenturesSection() {
                     ? "lg:absolute lg:left-[41.667%] lg:top-0 lg:w-[58.333%]"
                     : index === 1
                       ? "lg:absolute lg:-left-[30%] lg:top-[230px] lg:w-[58.333%]"
-                      : "lg:absolute lg:left-[10%] lg:top-[665px] lg:w-[58.333%]";
+                      : "lg:absolute lg:left-[16%] lg:top-[665px] lg:w-[58.333%]";
 
                 return (
                   <article
@@ -221,7 +221,7 @@ function VenturesSection() {
                     data-scroll-card
                     data-scroll-delay={index * 100}
                     className={
-                      "scroll-card group relative flex min-h-[410px] flex-col overflow-hidden border border-white/8 bg-[#101010] p-6 md:min-h-[430px] md:p-8 " +
+                      "scroll-card group relative flex min-h-[410px] flex-col overflow-hidden border border-white/8 bg-[#101010] p-6 md:min-h-[430px] md:p-8 lg:h-[430px] lg:min-h-0 " +
                       placement
                     }
                   >
@@ -318,7 +318,9 @@ function ServicesSection() {
     const sectionTop = section.getBoundingClientRect().top + window.scrollY;
     const scrollRange = Math.max(section.offsetHeight - window.innerHeight, 1);
     const targetProgress =
-      services.length === 1 ? 0 : index / (services.length - 1);
+      services.length === 1
+        ? 0
+        : Math.min(0.99, index / services.length + 0.01);
 
     window.scrollTo({
       top: sectionTop + scrollRange * targetProgress,
@@ -330,7 +332,7 @@ function ServicesSection() {
     <section
       ref={sectionRef}
       id="services"
-      className="relative isolate bg-[#050505] text-white lg:h-[600svh]"
+      className="relative isolate bg-[#050505] text-white lg:h-[700svh]"
       data-no-text-reveal
     >
       {/* Mobile / tablet: normal flow, no pinning */}
@@ -390,7 +392,7 @@ function ServicesSection() {
       </div>
 
       {/* Desktop: pinned scroll-driven services stage */}
-      <div className="sticky top-0 hidden h-screen overflow-hidden bg-[#050505] lg:flex">
+      <div className="sticky top-0 hidden h-[100svh] overflow-hidden bg-[#050505] lg:flex">
         <div className="about-wrapper grid h-full grid-cols-12 items-center gap-8 py-12 xl:gap-10">
           <div className="col-span-5 flex h-full flex-col justify-center">
             <p className="mb-7 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
@@ -447,8 +449,8 @@ function ServicesSection() {
                     (index === activeService
                       ? "translate-y-0 scale-100 opacity-100"
                       : index < activeService
-                        ? "-translate-y-[14%] scale-[1.03] opacity-0"
-                        : "translate-y-[14%] scale-[1.03] opacity-0")
+                        ? "-translate-y-full scale-[1.02] opacity-0"
+                        : "translate-y-full scale-[1.02] opacity-0")
                   }
                 />
               ))}
