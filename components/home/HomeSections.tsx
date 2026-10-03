@@ -5,7 +5,7 @@ import Arrow from "./Arrow";
 
 function FlowerSeparator() {
   return (
-    <span className="inline-flex h-[0.66em] w-[0.66em] shrink-0 translate-y-[0.03em] items-center justify-center align-middle text-[#1677FF]">
+    <span className="inline-flex h-[0.66em] w-[0.66em] shrink-0 translate-y-[0.03em] items-center justify-center align-middle text-current">
       <svg viewBox="0 0 100 100" className="h-full w-full" aria-hidden="true">
         <g fill="currentColor">
           <ellipse cx="50" cy="20" rx="10" ry="22" />
@@ -367,8 +367,8 @@ function MarqueeSection() {
         {[0, 1].map((loop) => (
           <span key={loop} className="mr-[0.18em] inline-flex items-center gap-[0.18em]">
             {marqueeItems.map((item) => (
-              <span key={item} className="inline-flex items-center gap-[0.18em]">
-                <span className="text-[#fff]">{item}</span>
+              <span key={item} className="inline-flex items-center gap-[0.18em] text-white/28 transition-colors duration-500 hover:text-white">
+                <span>{item}</span>
                 <FlowerSeparator />
               </span>
             ))}
