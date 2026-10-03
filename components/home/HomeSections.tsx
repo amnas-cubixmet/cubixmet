@@ -107,7 +107,7 @@ function ServicesSection() {
   ];
 
   return (
-    <section id="services" className="section-space">
+    <section id="services" className="pb-20 pt-6 md:pb-28 md:pt-10">
       <div className="about-wrapper">
         <div data-reveal className="reveal mb-12 grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
           <p className="section-label">Services</p>
