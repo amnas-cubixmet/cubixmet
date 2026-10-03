@@ -417,7 +417,7 @@ function ServicesSection() {
                     type="button"
                     onClick={() => scrollToService(index)}
                     className={
-                      "block w-full whitespace-nowrap text-left text-[clamp(50px,4.4vw,68px)] font-semibold leading-[.98] tracking-[-0.055em] transition-all duration-300 " +
+                      "service-nav-title block w-full whitespace-nowrap text-left transition-all duration-300 " +
                       (isActive
                         ? "text-white opacity-100"
                         : "text-white opacity-18 hover:opacity-50")
