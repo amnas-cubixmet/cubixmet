@@ -200,69 +200,63 @@ function VenturesSection() {
       </div>
 
       <div className="about-wrapper relative z-10">
-        <div className="grid gap-10 lg:grid-cols-12 lg:gap-6">
-          <div data-reveal className="reveal lg:col-span-3">
-            <p className="section-label">Our Ventures</p>
-          </div>
+        <div data-reveal className="reveal mb-8 lg:absolute lg:left-0 lg:top-0 lg:z-20">
+          <p className="section-label">Our Ventures</p>
+        </div>
 
-          <div className="lg:col-span-9">
-            <div className="grid gap-6 md:grid-cols-2 lg:relative lg:block lg:min-h-[1180px]">
-              {ventures.map((venture, index) => {
-                const placement =
-                  index === 0
-                    ? "lg:absolute lg:left-[41.667%] lg:top-0 lg:w-[58.333%]"
-                    : index === 1
-                      ? "lg:absolute lg:-left-[30%] lg:top-[230px] lg:w-[58.333%]"
-                      : "lg:absolute lg:left-[16%] lg:top-[665px] lg:w-[58.333%]";
+        <div className="grid gap-6 md:grid-cols-2 lg:relative lg:block lg:min-h-[1180px]">
+          {ventures.map((venture, index) => {
+            const placement =
+              index === 0
+                ? "lg:absolute lg:left-[48%] lg:top-0 lg:w-[48%]"
+                : index === 1
+                  ? "lg:absolute lg:left-[2%] lg:top-[230px] lg:w-[48%]"
+                  : "lg:absolute lg:left-[25%] lg:top-[665px] lg:w-[48%]";
 
-                return (
-                  <article
-                    key={venture.name}
-                    data-scroll-card
-                    data-scroll-delay={index * 100}
-                    className={
-                      "scroll-card group relative flex min-h-[410px] flex-col overflow-hidden border border-white/8 bg-[#101010] p-6 md:min-h-[430px] md:p-8 lg:h-[430px] lg:min-h-0 " +
-                      placement
-                    }
-                  >
-                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.018),transparent_38%)]" />
+            return (
+              <article
+                key={venture.name}
+                data-scroll-card
+                data-scroll-delay={index * 100}
+                className={
+                  "scroll-card group relative flex min-h-[410px] flex-col overflow-hidden border border-white/8 bg-[#101010] p-6 md:min-h-[430px] md:p-8 lg:h-[430px] lg:min-h-0 " +
+                  placement
+                }
+              >
+                <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.018),transparent_38%)]" />
 
-                    <div className="relative z-10 flex h-full flex-col">
-                      <span className="text-[clamp(2.2rem,4vw,4.6rem)] font-semibold leading-none tracking-[-0.06em] text-[#1677FF]">
-                        0{index + 1}
-                      </span>
+                <div className="relative z-10 flex h-full flex-col">
+                  <span className="text-[clamp(2.2rem,4vw,4.6rem)] font-semibold leading-none tracking-[-0.06em] text-[#1677FF]">
+                    0{index + 1}
+                  </span>
 
-                      <h3 className="mt-8 text-[clamp(2rem,3.3vw,4rem)] font-semibold leading-[.92] tracking-[-0.055em] text-white">
-                        {venture.name}
-                      </h3>
+                  <h3 className="mt-8 text-[clamp(2rem,3.3vw,4rem)] font-semibold leading-[.92] tracking-[-0.055em] text-white">
+                    {venture.name}
+                  </h3>
 
-                      <p className="mt-3 text-[13px] font-medium text-white/68">
-                        {venture.tagline}
-                      </p>
+                  <p className="mt-3 text-[13px] font-medium text-white/68">
+                    {venture.tagline}
+                  </p>
 
-                      <p className="mt-5 max-w-[470px] text-[12px] leading-6 text-white/40">
-                        {venture.copy}
-                      </p>
+                  <p className="mt-5 max-w-[470px] text-[12px] leading-6 text-white/40">
+                    {venture.copy}
+                  </p>
 
-                      <div className="mt-7 grid gap-2.5 border-t border-white/8 pt-6">
-                        {venture.services.map((item) => (
-                          <div
-                            key={item}
-                            className="flex items-start gap-3 text-[11px] leading-5 text-white/50"
-                          >
-                            <span className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
-                            <span>{item}</span>
-                          </div>
-                        ))}
+                  <div className="mt-7 grid gap-2.5 border-t border-white/8 pt-6">
+                    {venture.services.map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-start gap-3 text-[11px] leading-5 text-white/50"
+                      >
+                        <span className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
+                        <span>{item}</span>
                       </div>
-
-
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
+                    ))}
+                  </div>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </div>
     </section>
