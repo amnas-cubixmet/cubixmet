@@ -297,7 +297,7 @@ function WorkSection() {
           </div>
         </div>
 
-        <div id="work-grid" className="mx-auto grid w-full gap-3 md:w-[82%] md:grid-cols-3 md:auto-rows-[220px] lg:w-[70%] lg:auto-rows-[250px]">
+        <div id="work-grid" className="mx-auto grid w-full gap-3 md:w-[88%] md:grid-cols-3 md:auto-rows-[220px] lg:w-[80%] lg:auto-rows-[250px]">
           {projects.map((project, index) => {
             const layout =
               index === 0
