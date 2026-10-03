@@ -131,7 +131,7 @@ function ServicesSection() {
       <div className="about-wrapper">
         <div data-reveal className="reveal mb-12 grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
           <p className="section-label">Services</p>
-          <div className="lg:justify-self-end">
+          <div className="lg:justify-self-end lg:pr-[6%]">
             <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-white/55">We Deliver</p>
             <h2 className="mt-2 max-w-[560px] text-[clamp(2rem,3.8vw,4rem)] font-medium leading-[1.02] tracking-[-0.05em]">
               <span className="text-white">Comprehensive</span>
@@ -279,25 +279,25 @@ function WorkSection() {
   return (
     <section id="work" className="pb-20 pt-10 md:pb-28 md:pt-14">
       <div className="about-wrapper">
-        <div data-reveal className="reveal mb-10 grid gap-8 lg:grid-cols-[.7fr_1.3fr] lg:items-start">
+        <div data-reveal className="reveal mb-7 grid gap-6 lg:grid-cols-[1fr_.78fr] lg:items-start">
           <p className="section-label">Our work</p>
 
           <div className="lg:justify-self-end">
-            <h2 className="max-w-[560px] text-[clamp(2.4rem,4.6vw,5rem)] font-medium leading-[.95] tracking-[-0.055em]">
+            <h2 className="max-w-[470px] text-[clamp(2.35rem,4vw,4.4rem)] font-medium leading-[.92] tracking-[-0.055em]">
               See Our <span className="font-serif font-normal italic">All Latest</span>
               <span className="block">Creative Work</span>
             </h2>
 
             <a
               href="#work-grid"
-              className="mt-5 inline-flex items-center gap-2 rounded-full bg-[#1677FF] px-4 py-2 text-[10px] font-semibold text-white"
+              className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#1677FF] px-4 py-2 text-[10px] font-semibold text-white"
             >
               View all <Arrow />
             </a>
           </div>
         </div>
 
-        <div id="work-grid" className="grid gap-3 md:grid-cols-3 md:auto-rows-[230px] lg:auto-rows-[270px]">
+        <div id="work-grid" className="grid gap-3 md:grid-cols-3 md:auto-rows-[220px] lg:auto-rows-[250px]">
           {projects.map((project, index) => {
             const layout =
               index === 0
