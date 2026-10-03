@@ -3,7 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import Arrow from "./Arrow";
 import { services } from "../../data/services";
-import { aboutContent, aboutPillars, ventures, projects, whyChoose, marqueeItems, testimonials, leaders, insights } from "../../data/home";
+import { aboutContent, aboutPillars } from "../../data/about";
+import { ventures } from "../../data/ventures";
+import { projects } from "../../data/projects";
+import { whyChoose } from "../../data/whyChoose";
+import { marqueeItems } from "../../data/marquee";
+import { testimonials } from "../../data/testimonials";
+import { leaders } from "../../data/leaders";
+import { insights } from "../../data/insights";
 
 function FlowerSeparator() {
   return (
@@ -410,7 +417,7 @@ function ServicesSection() {
                     type="button"
                     onClick={() => scrollToService(index)}
                     className={
-                      "block w-full whitespace-nowrap text-left text-[clamp(42px,3.6vw,58px)] font-semibold leading-[.98] tracking-[-0.055em] transition-all duration-300 " +
+                      "block w-full whitespace-nowrap text-left text-[clamp(50px,4.4vw,68px)] font-semibold leading-[.98] tracking-[-0.055em] transition-all duration-300 " +
                       (isActive
                         ? "text-white opacity-100"
                         : "text-white opacity-18 hover:opacity-50")
