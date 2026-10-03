@@ -4,9 +4,24 @@ import { useEffect } from "react";
 import Arrow from "./Arrow";
 
 const services = [
-  { no: "01", title: "Branding", copy: "Identity systems, brand direction and visual language built to make your business easy to remember.", meta: ["Brand Strategy", "Visual Identity", "Campaign Direction"] },
-  { no: "02", title: "UI / UX Design", copy: "Digital interfaces shaped around clarity, speed and conversion across every screen size.", meta: ["Product Design", "UX Systems", "Design Systems"] },
-  { no: "03", title: "Web Development", copy: "Fast, scalable websites and web products engineered with modern stacks and dependable performance.", meta: ["Next.js", "Commerce", "Custom Platforms"] },
+  {
+    no: "01",
+    title: "Branding",
+    copy: "Distinctive brand systems built to create recognition, consistency and a clear visual identity across every touchpoint.",
+    meta: ["Brand Strategy", "Logo & Identity", "Visual Branding", "Brand Guidelines", "Campaign Creative"],
+  },
+  {
+    no: "02",
+    title: "UI / UX Design",
+    copy: "Clear, intuitive digital experiences designed around real user journeys, business goals and responsive interaction.",
+    meta: ["UX Research", "UI Design", "Web & App Design", "Wireframes & Prototypes", "Design Systems"],
+  },
+  {
+    no: "03",
+    title: "Web Development",
+    copy: "Fast, scalable websites and digital products developed with modern frameworks, clean architecture and reliable integrations.",
+    meta: ["Next.js Development", "Frontend Development", "CMS & Ecommerce", "API Integration", "Performance & SEO"],
+  },
 ];
 
 const projects = [
