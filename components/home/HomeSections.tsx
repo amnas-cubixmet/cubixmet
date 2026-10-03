@@ -277,13 +277,13 @@ function ProcessSection() {
 
 function WorkSection() {
   return (
-    <section id="work" className="pb-20 pt-10 md:pb-28 md:pt-14">
+    <section id="work" className="pb-20 pt-6 md:pb-28 md:pt-10">
       <div className="about-wrapper">
-        <div data-reveal className="reveal mb-7 grid gap-6 lg:grid-cols-[1fr_.78fr] lg:items-start">
-          <p className="section-label">Our work</p>
+        <div data-reveal className="reveal mb-8 grid gap-8 lg:grid-cols-[.82fr_1.18fr] lg:items-end">
+          <div><p className="section-label mb-0">Our work</p><p className="mt-4 hidden max-w-[260px] text-[12px] leading-5 text-white/35 lg:block">Selected brand, product and digital work from across the studio.</p></div>
 
-          <div className="lg:justify-self-end">
-            <h2 className="max-w-[470px] text-[clamp(2.35rem,4vw,4.4rem)] font-medium leading-[.92] tracking-[-0.055em]">
+          <div className="lg:justify-self-start lg:pl-[8%]">
+            <h2 className="max-w-[520px] text-[clamp(2.35rem,3.8vw,4.2rem)] font-medium leading-[.94] tracking-[-0.055em]">
               See Our <span className="font-serif font-normal italic">All Latest</span>
               <span className="block">Creative Work</span>
             </h2>
