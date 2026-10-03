@@ -394,12 +394,13 @@ function ServicesSection() {
       {/* Desktop: pinned scroll-driven services stage */}
       <div className="sticky top-0 hidden h-[100svh] overflow-hidden bg-[#050505] lg:flex">
         <div className="about-wrapper grid h-full min-h-0 grid-cols-12 items-center gap-8 py-8 xl:gap-10 xl:py-10">
-          <div className="col-span-5 flex h-full min-h-0 flex-col justify-center">
-            <p className="mb-8 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#1677FF]">
-              Services
-            </p>
+          <div className="col-span-5 flex h-full min-h-0 items-center justify-center">
+            <div className="w-fit">
+              <p className="mb-8 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#1677FF]">
+                Services
+              </p>
 
-            <div className="flex flex-col items-start">
+              <div className="flex flex-col items-start gap-[2px]">
               {services.map((service, index) => {
                 const isActive = index === activeService;
 
@@ -409,9 +410,9 @@ function ServicesSection() {
                     type="button"
                     onClick={() => scrollToService(index)}
                     className={
-                      "whitespace-nowrap text-left text-[40px] font-semibold leading-[1.02] tracking-[-0.045em] transition-all duration-300 " +
+                      "block w-full whitespace-nowrap text-left text-[clamp(42px,3.6vw,58px)] font-semibold leading-[.98] tracking-[-0.055em] transition-all duration-300 " +
                       (isActive
-                        ? "translate-x-3 text-white opacity-100"
+                        ? "text-white opacity-100"
                         : "text-white opacity-18 hover:opacity-50")
                     }
                   >
@@ -419,6 +420,7 @@ function ServicesSection() {
                   </button>
                 );
               })}
+              </div>
             </div>
           </div>
 
