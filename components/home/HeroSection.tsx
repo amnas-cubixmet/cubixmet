@@ -63,10 +63,13 @@ export default function HeroSection() {
       <div className="relative z-10 flex min-h-[calc(100svh-54px)] flex-col md:min-h-[calc(100svh-58px)]">
         <div className="hero-text-wrapper grid flex-1 items-center gap-8 pb-8 pt-10 md:pb-10 md:pt-12 lg:grid-cols-[1fr_360px]">
           <div className="max-w-[900px]">
-            <h1 className="text-[clamp(3.15rem,8.3vw,8.1rem)] font-semibold leading-[0.88] tracking-[-0.068em]">
+            <h1 className="text-[clamp(3rem,7.4vw,7.4rem)] font-semibold leading-[0.9] tracking-[-0.065em]">
               <span className="block">We Build</span>
               <span className="block"><span className="font-serif font-normal italic">— Brands</span> that</span>
               <span className="block">Stand Out</span>
+              <span className="mt-3 block text-[clamp(1.15rem,2.1vw,2rem)] font-medium leading-tight tracking-[-0.03em] text-white/42">
+                to Engineering Growth. Structuring Innovation.
+              </span>
             </h1>
           </div>
 
@@ -92,10 +95,14 @@ export default function HeroSection() {
 
             <div className="max-w-[330px]">
               <p className="text-[11px] leading-[1.55] text-white/52">
-                Easily connect your SEO-optimized content to your WordPress effortless publishing —
-                <span className="text-[#1677FF]"> helping you stay consistent, save time, and grow faster.</span>
+                Cubixmet is a multi-venture innovation ecosystem in Pandikkad, Malappuram delivering software development, digital marketing, and IT training solutions across The World.
               </p>
-              <a href="#contact" className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#1677FF] px-4 py-2 text-[10px] font-bold text-white">
+              <a
+                href="https://api.whatsapp.com/send/?phone=918921592742&text=Hi+Cubixmet%21+I%27d+like+to+get+started.&type=phone_number&app_absent=0"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#1677FF] px-4 py-2 text-[10px] font-bold text-white"
+              >
                 Let&apos;s Talk <Arrow />
               </a>
             </div>
@@ -164,7 +171,12 @@ export default function HeroSection() {
             <p className="max-w-[260px] text-[11px] leading-5 text-white/50">
               Strategy, design and development for brands that want to stand out and grow.
             </p>
-            <a href="#contact" className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#1677FF] px-3.5 py-2 text-[10px] font-bold text-white">
+            <a
+              href="https://api.whatsapp.com/send/?phone=918921592742&text=Hi+Cubixmet%21+I%27d+like+to+get+started.&type=phone_number&app_absent=0"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex shrink-0 items-center gap-2 rounded-full bg-[#1677FF] px-3.5 py-2 text-[10px] font-bold text-white"
+            >
               Let&apos;s Talk <Arrow />
             </a>
           </div>
