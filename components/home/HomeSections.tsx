@@ -247,14 +247,14 @@ function VenturesSection() {
                     data-scroll-card
                     data-scroll-delay={index * 100}
                     className={
-                      "scroll-card group relative flex min-h-[620px] flex-col overflow-hidden border border-white/8 bg-[#101010] p-6 md:min-h-[660px] md:p-7 " +
+                      "scroll-card group relative flex min-h-[420px] flex-col overflow-hidden border border-white/8 bg-[#101010] p-6 md:min-h-[460px] md:p-7 " +
                       placement
                     }
                   >
                     <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.018),transparent_38%)]" />
 
                     <div className="relative z-10">
-                      <div className="mb-8 aspect-square w-full bg-[#151515]">
+                      <div className="mb-6 h-[150px] w-full bg-[#151515] md:h-[170px]">
                         <div className="flex h-full w-full items-center justify-between p-6">
                           <span className="text-[11px] font-bold text-[#1677FF]">0{index + 1}</span>
                           <div className="grid h-16 w-16 place-items-center border border-[#1677FF]/25 text-[#1677FF]">
@@ -291,7 +291,7 @@ function VenturesSection() {
                         href={venture.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="mt-8 inline-flex items-center gap-2 text-[11px] font-semibold text-white transition-colors duration-300 hover:text-[#1677FF]"
+                        className="mt-7 inline-flex items-center gap-2 text-[11px] font-semibold text-white transition-colors duration-300 hover:text-[#1677FF]"
                       >
                         Learn More <Arrow />
                       </a>
