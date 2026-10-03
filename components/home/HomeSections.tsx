@@ -570,18 +570,7 @@ function LeadershipSection() {
               <span className="block">— Leadership</span>
             </h2>
 
-            <div className="mt-16 hidden lg:block">
-              <div className="relative h-32 w-32">
-                {[0, 45, 90, 135].map((angle) => (
-                  <span
-                    key={angle}
-                    className="absolute left-1/2 top-1/2 h-[94px] w-[28px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[linear-gradient(90deg,#7d1f1f_0%,#b63b3b_24%,#ff6b6b_52%,#a52e2e_78%,#671919_100%)] shadow-[inset_8px_0_10px_rgba(255,255,255,.12),inset_-8px_0_12px_rgba(0,0,0,.28),0_10px_24px_rgba(0,0,0,.28)]"
-                    style={{ transform: `translate(-50%, -50%) rotate(${angle}deg)` }}
-                  />
-                ))}
-                <span className="absolute left-1/2 top-1/2 h-11 w-11 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle_at_35%_30%,#ff7979,#b13a3a_55%,#7a1f1f_100%)] shadow-[inset_6px_6px_10px_rgba(255,255,255,.12),inset_-6px_-6px_10px_rgba(0,0,0,.28)]" />
-              </div>
-            </div>
+            
           </div>
 
           <div className="divide-y divide-white/8">
