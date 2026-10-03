@@ -5,6 +5,23 @@ import Arrow from "./Arrow";
 export default function HeroSection() {
   return (
     <section id="top" className="relative min-h-[100svh] overflow-hidden bg-[#050505] pt-[54px] md:pt-[58px]">
+      <div className="pointer-events-none absolute left-3 top-[78px] z-[5] hidden h-20 w-20 opacity-35 md:block xl:left-5 xl:h-24 xl:w-24">
+        <svg viewBox="0 0 120 120" className="h-full w-full overflow-visible" aria-hidden="true">
+          <g fill="none" stroke="rgba(255,255,255,.16)" strokeWidth="1">
+            <path d="M19 63C12 44 19 25 36 15c18-11 40-8 53 6 13 13 17 34 9 51-8 18-27 31-46 31-16 0-29-7-33-21-2-7-2-13 0-19Z" />
+            <path d="M28 41 52 22 79 31 91 55 76 79 47 88 25 70Z" />
+            <path d="M52 22 47 88M28 41l63 14M25 70l54-39M76 79 28 41" />
+            <path d="M40 12 52 22M91 55l14 11M25 70 12 84M47 88l2 16" />
+          </g>
+          <circle cx="28" cy="41" r="2.2" fill="rgba(255,255,255,.16)" />
+          <circle cx="52" cy="22" r="2.2" fill="rgba(255,255,255,.16)" />
+          <circle cx="79" cy="31" r="2.2" fill="rgba(255,255,255,.16)" />
+          <circle cx="91" cy="55" r="2.2" fill="rgba(255,255,255,.16)" />
+          <circle cx="76" cy="79" r="2.2" fill="rgba(255,255,255,.16)" />
+          <circle cx="47" cy="88" r="2.2" fill="rgba(255,255,255,.16)" />
+          <circle cx="25" cy="70" r="2.2" fill="rgba(255,255,255,.16)" />
+        </svg>
+      </div>
       <div className="relative z-10 flex min-h-[calc(100svh-54px)] flex-col md:min-h-[calc(100svh-58px)]">
         <div className="hero-text-wrapper grid flex-1 items-center gap-8 pb-8 pt-10 md:pb-10 md:pt-12 lg:grid-cols-[1fr_360px]">
           <div className="max-w-[900px]">
