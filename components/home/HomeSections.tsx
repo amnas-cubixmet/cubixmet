@@ -46,7 +46,7 @@ function AboutSection() {
             src="/about-ribbon.webp"
             alt=""
             aria-hidden="true"
-            className="pointer-events-none absolute -right-5 -top-7 z-[2] w-[110px] rotate-[14deg] opacity-80 mix-blend-screen md:-right-2 md:-top-10 md:w-[150px] lg:w-[180px]"
+            className="pointer-events-none absolute -right-5 -top-7 z-[2] w-[110px] rotate-[14deg] opacity-75 [filter:grayscale(1)_brightness(.28)_contrast(1.45)] md:-right-2 md:-top-10 md:w-[150px] lg:w-[180px]"
           />
           <div className="relative z-10 grid gap-10 px-5 pb-8 pt-7 md:px-10 md:pb-10 md:pt-9 lg:grid-cols-[1.12fr_.88fr] lg:gap-16 xl:px-12 xl:pb-12 xl:pt-11">
             <div>
