@@ -79,17 +79,11 @@ export default function SiteHeader() {
               className={
                 "relative rounded-full px-3 py-2 text-[10px] font-medium transition-all duration-300 lg:px-3.5 lg:text-[11px] " +
                 (activeLink === href
-                  ? "bg-white/[0.08] text-white"
+                  ? "bg-[#1677FF] text-white shadow-[0_0_20px_rgba(22,119,255,.22)]"
                   : "text-white/45 hover:bg-white/[0.045] hover:text-white")
               }
             >
               {label}
-              <span
-                className={
-                  "absolute bottom-[4px] left-1/2 h-[2px] -translate-x-1/2 rounded-full bg-[#1677FF] transition-all duration-300 " +
-                  (activeLink === href ? "w-3 opacity-100" : "w-0 opacity-0")
-                }
-              />
             </a>
           ))}
         </nav>
