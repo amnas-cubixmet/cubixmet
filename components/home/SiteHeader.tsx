@@ -68,15 +68,12 @@ export default function SiteHeader() {
           className="relative z-50 inline-flex items-center gap-2.5"
           aria-label="Cubixmet home"
         >
-          <span className="grid h-9 w-9 place-items-center overflow-hidden rounded-xl border border-white/10 bg-white shadow-[0_8px_24px_rgba(0,0,0,.22)] md:h-10 md:w-10">
+          <span className="grid h-10 w-10 place-items-center overflow-hidden md:h-11 md:w-11">
             <img
-              src="/cubixmet-header-logo.svg"
+              src="/image/logo.png"
               alt="Cubixmet"
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain"
             />
-          </span>
-          <span className="hidden text-[13px] font-black tracking-[-0.04em] text-white sm:inline md:text-[15px]">
-            CUBIXMET<span className="text-[#1677FF]">.</span>
           </span>
         </a>
 
