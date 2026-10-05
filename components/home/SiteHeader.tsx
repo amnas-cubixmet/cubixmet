@@ -68,7 +68,7 @@ export default function SiteHeader() {
           className="relative z-50 inline-flex items-center gap-2.5"
           aria-label="Cubixmet home"
         >
-          <span className="grid h-10 w-10 place-items-center overflow-hidden md:h-11 md:w-11">
+          <span className="grid h-10 w-[120px] place-items-center overflow-hidden md:h-11 md:w-[136px]">
             <img
               src="/image/logo.png"
               alt="Cubixmet"
