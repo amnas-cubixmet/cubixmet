@@ -96,8 +96,10 @@ export default function SiteHeader() {
         </nav>
 
         <a
-          href="#contact"
-          onClick={() => setActiveLink("#contact")}
+          href="https://wa.me/918921592742?text=Hi%20Cubixmet%2C%20I%27d%20like%20to%20discuss%20a%20project."
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Chat with Cubixmet on WhatsApp"
           className="hidden items-center gap-2 rounded-full border border-white/12 bg-white/[0.035] px-4 py-2 text-[10px] font-semibold text-white transition hover:border-[#1677FF]/60 hover:bg-[#1677FF] md:inline-flex"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
