@@ -317,7 +317,16 @@ function VenturesSection() {
                         ))}
                       </div>
 
-
+                      {venture.icon === "tech" && (
+                        <a
+                          href={venture.href}
+                          className="mt-6 inline-flex min-h-11 w-fit items-center gap-3 rounded-full bg-[#1677FF] px-5 text-[12px] font-semibold text-white transition-colors hover:bg-[#348aff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+                          aria-label="Explore Cubixmet Tech"
+                        >
+                          Explore Cubixmet Tech
+                          <Arrow />
+                        </a>
+                      )}
                     </div>
                   </article>
                 );
