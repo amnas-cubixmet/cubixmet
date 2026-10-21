@@ -119,10 +119,8 @@ export default function SiteHeader() {
           aria-expanded={menuOpen}
           onClick={() => setMenuOpen((value) => !value)}
           className={
-            "relative z-50 grid h-9 w-9 place-items-center border transition md:hidden " +
-            (menuOpen
-              ? "border-[#1677FF] bg-[#1677FF]"
-              : "border-white/12 bg-white/[0.04]")
+            "relative z-50 mr-2 grid h-9 w-9 place-items-center border-0 bg-transparent transition-colors md:hidden " +
+            (menuOpen ? "text-[#1677FF]" : "text-white")
           }
         >
           <span className="flex w-4 flex-col gap-[5px]">
