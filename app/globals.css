@@ -506,34 +506,34 @@ a {
 
 @media (max-width: 767px) {
   html,
-  body {
+  body,
+  main {
     width: 100%;
     max-width: 100%;
     min-width: 0;
     overscroll-behavior-x: none;
   }
 
-  /* Prevent horizontal page movement even when a carousel overflows. */
+  /* Lock the document to vertical gestures, without disabling zoom. */
   html {
     overflow-x: hidden !important;
   }
 
-  body,
+  body {
+    overflow-x: clip !important;
+    touch-action: pan-y pinch-zoom;
+  }
+
   main {
     overflow-x: clip !important;
   }
 
-  main {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-  }
-
+  /* Keep touch swipes available inside the carousel, not on the page. */
   .hero-slider-stage-mobile {
     width: 100%;
     max-width: 100%;
     min-width: 0;
-    touch-action: pan-y;
+    touch-action: pan-y pinch-zoom;
   }
 }
 
