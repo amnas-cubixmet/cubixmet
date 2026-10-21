@@ -178,43 +178,46 @@ function AboutSection() {
       data-no-text-reveal
     >
       <div className="about-wrapper">
-        <div className="relative overflow-hidden rounded-[20px] bg-[#0b0b0b] md:rounded-[22px]">
+        <div className="relative overflow-hidden rounded-[18px] bg-[#0b0b0b] md:rounded-[22px]">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_18%,rgba(22,119,255,.08),transparent_24%),radial-gradient(circle_at_88%_82%,rgba(22,119,255,.08),transparent_26%)]" />
 
-          <div className="relative z-10 grid gap-7 px-5 pb-7 pt-8 sm:gap-8 md:gap-10 md:px-10 md:py-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-16 xl:px-12">
+          <div className="relative z-10 grid gap-5 px-5 pb-6 pt-7 sm:gap-8 md:gap-10 md:px-10 md:py-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-16 xl:px-12">
             <div data-about-reveal className="about-reveal">
               <p className="section-label">{aboutContent.label}</p>
-              <h2 className="max-w-[720px] text-[clamp(2.45rem,10.5vw,3.4rem)] font-medium leading-[.96] tracking-[-0.055em] md:text-[clamp(2.6rem,4.6vw,5.3rem)] md:leading-[.94]">
+              <h2 className="max-w-[14ch] text-[clamp(2.2rem,10vw,3.1rem)] font-semibold leading-[1.02] tracking-[-0.055em] sm:max-w-[720px] md:text-[clamp(2.6rem,4.6vw,5.3rem)] md:font-medium md:leading-[.94]">
                 {aboutContent.title}
               </h2>
             </div>
 
             <div data-about-reveal className="about-reveal flex items-end lg:justify-end">
-              <p className="max-w-[560px] text-[13px] leading-[1.75] text-white/58 md:text-[15px] md:leading-7">
+              <p className="max-w-[560px] text-[13px] leading-[1.75] text-white/65 md:text-[15px] md:leading-7">
                 {aboutContent.description}
               </p>
             </div>
           </div>
 
-          <div className="relative z-10 grid sm:grid-cols-2 sm:border-t sm:border-white/8 lg:grid-cols-4">
+          <div className="relative z-10 grid border-t border-white/10 sm:grid-cols-2 sm:border-white/8 lg:grid-cols-4">
             {aboutPillars.map((item, index) => (
               <article
                 key={item.title}
                 data-about-reveal
-                className="about-reveal about-pillar relative px-5 py-6 sm:min-h-[210px] sm:border-r sm:border-white/8 md:px-7 md:py-8 lg:min-h-[230px] lg:last:border-r-0"
+                className="about-reveal about-pillar relative px-5 py-5 sm:min-h-[210px] sm:border-r sm:border-white/8 sm:py-7 md:px-7 md:py-8 lg:min-h-[230px] lg:last:border-r-0"
                 style={{ transitionDelay: `${index * 70}ms` }}
               >
-                <div className="grid h-10 w-10 place-items-center rounded-full border border-[#1677FF]/25 bg-[#1677FF]/5 text-[#1677FF] md:h-11 md:w-11">
-                  <AboutIcon type={item.icon} />
+                <div className="flex items-start gap-3.5 sm:block">
+                  <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#1677FF]/25 bg-[#1677FF]/5 text-[#1677FF] md:h-11 md:w-11">
+                    <AboutIcon type={item.icon} />
+                  </div>
+
+                  <div className="min-w-0 flex-1">
+                    <h3 className="pt-0.5 text-[17px] font-medium tracking-[-0.025em] text-white sm:mt-8 sm:pt-0 md:text-[20px]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-1.5 max-w-[300px] text-[12px] leading-[1.65] text-white/60 sm:mt-3 md:max-w-[250px] md:leading-5">
+                      {item.copy}
+                    </p>
+                  </div>
                 </div>
-
-                <h3 className="mt-4 text-[18px] font-medium tracking-[-0.025em] text-white md:mt-8 md:text-[20px]">
-                  {item.title}
-                </h3>
-
-                <p className="mt-2 max-w-[300px] text-[12px] leading-[1.65] text-white/55 md:mt-3 md:max-w-[250px] md:leading-5">
-                  {item.copy}
-                </p>
               </article>
             ))}
           </div>
