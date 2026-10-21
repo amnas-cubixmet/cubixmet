@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import SiteHeader from "../../../components/home/SiteHeader";
 import SiteFooter from "../../../components/home/SiteFooter";
 import Arrow from "../../../components/home/Arrow";
 
@@ -98,20 +99,8 @@ function DiamondMark() {
 
 export default function CubixmetTechPage() {
   return (
-    <main className="min-h-screen overflow-x-clip bg-[#050505] text-white">
-      <header className="relative z-20 border-b border-white/10 bg-[#050505]">
-        <div className="mx-auto flex h-[76px] w-[calc(100%-40px)] max-w-[1320px] items-center justify-between gap-4">
-          <a href="/" aria-label="Cubixmet Home" className="text-[17px] font-extrabold tracking-[-0.06em] text-white md:text-xl">
-            CUBIXMET<span className="text-[#1677FF]">.</span>
-          </a>
-          <a href="/#ventures" className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-4 text-xs font-semibold text-white/80 transition-colors hover:border-[#1677FF] hover:text-white">
-            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-              <path d="m14 5-7 7 7 7M7 12h13" />
-            </svg>
-            Back to Home
-          </a>
-        </div>
-      </header>
+    <main className="min-h-screen overflow-x-clip bg-[#050505] pt-[60px] text-white md:pt-[68px]">
+      <SiteHeader />
 
       <section className="relative isolate overflow-hidden border-b border-white/10">
         <div aria-hidden="true" className="pointer-events-none absolute -right-[15%] -top-36 h-[520px] w-[520px] rounded-full bg-[#1677FF]/10 blur-[115px] md:right-0 md:h-[680px] md:w-[680px]" />
