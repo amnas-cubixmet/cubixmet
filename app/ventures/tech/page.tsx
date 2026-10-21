@@ -104,23 +104,28 @@ export default function CubixmetTechPage() {
 
       <section className="relative isolate overflow-hidden border-b border-white/10">
         <div aria-hidden="true" className="pointer-events-none absolute -right-[15%] -top-36 h-[520px] w-[520px] rounded-full bg-[#1677FF]/10 blur-[115px] md:right-0 md:h-[680px] md:w-[680px]" />
-        <div className="relative mx-auto grid w-[calc(100%-40px)] max-w-[1320px] gap-12 pb-20 pt-16 md:pb-28 md:pt-24 lg:grid-cols-[1.18fr_.82fr] lg:items-center lg:gap-16">
+        <div className="relative mx-auto grid w-[calc(100%-40px)] max-w-[1320px] gap-9 pb-16 pt-14 sm:gap-12 md:pb-24 md:pt-20 lg:grid-cols-[minmax(0,1.06fr)_minmax(0,.94fr)] lg:items-center lg:gap-12 xl:gap-16">
           <div>
             <p className="mb-6 inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.22em] text-[#1677FF]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
               Technology Vertical
             </p>
+<<<<<<< HEAD
             <h1 className="max-w-[830px] text-[clamp(3.3rem,8.2vw,7.8rem)] font-semibold leading-[.92] tracking-[-.075em]">
               Cubixmet <span className="text-[#1677FF]">Tech</span>
+=======
+            <h1 className="flex max-w-full flex-wrap items-baseline gap-x-[.2em] gap-y-1 text-[clamp(2.8rem,6.4vw,6.25rem)] font-semibold leading-[.99] tracking-[-.065em]">
+              <span>Cubixmet</span><span className="text-[#1677FF]">Tech.</span>
+>>>>>>> 7dc4cc0f31c8c82d7e2606c4dfecfc62c7575e1e
             </h1>
-            <p className="mt-6 text-[clamp(1.3rem,2.9vw,2.45rem)] font-medium leading-tight tracking-[-.045em] text-white/90">
+            <p className="mt-5 text-[clamp(1.35rem,2.75vw,2.2rem)] font-medium leading-tight tracking-[-.045em] text-white/90">
               Build. Deploy. Scale.
             </p>
-            <p className="mt-6 max-w-[640px] text-[14px] leading-[1.85] text-white/60 md:text-[16px]">
+            <p className="mt-5 max-w-[58ch] text-[14px] leading-[1.75] text-white/65 md:text-[16px] md:leading-[1.85]">
               End-to-end software solutions from product engineering to technical consulting.
               We build technology that scales with your ambition.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
+            <div className="mt-7 flex flex-wrap gap-3 md:mt-9">
               <a href="#services" className="inline-flex min-h-12 items-center gap-3 rounded-full bg-[#1677FF] px-6 text-[13px] font-semibold text-white transition-colors hover:bg-[#348aff]">
                 Our Services <Arrow />
               </a>
@@ -130,26 +135,48 @@ export default function CubixmetTechPage() {
             </div>
           </div>
 
-          <div className="relative min-h-[300px] overflow-hidden rounded-[24px] border border-white/10 bg-[#0c1019] p-8 md:min-h-[420px] md:p-12">
-            <div aria-hidden="true" className="absolute inset-0 opacity-70" style={{ backgroundImage: "linear-gradient(rgba(22,119,255,.09) 1px, transparent 1px),linear-gradient(90deg,rgba(22,119,255,.09) 1px,transparent 1px)", backgroundSize: "32px 32px", maskImage: "linear-gradient(to bottom,black,transparent)" }} />
-            <div className="relative flex h-full min-h-[240px] flex-col justify-between md:min-h-[324px]">
-              <div className="flex items-start justify-between">
-                <DiamondMark />
-                <span className="font-mono text-[11px] tracking-[.16em] text-white/45">01 / TECH</span>
+
+          <div className="tech-showcase relative isolate min-h-[315px] overflow-hidden rounded-[22px] border border-white/10 bg-[#0b111e] px-5 py-6 sm:min-h-[355px] sm:px-8 md:min-h-[400px] md:py-8">
+            <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-60" style={{ backgroundImage: "linear-gradient(rgba(22,119,255,.12) 1px, transparent 1px),linear-gradient(90deg,rgba(22,119,255,.12) 1px,transparent 1px)", backgroundSize: "32px 32px", maskImage: "linear-gradient(to bottom,black,transparent 88%)" }} />
+            <div aria-hidden="true" className="pointer-events-none absolute left-1/2 top-1/3 h-60 w-60 -translate-x-1/2 rounded-full bg-[#1677FF]/15 blur-[70px]" />
+            <div className="relative z-10 flex items-center justify-between">
+              <DiamondMark />
+              <span className="font-mono text-[10px] tracking-[.15em] text-white/50">01 / TECH STACK</span>
+            </div>
+
+            <div className="tech-book-scene relative z-10 mx-auto h-[210px] w-full max-w-[450px] sm:h-[260px] md:h-[275px]" aria-label="Technology stack: React, Next.js, and TypeScript">
+              <div className="tech-book tech-book-react">
+                <div aria-hidden="true" className="tech-book-spine" />
+                <span className="tech-book-topline">FRONTEND</span>
+                <svg aria-hidden="true" viewBox="0 0 100 100" fill="none" className="tech-book-symbol h-14 w-14">
+                  <ellipse cx="50" cy="50" rx="42" ry="16" stroke="currentColor" strokeWidth="4" />
+                  <ellipse cx="50" cy="50" rx="42" ry="16" stroke="currentColor" strokeWidth="4" transform="rotate(60 50 50)" />
+                  <ellipse cx="50" cy="50" rx="42" ry="16" stroke="currentColor" strokeWidth="4" transform="rotate(120 50 50)" />
+                  <circle cx="50" cy="50" r="7" fill="currentColor" />
+                </svg>
+                <span className="tech-book-name">React</span>
+                <span className="tech-book-footer">UI / COMPONENTS</span>
               </div>
-              <div>
-                <div className="mb-6 flex items-center gap-2">
-                  {[0, 1, 2, 3].map((item) => (
-                    <span key={item} className="h-1.5 flex-1 rounded-full bg-[#1677FF]" style={{ opacity: 1 - item * .2 }} />
-                  ))}
-                </div>
-                <p className="font-mono text-[clamp(2.2rem,4.5vw,4rem)] font-semibold leading-none tracking-[-.07em] text-white">
-                  ENGINEERED<br />TO SCALE<span className="text-[#1677FF]">.</span>
-                </p>
-                <p className="mt-5 text-[11px] uppercase tracking-[.17em] text-white/45">
-                  Software / Platforms / Infrastructure / AI
-                </p>
+
+              <div className="tech-book tech-book-next">
+                <div aria-hidden="true" className="tech-book-spine" />
+                <span className="tech-book-topline">FRAMEWORK</span>
+                <span aria-hidden="true" className="tech-book-symbol flex h-14 w-14 items-center justify-center rounded-full border-2 border-white/85 text-[32px] font-bold tracking-[-.11em]">N</span>
+                <span className="tech-book-name">Next.js</span>
+                <span className="tech-book-footer">FULL STACK WEB</span>
               </div>
+
+              <div className="tech-book tech-book-ts">
+                <div aria-hidden="true" className="tech-book-spine" />
+                <span className="tech-book-topline">LANGUAGE</span>
+                <span aria-hidden="true" className="tech-book-symbol flex h-14 w-14 items-center justify-center rounded-lg border border-white/30 bg-[#1677FF] text-[26px] font-bold tracking-[-.05em]">TS</span>
+                <span className="tech-book-name">TypeScript</span>
+                <span className="tech-book-footer">TYPE SAFE CODE</span>
+              </div>
+            </div>
+
+            <div className="relative z-10 mt-1 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-center font-mono text-[10px] font-medium uppercase tracking-[.13em] text-white/55">
+              <span>React</span><span className="text-[#1677FF]">✦</span><span>Next.js</span><span className="text-[#1677FF]">✦</span><span>TypeScript</span>
             </div>
           </div>
         </div>
