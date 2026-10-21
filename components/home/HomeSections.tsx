@@ -319,6 +319,7 @@ function VenturesSection() {
 
 function ServicesSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const mobileNavRef = useRef<HTMLDivElement>(null);
   const [activeService, setActiveService] = useState(0);
   const [serviceProgress, setServiceProgress] = useState(0);
 
@@ -330,225 +331,215 @@ function ServicesSection() {
       const section = sectionRef.current;
       if (!section || window.innerWidth < 1024) return;
 
-      const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-      const scrollRange = Math.max(section.offsetHeight - window.innerHeight, 1);
-      const raw = (window.scrollY - sectionTop) / scrollRange;
-      const progress = Math.min(1, Math.max(0, raw));
-      const index = Math.min(
-        services.length - 1,
-        Math.floor(progress * services.length)
-      );
+      const top = section.getBoundingClientRect().top + window.scrollY;
+      const distance = Math.max(section.offsetHeight - window.innerHeight, 1);
+      const progress = Math.max(0, Math.min(1, (window.scrollY - top) / distance));
 
       setServiceProgress(progress);
-      setActiveService(index);
+      setActiveService(
+        Math.min(services.length - 1, Math.floor(progress * services.length))
+      );
     };
 
-    const requestUpdate = () => {
-      if (frame) return;
-      frame = window.requestAnimationFrame(update);
+    const onScroll = () => {
+      if (!frame) frame = window.requestAnimationFrame(update);
     };
 
     update();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
 
     return () => {
-      window.removeEventListener("scroll", requestUpdate);
-      window.removeEventListener("resize", requestUpdate);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
       if (frame) window.cancelAnimationFrame(frame);
     };
   }, []);
 
-  const scrollToService = (index: number) => {
+  useEffect(() => {
+    if (window.innerWidth >= 1024) return;
+    const track = mobileNavRef.current;
+    const active = track?.querySelector<HTMLElement>('[aria-current="true"]');
+    if (!track || !active) return;
+    const left = active.offsetLeft + active.offsetWidth / 2 - track.clientWidth / 2;
+    track.scrollTo({
+      left: Math.max(0, left),
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+    });
+  }, [activeService]);
+
+  const selectService = (index: number) => {
+    if (window.innerWidth < 1024) {
+      setActiveService(index);
+      setServiceProgress((index + 1) / services.length);
+      return;
+    }
+
     const section = sectionRef.current;
     if (!section) return;
-
-    const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-    const scrollRange = Math.max(section.offsetHeight - window.innerHeight, 1);
-    const targetProgress =
-      services.length === 1
-        ? 0
-        : Math.min(0.99, index / services.length + 0.01);
+    const top = section.getBoundingClientRect().top + window.scrollY;
+    const distance = Math.max(section.offsetHeight - window.innerHeight, 1);
+    const destination = Math.min(0.999, (index + 0.08) / services.length);
 
     window.scrollTo({
-      top: sectionTop + scrollRange * targetProgress,
-      behavior: "smooth",
+      top: top + distance * destination,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
     });
   };
+
+  const current = services[activeService];
 
   return (
     <section
       ref={sectionRef}
       id="services"
-      className="relative isolate bg-[#050505] text-white lg:h-[700svh]"
+      aria-label="Our services"
+      className="relative isolate w-full bg-white text-black lg:h-[600svh]"
       data-no-text-reveal
     >
-      {/* Mobile / tablet: normal flow, no pinning */}
-      <div className="about-wrapper py-20 lg:hidden">
-        <div className="mb-10">
-          <p className="mb-4 text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
+      {/* Mobile/tablet: Northframe-style horizontal navigation and single media stage. */}
+      <div className="mx-auto w-full max-w-[660px] px-5 pb-14 pt-16 sm:px-8 lg:hidden">
+        <div className="mb-6 flex items-center justify-between gap-4">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
             Services
           </p>
-          <h2 className="max-w-[520px] text-[clamp(2.7rem,8vw,4.7rem)] font-semibold leading-[.92] tracking-[-0.055em]">
-            What we build, grow and teach.
-          </h2>
+          <p className="font-mono text-[11px] text-black/55" aria-live="polite">
+            <span className="font-semibold text-black">{current.no}</span>
+            <span className="mx-2 text-black/30">—</span>
+            {String(services.length).padStart(2, "0")}
+          </p>
         </div>
 
-        <div className="divide-y divide-white/10">
+        <nav aria-label="Choose a service" ref={mobileNavRef} className="no-scrollbar flex w-full snap-x snap-mandatory gap-2 overflow-x-auto pb-3">
           {services.map((service, index) => (
-            <article
+            <button
               key={service.no}
-              data-scroll-card
-              data-scroll-delay={index * 70}
-              className="scroll-card py-9 first:pt-0"
+              type="button"
+              onClick={() => selectService(index)}
+              aria-current={activeService === index ? "true" : undefined}
+              className={
+                "shrink-0 snap-center whitespace-nowrap rounded-sm px-3.5 py-3 text-[12px] font-medium transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
+                (activeService === index
+                  ? "bg-black text-white"
+                  : "bg-[#f2f2f2] text-black/60")
+              }
             >
-              <div className="flex items-start justify-between gap-4">
-                <h3 className="max-w-[280px] text-[clamp(2rem,8vw,3.2rem)] font-semibold leading-[.92] tracking-[-0.05em]">
-                  {service.title}
-                </h3>
-                <span className="text-[12px] font-semibold text-[#1677FF]">
-                  {service.no}
-                </span>
-              </div>
-
-              <div className="mt-6 aspect-[1.35/1] overflow-hidden bg-[#101010]">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="h-full w-full object-cover"
-                />
-              </div>
-
-              <p className="mt-6 max-w-[560px] text-[14px] leading-6 text-white/55">
-                {service.copy}
-              </p>
-
-              <div className="mt-5 grid gap-2 sm:grid-cols-2">
-                {service.meta.map((item) => (
-                  <div
-                    key={item}
-                    className="flex items-center gap-2 text-[13px] leading-5 text-white/58"
-                  >
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
-                    <span>{item}</span>
-                  </div>
-                ))}
-              </div>
-            </article>
+              {service.title}
+            </button>
           ))}
+        </nav>
+
+        <div className="mb-6 h-[2px] w-full bg-black/10" aria-hidden="true">
+          <div
+            className="h-full origin-left bg-[#1677FF] transition-[width] duration-300"
+            style={{ width: `${((activeService + 1) / services.length) * 100}%` }}
+          />
+        </div>
+
+        <div key={current.no} className="service-content-enter">
+          <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#111]">
+            <img src={current.image} alt={current.title} loading="lazy" className="h-full w-full object-cover" />
+          </div>
+          <div className="pt-5">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1677FF]">
+              {current.no} / Service
+            </p>
+            <h3 className="mt-3 text-[clamp(1.5rem,5vw,2.1rem)] font-semibold tracking-[-0.045em]">
+              {current.title}
+            </h3>
+            <p className="mt-3 text-[14px] leading-7 text-black/65">{current.copy}</p>
+            <ul className="mt-5 grid gap-x-5 gap-y-3 sm:grid-cols-2">
+              {current.meta.map((item) => (
+                <li key={item} className="flex items-start gap-2.5 text-[12px] leading-5 text-black/65">
+                  <span aria-hidden="true" className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
 
-      {/* Desktop: pinned scroll-driven services stage */}
-      <div className="sticky top-0 hidden h-[100svh] overflow-hidden bg-[#050505] lg:flex">
-        <div className="about-wrapper grid h-full min-h-0 grid-cols-12 items-center gap-8 py-8 xl:gap-10 xl:py-10">
-          <div className="col-span-5 flex h-full min-h-0 items-center justify-center">
-            <div className="w-full max-w-[420px] text-center">
-              <p className="mb-7 text-[12px] font-semibold uppercase tracking-[0.2em] text-[#1677FF]">
+      {/* Desktop: full-screen sticky service showcase, inspired by NORTHFRAME DeliverablesSection. */}
+      <div className="sticky top-0 hidden h-[100svh] w-full overflow-hidden bg-white lg:flex">
+        <div className="mx-auto grid h-full w-[90%] max-w-[1500px] grid-cols-[minmax(0,1fr)_32px_minmax(0,1.1fr)] items-center gap-8 py-10 xl:gap-14">
+          <nav aria-label="Choose a service" className="flex min-w-0 flex-col items-center justify-center">
+            <div className="w-full max-w-[470px]">
+              <p className="mb-6 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1677FF]">
                 Services
               </p>
 
-              <div className="relative flex flex-col gap-1">
+              <div className="relative flex w-full flex-col gap-1">
                 <span
                   aria-hidden="true"
-                  className="service-active-indicator absolute left-0 top-0 h-12 w-full rounded-full bg-white"
-                  style={{
-                    transform: `translate3d(0, ${activeService * 52}px, 0)`,
-                  }}
+                  className="service-active-indicator pointer-events-none absolute left-0 top-0 h-12 w-full rounded-sm bg-black"
+                  style={{ transform: `translate3d(0, ${activeService * 52}px, 0)` }}
                 />
-
-                {services.map((service, index) => {
-                  const isActive = index === activeService;
-
-                  return (
-                    <button
-                      key={service.no}
-                      type="button"
-                      onClick={() => scrollToService(index)}
-                      className={
-                        "service-nav-title relative z-10 flex h-12 w-full items-center justify-center whitespace-nowrap rounded-full p-0 text-center transition-colors duration-500 " +
-                        (isActive
-                          ? "text-black"
-                          : "text-white/48 hover:text-white")
-                      }
-                    >
-                      {service.title}
-                    </button>
-                  );
-                })}
+                {services.map((service, index) => (
+                  <button
+                    key={service.no}
+                    type="button"
+                    onClick={() => selectService(index)}
+                    aria-current={activeService === index ? "true" : undefined}
+                    className={
+                      "relative z-10 flex h-12 min-w-0 w-full items-center justify-center px-2 text-center text-[clamp(14px,1.6vw,23px)] font-semibold tracking-[-0.045em] transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
+                      (activeService === index ? "text-white" : "text-black/35 hover:text-black/80")
+                    }
+                  >
+                    {service.title}
+                  </button>
+                ))}
               </div>
             </div>
-          </div>
+          </nav>
 
-          <div className="col-span-2 flex h-[68%] min-h-0 flex-col items-center justify-between">
-            <div className="relative h-full w-px overflow-hidden bg-white/12">
+          <div className="flex h-[48svh] max-h-[460px] min-h-[250px] flex-col items-center justify-between">
+            <div className="relative min-h-0 w-[2px] flex-1 overflow-hidden bg-black/10">
               <div
-                className="absolute left-0 top-0 w-px bg-white transition-[height] duration-150"
-                style={{ height: `${Math.max(serviceProgress * 100, 2)}%` }}
+                className="absolute inset-0 origin-top bg-[#1677FF] transition-transform duration-150"
+                style={{ transform: `scaleY(${Math.max(1 / services.length, serviceProgress)})` }}
               />
             </div>
-
-            <div className="mt-5 flex items-center gap-2 bg-black px-2.5 py-1.5 text-[12px] font-semibold text-white">
-              <span>{String(activeService + 1).padStart(2, "0")}</span>
-              <span className="h-px w-5 bg-[#1677FF]" />
-              <span>{String(services.length).padStart(2, "0")}</span>
-            </div>
+            <p className="mt-5 whitespace-nowrap font-mono text-[11px] font-semibold">
+              {current.no}
+              <span className="mx-2 text-[#1677FF]">—</span>
+              {String(services.length).padStart(2, "0")}
+            </p>
           </div>
 
-          <div className="col-span-5 flex h-full min-h-0 flex-col justify-center">
-            <div className="relative h-[34svh] min-h-[210px] max-h-[340px] overflow-hidden bg-[#101010]">
+          <div className="flex min-w-0 flex-col justify-center">
+            <div className="relative h-[31svh] min-h-[190px] max-h-[330px] w-full overflow-hidden bg-[#101010]">
               {services.map((service, index) => (
                 <img
                   key={service.no}
                   src={service.image}
                   alt={service.title}
+                  aria-hidden={index !== activeService}
                   className={
-                    "absolute inset-0 h-full w-full object-cover transition-all duration-700 ease-[cubic-bezier(.22,1,.36,1)] " +
+                    "pointer-events-none absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out " +
                     (index === activeService
-                      ? "translate-y-0 scale-100 opacity-100"
-                      : index < activeService
-                        ? "-translate-y-[105%] scale-[1.01] opacity-0"
-                        : "translate-y-[105%] scale-[1.01] opacity-0")
+                      ? "scale-100 opacity-100"
+                      : "scale-[1.04] opacity-0")
                   }
                 />
               ))}
             </div>
 
-            <div className="relative mt-6 min-h-[170px]">
-              {services.map((service, index) => (
-                <div
-                  key={service.no}
-                  className={
-                    "absolute inset-0 transition-all duration-500 " +
-                    (index === activeService
-                      ? "translate-y-0 opacity-100"
-                      : "pointer-events-none translate-y-6 opacity-0")
-                  }
-                >
-                  <div className="flex items-start justify-between gap-6">
-                    <div>
-                      <p className="text-[13px] font-semibold uppercase tracking-[0.16em] text-[#1677FF]">
-                        {service.no} / Service
-                      </p>
-                      <p className="mt-4 max-w-[560px] text-[15px] leading-7 text-white/58">
-                        {service.copy}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="mt-5 grid grid-cols-2 gap-x-5 gap-y-2">
-                    {service.meta.map((item) => (
-                      <div
-                        key={item}
-                        className="flex items-center gap-2 text-[13px] leading-5 text-white/58"
-                      >
-                        <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
-                        <span>{item}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ))}
+            <div key={current.no} className="service-content-enter mt-6 min-h-[205px]">
+              <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1677FF]">
+                {current.no} / Service
+              </p>
+              <p className="mt-3 max-w-[560px] text-[clamp(13px,1vw,15px)] leading-[1.7] text-black/65">
+                {current.copy}
+              </p>
+              <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2">
+                {current.meta.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-[12px] leading-5 text-black/65">
+                    <span aria-hidden="true" className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
