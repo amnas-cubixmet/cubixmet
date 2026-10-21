@@ -139,7 +139,7 @@ function AboutSection() {
       <div className="about-wrapper">
         <div
           data-reveal
-          className="reveal relative overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b]"
+          className="reveal relative overflow-hidden rounded-[22px] bg-[#0b0b0b]"
         >
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_18%,rgba(22,119,255,.08),transparent_24%),radial-gradient(circle_at_88%_82%,rgba(22,119,255,.08),transparent_26%)]" />
 
