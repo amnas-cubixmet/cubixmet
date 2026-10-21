@@ -31,7 +31,7 @@ export const ventures: Venture[] = [
       "Brand Growth Strategy",
       "Performance Marketing",
     ],
-    href: "https://www.cubixmet.com/ventures/digital",
+    href: "/ventures/digital",
     icon: "digital",
   },
   {
