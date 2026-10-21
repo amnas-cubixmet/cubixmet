@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import type { PointerEvent as ReactPointerEvent } from "react";
 import Arrow from "./Arrow";
+import Image from "next/image";
 import { heroProjects } from "../../data/heroProjects";
 
 export default function HeroSection() {
@@ -183,12 +184,15 @@ export default function HeroSection() {
                       : "hero-project-card-inactive h-[clamp(155px,45vw,210px)] w-[min(36vw,170px)] border-white/10")
                   }
                 >
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    fill
+                    sizes={isActive ? "(max-width: 767px) 74vw, 360px" : "(max-width: 767px) 36vw, 170px"}
+                    loading={isActive && project.index === 2 ? "eager" : "lazy"}
+                    fetchPriority={isActive ? "high" : "auto"}
                     draggable={false}
-                    loading="eager"
-                    className="pointer-events-none h-full w-full object-cover"
+                    className="pointer-events-none object-cover"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent" />
                   {isActive && (
@@ -234,20 +238,25 @@ export default function HeroSection() {
                 >
                   <div
                     className={
-                      slot === 2
+                      "relative " +
+                      (slot === 2
                         ? "aspect-[1.72/1]"
                         : slot === 1
                           ? "aspect-[.86/1]"
                           : slot === 0
                             ? "aspect-[.72/1]"
-                            : "aspect-[.8/1]"
+                            : "aspect-[.8/1]")
                     }
                   >
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.title}
-                      loading={slot < 3 ? "eager" : "lazy"}
-                      className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                      fill
+                      sizes={slot === 2 ? "(min-width: 1280px) 40vw, (min-width: 768px) 35vw, 50vw" : "(min-width: 1280px) 22vw, (min-width: 768px) 25vw, 50vw"}
+                      loading="lazy"
+                      fetchPriority={isActive ? "high" : "auto"}
+                      draggable={false}
+                      className="object-cover transition duration-700 group-hover:scale-105"
                     />
                   </div>
 
