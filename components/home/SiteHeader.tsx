@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Arrow from "./Arrow";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   ["#top", "Home"],
@@ -15,11 +16,15 @@ const navLinks = [
 ] as const;
 
 export default function SiteHeader() {
+  const isHomePage = usePathname() === "/";
+  const homeHref = (hash: string) => isHomePage ? hash : `/${hash}`;
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("#top");
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    if (!isHomePage) return;
+
     const sectionIds = ["top", "about", "ventures", "services", "process", "work", "team", "impact", "contact"];
     const sections = sectionIds
       .map((id) => document.getElementById(id))
@@ -42,7 +47,7 @@ export default function SiteHeader() {
 
     sections.forEach((section) => observer.observe(section));
     return () => observer.disconnect();
-  }, []);
+  }, [isHomePage]);
 
   useEffect(() => {
     const update = () => setScrolled(window.scrollY > 18);
@@ -81,7 +86,7 @@ export default function SiteHeader() {
     >
       <div className="header-wrapper flex h-[60px] items-center justify-between md:h-[68px]">
         <a
-          href="#top"
+          href={homeHref("#top")}
           onClick={() => {
             setActiveLink("#top");
             setMenuOpen(false);
@@ -106,11 +111,11 @@ export default function SiteHeader() {
           {navLinks.map(([href, label]) => (
             <a
               key={href}
-              href={href}
+              href={homeHref(href)}
               onClick={() => setActiveLink(href)}
               className={
                 "relative px-1 py-2 text-[11px] font-medium transition-colors duration-300 lg:text-[12px] " +
-                (activeLink === href
+                (isHomePage && activeLink === href
                   ? "text-[#1677FF]"
                   : "text-white/65 hover:text-white")
               }
@@ -120,7 +125,7 @@ export default function SiteHeader() {
                 aria-hidden="true"
                 className={
                   "absolute inset-x-1 bottom-0 h-0.5 rounded-full bg-[#1677FF] transition-transform duration-300 " +
-                  (activeLink === href ? "scale-x-100" : "scale-x-0")
+                  (isHomePage && activeLink === href ? "scale-x-100" : "scale-x-0")
                 }
               />
             </a>
@@ -170,11 +175,11 @@ export default function SiteHeader() {
         >
           <nav aria-label="Mobile navigation" className="flex flex-1 flex-col justify-center gap-1 py-2">
             {navLinks.map(([href, label]) => {
-              const isActive = activeLink === href;
+              const isActive = isHomePage && activeLink === href;
               return (
                 <a
                   key={href}
-                  href={href}
+                  href={homeHref(href)}
                   aria-current={isActive ? "location" : undefined}
                   onClick={() => {
                     setActiveLink(href);
@@ -201,7 +206,7 @@ export default function SiteHeader() {
           </nav>
           <div className="mt-3 shrink-0 pb-1">
             <a
-              href="#contact"
+              href={homeHref("#contact")}
               onClick={() => {
                 setActiveLink("#contact");
                 setMenuOpen(false);
