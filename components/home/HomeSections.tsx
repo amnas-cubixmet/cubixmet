@@ -320,6 +320,7 @@ function VenturesSection() {
 function ServicesSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const mobileNavRef = useRef<HTMLDivElement>(null);
+  const mobileDragRef = useRef<{ id: number; x: number; scrollLeft: number; moved: boolean } | null>(null);
   const [activeService, setActiveService] = useState(0);
   const [serviceProgress, setServiceProgress] = useState(0);
 
@@ -361,10 +362,13 @@ function ServicesSection() {
     const track = mobileNavRef.current;
     const active = track?.querySelector<HTMLElement>('[aria-current="true"]');
     if (!track || !active) return;
-    const left = active.offsetLeft + active.offsetWidth / 2 - track.clientWidth / 2;
+    const trackRect = track.getBoundingClientRect();
+    const activeRect = active.getBoundingClientRect();
+    const center = track.scrollLeft + activeRect.left - trackRect.left +
+      activeRect.width / 2 - track.clientWidth / 2;
     track.scrollTo({
-      left: Math.max(0, left),
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+      left: Math.max(0, center),
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
     });
   }, [activeService]);
 
@@ -383,8 +387,36 @@ function ServicesSection() {
 
     window.scrollTo({
       top: top + distance * destination,
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
     });
+  };
+
+  const handleNavPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+    const track = mobileNavRef.current;
+    if (!track) return;
+    mobileDragRef.current = {
+      id: event.pointerId,
+      x: event.clientX,
+      scrollLeft: track.scrollLeft,
+      moved: false,
+    };
+  };
+
+  const handleNavPointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    const drag = mobileDragRef.current;
+    const track = mobileNavRef.current;
+    if (!drag || !track || drag.id !== event.pointerId) return;
+    const distance = event.clientX - drag.x;
+    if (Math.abs(distance) < 7 && !drag.moved) return;
+    drag.moved = true;
+    track.scrollLeft = drag.scrollLeft - distance;
+  };
+
+  const handleNavPointerEnd = (event: React.PointerEvent<HTMLDivElement>) => {
+    if (mobileDragRef.current?.id === event.pointerId) {
+      mobileDragRef.current = null;
+    }
   };
 
   const current = services[activeService];
@@ -410,7 +442,15 @@ function ServicesSection() {
           </p>
         </div>
 
-        <nav aria-label="Choose a service" ref={mobileNavRef} className="no-scrollbar flex w-full snap-x snap-mandatory gap-2 overflow-x-auto pb-3">
+        <nav
+          aria-label="Choose a service"
+          ref={mobileNavRef}
+          onPointerDown={handleNavPointerDown}
+          onPointerMove={handleNavPointerMove}
+          onPointerUp={handleNavPointerEnd}
+          onPointerCancel={handleNavPointerEnd}
+          className="services-mobile-nav flex w-full snap-x snap-mandatory gap-2 overflow-x-auto pb-3"
+        >
           {services.map((service, index) => (
             <button
               key={service.no}
