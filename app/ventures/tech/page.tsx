@@ -71,7 +71,6 @@ type TechTeamMember = {
   role: string;
   description: string;
   photoUrl?: string;
-  profileUrl?: string;
 };
 
 const techTeam: TechTeamMember[] = [
@@ -227,7 +226,6 @@ export default function CubixmetTechPage() {
                     initials={member.initials}
                     name={member.name}
                     photoUrl={member.photoUrl}
-                    profileUrl={member.profileUrl}
                   />
                 </div>
               </article>
