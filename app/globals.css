@@ -417,6 +417,47 @@ a {
 }
 
 
+/* About section: entrance animation with an accessible static fallback. */
+@media (max-width: 767px) {
+  .about-mobile-section {
+    padding-top: 3.5rem;
+    padding-bottom: 4rem;
+  }
+}
+
+@media (max-width: 639px) {
+  .about-pillar + .about-pillar {
+    border-top: 1px solid rgba(255, 255, 255, 0.055);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .about-motion-ready .about-reveal {
+    opacity: 0;
+    transform: translate3d(0, 26px, 0) scale(0.985);
+    filter: blur(3px);
+    transition:
+      opacity 650ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 720ms cubic-bezier(0.22, 1, 0.36, 1),
+      filter 650ms ease;
+  }
+
+  .about-motion-ready .about-reveal.is-about-visible {
+    opacity: 1;
+    transform: translate3d(0, 0, 0) scale(1);
+    filter: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-motion-ready .about-reveal {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}
+
 /* Scroll-triggered component/card motion */
 .scroll-card {
   opacity: 0;

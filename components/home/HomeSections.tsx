@@ -134,47 +134,85 @@ function AboutIcon({ type }: { type: string }) {
 }
 
 function AboutSection() {
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (
+      !section ||
+      typeof IntersectionObserver === "undefined" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      return;
+    }
+
+    const revealItems = Array.from(
+      section.querySelectorAll<HTMLElement>("[data-about-reveal]")
+    );
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-about-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      { rootMargin: "0px 0px -6% 0px", threshold: 0.08 }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+    section.classList.add("about-motion-ready");
+
+    return () => {
+      observer.disconnect();
+      section.classList.remove("about-motion-ready");
+    };
+  }, []);
+
   return (
-    <section id="about" className="section-space">
+    <section
+      id="about"
+      ref={sectionRef}
+      className="section-space about-mobile-section"
+      data-no-text-reveal
+    >
       <div className="about-wrapper">
-        <div
-          data-reveal
-          className="reveal relative overflow-hidden rounded-[22px] bg-[#0b0b0b]"
-        >
+        <div className="relative overflow-hidden rounded-[20px] bg-[#0b0b0b] md:rounded-[22px]">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_18%,rgba(22,119,255,.08),transparent_24%),radial-gradient(circle_at_88%_82%,rgba(22,119,255,.08),transparent_26%)]" />
 
-          <div className="relative z-10 grid gap-10 px-5 py-8 md:px-10 md:py-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-16 xl:px-12">
-            <div>
+          <div className="relative z-10 grid gap-7 px-5 pb-7 pt-8 sm:gap-8 md:gap-10 md:px-10 md:py-12 lg:grid-cols-[.9fr_1.1fr] lg:gap-16 xl:px-12">
+            <div data-about-reveal className="about-reveal">
               <p className="section-label">{aboutContent.label}</p>
-              <h2 className="max-w-[720px] text-[clamp(2.6rem,4.6vw,5.3rem)] font-medium leading-[.94] tracking-[-0.055em]">
+              <h2 className="max-w-[720px] text-[clamp(2.45rem,10.5vw,3.4rem)] font-medium leading-[.96] tracking-[-0.055em] md:text-[clamp(2.6rem,4.6vw,5.3rem)] md:leading-[.94]">
                 {aboutContent.title}
               </h2>
             </div>
 
-            <div className="flex items-end lg:justify-end">
-              <p className="max-w-[560px] text-[13px] leading-6 text-white/46 md:text-[15px] md:leading-7">
+            <div data-about-reveal className="about-reveal flex items-end lg:justify-end">
+              <p className="max-w-[560px] text-[13px] leading-[1.75] text-white/58 md:text-[15px] md:leading-7">
                 {aboutContent.description}
               </p>
             </div>
           </div>
 
-          <div className="relative z-10 grid border-t border-white/8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="relative z-10 grid sm:grid-cols-2 sm:border-t sm:border-white/8 lg:grid-cols-4">
             {aboutPillars.map((item, index) => (
               <article
                 key={item.title}
-                data-scroll-card
-                data-scroll-delay={index * 80}
-                className="scroll-card min-h-[210px] border-white/8 p-5 sm:border-r sm:last:border-r-0 md:p-7 lg:min-h-[230px]"
+                data-about-reveal
+                className="about-reveal about-pillar relative px-5 py-6 sm:min-h-[210px] sm:border-r sm:border-white/8 md:px-7 md:py-8 lg:min-h-[230px] lg:last:border-r-0"
+                style={{ transitionDelay: `${index * 70}ms` }}
               >
-                <div className="grid h-11 w-11 place-items-center rounded-full border border-[#1677FF]/25 bg-[#1677FF]/5 text-[#1677FF]">
+                <div className="grid h-10 w-10 place-items-center rounded-full border border-[#1677FF]/25 bg-[#1677FF]/5 text-[#1677FF] md:h-11 md:w-11">
                   <AboutIcon type={item.icon} />
                 </div>
 
-                <h3 className="mt-8 text-[18px] font-medium tracking-[-0.025em] text-white md:text-[20px]">
+                <h3 className="mt-4 text-[18px] font-medium tracking-[-0.025em] text-white md:mt-8 md:text-[20px]">
                   {item.title}
                 </h3>
 
-                <p className="mt-3 max-w-[250px] text-[11px] leading-5 text-white/38 md:text-[12px]">
+                <p className="mt-2 max-w-[300px] text-[12px] leading-[1.65] text-white/55 md:mt-3 md:max-w-[250px] md:leading-5">
                   {item.copy}
                 </p>
               </article>
