@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Arrow from "./Arrow";
+import Image from "next/image";
 import { services } from "../../data/services";
 import { aboutContent, aboutPillars } from "../../data/about";
 import { ventures } from "../../data/ventures";
@@ -487,7 +488,7 @@ function ServicesSection() {
 
         <div key={current.no} className="service-content-enter">
           <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#111]">
-            <img src={current.image} alt={current.title} loading="lazy" className="h-full w-full object-cover" />
+            <img src={current.image} alt={current.title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
           </div>
           <div className="pt-5">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1677FF]">
@@ -564,6 +565,8 @@ function ServicesSection() {
                   src={service.image}
                   alt={service.title}
                   aria-hidden={index !== activeService}
+                  loading="lazy"
+                  decoding="async"
                   className={
                     "pointer-events-none absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out " +
                     (index === activeService
@@ -759,10 +762,13 @@ function WorkSection() {
               className="scroll-card group overflow-hidden border border-white/8 bg-[#0b0b0b]"
             >
               <div className="relative aspect-[1.35/1] overflow-hidden bg-[#101010]">
-                <img
+                <Image
                   src={project.image}
                   alt={project.name}
-                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  fill
+                  sizes="(max-width: 767px) calc(100vw - 36px), (max-width: 1279px) 50vw, 33vw"
+                  loading="lazy"
+                  className="object-cover transition duration-700 group-hover:scale-105"
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
                 <span className="absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-white/72 backdrop-blur">
@@ -885,6 +891,10 @@ function TestimonialsSection() {
                           <img
                             src={card.avatar}
                             alt={card.name}
+                            width={40}
+                            height={40}
+                            loading="lazy"
+                            decoding="async"
                             className="h-10 w-10 rounded-full object-cover"
                           />
                           <div>
