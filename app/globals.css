@@ -161,6 +161,20 @@ a {
   margin-inline: auto;
 }
 
+@media (max-width: 767px) {
+  .header-wrapper {
+    width: calc(100% - 36px);
+  }
+
+  .mobile-menu-panel {
+    scrollbar-width: none;
+  }
+
+  .mobile-menu-panel::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 .section-space {
   padding-block: clamp(5rem, 8vw, 8rem);
 }
