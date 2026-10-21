@@ -254,14 +254,14 @@ function VenturesSection() {
           </div>
 
           <div className="lg:col-span-9">
-            <div className="grid gap-6 md:grid-cols-2 lg:relative lg:block lg:min-h-[1180px]">
+            <div className="grid items-stretch gap-5 md:grid-cols-2 md:gap-6 lg:relative lg:block lg:min-h-[1080px]">
               {ventures.map((venture, index) => {
                 const placement =
                   index === 0
-                    ? "lg:absolute lg:left-[41.667%] lg:top-0 lg:w-[58.333%]"
+                    ? "lg:absolute lg:left-[43%] lg:top-0 lg:w-[55%]"
                     : index === 1
-                      ? "lg:absolute lg:-left-[30%] lg:top-[230px] lg:w-[58.333%]"
-                      : "lg:absolute lg:left-[35%] lg:top-[665px] lg:w-[58.333%]";
+                      ? "lg:absolute lg:-left-[28%] lg:top-[235px] lg:w-[55%]"
+                      : "lg:absolute lg:left-[36%] lg:top-[630px] lg:w-[55%]";
 
                 return (
                   <article
@@ -269,36 +269,36 @@ function VenturesSection() {
                     data-scroll-card
                     data-scroll-delay={index * 100}
                     className={
-                      "scroll-card group relative flex min-h-[410px] flex-col overflow-hidden border border-white/8 bg-[#101010] p-6 md:min-h-[430px] md:p-8 lg:h-[430px] lg:min-h-0 " +
+                      "scroll-card group relative flex min-w-0 flex-col overflow-hidden border border-white/8 bg-[#101010] p-5 sm:p-6 md:min-h-[370px] md:p-6 lg:min-h-[390px] lg:p-7 " +
                       placement
                     }
                   >
                     <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.018),transparent_38%)]" />
 
                     <div className="relative z-10 flex h-full flex-col">
-                      <span className="text-[clamp(2.2rem,4vw,4.6rem)] font-semibold leading-none tracking-[-0.06em] text-[#1677FF]">
+                      <span className="text-[clamp(2.3rem,3.5vw,3.7rem)] font-semibold leading-none tracking-[-0.06em] text-[#1677FF]">
                         0{index + 1}
                       </span>
 
-                      <h3 className="mt-8 text-[clamp(2rem,3.3vw,4rem)] font-semibold leading-[.92] tracking-[-0.055em] text-white">
+                      <h3 className="mt-5 text-[clamp(1.75rem,2.65vw,2.8rem)] font-semibold leading-[1.04] tracking-[-0.045em] text-white">
                         {venture.name}
                       </h3>
 
-                      <p className="mt-3 text-[13px] font-medium text-white/68">
+                      <p className="mt-2.5 text-[12px] font-medium text-white/70 md:text-[13px]">
                         {venture.tagline}
                       </p>
 
-                      <p className="mt-5 max-w-[470px] text-[12px] leading-6 text-white/40">
+                      <p className="mt-3.5 max-w-[470px] text-[12px] leading-[1.7] text-white/55">
                         {venture.copy}
                       </p>
 
-                      <div className="mt-7 grid gap-2.5 border-t border-white/8 pt-6">
+                      <div className="mt-5 grid gap-2 border-t border-white/10 pt-4">
                         {venture.services.map((item) => (
                           <div
                             key={item}
-                            className="flex items-start gap-3 text-[11px] leading-5 text-white/50"
+                            className="flex items-start gap-2.5 text-[11px] leading-[1.6] text-white/60"
                           >
-                            <span className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
+                            <span className="mt-[6px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
                             <span>{item}</span>
                           </div>
                         ))}
