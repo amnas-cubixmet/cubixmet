@@ -91,6 +91,13 @@ export default function SiteHeader() {
               }
             >
               {label}
+              <span
+                aria-hidden="true"
+                className={
+                  "absolute inset-x-1 bottom-0 h-0.5 rounded-full bg-[#1677FF] transition-transform duration-300 motion-reduce:transition-none " +
+                  (activeLink === href ? "scale-x-100" : "scale-x-0")
+                }
+              />
             </a>
           ))}
         </nav>
