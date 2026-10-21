@@ -387,7 +387,7 @@ function ServicesSection() {
   }, [activeService]);
 
   const selectService = (index: number) => {
-        const section = sectionRef.current;
+    const section = sectionRef.current;
     if (!section) return;
     const top = section.getBoundingClientRect().top + window.scrollY;
     const distance = Math.max(section.offsetHeight - window.innerHeight, 1);
@@ -518,18 +518,18 @@ function ServicesSection() {
 
       {/* Desktop: sticky scroll-driven service showcase. */}
       <div className="sticky top-0 hidden h-[100svh] w-full overflow-hidden bg-[#050505] lg:flex">
-        <div className="mx-auto grid h-full w-[90%] max-w-[1500px] grid-cols-[minmax(0,1fr)_32px_minmax(0,1.1fr)] items-center gap-8 py-10 xl:gap-14">
+        <div className="mx-auto grid h-full w-[92%] max-w-[1320px] grid-cols-[minmax(0,0.96fr)_40px_minmax(0,1.08fr)] items-center gap-7 py-8 xl:gap-12">
           <nav aria-label="Choose a service" className="flex min-w-0 flex-col items-center justify-center">
-            <div className="w-full max-w-[470px]">
-              <p className="mb-6 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1677FF]">
+            <div className="w-full max-w-[390px]">
+              <p className="mb-6 px-5 text-left text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1677FF]">
                 Services
               </p>
 
-              <div className="relative flex w-full flex-col gap-1">
+              <div className="relative flex w-full flex-col gap-2">
                 <span
                   aria-hidden="true"
-                  className="service-active-indicator pointer-events-none absolute left-0 top-0 h-12 w-full rounded-full bg-white"
-                  style={{ transform: `translate3d(0, ${activeService * 52}px, 0)` }}
+                  className="service-active-indicator pointer-events-none absolute inset-x-0 top-0 h-[50px] rounded-[14px] bg-white shadow-[0_10px_32px_rgba(255,255,255,0.07)]"
+                  style={{ transform: `translate3d(0, ${activeService * 58}px, 0)` }}
                 />
                 {services.map((service, index) => (
                   <button
@@ -538,8 +538,8 @@ function ServicesSection() {
                     onClick={() => selectService(index)}
                     aria-current={activeService === index ? "true" : undefined}
                     className={
-                      "relative z-10 flex h-12 min-w-0 w-full items-center justify-center px-2 text-center text-[clamp(14px,1.6vw,23px)] font-semibold tracking-[-0.045em] transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
-                      (activeService === index ? "text-black" : "text-white/45 hover:text-white")
+                      "relative z-10 flex h-[50px] min-w-0 w-full items-center justify-start rounded-[14px] px-5 text-left text-[clamp(17px,1.55vw,22px)] font-semibold leading-[1.15] tracking-[-0.035em] transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
+                      (activeService === index ? "text-black" : "text-white/55 hover:text-white")
                     }
                   >
                     {service.title}
@@ -549,22 +549,22 @@ function ServicesSection() {
             </div>
           </nav>
 
-          <div className="flex h-[48svh] max-h-[460px] min-h-[250px] flex-col items-center justify-between">
-            <div className="relative min-h-0 w-[2px] flex-1 overflow-hidden bg-white/15">
+          <div className="flex h-[clamp(265px,57svh,410px)] min-h-0 flex-col items-center justify-between">
+            <div className="relative min-h-0 w-[2px] flex-1 overflow-hidden rounded-full bg-white/15">
               <div
                 className="absolute inset-0 origin-top bg-[#1677FF] transition-transform duration-150"
                 style={{ transform: `scaleY(${Math.max(1 / services.length, serviceProgress)})` }}
               />
             </div>
-            <p className="mt-5 whitespace-nowrap font-mono text-[11px] font-semibold">
+            <p className="mt-4 whitespace-nowrap font-mono text-[12px] font-semibold tabular-nums">
               {current.no}
               <span className="mx-2 text-[#1677FF]">—</span>
               {String(services.length).padStart(2, "0")}
             </p>
           </div>
 
-          <div className="flex min-w-0 flex-col justify-center">
-            <div className="relative h-[31svh] min-h-[190px] max-h-[330px] w-full overflow-hidden bg-[#101010]">
+          <div className="flex min-w-0 w-full max-w-[620px] flex-col justify-center">
+            <div className="relative h-[clamp(190px,33svh,315px)] w-full overflow-hidden rounded-[12px] bg-[#101010]">
               {services.map((service, index) => (
                 <img
                   key={service.no}
@@ -583,14 +583,14 @@ function ServicesSection() {
               ))}
             </div>
 
-            <div key={current.no} className="service-content-enter mt-6 min-h-[205px]">
+            <div key={current.no} className="service-content-enter mt-5 min-h-[180px]">
               <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1677FF]">
                 {current.no} / Service
               </p>
-              <p className="mt-3 max-w-[560px] text-[clamp(13px,1vw,15px)] leading-[1.7] text-white/65">
+              <p className="mt-3 max-w-[560px] text-[clamp(13px,1vw,15px)] leading-[1.65] text-white/70">
                 {current.copy}
               </p>
-              <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2">
+              <ul className="mt-4 grid grid-cols-2 gap-x-5 gap-y-2">
                 {current.meta.map((item) => (
                   <li key={item} className="flex items-start gap-2 text-[12px] leading-5 text-white/65">
                     <span aria-hidden="true" className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
