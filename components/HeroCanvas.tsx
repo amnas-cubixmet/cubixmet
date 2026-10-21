@@ -11,8 +11,6 @@ function DigitalCore() {
 
   useFrame((state, delta) => {
     if (!group.current) return;
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduced) return;
     const isTouch = window.matchMedia("(pointer: coarse)").matches;
     const px = isTouch ? 0 : state.pointer.x;
     const py = isTouch ? 0 : state.pointer.y;
