@@ -229,59 +229,88 @@ function AboutSection() {
 
 function VenturesSection() {
   return (
-    <section id="ventures" className="relative overflow-hidden bg-[#050505] py-16 md:py-24">
+    <section id="ventures" className="relative overflow-hidden pb-24 pt-10 md:pb-36 md:pt-16">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        <svg
+          viewBox="0 0 640 640"
+          className="absolute right-[-12%] top-[8%] h-[78%] w-auto text-white/[0.035] md:right-[-2%] md:top-[4%] md:h-[90%]"
+          fill="currentColor"
+          aria-hidden="true"
+        >
+          <g transform="translate(64 92)">
+            <path d="M40 70 212 170 212 270 40 170Z" />
+            <path d="M472 70 300 170 300 270 472 170Z" />
+            <path d="M40 210 212 310 212 410 40 310Z" />
+            <path d="M472 210 300 310 300 410 472 310Z" />
+            <path d="M212 170 256 196 300 170 300 270 256 296 212 270Z" />
+          </g>
+        </svg>
+      </div>
+
       <div className="about-wrapper relative z-10">
-        <div data-reveal className="reveal mb-8 md:mb-12">
-          <p className="section-label">Our Ventures</p>
-          <h2 className="max-w-[760px] text-[clamp(2.3rem,5vw,4.5rem)] font-semibold leading-[1.03] tracking-[-0.055em] text-white">
-            Explore our ventures.
-          </h2>
-          <p className="mt-4 max-w-[580px] text-[13px] leading-6 text-white/55 md:text-[15px] md:leading-7">
-            Technology, digital growth, and education — built to move ideas forward.
-          </p>
-        </div>
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-6">
+          <div data-reveal className="reveal lg:col-span-3">
+            <p className="section-label">Our Ventures</p>
+          </div>
 
-        <div className="grid items-stretch gap-4 md:grid-cols-2 md:gap-5 xl:grid-cols-3 xl:gap-6">
-          {ventures.map((venture, index) => (
-            <article
-              key={venture.name}
-              data-scroll-card
-              data-scroll-delay={index * 90}
-              className={
-                "scroll-card group relative flex min-w-0 flex-col overflow-hidden rounded-[16px] bg-[#101010] p-5 sm:p-6 md:min-h-[390px] md:rounded-[20px] md:p-7 xl:min-h-[450px] " +
-                (index === 2 ? "md:col-span-2 xl:col-span-1" : "")
-              }
-            >
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_92%_0%,rgba(22,119,255,0.11),transparent_40%)] opacity-75 transition-opacity duration-500 group-hover:opacity-100" />
+          <div className="lg:col-span-9">
+            <div className="grid gap-6 md:grid-cols-2 lg:relative lg:block lg:min-h-[1180px]">
+              {ventures.map((venture, index) => {
+                const placement =
+                  index === 0
+                    ? "lg:absolute lg:left-[41.667%] lg:top-0 lg:w-[58.333%]"
+                    : index === 1
+                      ? "lg:absolute lg:-left-[30%] lg:top-[230px] lg:w-[58.333%]"
+                      : "lg:absolute lg:left-[35%] lg:top-[665px] lg:w-[58.333%]";
 
-              <div className="relative z-10 flex h-full min-w-0 flex-col">
-                <span className="text-[14px] font-semibold tracking-[0.16em] text-[#1677FF] md:text-[16px]">
-                  0{index + 1}
-                </span>
+                return (
+                  <article
+                    key={venture.name}
+                    data-scroll-card
+                    data-scroll-delay={index * 100}
+                    className={
+                      "scroll-card group relative flex min-h-[410px] flex-col overflow-hidden border border-white/8 bg-[#101010] p-6 md:min-h-[430px] md:p-8 lg:h-[430px] lg:min-h-0 " +
+                      placement
+                    }
+                  >
+                    <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,.018),transparent_38%)]" />
 
-                <h3 className="mt-5 text-[clamp(1.7rem,2.6vw,2.6rem)] font-semibold leading-[1.08] tracking-[-0.05em] text-white md:mt-7">
-                  {venture.name}
-                </h3>
+                    <div className="relative z-10 flex h-full flex-col">
+                      <span className="text-[clamp(2.2rem,4vw,4.6rem)] font-semibold leading-none tracking-[-0.06em] text-[#1677FF]">
+                        0{index + 1}
+                      </span>
 
-                <p className="mt-2 text-[12px] font-medium text-white/75 md:text-[13px]">
-                  {venture.tagline}
-                </p>
+                      <h3 className="mt-8 text-[clamp(2rem,3.3vw,4rem)] font-semibold leading-[.92] tracking-[-0.055em] text-white">
+                        {venture.name}
+                      </h3>
 
-                <p className="mt-4 max-w-[48ch] text-[12px] leading-[1.75] text-white/55 md:text-[13px]">
-                  {venture.copy}
-                </p>
+                      <p className="mt-3 text-[13px] font-medium text-white/68">
+                        {venture.tagline}
+                      </p>
 
-                <ul className="mt-6 grid gap-3 border-t border-white/10 pt-5 md:mt-auto md:pt-6">
-                  {venture.services.map((service) => (
-                    <li key={service} className="flex min-w-0 items-start gap-3 text-[12px] leading-[1.5] text-white/65">
-                      <span aria-hidden="true" className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
-                      <span>{service}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          ))}
+                      <p className="mt-5 max-w-[470px] text-[12px] leading-6 text-white/40">
+                        {venture.copy}
+                      </p>
+
+                      <div className="mt-7 grid gap-2.5 border-t border-white/8 pt-6">
+                        {venture.services.map((item) => (
+                          <div
+                            key={item}
+                            className="flex items-start gap-3 text-[11px] leading-5 text-white/50"
+                          >
+                            <span className="mt-[8px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
+                            <span>{item}</span>
+                          </div>
+                        ))}
+                      </div>
+
+
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
