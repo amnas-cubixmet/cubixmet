@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import SiteHeader from "../../../components/home/SiteHeader";
 import SiteFooter from "../../../components/home/SiteFooter";
 import Arrow from "../../../components/home/Arrow";
-import Image from "next/image";
+import TechHeroImage from "../../../components/home/TechHeroImage";
 import TechServiceIcon from "../../../components/home/TechServiceIcon";
 
 export const metadata: Metadata = {
@@ -123,14 +123,7 @@ export default function CubixmetTechPage() {
 
 
           <div className="group relative isolate aspect-[4/3] w-full min-w-0 overflow-hidden rounded-[20px] border border-white/10 bg-[#0b111e] sm:aspect-[5/3] lg:aspect-[4/3]">
-            <Image
-              src="/images/ventures/tech-hero.png"
-              alt="Cubixmet Tech software engineers collaborating on development, cloud platforms, and business technology solutions"
-              fill
-              priority
-              sizes="(max-width: 1023px) calc(100vw - 40px), (max-width: 1536px) 43vw, 570px"
-              className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
-            />
+            <TechHeroImage />
             <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050505]/80 via-transparent to-transparent" />
             <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5 sm:p-7">
               <div>
