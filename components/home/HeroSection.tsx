@@ -165,43 +165,42 @@ export default function HeroSection() {
               transition: dragging ? "none" : "transform 220ms ease-out",
             }}
           >
-          {/* Mobile: exactly 3 cards, active card centered */}
+          {/* Mobile: balanced centered card with subtle side previews. */}
           <div
             key={`mobile-${activeCard}`}
-            className="hero-slider-step-mobile mx-auto grid w-[108%] grid-cols-[.72fr_1.7fr_.72fr] items-end gap-2 md:hidden"
+            className="hero-slider-stage-mobile relative left-1/2 flex w-max -translate-x-1/2 items-center gap-3 py-7 md:hidden"
           >
             {mobileProjects.map((project, slot) => {
-              const isActive = project.index === activeCard;
-              const position = slot === 1 ? "-translate-y-1" : "translate-y-3";
+              const isActive = slot === 1;
 
               return (
                 <article
                   key={`mobile-${project.index}-${slot}`}
                   className={
-                    "hero-card hero-project-card group relative overflow-hidden rounded-[9px] border border-white/10 bg-[#0c0d0c] " +
-                    position +
-                    (isActive ? " hero-project-card-active" : " hero-project-card-inactive")
+                    "hero-card hero-project-card group relative flex-none overflow-hidden rounded-[12px] border bg-[#0c0d0c] " +
+                    (isActive
+                      ? "hero-project-card-active h-[clamp(185px,55vw,250px)] w-[min(74vw,360px)]"
+                      : "hero-project-card-inactive h-[clamp(155px,45vw,210px)] w-[min(43vw,196px)] border-white/10")
                   }
                 >
-                  <div className={isActive ? "aspect-[1.42/1]" : "aspect-[.68/1]"}>
-                    <img
-                      src={project.image}
-                      alt={project.title}
-                      loading="eager"
-                      className="h-full w-full object-cover"
-                    />
-                  </div>
-
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
-
-                  <div className="absolute bottom-2 left-2 right-2">
-                    <p className="text-[8px] uppercase tracking-[0.12em] text-white/45">
-                      {project.type}
-                    </p>
-                    <p className="mt-0.5 truncate text-[12px] font-semibold leading-tight text-white">
-                      {project.title}
-                    </p>
-                  </div>
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    draggable={false}
+                    loading="eager"
+                    className="pointer-events-none h-full w-full object-cover"
+                  />
+                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent" />
+                  {isActive && (
+                    <div className="pointer-events-none absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
+                      <p className="text-[9px] font-medium uppercase tracking-[0.12em] text-white/70">
+                        {project.type}
+                      </p>
+                      <p className="mt-1 text-[15px] font-semibold leading-tight text-white sm:text-[17px]">
+                        {project.title}
+                      </p>
+                    </div>
+                  )}
                 </article>
               );
             })}
@@ -281,6 +280,26 @@ export default function HeroSection() {
           >
             Next project
           </button>
+        </div>
+        <div className="mb-3 flex items-center justify-center gap-1 md:hidden" aria-label="Featured project navigation">
+          {heroProjects.map((project, index) => (
+            <button
+              key={project.title}
+              type="button"
+              onClick={() => setActiveCard(index)}
+              aria-label={`Show project ${index + 1}: ${project.title}`}
+              aria-current={index === activeCard ? "true" : undefined}
+              className="grid h-8 w-7 place-items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
+            >
+              <span
+                aria-hidden="true"
+                className={
+                  "h-1.5 rounded-full transition-all duration-300 " +
+                  (index === activeCard ? "w-5 bg-[#1677FF]" : "w-1.5 bg-white/30")
+                }
+              />
+            </button>
+          ))}
         </div>
       </div>
     </section>
