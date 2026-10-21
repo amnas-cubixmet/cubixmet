@@ -155,7 +155,7 @@ export default function CubixmetTechPage() {
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-[12px] border border-[#1677FF]/25 bg-[#1677FF]/10 text-[#3189ff] transition-colors duration-300 group-hover:border-[#1677FF]/60 group-hover:bg-[#1677FF]/20">
                     <TechServiceIcon name={service.title} className="h-6 w-6" />
                   </span>
-                  <span className="font-mono text-[12px] font-semibold tracking-[.1em] text-[#1677FF]">{service.number} / 08</span>
+
                 </div>
                 <h3 className="mt-7 text-[22px] font-semibold leading-[1.15] tracking-[-.04em] md:text-[24px]">{service.title}</h3>
                 <p className="mt-4 text-[13px] leading-[1.75] text-white/55">{service.description}</p>
