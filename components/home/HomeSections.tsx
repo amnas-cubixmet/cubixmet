@@ -321,6 +321,7 @@ function ServicesSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const mobileNavRef = useRef<HTMLDivElement>(null);
   const mobileDragRef = useRef<{ id: number; x: number; scrollLeft: number; moved: boolean } | null>(null);
+  const suppressNavClickRef = useRef(false);
   const [activeService, setActiveService] = useState(0);
   const [serviceProgress, setServiceProgress] = useState(0);
 
@@ -395,6 +396,7 @@ function ServicesSection() {
     if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
     const track = mobileNavRef.current;
     if (!track) return;
+    suppressNavClickRef.current = false;
     mobileDragRef.current = {
       id: event.pointerId,
       x: event.clientX,
@@ -410,6 +412,7 @@ function ServicesSection() {
     const distance = event.clientX - drag.x;
     if (Math.abs(distance) < 7 && !drag.moved) return;
     drag.moved = true;
+    suppressNavClickRef.current = true;
     track.scrollLeft = drag.scrollLeft - distance;
   };
 
@@ -449,6 +452,12 @@ function ServicesSection() {
           onPointerMove={handleNavPointerMove}
           onPointerUp={handleNavPointerEnd}
           onPointerCancel={handleNavPointerEnd}
+          onClickCapture={(event) => {
+            if (!suppressNavClickRef.current) return;
+            event.preventDefault();
+            event.stopPropagation();
+            suppressNavClickRef.current = false;
+          }}
           className="services-mobile-nav flex w-full snap-x snap-mandatory gap-2 overflow-x-auto pb-3"
         >
           {services.map((service, index) => (
