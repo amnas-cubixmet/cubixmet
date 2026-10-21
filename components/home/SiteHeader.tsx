@@ -89,7 +89,7 @@ export default function SiteHeader() {
         >
           <span className="grid h-10 w-[120px] place-items-center overflow-hidden md:h-11 md:w-[136px]">
             <img
-              src="/image/logo.png"
+              src="/images/logo.png"
               alt="Cubixmet"
               className="h-full w-full object-contain"
             />
