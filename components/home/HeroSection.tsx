@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import type { PointerEvent as ReactPointerEvent } from "react";
+import type { CSSProperties, PointerEvent as ReactPointerEvent } from "react";
 import Arrow from "./Arrow";
 import Image from "next/image";
 import { heroProjects } from "../../data/heroProjects";
@@ -59,14 +59,15 @@ export default function HeroSection() {
     }
   };
 
-  const visibleProjects = [-2, -1, 0, 1].map((offset) => {
-    const index = (activeCard + offset + heroProjects.length) % heroProjects.length;
-    return { ...heroProjects[index], index, offset };
-  });
-
-  const mobileProjects = [-1, 0, 1].map((offset) => {
-    const index = (activeCard + offset + heroProjects.length) % heroProjects.length;
-    return { ...heroProjects[index], index, offset };
+  // Stable keys + cyclic offsets let each card slide to its new position.
+  // The card wrapping from +3 to -3 stays invisible while it repositions.
+  const projectsWithPositions = heroProjects.map((project, index) => {
+    const distance = (index - activeCard + heroProjects.length) % heroProjects.length;
+    const offset =
+      distance > Math.floor(heroProjects.length / 2)
+        ? distance - heroProjects.length
+        : distance;
+    return { ...project, index, offset };
   });
 
   return (
@@ -161,119 +162,49 @@ export default function HeroSection() {
           aria-label="Featured projects — drag or swipe horizontally to browse"
         >
           <div
-            style={{
-              transform: `translate3d(${dragOffset}px, 0, 0)`,
-              transition: dragging ? "none" : "transform 220ms ease-out",
-            }}
+            className="hero-slider-stage relative w-full"
+            data-dragging={dragging}
+            style={{ "--hero-drag": `${dragOffset}px` } as CSSProperties}
           >
-          {/* Mobile: balanced centered card with subtle side previews. */}
-          <div
-            key={`mobile-${activeCard}`}
-            className="hero-slider-stage-mobile mx-auto flex w-full max-w-full items-center justify-center gap-3 py-3 md:hidden"
-          >
-            {mobileProjects.map((project, slot) => {
-              const isActive = slot === 1;
+            {projectsWithPositions.map((project) => {
+              const isActive = project.offset === 0;
+              const isNearby = Math.abs(project.offset) === 1;
 
               return (
                 <article
-                  key={`mobile-${project.index}-${slot}`}
-                  className={
-                    "hero-card hero-project-card group relative flex-none overflow-hidden rounded-[12px] border bg-[#0c0d0c] " +
-                    (isActive
-                      ? "hero-project-card-active h-[clamp(185px,55vw,250px)] w-[min(74vw,360px)]"
-                      : "hero-project-card-inactive h-[clamp(155px,45vw,210px)] w-[min(36vw,170px)] border-white/10")
-                  }
+                  key={project.index}
+                  data-offset={project.offset}
+                  data-active={isActive}
+                  aria-hidden={!isActive}
+                  className="hero-slider-card group absolute overflow-hidden rounded-[12px] border border-white/10 bg-[#0c0d0c]"
                 >
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={isActive ? project.title : ""}
                     fill
-                    sizes={isActive ? "(max-width: 767px) 74vw, 360px" : "(max-width: 767px) 36vw, 170px"}
-                    loading={isActive && project.index === 2 ? "eager" : "lazy"}
+                    sizes="(max-width: 767px) 74vw, (max-width: 1279px) 44vw, 600px"
+                    loading={project.index === 2 ? "eager" : "lazy"}
                     fetchPriority={isActive ? "high" : "auto"}
                     draggable={false}
                     className="pointer-events-none object-cover"
                   />
                   <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/75 via-black/5 to-transparent" />
-                  {isActive && (
-                    <div className="pointer-events-none absolute bottom-3 left-3 right-3 sm:bottom-4 sm:left-4">
-                      <p className="text-[9px] font-medium uppercase tracking-[0.12em] text-white/70">
-                        {project.type}
-                      </p>
-                      <p className="mt-1 text-[15px] font-semibold leading-tight text-white sm:text-[17px]">
-                        {project.title}
-                      </p>
-                    </div>
-                  )}
-                </article>
-              );
-            })}
-          </div>
-
-          {/* Tablet/Desktop: keep the 4-card composition */}
-          <div
-            key={`desktop-${activeCard}`}
-            className="hero-slider-step mx-auto hidden w-[104%] grid-cols-[.72fr_.9fr_1.55fr_.9fr] items-end gap-3 md:grid md:gap-4"
-          >
-            {visibleProjects.map((project, slot) => {
-              const position =
-                slot === 0
-                  ? "translate-y-8"
-                  : slot === 1
-                    ? "translate-y-4"
-                    : slot === 2
-                      ? "-translate-y-2"
-                      : "translate-y-6";
-
-              const isActive = project.index === activeCard;
-
-              return (
-                <article
-                  key={`${project.index}-${slot}`}
-                  className={
-                    "hero-card hero-project-card group relative overflow-hidden rounded-[10px] border border-white/10 bg-[#0c0d0c] " +
-                    position +
-                    (isActive ? " hero-project-card-active" : " hero-project-card-inactive")
-                  }
-                >
                   <div
                     className={
-                      "relative " +
-                      (slot === 2
-                        ? "aspect-[1.72/1]"
-                        : slot === 1
-                          ? "aspect-[.86/1]"
-                          : slot === 0
-                            ? "aspect-[.72/1]"
-                            : "aspect-[.8/1]")
+                      "pointer-events-none absolute bottom-3 left-3 right-3 transition-opacity duration-500 sm:bottom-4 sm:left-4 " +
+                      (isActive ? "opacity-100" : isNearby ? "opacity-65" : "opacity-0")
                     }
                   >
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      sizes={slot === 2 ? "(min-width: 1280px) 40vw, (min-width: 768px) 35vw, 50vw" : "(min-width: 1280px) 22vw, (min-width: 768px) 25vw, 50vw"}
-                      loading="lazy"
-                      fetchPriority={isActive ? "high" : "auto"}
-                      draggable={false}
-                      className="object-cover transition duration-700 group-hover:scale-105"
-                    />
-                  </div>
-
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent" />
-
-                  <div className="absolute bottom-3 left-3 right-3">
-                    <p className="text-[10px] uppercase tracking-[0.14em] text-white/50 md:text-[11px]">
+                    <p className="text-[9px] font-medium uppercase tracking-[0.12em] text-white/70 md:text-[11px]">
                       {project.type}
                     </p>
-                    <p className="mt-1 text-[14px] font-semibold leading-tight text-white md:text-[18px]">
+                    <p className="mt-1 text-[15px] font-semibold leading-tight text-white sm:text-[17px] md:text-[19px]">
                       {project.title}
                     </p>
                   </div>
                 </article>
               );
             })}
-          </div>
           </div>
           <button
             type="button"
