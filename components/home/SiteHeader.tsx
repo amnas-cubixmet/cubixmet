@@ -49,13 +49,32 @@ export default function SiteHeader() {
     return () => window.removeEventListener("scroll", update);
   }, []);
 
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [menuOpen]);
+
   return (
     <header
       className={
         "fixed inset-x-0 top-0 z-50 transition-all duration-300 " +
-        (scrolled || menuOpen
-          ? "bg-[#050505]/92 backdrop-blur-xl"
-          : "bg-gradient-to-b from-black/55 to-transparent")
+        (menuOpen
+          ? "bg-[#050505]"
+          : scrolled
+            ? "bg-[#050505]/92 backdrop-blur-xl"
+            : "bg-gradient-to-b from-black/55 to-transparent")
       }
     >
       <div className="header-wrapper flex h-[60px] items-center justify-between md:h-[68px]">
@@ -117,11 +136,9 @@ export default function SiteHeader() {
           type="button"
           aria-label={menuOpen ? "Close menu" : "Open menu"}
           aria-expanded={menuOpen}
+          aria-controls="mobile-site-menu"
           onClick={() => setMenuOpen((value) => !value)}
-          className={
-            "relative z-50 mr-2 grid h-9 w-9 place-items-center border-0 bg-transparent transition-colors md:hidden " +
-            (menuOpen ? "text-[#1677FF]" : "text-white")
-          }
+          className="relative z-50 grid h-10 w-10 place-items-center border-0 bg-transparent text-white outline-none transition-colors hover:text-[#1677FF] focus-visible:rounded focus-visible:ring-2 focus-visible:ring-[#1677FF] md:hidden"
         >
           <span className="flex w-4 flex-col gap-[5px]">
             <span
@@ -140,56 +157,57 @@ export default function SiteHeader() {
         </button>
       </div>
 
-      <div
-        className={
-          "absolute right-[14px] top-[66px] w-[min(320px,calc(100vw-28px))] overflow-hidden border border-white/10 bg-[#0b0b0b]/98 shadow-2xl backdrop-blur-xl transition-all duration-300 md:hidden " +
-          (menuOpen
-            ? "translate-y-0 opacity-100"
-            : "-translate-y-3 pointer-events-none opacity-0")
-        }
-      >
-        <nav className="p-2">
-          {navLinks.map(([href, label], index) => (
+      {menuOpen && (
+        <div
+          id="mobile-site-menu"
+          className="mobile-menu-panel fixed inset-x-0 bottom-0 top-[60px] z-40 flex flex-col overflow-y-auto overscroll-contain bg-[#050505] px-6 pb-[max(16px,env(safe-area-inset-bottom))] pt-3 md:hidden"
+        >
+          <nav aria-label="Mobile navigation" className="flex flex-1 flex-col justify-center gap-1 py-2">
+            {navLinks.map(([href, label]) => {
+              const isActive = activeLink === href;
+              return (
+                <a
+                  key={href}
+                  href={href}
+                  aria-current={isActive ? "location" : undefined}
+                  onClick={() => {
+                    setActiveLink(href);
+                    setMenuOpen(false);
+                  }}
+                  className={
+                    "group flex min-h-[46px] items-center py-2 text-[16px] font-medium tracking-[-0.02em] transition-colors duration-200 " +
+                    (isActive ? "text-white" : "text-white/65 hover:text-white")
+                  }
+                >
+                  <span className="inline-flex flex-col items-start gap-1.5">
+                    {label}
+                    <span
+                      aria-hidden="true"
+                      className={
+                        "h-[2px] rounded-full bg-[#1677FF] transition-all duration-300 motion-reduce:transition-none " +
+                        (isActive ? "w-full opacity-100" : "w-0 opacity-0")
+                      }
+                    />
+                  </span>
+                </a>
+              );
+            })}
+          </nav>
+          <div className="mt-3 shrink-0 pb-1">
             <a
-              key={href}
-              href={href}
+              href="#contact"
               onClick={() => {
-                setActiveLink(href);
+                setActiveLink("#contact");
                 setMenuOpen(false);
               }}
-              className={
-                "flex items-center justify-between border-white/7 px-4 py-3.5 text-[15px] font-medium tracking-[-0.02em] transition " +
-                (index !== navLinks.length - 1 ? "border-b " : "") +
-                (activeLink === href
-                  ? "text-white"
-                  : "text-white/52 hover:text-white")
-              }
+              className="flex min-h-12 items-center justify-between rounded-md bg-[#1677FF] px-4 text-[13px] font-semibold text-white transition-colors hover:bg-[#3187ff]"
             >
-              <span>{label}</span>
-              <span
-                className={
-                  "h-1.5 w-1.5 rounded-full transition " +
-                  (activeLink === href ? "bg-[#1677FF]" : "bg-white/12")
-                }
-              />
+              Start a project
+              <span aria-hidden="true">↗</span>
             </a>
-          ))}
-        </nav>
-
-        <div className="border-t border-white/8 p-3">
-          <a
-            href="#contact"
-            onClick={() => {
-              setActiveLink("#contact");
-              setMenuOpen(false);
-            }}
-            className="flex items-center justify-between bg-[#1677FF] px-4 py-3 text-[12px] font-semibold text-white"
-          >
-            Start a project
-            <span aria-hidden="true">↗</span>
-          </a>
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }
