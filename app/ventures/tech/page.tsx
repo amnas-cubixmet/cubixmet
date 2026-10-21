@@ -240,12 +240,12 @@ export default function CubixmetTechPage() {
           <p className="relative text-[11px] font-semibold uppercase tracking-[.2em] text-white/75">Ready to Build?</p>
           <h2 className="relative mt-5 max-w-[780px] text-[clamp(2.5rem,5.8vw,5.5rem)] font-semibold leading-[.98] tracking-[-.06em]">Let's turn your vision into a scalable, production-ready product.</h2>
           <div className="relative mt-9 flex flex-wrap gap-3">
-            <a href={startProjectWhatsAppUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-white px-5 text-[13px] font-semibold text-black transition-colors hover:bg-white/85">Start a Project <Arrow /></a>
-            <a href="/brochures/cubixmet-Techpdf" download="cubixmet-Techpdf" className="inline-flex min-h-12 items-center gap-2.5 rounded-full border border-white/65 px-5 text-[13px] font-semibold text-white transition-colors hover:bg-white/10">
+            <a href={startProjectWhatsAppUrl} target="_blank" rel="noopener noreferrer" style={{ color: "#050505" }} className="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-white px-5 text-[13px] font-semibold transition-colors hover:bg-white/85">Start a Project <Arrow /></a>
+            <a href="/brochures/cubixmet-tech.pdf" download="cubixmet-tech.pdf" className="inline-flex min-h-12 items-center gap-2.5 rounded-full border border-white/65 px-5 text-[13px] font-semibold text-white transition-colors hover:bg-white/10">
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3" /></svg>
               Download Tech Brochure (PDF)
             </a>
-            <a href="https://wa.me/918921592742?text=Hi%20Cubixmet%20Tech%2C%20I%27d%20like%20to%20schedule%20a%20call." target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2.5 rounded-full border border-white/65 px-5 text-[13px] font-semibold text-white transition-colors hover:bg-white/10">Schedule a Call <Arrow /></a>
+            <a href="tel:+918921592742" aria-label="Call Cubixmet Tech at +91 89215 92742" className="inline-flex min-h-12 items-center gap-2.5 rounded-full border border-white/65 px-5 text-[13px] font-semibold text-white transition-colors hover:bg-white/10">Schedule a Call <Arrow /></a>
           </div>
         </div>
       </section>
