@@ -32,6 +32,17 @@ function FlowerSeparator() {
 
 function useReveal() {
   useEffect(() => {
+    // Keep content visible even on browsers without IntersectionObserver.
+    if (typeof IntersectionObserver === "undefined") {
+      document.querySelectorAll<HTMLElement>("[data-reveal]").forEach(
+        (element) => element.classList.add("is-visible")
+      );
+      document.querySelectorAll<HTMLElement>("[data-scroll-card]").forEach(
+        (element) => element.classList.add("is-card-visible")
+      );
+      return;
+    }
+
     const revealNodes = Array.from(document.querySelectorAll<HTMLElement>("[data-reveal]"));
     const cardNodes = Array.from(document.querySelectorAll<HTMLElement>("[data-scroll-card]"));
     const textNodes = Array.from(
@@ -139,11 +150,12 @@ function AboutSection() {
 
   useEffect(() => {
     const section = sectionRef.current;
-    if (
-      !section ||
-      typeof IntersectionObserver === "undefined" ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
+    if (!section) return;
+
+    if (typeof IntersectionObserver === "undefined") {
+      section.querySelectorAll<HTMLElement>("[data-about-reveal]").forEach(
+        (item) => item.classList.add("is-about-visible")
+      );
       return;
     }
 
@@ -370,7 +382,7 @@ function ServicesSection() {
       activeRect.width / 2 - track.clientWidth / 2;
     track.scrollTo({
       left: Math.max(0, center),
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      behavior: "smooth",
     });
   }, [activeService]);
 
@@ -389,7 +401,7 @@ function ServicesSection() {
 
     window.scrollTo({
       top: top + distance * destination,
-      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+      behavior: "smooth",
     });
   };
 
