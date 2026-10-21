@@ -1117,12 +1117,12 @@ export default function HomeSections() {
   useReveal();
   return (
     <>
+      <MarqueeSection />
       <AboutSection />
       <VenturesSection />
       <ServicesSection />
       <ProcessSection />
       <WorkSection />
-      <MarqueeSection />
       <TestimonialsSection />
       <LeadershipSection />
       <ImpactSection />
