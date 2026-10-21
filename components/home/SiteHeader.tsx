@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Arrow from "./Arrow";
 import Image from "next/image";
 
 const navLinks = [
@@ -208,7 +209,7 @@ export default function SiteHeader() {
               className="flex min-h-12 items-center justify-between rounded-md bg-[#1677FF] px-4 text-[13px] font-semibold text-white transition-colors hover:bg-[#3187ff]"
             >
               Start a project
-              <span aria-hidden="true">↗</span>
+              <Arrow />
             </a>
           </div>
         </div>
