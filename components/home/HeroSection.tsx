@@ -69,8 +69,8 @@ export default function HeroSection() {
   });
 
   return (
-    <section id="top" className="relative min-h-[100svh] overflow-hidden bg-[#050505] pt-[54px] md:min-h-[82svh] md:pt-[58px]">
-      <div className="relative z-10 flex min-h-[calc(100svh-54px)] flex-col md:min-h-[calc(82svh-58px)]">
+    <section id="top" className="relative overflow-hidden bg-[#050505] pt-[54px] md:min-h-[82svh] md:pt-[58px]">
+      <div className="relative z-10 flex flex-col md:min-h-[calc(82svh-58px)]">
         <div className="hero-text-wrapper grid flex-1 content-center gap-7 pb-5 pt-8 md:min-h-[56svh] md:pb-12 md:pt-16 lg:min-h-[58svh] lg:grid-cols-[1fr_360px]">
           <div className="max-w-[900px]">
             <h1 className="text-[clamp(2.9rem,6.4vw,6.3rem)] font-semibold leading-[0.92] tracking-[-0.055em]">
@@ -140,7 +140,7 @@ export default function HeroSection() {
         </div>
 
         <div
-          className="relative mt-auto cursor-grab touch-pan-y select-none overflow-hidden pb-2 active:cursor-grabbing md:mt-0 md:pb-5"
+          className="relative cursor-grab touch-pan-y select-none overflow-hidden active:cursor-grabbing md:mt-0 md:pb-5"
           onPointerEnter={(event) => {
             if (event.pointerType !== "mouse") return;
             hoveredRef.current = true;
@@ -168,7 +168,7 @@ export default function HeroSection() {
           {/* Mobile: balanced centered card with subtle side previews. */}
           <div
             key={`mobile-${activeCard}`}
-            className="hero-slider-stage-mobile relative left-1/2 flex w-max -translate-x-1/2 items-center gap-3 py-7 md:hidden"
+            className="hero-slider-stage-mobile relative left-1/2 flex w-max -translate-x-1/2 items-center gap-3 py-3 md:hidden"
           >
             {mobileProjects.map((project, slot) => {
               const isActive = slot === 1;
@@ -280,26 +280,6 @@ export default function HeroSection() {
           >
             Next project
           </button>
-        </div>
-        <div className="mb-3 flex items-center justify-center gap-1 md:hidden" aria-label="Featured project navigation">
-          {heroProjects.map((project, index) => (
-            <button
-              key={project.title}
-              type="button"
-              onClick={() => setActiveCard(index)}
-              aria-label={`Show project ${index + 1}: ${project.title}`}
-              aria-current={index === activeCard ? "true" : undefined}
-              className="grid h-8 w-7 place-items-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
-            >
-              <span
-                aria-hidden="true"
-                className={
-                  "h-1.5 rounded-full transition-all duration-300 " +
-                  (index === activeCard ? "w-5 bg-[#1677FF]" : "w-1.5 bg-white/30")
-                }
-              />
-            </button>
-          ))}
         </div>
       </div>
     </section>
