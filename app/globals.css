@@ -146,33 +146,8 @@ a {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
 
-  .reveal,
-  .reveal.is-visible {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
 
-  .marquee,
-  .service-visual::before {
-    animation: none;
-  }
-
-  .marquee-viewport {
-    overflow-x: auto;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  .hero-card {
-    transition: none;
-  }
-}
 
 
 .site-wrapper {
@@ -404,12 +379,8 @@ a {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .hero-slider-card,
-  .hero-slider-stage[data-dragging="true"] .hero-slider-card {
-    transition: none;
-  }
-}
+
+
 
 
 .about-wrapper {
@@ -458,7 +429,7 @@ a {
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
+
   .about-motion-ready .about-reveal {
     opacity: 0;
     transform: translate3d(0, 26px, 0) scale(0.985);
@@ -474,16 +445,10 @@ a {
     transform: translate3d(0, 0, 0) scale(1);
     filter: none;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .about-motion-ready .about-reveal {
-    opacity: 1;
-    transform: none;
-    filter: none;
-    transition: none;
-  }
-}
+
+
+
 
 /* Scroll-triggered component/card motion */
 .scroll-card {
@@ -523,16 +488,8 @@ a {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .scroll-card,
-  .scroll-card.is-card-visible,
-  .scroll-card.is-card-visible:hover {
-    opacity: 1;
-    transform: none;
-    filter: none;
-    transition: none;
-  }
-}
+
+
 
 
 /* Global text reveal motion across page content */
@@ -561,15 +518,8 @@ a {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .text-scroll-reveal,
-  .text-scroll-reveal.is-text-visible {
-    opacity: 1;
-    transform: none;
-    filter: none;
-    transition: none;
-  }
-}
+
+
 
 
 @media (max-width: 767px) {
@@ -636,17 +586,8 @@ a {
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .team-slider-viewport {
-    overflow-x: auto;
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
 
-  .team-slider-track {
-    animation: none;
-  }
-}
+
 
 
 /* NORTHFRAME-inspired Services UI: swipeable mobile tabs, subtle motion. */
@@ -682,12 +623,5 @@ a {
   animation: service-content-enter 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .service-active-indicator {
-    transition: none;
-  }
 
-  .service-content-enter {
-    animation: none;
-  }
-}
+
