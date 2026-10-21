@@ -7,7 +7,6 @@ type TechTeamPortraitProps = {
   initials: string;
   name: string;
   photoUrl?: string;
-  profileUrl?: string;
 };
 
 const flowerPath =
@@ -17,7 +16,6 @@ export default function TechTeamPortrait({
   initials,
   name,
   photoUrl,
-  profileUrl,
 }: TechTeamPortraitProps) {
   const [failedUrl, setFailedUrl] = useState<string | null>(null);
   const showPhoto = Boolean(photoUrl && photoUrl !== failedUrl);
@@ -62,19 +60,7 @@ export default function TechTeamPortrait({
           </text>
         </svg>
       )}
-      {profileUrl ? (
-        <a
-          href={profileUrl}
-          aria-label={`View ${name}'s profile`}
-          className="absolute bottom-0 right-0 grid h-8 w-8 place-items-center rounded-full bg-[#1677FF] text-white transition-transform hover:scale-105 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
-        >
-          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4"><path d="M5 19 19 5M8 5h11v11" /></svg>
-        </a>
-      ) : (
-        <span aria-hidden="true" className="absolute bottom-0 right-0 grid h-8 w-8 place-items-center rounded-full bg-[#1677FF] text-white">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4"><path d="M5 19 19 5M8 5h11v11" /></svg>
-        </span>
-      )}
+
     </div>
   );
 }
