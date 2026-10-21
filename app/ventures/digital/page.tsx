@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SiteHeader from "../../../components/home/SiteHeader";
 import SiteFooter from "../../../components/home/SiteFooter";
 import Arrow from "../../../components/home/Arrow";
+import ScheduleCallButton from "../../../components/home/ScheduleCallButton";
 import TechTeamPortrait from "../../../components/home/TechTeamPortrait";
 
 export const metadata: Metadata = {
@@ -220,7 +221,7 @@ export default function CubixmetDigitalPage() {
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3"/></svg>
               Download Digital Brochure (PDF)
             </a>
-            <a href="tel:+918921592742" aria-label="Call Cubixmet Digital at +91 89215 92742" className="inline-flex min-h-12 items-center gap-2.5 rounded-full border border-white/65 px-5 text-[13px] font-semibold text-white transition-colors hover:bg-white/10">Schedule a Call <Arrow /></a>
+            <ScheduleCallButton venture="Digital" />
           </div>
         </div>
       </section>
