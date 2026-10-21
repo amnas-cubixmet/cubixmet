@@ -119,7 +119,7 @@ export default function SiteHeader() {
               <span
                 aria-hidden="true"
                 className={
-                  "absolute inset-x-1 bottom-0 h-0.5 rounded-full bg-[#1677FF] transition-transform duration-300 motion-reduce:transition-none " +
+                  "absolute inset-x-1 bottom-0 h-0.5 rounded-full bg-[#1677FF] transition-transform duration-300 " +
                   (activeLink === href ? "scale-x-100" : "scale-x-0")
                 }
               />
@@ -190,7 +190,7 @@ export default function SiteHeader() {
                     <span
                       aria-hidden="true"
                       className={
-                        "h-[2px] rounded-full bg-[#1677FF] transition-all duration-300 motion-reduce:transition-none " +
+                        "h-[2px] rounded-full bg-[#1677FF] transition-all duration-300 " +
                         (isActive ? "w-full opacity-100" : "w-0 opacity-0")
                       }
                     />
