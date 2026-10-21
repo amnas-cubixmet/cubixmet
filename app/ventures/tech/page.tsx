@@ -4,6 +4,7 @@ import SiteFooter from "../../../components/home/SiteFooter";
 import Arrow from "../../../components/home/Arrow";
 import TechHeroImage from "../../../components/home/TechHeroImage";
 import TechServiceIcon from "../../../components/home/TechServiceIcon";
+import TechTeamPortrait from "../../../components/home/TechTeamPortrait";
 
 export const metadata: Metadata = {
   title: "Cubixmet Tech | Build. Deploy. Scale.",
@@ -64,7 +65,16 @@ const techServices = [
   },
 ];
 
-const techTeam = [
+type TechTeamMember = {
+  initials: string;
+  name: string;
+  role: string;
+  description: string;
+  photoUrl?: string;
+  profileUrl?: string;
+};
+
+const techTeam: TechTeamMember[] = [
   {
     initials: "FA",
     name: "Fadhil",
@@ -195,13 +205,31 @@ export default function CubixmetTechPage() {
           <p className="mt-6 max-w-[660px] text-[14px] leading-[1.85] text-white/55">
             Engineers, architects, and problem-solvers dedicated to building your next big thing.
           </p>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-11 divide-y divide-white/10 border-t border-white/10 md:mt-14">
             {techTeam.map((member) => (
-              <article key={member.name} className="flex min-h-[260px] flex-col rounded-[18px] border border-white/10 bg-[#0d0d0d] p-6">
-                <span className="grid h-14 w-14 place-items-center rounded-full border border-[#1677FF]/30 bg-[#1677FF]/10 text-[17px] font-semibold text-[#1677FF]">{member.initials}</span>
-                <h3 className="mt-8 text-[22px] font-semibold tracking-[-.04em]">{member.name}</h3>
-                <p className="mt-2 text-[12px] font-semibold leading-[1.5] text-[#1677FF]">{member.role}</p>
-                <p className="mt-4 text-[12px] leading-[1.8] text-white/50">{member.description}</p>
+              <article
+                key={member.name}
+                className="grid grid-cols-[minmax(0,1fr)_100px] items-center gap-5 py-7 sm:grid-cols-[minmax(0,1fr)_120px] sm:gap-9 sm:py-9 md:grid-cols-[minmax(0,1fr)_136px] md:gap-12 md:py-10"
+              >
+                <div className="min-w-0">
+                  <h3 className="text-[19px] font-semibold tracking-[-.035em] text-white md:text-[24px]">
+                    {member.name}
+                  </h3>
+                  <p className="mt-1.5 text-[10px] font-medium uppercase leading-[1.65] tracking-[.09em] text-white/45 md:text-[11px]">
+                    {member.role}
+                  </p>
+                  <p className="mt-5 max-w-[620px] text-[12px] leading-[1.75] text-white/50 md:mt-6 md:text-[14px] md:leading-6">
+                    {member.description}
+                  </p>
+                </div>
+                <div className="justify-self-end">
+                  <TechTeamPortrait
+                    initials={member.initials}
+                    name={member.name}
+                    photoUrl={member.photoUrl}
+                    profileUrl={member.profileUrl}
+                  />
+                </div>
               </article>
             ))}
           </div>
