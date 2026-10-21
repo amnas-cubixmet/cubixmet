@@ -11,6 +11,8 @@ export const metadata: Metadata = {
     "End-to-end technology solutions from Cubixmet Tech: software development, product engineering, cloud, APIs, security, AI and technical consulting.",
 };
 
+const startProjectWhatsAppUrl = "https://wa.me/918921592742?text=Hi%20Cubixmet%20Tech%2C%20I%27d%20like%20to%20start%20a%20project.%20Please%20share%20the%20next%20steps.";
+
 const techServices = [
   {
     number: "01",
@@ -116,7 +118,7 @@ export default function CubixmetTechPage() {
               <a href="#services" className="inline-flex min-h-12 items-center gap-3 rounded-full bg-[#1677FF] px-6 text-[13px] font-semibold text-white transition-colors hover:bg-[#348aff]">
                 Our Services <Arrow />
               </a>
-              <a href="/#contact" className="inline-flex min-h-12 items-center gap-3 rounded-full border border-white/20 px-6 text-[13px] font-semibold text-white transition-colors hover:border-white/60">
+              <a href={startProjectWhatsAppUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-3 rounded-full border border-white/20 px-6 text-[13px] font-semibold text-white transition-colors hover:border-white/60">
                 Start a Project <Arrow />
               </a>
             </div>
@@ -212,7 +214,7 @@ export default function CubixmetTechPage() {
           <p className="relative text-[11px] font-semibold uppercase tracking-[.2em] text-white/75">Ready to Build?</p>
           <h2 className="relative mt-5 max-w-[780px] text-[clamp(2.5rem,5.8vw,5.5rem)] font-semibold leading-[.98] tracking-[-.06em]">Let's turn your vision into a scalable, production-ready product.</h2>
           <div className="relative mt-9 flex flex-wrap gap-3">
-            <a href="/#contact" className="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-white px-5 text-[13px] font-semibold text-black transition-colors hover:bg-white/85">Start a Project <Arrow /></a>
+            <a href={startProjectWhatsAppUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-white px-5 text-[13px] font-semibold text-black transition-colors hover:bg-white/85">Start a Project <Arrow /></a>
             <a href="/brochures/cubixmet-Techpdf" download="cubixmet-Techpdf" className="inline-flex min-h-12 items-center gap-2.5 rounded-full border border-white/65 px-5 text-[13px] font-semibold text-white transition-colors hover:bg-white/10">
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3" /></svg>
               Download Tech Brochure (PDF)
