@@ -18,7 +18,7 @@ export const ventures: Venture[] = [
       "Custom Software Solutions",
       "Technical Consulting",
     ],
-    href: "https://www.cubixmet.com/ventures/tech",
+    href: "/ventures/tech",
     icon: "tech",
   },
   {
