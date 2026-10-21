@@ -301,28 +301,22 @@ a {
 }
 
 @media (max-width: 767px) {
+  .hero-project-card {
+    transform-origin: center;
+  }
+
   .hero-project-card-inactive {
     transform: scale(0.96);
-    opacity: 0.78;
+    opacity: 0.62;
+    filter: brightness(0.76) saturate(0.78);
   }
 
-  .hero-project-card-active {
-    animation-name: hero-active-pop-mobile;
-  }
-
-  @keyframes hero-active-pop-mobile {
-    0% {
-      transform: scale(0.96) translateY(6px);
-      opacity: 0.78;
-    }
-    60% {
-      transform: scale(1.08) translateY(-4px);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(1.06) translateY(-3px);
-      opacity: 1;
-    }
+  .hero-project-card-active,
+  .hero-project-card-active:hover,
+  .hero-project-card-active:active {
+    animation: none;
+    transform: scale(1.025);
+    opacity: 1;
   }
 }
 
@@ -490,30 +484,6 @@ a {
 }
 
 
-.hero-slider-step-mobile {
-  transform: translate3d(-4%, 0, 0);
-  animation: hero-mobile-slide-in 760ms cubic-bezier(0.22, 1, 0.36, 1) both;
-  will-change: transform, opacity;
-}
-
-@keyframes hero-mobile-slide-in {
-  from {
-    opacity: 0.68;
-    transform: translate3d(-1%, 0, 0) scale(0.99);
-  }
-  to {
-    opacity: 1;
-    transform: translate3d(-4%, 0, 0) scale(1);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-slider-step-mobile {
-    animation: none;
-  }
-}
-
-
 @media (max-width: 767px) {
   html,
   body,
@@ -524,9 +494,8 @@ a {
     overscroll-behavior-x: none;
   }
 
-  .hero-slider-step-mobile {
+  .hero-slider-stage-mobile {
     max-width: none;
-    overflow: visible;
     touch-action: pan-y;
   }
 }
