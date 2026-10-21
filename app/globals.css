@@ -163,7 +163,9 @@ a {
 
 @media (max-width: 767px) {
   .header-wrapper {
-    width: calc(100% - 36px);
+    width: 100%;
+    max-width: 100%;
+    padding-inline: 20px;
   }
 
   .mobile-menu-panel {
@@ -241,7 +243,11 @@ a {
 
 @media (max-width: 767px) {
   .hero-text-wrapper {
-    width: calc(100% - 40px);
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    margin-inline: 0;
+    padding-inline: 20px;
   }
 }
 
@@ -509,7 +515,8 @@ a {
   }
 
   .hero-slider-stage-mobile {
-    max-width: none;
+    width: 100%;
+    max-width: 100%;
     touch-action: pan-y;
   }
 }
