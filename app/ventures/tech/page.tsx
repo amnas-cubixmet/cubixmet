@@ -111,7 +111,7 @@ export default function CubixmetTechPage() {
               Technology Vertical
             </p>
             <h1 className="max-w-[830px] text-[clamp(3.3rem,8.2vw,7.8rem)] font-semibold leading-[.92] tracking-[-.075em]">
-              Cubixmet <span className="text-[#1677FF]">Tech.</span>
+              Cubixmet <span className="text-[#1677FF]">Tech</span>
             </h1>
             <p className="mt-6 text-[clamp(1.3rem,2.9vw,2.45rem)] font-medium leading-tight tracking-[-.045em] text-white/90">
               Build. Deploy. Scale.
@@ -229,7 +229,7 @@ export default function CubixmetTechPage() {
           <h2 className="relative mt-5 max-w-[780px] text-[clamp(2.5rem,5.8vw,5.5rem)] font-semibold leading-[.98] tracking-[-.06em]">Let's turn your vision into a scalable, production-ready product.</h2>
           <div className="relative mt-9 flex flex-wrap gap-3">
             <a href="/#contact" className="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-white px-5 text-[13px] font-semibold text-black transition-colors hover:bg-white/85">Start a Project <Arrow /></a>
-            <a href="/brochures/cubixmet-tech.pdf" download="cubixmet-tech.pdf" className="inline-flex min-h-12 items-center gap-2.5 rounded-full border border-white/65 px-5 text-[13px] font-semibold text-white transition-colors hover:bg-white/10">
+            <a href="/brochures/cubixmet-Techpdf" download="cubixmet-Techpdf" className="inline-flex min-h-12 items-center gap-2.5 rounded-full border border-white/65 px-5 text-[13px] font-semibold text-white transition-colors hover:bg-white/10">
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3" /></svg>
               Download Tech Brochure (PDF)
             </a>
