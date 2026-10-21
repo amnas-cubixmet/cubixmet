@@ -110,13 +110,8 @@ export default function CubixmetTechPage() {
               <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
               Technology Vertical
             </p>
-<<<<<<< HEAD
             <h1 className="max-w-[830px] text-[clamp(3.3rem,8.2vw,7.8rem)] font-semibold leading-[.92] tracking-[-.075em]">
               Cubixmet <span className="text-[#1677FF]">Tech</span>
-=======
-            <h1 className="flex max-w-full flex-wrap items-baseline gap-x-[.2em] gap-y-1 text-[clamp(2.8rem,6.4vw,6.25rem)] font-semibold leading-[.99] tracking-[-.065em]">
-              <span>Cubixmet</span><span className="text-[#1677FF]">Tech.</span>
->>>>>>> 7dc4cc0f31c8c82d7e2606c4dfecfc62c7575e1e
             </h1>
             <p className="mt-5 text-[clamp(1.35rem,2.75vw,2.2rem)] font-medium leading-tight tracking-[-.045em] text-white/90">
               Build. Deploy. Scale.
