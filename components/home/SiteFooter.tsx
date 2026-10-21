@@ -94,7 +94,7 @@ export default function SiteFooter() {
             <div className="mt-5 space-y-3">
               {[
                 ["Cubixmet Tech", "/ventures/tech"],
-                ["Cubixmet Digital", "https://www.cubixmet.com/ventures/digital"],
+                ["Cubixmet Digital", "/ventures/digital"],
                 ["Cubixmet Academy", "https://www.cubixmet.com/ventures/academy"],
               ].map(([label, href]) => (
                 <a
