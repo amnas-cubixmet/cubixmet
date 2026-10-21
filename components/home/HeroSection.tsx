@@ -1,20 +1,62 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { PointerEvent as ReactPointerEvent } from "react";
 import Arrow from "./Arrow";
 import { heroProjects } from "../../data/heroProjects";
 
 export default function HeroSection() {
   const [activeCard, setActiveCard] = useState(2);
   const [paused, setPaused] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
+  const [dragging, setDragging] = useState(false);
+  const hoveredRef = useRef(false);
+  const dragRef = useRef<{ pointerId: number; startX: number } | null>(null);
 
   const goNext = () => setActiveCard((current) => (current + 1) % heroProjects.length);
+  const goPrevious = () =>
+    setActiveCard((current) => (current - 1 + heroProjects.length) % heroProjects.length);
 
   useEffect(() => {
     if (paused) return;
-    const timer = window.setInterval(goNext, 3600);
+    const timer = window.setInterval(() => {
+      setActiveCard((current) => (current + 1) % heroProjects.length);
+    }, 3600);
     return () => window.clearInterval(timer);
   }, [paused]);
+
+  const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+    dragRef.current = { pointerId: event.pointerId, startX: event.clientX };
+    event.currentTarget.setPointerCapture(event.pointerId);
+    setPaused(true);
+    setDragging(true);
+    setDragOffset(0);
+  };
+
+  const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    setDragOffset(Math.max(-130, Math.min(130, (event.clientX - drag.startX) * 0.55)));
+  };
+
+  const finishDrag = (event: ReactPointerEvent<HTMLDivElement>, cancelled = false) => {
+    const drag = dragRef.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    const distance = event.clientX - drag.startX;
+    dragRef.current = null;
+    if (!cancelled && Math.abs(distance) > 45) {
+      setActiveCard((current) =>
+        (current + (distance < 0 ? 1 : -1) + heroProjects.length) % heroProjects.length
+      );
+    }
+    setDragOffset(0);
+    setDragging(false);
+    setPaused(hoveredRef.current);
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) {
+      event.currentTarget.releasePointerCapture(event.pointerId);
+    }
+  };
 
   const visibleProjects = [-2, -1, 0, 1].map((offset) => {
     const index = (activeCard + offset + heroProjects.length) % heroProjects.length;
@@ -98,10 +140,31 @@ export default function HeroSection() {
         </div>
 
         <div
-          className="relative mt-auto overflow-hidden pb-2 md:mt-0 md:pb-5"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
+          className="relative mt-auto cursor-grab touch-pan-y select-none overflow-hidden pb-2 active:cursor-grabbing md:mt-0 md:pb-5"
+          onPointerEnter={(event) => {
+            if (event.pointerType !== "mouse") return;
+            hoveredRef.current = true;
+            setPaused(true);
+          }}
+          onPointerLeave={(event) => {
+            if (event.pointerType !== "mouse") return;
+            hoveredRef.current = false;
+            if (!dragRef.current) setPaused(false);
+          }}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={(event) => finishDrag(event)}
+          onPointerCancel={(event) => finishDrag(event, true)}
+          onDragStart={(event) => event.preventDefault()}
+          role="region"
+          aria-label="Featured projects — drag or swipe horizontally to browse"
         >
+          <div
+            style={{
+              transform: `translate3d(${dragOffset}px, 0, 0)`,
+              transition: dragging ? "none" : "transform 220ms ease-out",
+            }}
+          >
           {/* Mobile: exactly 3 cards, active card centered */}
           <div
             key={`mobile-${activeCard}`}
@@ -203,9 +266,22 @@ export default function HeroSection() {
               );
             })}
           </div>
+          </div>
+          <button
+            type="button"
+            onClick={goPrevious}
+            className="sr-only focus:not-sr-only focus:absolute focus:bottom-3 focus:left-3 focus:z-40 focus:bg-[#1677FF] focus:px-3 focus:py-2 focus:text-white"
+          >
+            Previous project
+          </button>
+          <button
+            type="button"
+            onClick={goNext}
+            className="sr-only focus:not-sr-only focus:absolute focus:bottom-3 focus:right-3 focus:z-40 focus:bg-[#1677FF] focus:px-3 focus:py-2 focus:text-white"
+          >
+            Next project
+          </button>
         </div>
-
-
       </div>
     </section>
   );
