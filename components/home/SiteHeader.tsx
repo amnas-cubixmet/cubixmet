@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const navLinks = [
   ["#top", "Home"],
@@ -88,9 +89,13 @@ export default function SiteHeader() {
           aria-label="Cubixmet home"
         >
           <span className="grid h-10 w-[120px] place-items-center overflow-hidden md:h-11 md:w-[136px]">
-            <img
+            <Image
               src="/images/logo.png"
               alt="Cubixmet"
+              width={272}
+              height={88}
+              sizes="(min-width: 768px) 136px, 120px"
+              loading="eager"
               className="h-full w-full object-contain"
             />
           </span>
