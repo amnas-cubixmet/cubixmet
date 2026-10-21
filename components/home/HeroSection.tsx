@@ -69,16 +69,16 @@ export default function HeroSection() {
   });
 
   return (
-    <section id="top" className="relative overflow-hidden bg-[#050505] pt-[54px] md:min-h-[82svh] md:pt-[58px]">
+    <section id="top" className="relative w-full max-w-full overflow-x-clip bg-[#050505] pt-[60px] md:min-h-[82svh] md:pt-[58px]">
       <div className="relative z-10 flex flex-col md:min-h-[calc(82svh-58px)]">
-        <div className="hero-text-wrapper grid flex-1 content-center gap-7 pb-5 pt-8 md:min-h-[56svh] md:pb-12 md:pt-16 lg:min-h-[58svh] lg:grid-cols-[1fr_360px]">
-          <div className="max-w-[900px]">
-            <h1 className="text-[clamp(2.9rem,6.4vw,6.3rem)] font-semibold leading-[0.92] tracking-[-0.055em]">
+        <div className="hero-text-wrapper grid min-w-0 flex-1 content-center gap-6 pb-4 pt-10 md:min-h-[56svh] md:gap-7 md:pb-12 md:pt-16 lg:min-h-[58svh] lg:grid-cols-[1fr_360px]">
+          <div className="min-w-0 max-w-[900px]">
+            <h1 className="max-w-full text-[clamp(2.3rem,11vw,3.4rem)] font-semibold leading-[0.98] tracking-[-0.055em] md:text-[clamp(2.9rem,6.4vw,6.3rem)] md:leading-[0.92]">
               <span className="block">Growth Through</span>
               <span className="block">Innovation.</span>
             </h1>
 
-            <div className="mt-7 lg:hidden">
+            <div className="mt-6 lg:hidden">
               <div className="hidden items-center gap-3">
                 <div className="grid h-[74px] w-[74px] place-items-center rounded-[24px] bg-[#171c13] text-center">
                   <span className="text-[7px] leading-3 text-white/45">
@@ -88,7 +88,7 @@ export default function HeroSection() {
                 </div>
               </div>
 
-              <p className="mt-5 max-w-[310px] text-[11px] leading-[1.6] text-white/48">
+              <p className="mt-5 max-w-[34ch] text-[12px] leading-[1.65] text-white/65 sm:max-w-[48ch] md:text-[13px]">
                 Cubixmet is a multi-venture innovation ecosystem in Pandikkad, Malappuram delivering software development, digital marketing, and IT training solutions across The World.
               </p>
 
@@ -96,7 +96,7 @@ export default function HeroSection() {
                 href="https://api.whatsapp.com/send/?phone=918921592742&text=Hi+Cubixmet%21+I%27d+like+to+get+started.&type=phone_number&app_absent=0"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#1677FF] px-4 py-2 text-[10px] font-bold text-white"
+                className="mt-5 inline-flex min-h-10 items-center gap-2 rounded-full bg-[#1677FF] px-5 py-2.5 text-[12px] font-semibold text-white transition-colors hover:bg-[#3187ff] lg:mt-4" 
               >
                 Let&apos;s Talk <Arrow />
               </a>
@@ -140,7 +140,7 @@ export default function HeroSection() {
         </div>
 
         <div
-          className="relative cursor-grab touch-pan-y select-none overflow-hidden active:cursor-grabbing md:mt-0 md:pb-5"
+          className="relative w-full max-w-full cursor-grab touch-pan-y select-none overflow-hidden active:cursor-grabbing md:mt-0 md:pb-5"
           onPointerEnter={(event) => {
             if (event.pointerType !== "mouse") return;
             hoveredRef.current = true;
@@ -168,7 +168,7 @@ export default function HeroSection() {
           {/* Mobile: balanced centered card with subtle side previews. */}
           <div
             key={`mobile-${activeCard}`}
-            className="hero-slider-stage-mobile relative left-1/2 flex w-max -translate-x-1/2 items-center gap-3 py-3 md:hidden"
+            className="hero-slider-stage-mobile mx-auto flex w-full max-w-full items-center justify-center gap-3 py-3 md:hidden"
           >
             {mobileProjects.map((project, slot) => {
               const isActive = slot === 1;
@@ -180,7 +180,7 @@ export default function HeroSection() {
                     "hero-card hero-project-card group relative flex-none overflow-hidden rounded-[12px] border bg-[#0c0d0c] " +
                     (isActive
                       ? "hero-project-card-active h-[clamp(185px,55vw,250px)] w-[min(74vw,360px)]"
-                      : "hero-project-card-inactive h-[clamp(155px,45vw,210px)] w-[min(43vw,196px)] border-white/10")
+                      : "hero-project-card-inactive h-[clamp(155px,45vw,210px)] w-[min(36vw,170px)] border-white/10")
                   }
                 >
                   <img
