@@ -54,7 +54,7 @@ export default function SiteHeader() {
       className={
         "fixed inset-x-0 top-0 z-50 transition-all duration-300 " +
         (scrolled || menuOpen
-          ? "border-b border-white/8 bg-[#050505]/92 backdrop-blur-xl"
+          ? "bg-[#050505]/92 backdrop-blur-xl"
           : "bg-gradient-to-b from-black/55 to-transparent")
       }
     >
@@ -77,17 +77,17 @@ export default function SiteHeader() {
           </span>
         </a>
 
-        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-1 rounded-full border border-white/8 bg-white/[0.035] p-1 md:flex">
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 md:flex lg:gap-6">
           {navLinks.map(([href, label]) => (
             <a
               key={href}
               href={href}
               onClick={() => setActiveLink(href)}
               className={
-                "relative rounded-full px-3 py-2 text-[10px] font-medium transition-all duration-300 lg:px-3.5 lg:text-[11px] " +
+                "relative px-1 py-2 text-[11px] font-medium transition-colors duration-300 lg:text-[12px] " +
                 (activeLink === href
-                  ? "bg-[#1677FF] text-white shadow-[0_0_20px_rgba(22,119,255,.22)]"
-                  : "text-white/45 hover:bg-white/[0.045] hover:text-white")
+                  ? "text-[#1677FF]"
+                  : "text-white/65 hover:text-white")
               }
             >
               {label}
