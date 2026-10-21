@@ -141,11 +141,13 @@ export default function HeroSection() {
 
         <div
           className="relative mt-auto cursor-grab touch-pan-y select-none overflow-hidden pb-2 active:cursor-grabbing md:mt-0 md:pb-5"
-          onMouseEnter={() => {
+          onPointerEnter={(event) => {
+            if (event.pointerType !== "mouse") return;
             hoveredRef.current = true;
             setPaused(true);
           }}
-          onMouseLeave={() => {
+          onPointerLeave={(event) => {
+            if (event.pointerType !== "mouse") return;
             hoveredRef.current = false;
             if (!dragRef.current) setPaused(false);
           }}
@@ -154,6 +156,7 @@ export default function HeroSection() {
           onPointerUp={(event) => finishDrag(event)}
           onPointerCancel={(event) => finishDrag(event, true)}
           onDragStart={(event) => event.preventDefault()}
+          role="region"
           aria-label="Featured projects — drag or swipe horizontally to browse"
         >
           <div
