@@ -1,5 +1,5 @@
 export const marqueeItems = [
   "Digital Products",
   "Brand Systems",
-  "Web Experiences",
+  "Software Development",
 ] as const;
