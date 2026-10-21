@@ -344,7 +344,7 @@ function ServicesSection() {
     const update = () => {
       frame = 0;
       const section = sectionRef.current;
-      if (!section || window.innerWidth < 1024) return;
+      if (!section) return;
 
       const top = section.getBoundingClientRect().top + window.scrollY;
       const distance = Math.max(section.offsetHeight - window.innerHeight, 1);
@@ -387,13 +387,7 @@ function ServicesSection() {
   }, [activeService]);
 
   const selectService = (index: number) => {
-    if (window.innerWidth < 1024) {
-      setActiveService(index);
-      setServiceProgress((index + 1) / services.length);
-      return;
-    }
-
-    const section = sectionRef.current;
+        const section = sectionRef.current;
     if (!section) return;
     const top = section.getBoundingClientRect().top + window.scrollY;
     const distance = Math.max(section.offsetHeight - window.innerHeight, 1);
@@ -406,7 +400,7 @@ function ServicesSection() {
   };
 
   const handleNavPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!event.isPrimary || (event.pointerType === "mouse" && event.button !== 0)) return;
+    if (!event.isPrimary || event.pointerType !== "mouse" || event.button !== 0) return;
     const track = mobileNavRef.current;
     if (!track) return;
     suppressNavClickRef.current = false;
@@ -442,18 +436,18 @@ function ServicesSection() {
       ref={sectionRef}
       id="services"
       aria-label="Our services"
-      className="relative isolate w-full bg-white text-black lg:h-[600svh]"
+      className="relative isolate h-[520svh] w-full bg-[#050505] text-white lg:h-[600svh]"
       data-no-text-reveal
     >
-      {/* Mobile/tablet: Northframe-style horizontal navigation and single media stage. */}
-      <div className="mx-auto w-full max-w-[660px] px-5 pb-14 pt-16 sm:px-8 lg:hidden">
-        <div className="mb-6 flex items-center justify-between gap-4">
+      {/* Mobile/tablet: pinned scroll-driven services stage, with clickable/swipeable tabs. */}
+      <div className="services-mobile-stage sticky top-0 mx-auto flex h-[100svh] w-full max-w-[660px] flex-col justify-center overflow-hidden px-5 pb-5 pt-[74px] sm:px-8 lg:hidden">
+        <div className="mb-4 flex items-center justify-between gap-4">
           <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
             Services
           </p>
-          <p className="font-mono text-[11px] text-black/55" aria-live="polite">
-            <span className="font-semibold text-black">{current.no}</span>
-            <span className="mx-2 text-black/30">—</span>
+          <p className="font-mono text-[11px] text-white/55" aria-live="polite">
+            <span className="font-semibold text-white">{current.no}</span>
+            <span className="mx-2 text-white/35">—</span>
             {String(services.length).padStart(2, "0")}
           </p>
         </div>
@@ -482,8 +476,8 @@ function ServicesSection() {
               className={
                 "shrink-0 snap-center whitespace-nowrap rounded-sm px-3.5 py-3 text-[12px] font-medium transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
                 (activeService === index
-                  ? "bg-black text-white"
-                  : "bg-[#f2f2f2] text-black/60")
+                  ? "bg-white text-black"
+                  : "bg-white/[0.07] text-white/65 hover:text-white")
               }
             >
               {service.title}
@@ -491,7 +485,7 @@ function ServicesSection() {
           ))}
         </nav>
 
-        <div className="mb-6 h-[2px] w-full bg-black/10" aria-hidden="true">
+        <div className="mb-4 h-[2px] w-full bg-white/15" aria-hidden="true">
           <div
             className="h-full origin-left bg-[#1677FF] transition-[width] duration-300"
             style={{ width: `${((activeService + 1) / services.length) * 100}%` }}
@@ -499,21 +493,21 @@ function ServicesSection() {
         </div>
 
         <div key={current.no} className="service-content-enter">
-          <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#111]">
+          <div className="services-mobile-media relative h-[clamp(130px,24svh,225px)] w-full overflow-hidden rounded-[10px] bg-[#101010]">
             <img src={current.image} alt={current.title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
           </div>
-          <div className="pt-5">
+          <div className="pt-4">
             <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1677FF]">
               {current.no} / Service
             </p>
-            <h3 className="mt-3 text-[clamp(1.5rem,5vw,2.1rem)] font-semibold tracking-[-0.045em]">
+            <h3 className="mt-2 text-[clamp(1.4rem,5vw,2rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
               {current.title}
             </h3>
-            <p className="mt-3 text-[14px] leading-7 text-black/65">{current.copy}</p>
-            <ul className="mt-5 grid gap-x-5 gap-y-3 sm:grid-cols-2">
+            <p className="mt-2.5 text-[12px] leading-[1.6] text-white/65 sm:text-[14px] sm:leading-6">{current.copy}</p>
+            <ul className="services-mobile-features mt-4 flex gap-3 overflow-x-auto pb-1 sm:grid sm:grid-cols-2 sm:gap-y-2">
               {current.meta.map((item) => (
-                <li key={item} className="flex items-start gap-2.5 text-[12px] leading-5 text-black/65">
-                  <span aria-hidden="true" className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
+                <li key={item} className="flex shrink-0 items-center gap-2 text-[11px] leading-5 text-white/60 sm:shrink sm:items-start sm:text-[12px]">
+                  <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF] sm:mt-[7px]" />
                   {item}
                 </li>
               ))}
@@ -522,8 +516,8 @@ function ServicesSection() {
         </div>
       </div>
 
-      {/* Desktop: full-screen sticky service showcase, inspired by NORTHFRAME DeliverablesSection. */}
-      <div className="sticky top-0 hidden h-[100svh] w-full overflow-hidden bg-white lg:flex">
+      {/* Desktop: sticky scroll-driven service showcase. */}
+      <div className="sticky top-0 hidden h-[100svh] w-full overflow-hidden bg-[#050505] lg:flex">
         <div className="mx-auto grid h-full w-[90%] max-w-[1500px] grid-cols-[minmax(0,1fr)_32px_minmax(0,1.1fr)] items-center gap-8 py-10 xl:gap-14">
           <nav aria-label="Choose a service" className="flex min-w-0 flex-col items-center justify-center">
             <div className="w-full max-w-[470px]">
@@ -534,7 +528,7 @@ function ServicesSection() {
               <div className="relative flex w-full flex-col gap-1">
                 <span
                   aria-hidden="true"
-                  className="service-active-indicator pointer-events-none absolute left-0 top-0 h-12 w-full rounded-sm bg-black"
+                  className="service-active-indicator pointer-events-none absolute left-0 top-0 h-12 w-full rounded-full bg-white"
                   style={{ transform: `translate3d(0, ${activeService * 52}px, 0)` }}
                 />
                 {services.map((service, index) => (
@@ -545,7 +539,7 @@ function ServicesSection() {
                     aria-current={activeService === index ? "true" : undefined}
                     className={
                       "relative z-10 flex h-12 min-w-0 w-full items-center justify-center px-2 text-center text-[clamp(14px,1.6vw,23px)] font-semibold tracking-[-0.045em] transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
-                      (activeService === index ? "text-white" : "text-black/35 hover:text-black/80")
+                      (activeService === index ? "text-black" : "text-white/45 hover:text-white")
                     }
                   >
                     {service.title}
@@ -556,7 +550,7 @@ function ServicesSection() {
           </nav>
 
           <div className="flex h-[48svh] max-h-[460px] min-h-[250px] flex-col items-center justify-between">
-            <div className="relative min-h-0 w-[2px] flex-1 overflow-hidden bg-black/10">
+            <div className="relative min-h-0 w-[2px] flex-1 overflow-hidden bg-white/15">
               <div
                 className="absolute inset-0 origin-top bg-[#1677FF] transition-transform duration-150"
                 style={{ transform: `scaleY(${Math.max(1 / services.length, serviceProgress)})` }}
@@ -593,12 +587,12 @@ function ServicesSection() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1677FF]">
                 {current.no} / Service
               </p>
-              <p className="mt-3 max-w-[560px] text-[clamp(13px,1vw,15px)] leading-[1.7] text-black/65">
+              <p className="mt-3 max-w-[560px] text-[clamp(13px,1vw,15px)] leading-[1.7] text-white/65">
                 {current.copy}
               </p>
               <ul className="mt-5 grid grid-cols-2 gap-x-4 gap-y-2">
                 {current.meta.map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-[12px] leading-5 text-black/65">
+                  <li key={item} className="flex items-start gap-2 text-[12px] leading-5 text-white/65">
                     <span aria-hidden="true" className="mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
                     {item}
                   </li>
