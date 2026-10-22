@@ -1,3 +1,5 @@
+import type { AcademyCoursePageContent } from "./common";
+
 export const enrollUrl =
   "https://wa.me/918921592742?text=" +
   encodeURIComponent(
@@ -118,3 +120,28 @@ export const eligibleLearners = [
 
 export type CurriculumIconName = (typeof curriculum)[number]["icon"];
 
+
+/** Course-specific presentation text and media. */
+export const coursePage = {
+  "metadata": {
+    "title": "Graphic Designing & Content Creation | Cubixmet Academy",
+    "description": "Explore Cubixmet Academy's 6-month Graphic Designing & Content Creation Program (AI Integrated): design, video editing, AI tools, photography, branding, marketing, communication and live projects."
+  },
+  "breadcrumb": "Graphic Designing & Content Creation",
+  "headlineBefore": "Graphic Designing",
+  "headlineEmphasis": "&",
+  "headlineAfter": "Content Creation",
+  "headlineSubtitle": "Program (AI Integrated)",
+  "tagline": "Create. Design. Edit. Market. Earn.",
+  "intro": "Turn your creativity into a career. Master the most in-demand design, video editing, branding, and content creation skills with real-world project experience.",
+  "heroImage": "/images/ventures/academy-hero.png",
+  "heroImageAlt": "Students collaborating on a laptop during a Cubixmet Academy training session",
+  "heroBadge": "Learn by Building",
+  "heroCaption": "Create something extraordinary.",
+  "highlightsDescription": "Creative skills, business understanding, and practical training in one intensive program.",
+  "curriculumDescription": "Explore design, editing, AI tools, photography, marketing, communication, and real-world practice.",
+  "learnerHeading": "Your next creative chapter starts here.",
+  "learnerDescription": "Whether you are starting your career or expanding your skills, explore the techniques and workflows behind professional creative projects.",
+  "ctaHeading": "Ready to turn your creativity into a career?",
+  "ctaDescription": "Get course fees, batch timings, and enrollment guidance directly from the Cubixmet Academy team."
+} satisfies AcademyCoursePageContent;
