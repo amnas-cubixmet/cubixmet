@@ -604,12 +604,37 @@ a {
 /* Swipeable tabs on tablets; full-width active labels without arrows on
    phones. Feature items wrap in two columns instead of clipping. */
 .services-phone-controls {
-  touch-action: pan-y pinch-zoom;
   user-select: none;
-  /* Keep the selected white service tab flush with the phone stage edges. */
+  /* The tab track reaches both phone edges, with a glimpse of the next slide. */
   width: calc(100% + 40px);
   margin-inline: -20px;
   margin-block: 0;
+}
+
+.services-phone-track {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+}
+
+.services-phone-track::-webkit-scrollbar {
+  display: none;
+}
+
+.services-phone-slide {
+  flex: 0 0 86%;
+  min-width: 0;
+}
+
+.services-phone-track::after {
+  content: "";
+  flex: 0 0 14%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-phone-track {
+    scroll-behavior: auto;
+  }
 }
 
 @media (max-width: 639px) {
