@@ -1069,17 +1069,21 @@ function ContactSection() {
             }}
           >
             <div className="grid gap-5 sm:grid-cols-2">
-              <label className="text-xs font-medium">Your name
-                <input name="name" required maxLength={100} autoComplete="name" className="form-line" placeholder="Name" />
+              <label className="block">
+                <span className="sr-only">Your name</span>
+                <input name="name" required maxLength={100} autoComplete="name" className="form-line !mt-0" placeholder="Your name" />
               </label>
-              <label className="text-xs font-medium">Email
-                <input name="email" type="email" required maxLength={160} autoComplete="email" className="form-line" placeholder="you@company.com" />
+              <label className="block">
+                <span className="sr-only">Email</span>
+                <input name="email" type="email" required maxLength={160} autoComplete="email" className="form-line !mt-0" placeholder="Email" />
               </label>
-              <label className="text-xs font-medium sm:col-span-2">What can we help with?
-                <input name="topic" required maxLength={150} className="form-line" placeholder="Brand, website, product, growth..." />
+              <label className="block sm:col-span-2">
+                <span className="sr-only">What can we help with?</span>
+                <input name="topic" required maxLength={150} className="form-line !mt-0" placeholder="What can we help with?" />
               </label>
-              <label className="text-xs font-medium sm:col-span-2">Tell us about the project
-                <textarea name="message" required maxLength={2000} rows={4} className="form-line resize-none" placeholder="A short project summary" />
+              <label className="block sm:col-span-2">
+                <span className="sr-only">Tell us about the project</span>
+                <textarea name="message" required maxLength={2000} rows={4} className="form-line !mt-0 resize-none" placeholder="Tell us about the project" />
               </label>
             </div>
             <button type="submit" className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-full bg-black px-5 py-3 text-xs font-bold text-white transition hover:bg-[#202020]">
