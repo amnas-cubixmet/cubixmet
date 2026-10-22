@@ -7,11 +7,15 @@ export type Project = {
   image: string;
   /** Optional locally hosted project walkthrough; loaded only on user action. */
   video?: string;
+  /** Verified client-provided official website URL. */
+  website?: string;
 };
 
 export const projects: Project[] = [
   {
     id: "zcards-web",
+    website: "https://www.zamirzac.com/",
+    video: "/videos/cardflow.mov",
     name: "Zcards",
     category: "Dynamic Website",
     description:
@@ -21,18 +25,8 @@ export const projects: Project[] = [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=84",
   },
   {
-    id: "cardflow-web",
-    name: "Cardflow",
-    category: "Dynamic Website",
-    description:
-      "A video walkthrough showcasing the Cardflow digital project and its interface.",
-    tags: ["Project Showcase", "Web Design"],
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=84",
-    video: "/videos/cardflow.mov",
-  },
-  {
     id: "alawamer-web",
+    website: "https://www.alawamer.com/",
     video: "/videos/alawamer.mov",
     name: "Alawamer",
     category: "Dynamic Website",
@@ -44,6 +38,7 @@ export const projects: Project[] = [
   },
   {
     id: "infozerv-web",
+    website: "https://www.infozerv.com/",
     video: "/videos/infozerv.mov",
     name: "Infozerv",
     category: "Dynamic Website",
@@ -55,6 +50,7 @@ export const projects: Project[] = [
   },
   {
     id: "almohanna-web",
+    website: "https://www.almohannasa.com/",
     video: "/videos/almohannasa.mov",
     name: "Almohanna SA",
     category: "Dynamic Website",
@@ -66,6 +62,7 @@ export const projects: Project[] = [
   },
   {
     id: "krispfruit-web",
+    website: "https://www.krispfruit.ae/",
     video: "/videos/krispfruit.mov",
     name: "Krispfruit",
     category: "Dynamic Website",
@@ -77,6 +74,7 @@ export const projects: Project[] = [
   },
   {
     id: "krispfruit-digital",
+    website: "https://www.krispfruit.ae/",
     name: "Krispfruit",
     category: "Digital Marketing",
     description:
@@ -87,6 +85,7 @@ export const projects: Project[] = [
   },
   {
     id: "nest-rehab-web",
+    website: "https://www.nestrehabcare.in/",
     video: "/videos/nestrehabcare.mov",
     name: "Nest Rehab Care",
     category: "Dynamic Website",
@@ -98,6 +97,7 @@ export const projects: Project[] = [
   },
   {
     id: "nest-rehab-digital",
+    website: "https://www.nestrehabcare.in/",
     name: "Nest Rehab Care",
     category: "Digital Marketing",
     description:
@@ -118,6 +118,7 @@ export const projects: Project[] = [
   },
   {
     id: "finecrafts-web",
+    website: "https://www.finecraftsgarage.com/",
     video: "/videos/finecrafts.mov",
     name: "Finecrafts Garage",
     category: "Dynamic Website",
@@ -129,6 +130,7 @@ export const projects: Project[] = [
   },
   {
     id: "traventurous-web",
+    website: "https://www.traventurous.com/",
     video: "/videos/traventurous.mov",
     name: "Traventurous",
     category: "Dynamic Website",
