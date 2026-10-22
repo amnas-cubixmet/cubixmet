@@ -5,6 +5,7 @@ export const navLinks = [
   ["#ventures", "Ventures"],
   ["#services", "Services"],
   ["#work", "Portfolio"],
+  ["/events", "Events"],
   ["#team", "Team"],
   ["#contact", "Contact"],
 ] as const;
