@@ -26,6 +26,10 @@ const required = [
   "data/tech.ts",
   "data/digital.ts",
   "data/academy.ts",
+  "data/events.ts",
+  "app/events/page.tsx",
+  "app/events/[slug]/page.tsx",
+  "components/events/EventVisual.tsx",
   "components/academy/AcademyCoursePage.tsx",
 ];
 
@@ -89,6 +93,20 @@ for (const slug of courseSlugs) {
     if (!source.includes("AcademyCoursePage") || !source.includes("data/academyCourses")) {
       violations.push(`${page} must use shared AcademyCoursePage and its data module`);
     }
+  }
+}
+
+// All event slugs must have a navigable listing + statically generated detail route.
+if (existsSync("data/navigation.ts")) {
+  const navigation = readFileSync("data/navigation.ts", "utf8");
+  if (!navigation.includes('["/events", "Events"]')) {
+    violations.push("Events must appear in the shared navigation");
+  }
+}
+if (existsSync("app/events/[slug]/page.tsx")) {
+  const detail = readFileSync("app/events/[slug]/page.tsx", "utf8");
+  if (!detail.includes("generateStaticParams") || !detail.includes("getEventBySlug")) {
+    violations.push("Event details must resolve data records and support static routes");
   }
 }
 
