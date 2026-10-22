@@ -1,4 +1,6 @@
 import Image from "next/image";
+import { site, footerCopy, companyLinks } from "../../data/site";
+import { ventures } from "../../data/ventures";
 
 function LocationIcon() {
   return (
@@ -45,8 +47,6 @@ function ArrowUpRight() {
 }
 
 export default function SiteFooter() {
-  const mapSrc =
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3919.5!2d76.2241192!3d11.0974314!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba633cfb708b3af%3A0x2bf820fbcb71c181!2sCubixmet%20Tech%20%E2%80%93%20Software%20And%20Website!5e0!3m2!1sen!2sin!4v1700000000000";
 
   return (
     <footer className="bg-[#050505] pb-8 pt-16 text-white md:pb-10 md:pt-24">
@@ -60,8 +60,8 @@ export default function SiteFooter() {
             >
               <span className="grid h-10 w-[120px] place-items-center overflow-hidden md:h-11 md:w-[136px]">
                 <Image
-                  src="/images/logo.png"
-                  alt="Cubixmet"
+                  src={site.logo}
+                  alt={site.brand}
                   width={272}
                   height={88}
                   sizes="(min-width: 768px) 136px, 120px"
@@ -71,28 +71,25 @@ export default function SiteFooter() {
             </a>
 
             <h2 className="mt-7 max-w-[760px] text-[clamp(2.4rem,5vw,5.6rem)] font-medium leading-[.93] tracking-[-0.06em]">
-              Where Strategy Meets Scale.
+              {footerCopy.title}
             </h2>
 
             <p className="mt-5 max-w-[610px] text-[13px] leading-6 text-white/48 md:text-[15px] md:leading-7">
-              An innovation ecosystem from Kerala with global ambition.
+              {footerCopy.description}
             </p>
 
             <div className="mt-8 flex max-w-[620px] items-start gap-3 text-[12px] leading-6 text-white/42 md:text-[13px]">
               <span className="mt-1 text-[#1677FF]">
                 <LocationIcon />
               </span>
-              <p>
-                1st Floor, Anjillan Building, Wandoor Road, opp. Gramin Bank,
-                Pandikkad, Malappuram, Kerala – 676521
-              </p>
+              <p>{site.address}</p>
             </div>
           </div>
 
           <div className="overflow-hidden border border-white/8 bg-[#0b0b0b]">
             <iframe
-              src={mapSrc}
-              title="Cubixmet Office Location - Pandikkad, Malappuram, Kerala"
+              src={site.mapEmbedUrl}
+              title={site.mapTitle}
               className="h-[280px] w-full border-0 grayscale contrast-[1.05] md:h-[330px]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -104,20 +101,16 @@ export default function SiteFooter() {
         <div className="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1fr_1fr_1.15fr] lg:gap-14 md:py-14">
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
-              Ventures
+              {footerCopy.venturesLabel}
             </p>
             <div className="mt-5 space-y-3">
-              {[
-                ["Cubixmet Tech", "/ventures/tech"],
-                ["Cubixmet Digital", "/ventures/digital"],
-                ["Cubixmet Academy", "/ventures/academy"],
-              ].map(([label, href]) => (
+              {ventures.map(({ name, href }) => (
                 <a
-                  key={label}
+                  key={name}
                   href={href}
                   className="flex w-fit items-center gap-2 text-[13px] text-white/52 transition hover:text-white"
                 >
-                  {label}
+                  {name}
                   <ArrowUpRight />
                 </a>
               ))}
@@ -126,14 +119,10 @@ export default function SiteFooter() {
 
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
-              Company
+              {footerCopy.companyLabel}
             </p>
             <div className="mt-5 space-y-3">
-              {[
-                ["About Us", "https://www.cubixmet.com/#about"],
-                ["Careers", "https://www.cubixmet.com/#about"],
-                ["Contact", "https://www.cubixmet.com/#about"],
-              ].map(([label, href]) => (
+              {companyLinks.map(({ label, href }) => (
                 <a
                   key={label}
                   href={href}
@@ -147,36 +136,36 @@ export default function SiteFooter() {
 
           <div>
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
-              Get In Touch
+              {footerCopy.contactLabel}
             </p>
 
             <div className="mt-5 space-y-4">
               <a
-                href="tel:+918921592742"
+                href={`tel:${site.phoneDial}`}
                 className="flex w-fit items-center gap-3 text-[13px] text-white/55 transition hover:text-white"
               >
                 <span className="text-[#1677FF]">
                   <PhoneIcon />
                 </span>
-                +91 89215 92742
+                {site.phoneDisplay}
               </a>
 
               <a
-                href="https://www.cubixmet.com/"
+                href={site.website}
                 className="flex w-fit items-center gap-3 text-[13px] text-white/55 transition hover:text-white"
               >
                 <span className="text-[#1677FF]">
                   <GlobeIcon />
                 </span>
-                www.cubixmet.com
+                {site.websiteDisplay}
               </a>
             </div>
           </div>
         </div>
 
         <div className="flex flex-col gap-3 border-t border-white/8 pt-6 text-[10px] uppercase tracking-[0.12em] text-white/26 sm:flex-row sm:items-center sm:justify-between">
-          <span>© 2026 Cubixmet. All rights reserved.</span>
-          <span>Pandikkad · Malappuram · Kerala</span>
+          <span>{footerCopy.copyright}</span>
+          <span>{site.locationShort}</span>
         </div>
       </div>
     </footer>
