@@ -40,3 +40,9 @@ export const contactMessages = {
   header: "Hi Cubixmet, I'd like to discuss a project.",
   hero: "Hi Cubixmet! I'd like to get started.",
 } as const;
+
+/** SEO defaults for the public site. */
+export const siteMetadata = {
+  title: "Cubixmet — Technology, Development & Digital Growth",
+  description: "Cubixmet builds software, digital products, AI solutions and growth experiences for modern businesses.",
+} as const;
