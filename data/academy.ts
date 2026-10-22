@@ -109,3 +109,44 @@ export const team = [
   },
 ];
 
+
+/** Content and links for the Academy landing page. */
+export const academyCopy = {
+  "metadata": {
+    "title": "Cubixmet Academy | Learn. Build. Launch.",
+    "description": "Explore six-month design, digital marketing, and Python full stack programs at Cubixmet Academy, with practical projects, internship opportunities and placement assistance."
+  },
+  "backLabel": "Back to Home",
+  "verticalLabel": "Academy Vertical",
+  "brandPrefix": "Cubixmet",
+  "brandSuffix": "Academy",
+  "tagline": "Learn. Build. Launch.",
+  "intro": "Career transformation programs designed to create industry-ready professionals with real-world skills and portfolio projects.",
+  "programsLabel": "Our Programs",
+  "programsTitle": "Build skills. Launch careers.",
+  "programsDescription": "Industry-aligned courses designed for career transformation and skill mastery.",
+  "programAssurance": "Internship Assured — up to 2 to 6 months with all courses",
+  "programPlacement": "100% Placement Assistance",
+  "knowMoreLabel": "Know More",
+  "enrollLabel": "Enroll via WhatsApp",
+  "trainingLabel": "Academy Training",
+  "trainingTitle": "Learn by Building.",
+  "trainingDescription": "Every program includes real-world projects that go straight into your portfolio.",
+  "trainingItems": [
+    "Practical learning",
+    "Project-driven curriculum",
+    "Portfolio development",
+    "Career guidance"
+  ],
+  "teamLabel": "The Academy Team",
+  "teamTitle": "People behind the learning.",
+  "teamDescription": "Experienced educators and mentors dedicated to your career success.",
+  "ctaLabel": "Start Your Journey",
+  "ctaTitle": "Transform your career with industry-ready skills. Enroll in our next batch today.",
+  "viewProgramsLabel": "View Programs",
+  "enrollNowLabel": "Enroll Now",
+  "brochureHref": "/brochures/cubixmet-academy.pdf",
+  "brochureName": "cubixmet-academy.pdf",
+  "brochureLabel": "Download Programs Brochure (PDF)",
+  "illustrationBadge": "Learn by building"
+} as const;
