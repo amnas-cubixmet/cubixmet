@@ -606,10 +606,36 @@ a {
 .services-phone-controls {
   touch-action: pan-y pinch-zoom;
   user-select: none;
-  /* Extend the phone label to both screen edges, beyond the stage's 20px padding. */
+  /* Keep the selected white service tab flush with the phone stage edges. */
   width: calc(100% + 40px);
   margin-inline: -20px;
   margin-block: 0;
+}
+
+@media (max-width: 639px) {
+  .services-mobile-stage {
+    /* Leave room for the fixed header while maximizing image/text space. */
+    padding-top: 56px;
+    padding-bottom: max(10px, env(safe-area-inset-bottom, 0px));
+  }
+
+  .services-mobile-media {
+    height: clamp(125px, 27svh, 240px);
+  }
+
+  .services-mobile-features {
+    column-gap: 10px;
+    row-gap: 6px;
+  }
+
+  .services-mobile-features li {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .services-mobile-stage .service-content-enter h3 {
+    text-wrap: balance;
+  }
 }
 .services-mobile-nav {
   scrollbar-width: none;
@@ -636,14 +662,14 @@ a {
    including the final feature row, fit inside the pinned viewport. */
 @media (max-width: 639px) and (max-height: 540px) {
   .services-mobile-stage {
-    padding-top: 51px;
+    padding-top: 45px;
     padding-bottom: 6px;
     padding-left: 16px;
     padding-right: 16px;
   }
 
   .services-mobile-stage > div:first-child {
-    margin-bottom: 8px;
+    margin-bottom: 0;
   }
 
   .services-phone-controls {
@@ -657,11 +683,11 @@ a {
   }
 
   .services-mobile-stage > div[aria-hidden="true"] {
-    margin-bottom: 8px;
+    margin-bottom: 0;
   }
 
   .services-mobile-media {
-    height: clamp(100px, 23svh, 145px);
+    height: clamp(95px, 22svh, 135px);
   }
 
   .services-mobile-stage .service-content-enter > div:last-child {
