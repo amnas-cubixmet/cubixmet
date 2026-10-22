@@ -828,6 +828,7 @@ function WorkSection() {
                   key={project.id}
                   name={project.name}
                   image={project.image}
+                  fallbackImage={project.fallbackImage}
                   video={project.video}
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b1120]/80 via-transparent to-transparent" />
