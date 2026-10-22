@@ -97,31 +97,7 @@ export default async function EventDetailPage({ params }: EventPageProps) {
           </div>
         </section>
 
-        <section aria-labelledby="event-gallery-heading" className="py-12 md:py-16">
-          <div className="mx-auto w-[90%] max-w-[1500px]">
-            <h2 id="event-gallery-heading" className="mb-7 flex items-center gap-2.5 text-[20px] font-bold tracking-[-.025em]">
-              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 shrink-0 text-[#3e96ff]">
-                <rect x="7" y="3" width="14" height="16" rx="2" />
-                <path d="M3 7v13a2 2 0 0 0 2 2h12M10 15l3-3 2 2 2-3 2 4M11 7h.01" />
-              </svg>
-              {eventsPageCopy.galleryLabel}
-            </h2>
-            <div className="grid max-w-[1080px] gap-4 sm:grid-cols-2">
-              {[event.listingImage, event.detailImage].filter((image): image is string => Boolean(image)).map((image, index) => (
-                <div key={image} className="overflow-hidden rounded-[13px] border border-white/10 bg-[#0d1423]">
-                  <EventVisual
-                    imageSrc={image}
-                    imageAlt={index === 0 ? `${event.title} group photograph` : `${event.title} participants during the session`}
-                    showOverlay={false}
-                    className="aspect-[4/3] w-full"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="py-16 md:py-24">
+        <section className="pb-6 pt-12 md:pb-8 md:pt-16">
           <div className="mx-auto grid w-[90%] max-w-[1500px] gap-10 lg:grid-cols-[minmax(0,1.45fr)_minmax(260px,.55fr)] lg:gap-20">
             <div className="min-w-0 rounded-[20px] border border-white/10 bg-[#0d1321] p-6 sm:p-8 lg:p-10">
               <h2 className="mb-6 flex items-center gap-3 text-[clamp(1.65rem,2.8vw,2.35rem)] font-bold leading-tight tracking-[-.04em]">
@@ -153,6 +129,30 @@ export default async function EventDetailPage({ params }: EventPageProps) {
                 ))}
               </ul>
             </aside>
+          </div>
+        </section>
+
+        <section aria-labelledby="event-gallery-heading" className="pb-16 pt-6 md:pb-20 md:pt-8">
+          <div className="mx-auto w-[90%] max-w-[1500px]">
+            <h2 id="event-gallery-heading" className="mb-7 flex items-center gap-2.5 text-[20px] font-bold tracking-[-.025em]">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 shrink-0 text-[#3e96ff]">
+                <rect x="7" y="3" width="14" height="16" rx="2" />
+                <path d="M3 7v13a2 2 0 0 0 2 2h12M10 15l3-3 2 2 2-3 2 4M11 7h.01" />
+              </svg>
+              {eventsPageCopy.galleryLabel}
+            </h2>
+            <div className="grid max-w-[1080px] gap-4 sm:grid-cols-2">
+              {[event.listingImage, event.detailImage].filter((image): image is string => Boolean(image)).map((image, index) => (
+                <div key={image} className="overflow-hidden rounded-[13px] border border-white/10 bg-[#0d1423]">
+                  <EventVisual
+                    imageSrc={image}
+                    imageAlt={index === 0 ? `${event.title} group photograph` : `${event.title} participants during the session`}
+                    showOverlay={false}
+                    className="aspect-[4/3] w-full"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </section>
 
