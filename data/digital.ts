@@ -65,3 +65,39 @@ export const team = [
   },
 ];
 
+
+/** Page content for the Digital venture. */
+export const digitalCopy = {
+  "metadata": {
+    "title": "Cubixmet Digital | Strategize. Market. Convert.",
+    "description": "Data-driven digital marketing, paid advertising, content, SEO, brand strategy and growth solutions from Cubixmet Digital."
+  },
+  "verticalLabel": "Digital Marketing Vertical",
+  "brandPrefix": "Cubixmet",
+  "brandSuffix": "Digital",
+  "tagline": "Strategize. Market. Convert.",
+  "intro": "Data-driven digital marketing and brand growth strategies that deliver measurable results and lasting impact.",
+  "heroImage": "/images/ventures/digital-hero.png",
+  "heroImageAlt": "Cubixmet Digital creative marketing team collaborating in a professional studio",
+  "servicesLabel": "How We Grow Brands",
+  "servicesTitle": "Marketing that makes an impact.",
+  "servicesDescription": "Full-spectrum digital marketing services designed to amplify your reach and convert audiences.",
+  "approachLabel": "Digital Marketing",
+  "approachTitle": "Data-Driven Growth.",
+  "approachDescription": "Every campaign is backed by analytics, A/B testing, and continuous optimization for maximum ROI.",
+  "approachItems": [
+    "Analytics & insights",
+    "A/B testing",
+    "Campaign optimization",
+    "Performance reporting"
+  ],
+  "teamLabel": "The Digital Team",
+  "teamTitle": "People behind the growth.",
+  "teamDescription": "Strategists, creatives, and data analysts who turn brands into market leaders.",
+  "ctaLabel": "Ready to Grow?",
+  "ctaTitle": "Let's craft a marketing strategy that drives real business results.",
+  "growLabel": "Grow Your Brand",
+  "brochureHref": "/brochures/cubixmet-digital.pdf",
+  "brochureName": "cubixmet-digital.pdf",
+  "brochureLabel": "Download Digital Brochure (PDF)"
+} as const;
