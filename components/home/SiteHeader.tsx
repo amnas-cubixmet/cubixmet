@@ -8,8 +8,15 @@ import { navLinks, observedSectionIds, observerSkippedIds } from "../../data/nav
 import { site, contactMessages, whatsappLink } from "../../data/site";
 
 export default function SiteHeader() {
-  const isHomePage = usePathname() === "/";
-  const homeHref = (hash: string) => isHomePage ? hash : `/${hash}`;
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+  // Resolve on-page anchors and standalone routes consistently.
+  const homeHref = (href: string) =>
+    href.startsWith("#") && !isHomePage ? `/${href}` : href;
+  const linkIsActive = (href: string) =>
+    href.startsWith("/")
+      ? pathname === href || pathname.startsWith(`${href}/`)
+      : isHomePage && activeLink === href;
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("#top");
   const [scrolled, setScrolled] = useState(false);
@@ -99,15 +106,15 @@ export default function SiteHeader() {
           </span>
         </a>
 
-        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-5 md:flex lg:gap-6">
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-4 lg:flex xl:gap-6">
           {navLinks.map(([href, label]) => (
             <a
               key={href}
               href={homeHref(href)}
               onClick={() => setActiveLink(href)}
               className={
-                "relative px-1 py-2 text-[11px] font-medium transition-colors duration-300 lg:text-[12px] " +
-                (isHomePage && activeLink === href
+                "relative px-1 py-2 text-[11px] font-medium transition-colors duration-300 xl:text-[12px] " +
+                (linkIsActive(href)
                   ? "text-[#1677FF]"
                   : "text-white/65 hover:text-white")
               }
@@ -117,7 +124,7 @@ export default function SiteHeader() {
                 aria-hidden="true"
                 className={
                   "absolute inset-x-1 bottom-0 h-0.5 rounded-full bg-[#1677FF] transition-transform duration-300 " +
-                  (isHomePage && activeLink === href ? "scale-x-100" : "scale-x-0")
+                  (linkIsActive(href) ? "scale-x-100" : "scale-x-0")
                 }
               />
             </a>
@@ -129,7 +136,7 @@ export default function SiteHeader() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat with Cubixmet on WhatsApp"
-          className="hidden items-center gap-2 rounded-full border border-white/12 bg-white/[0.035] px-4 py-2 text-[10px] font-semibold text-white transition hover:border-[#1677FF]/60 hover:bg-[#1677FF] md:inline-flex"
+          className="hidden items-center gap-2 rounded-full border border-white/12 bg-white/[0.035] px-4 py-2 text-[10px] font-semibold text-white transition hover:border-[#1677FF]/60 hover:bg-[#1677FF] lg:inline-flex"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
           Let&apos;s Talk
@@ -141,7 +148,7 @@ export default function SiteHeader() {
           aria-expanded={menuOpen}
           aria-controls="mobile-site-menu"
           onClick={() => setMenuOpen((value) => !value)}
-          className="relative z-50 grid h-10 w-10 place-items-center border-0 bg-transparent text-white outline-none transition-colors hover:text-[#1677FF] focus-visible:rounded focus-visible:ring-2 focus-visible:ring-[#1677FF] md:hidden"
+          className="relative z-50 grid h-10 w-10 place-items-center border-0 bg-transparent text-white outline-none transition-colors hover:text-[#1677FF] focus-visible:rounded focus-visible:ring-2 focus-visible:ring-[#1677FF] lg:hidden"
         >
           <span className="flex w-4 flex-col gap-[5px]">
             <span
@@ -163,11 +170,11 @@ export default function SiteHeader() {
       {menuOpen && (
         <div
           id="mobile-site-menu"
-          className="mobile-menu-panel fixed inset-x-0 bottom-0 top-[60px] z-40 flex flex-col overflow-y-auto overscroll-contain bg-[#050505] px-6 pb-[max(16px,env(safe-area-inset-bottom))] pt-3 md:hidden"
+          className="mobile-menu-panel fixed inset-x-0 bottom-0 top-[60px] md:top-[68px] z-40 flex flex-col overflow-y-auto overscroll-contain bg-[#050505] px-6 pb-[max(16px,env(safe-area-inset-bottom))] pt-3 lg:hidden"
         >
           <nav aria-label="Mobile navigation" className="flex flex-1 flex-col justify-center gap-1 py-2">
             {navLinks.map(([href, label]) => {
-              const isActive = isHomePage && activeLink === href;
+              const isActive = linkIsActive(href);
               return (
                 <a
                   key={href}
