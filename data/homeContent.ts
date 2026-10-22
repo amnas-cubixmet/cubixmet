@@ -24,6 +24,10 @@ export const homeCopy = {
   teamLabel: "Meet the Team",
   teamHeading: "The minds behind",
   teamSubheading: "— Cubixmet",
+  teamIntro:
+    "Meet the people building our technology, digital experiences, and practical learning programs.",
+  teamLeadersLabel: "Leadership",
+  teamExploreLabel: "Explore department",
   teamMembersLabel: "Team Members",
   marqueeAutoLoopLabel: "Auto loop",
   impactLabel: "Our Impact",
