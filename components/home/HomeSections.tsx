@@ -480,7 +480,7 @@ function ServicesSection() {
               onClick={() => selectService(index)}
               aria-current={activeService === index ? "true" : undefined}
               className={
-                "shrink-0 snap-center whitespace-nowrap rounded-sm px-3.5 py-3 text-center text-[12px] font-bold transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
+                "shrink-0 snap-center whitespace-nowrap rounded-sm px-3.5 py-3 text-center text-[14px] font-extrabold transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
                 (activeService === index
                   ? "bg-white text-black"
                   : "bg-white/[0.07] text-white/65 hover:text-white")
@@ -523,12 +523,12 @@ function ServicesSection() {
       <div className="sticky top-0 hidden h-[100svh] w-full overflow-hidden bg-[#050505] lg:flex">
         <div className="mx-auto grid h-full w-[92%] max-w-[1320px] grid-cols-[minmax(0,0.96fr)_40px_minmax(0,1.08fr)] items-center gap-7 py-8 xl:gap-12">
           <nav aria-label="Choose a service" className="flex min-w-0 flex-col items-center justify-center">
-            <div className="w-full max-w-[390px]">
+            <div className="w-full max-w-[460px]">
               <div className="relative flex w-full flex-col gap-2">
                 <span
                   aria-hidden="true"
-                  className="service-active-indicator pointer-events-none absolute inset-x-0 top-0 h-[50px] rounded-[14px] bg-white shadow-[0_10px_32px_rgba(255,255,255,0.07)]"
-                  style={{ transform: `translate3d(0, ${activeService * 58}px, 0)` }}
+                  className="service-active-indicator pointer-events-none absolute inset-x-0 top-0 h-[82px] rounded-[14px] bg-white shadow-[0_10px_32px_rgba(255,255,255,0.07)]"
+                  style={{ transform: `translate3d(0, ${activeService * 90}px, 0)` }}
                 />
                 {services.map((service, index) => (
                   <button
@@ -537,7 +537,7 @@ function ServicesSection() {
                     onClick={() => selectService(index)}
                     aria-current={activeService === index ? "true" : undefined}
                     className={
-                      "relative z-10 flex h-[50px] min-w-0 w-full items-center justify-center rounded-[14px] px-5 text-center text-[clamp(17px,1.55vw,22px)] font-bold leading-[1.15] tracking-[-0.035em] transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
+                      "relative z-10 flex h-[82px] min-w-0 w-full items-center justify-center rounded-[14px] px-3 text-center text-4xl font-extrabold leading-[1.05] tracking-[-0.035em] transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
                       (activeService === index ? "text-black" : "text-white/55 hover:text-white")
                     }
                   >
