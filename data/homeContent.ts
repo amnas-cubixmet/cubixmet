@@ -23,7 +23,7 @@ export const homeCopy = {
   testimonialsLabel: "Client stories",
   teamLabel: "Meet the Team",
   teamHeading: "The minds behind",
-  teamSubheading: "— Cubixmet",
+  teamSubheading: "Cubixmet",
   teamIntro:
     "Meet the people building our technology, digital experiences, and practical learning programs.",
   teamMembersLabel: "Team Members",
