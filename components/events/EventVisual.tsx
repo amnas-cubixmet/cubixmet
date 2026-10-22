@@ -1,12 +1,21 @@
+"use client";
+
+import Image from "next/image";
+import { useState } from "react";
+
 type EventVisualProps = {
   className?: string;
+  imageSrc?: string;
+  imageAlt?: string;
 };
 
 /**
  * Inline SVG artwork, not a stock photo or a logo.
  * Resolution independent for desktop, tablet and mobile event cards.
  */
-export default function EventVisual({ className = "" }: EventVisualProps) {
+export default function EventVisual({ className = "", imageSrc, imageAlt = "" }: EventVisualProps) {
+  const [imageFailed, setImageFailed] = useState(false);
+
   return (
     <div className={`relative isolate overflow-hidden bg-[#080e1d] ${className}`}>
       <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_50%_48%,rgba(22,119,255,.25),transparent_52%),radial-gradient(ellipse_at_95%_4%,rgba(96,70,232,.14),transparent_46%)]" />
@@ -76,7 +85,17 @@ export default function EventVisual({ className = "" }: EventVisualProps) {
         <path d="m699 84 6 18 18 6-18 6-6 18-6-18-18-6 18-6 6-18Z" fill="#74AFFF" opacity=".85"/>
         <path d="m186 341 4 12 12 4-12 4-4 12-4-12-12-4 12-4 4-12Z" fill="#74AFFF" opacity=".8"/>
       </svg>
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050505]/50 via-transparent to-transparent" />
+      {imageSrc && !imageFailed && (
+        <Image
+          src={imageSrc}
+          alt={imageAlt}
+          fill
+          sizes="(min-width: 1024px) 60vw, (min-width: 640px) 90vw, 100vw"
+          className="object-cover"
+          onError={() => setImageFailed(true)}
+        />
+      )}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050505]/35 via-transparent to-transparent" />
     </div>
   );
 }
