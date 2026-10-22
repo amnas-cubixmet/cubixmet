@@ -606,6 +606,10 @@ a {
 .services-phone-controls {
   touch-action: pan-y pinch-zoom;
   user-select: none;
+  /* Extend the phone label to both screen edges, beyond the stage's 20px padding. */
+  width: calc(100% + 40px);
+  margin-inline: -20px;
+  margin-block: 0;
 }
 .services-mobile-nav {
   scrollbar-width: none;
@@ -643,7 +647,9 @@ a {
   }
 
   .services-phone-controls {
-    margin-bottom: 7px;
+    width: calc(100% + 32px);
+    margin-inline: -16px;
+    margin-bottom: 0;
   }
 
   .services-phone-controls > div {
