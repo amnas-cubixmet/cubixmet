@@ -1,12 +1,16 @@
 "use client";
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { testimonials } from "../../data/testimonials";
 import { homeCopy } from "../../data/homeContent";
 
 const MOBILE_BREAKPOINT = 768;
 const DESKTOP_BREAKPOINT = 1280;
 const AUTO_ADVANCE_MS = 6000;
+const STORY_COUNT = testimonials.length;
+// Three identical rounds provide enough room to swipe endlessly in either direction.
+const loopedStories = [...testimonials, ...testimonials, ...testimonials];
+const normalizeStoryIndex = (index: number) => ((index % STORY_COUNT) + STORY_COUNT) % STORY_COUNT;
 
 function ArrowIcon({ direction }: { direction: "previous" | "next" }) {
   return (
@@ -32,6 +36,8 @@ function ArrowIcon({ direction }: { direction: "previous" | "next" }) {
 export default function TestimonialsSlider() {
   const sectionRef = useRef<HTMLElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
+  const physicalIndexRef = useRef(STORY_COUNT);
+  const settleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [visibleCount, setVisibleCount] = useState(1);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isInView, setIsInView] = useState(false);
@@ -39,25 +45,49 @@ export default function TestimonialsSlider() {
   const [isPageVisible, setIsPageVisible] = useState(true);
   const [reduceMotion, setReduceMotion] = useState(true);
 
-  const maxIndex = Math.max(0, testimonials.length - visibleCount);
-
-  const scrollToStory = useCallback(
+  const scrollToPhysical = useCallback(
     (requestedIndex: number, immediate = false) => {
       const track = trackRef.current;
       if (!track) return;
-      const nextIndex = Math.max(0, Math.min(maxIndex, requestedIndex));
       const first = track.children.item(0) as HTMLElement | null;
-      const target = track.children.item(nextIndex) as HTMLElement | null;
+      const target = track.children.item(requestedIndex) as HTMLElement | null;
       if (!first || !target) return;
 
+      physicalIndexRef.current = requestedIndex;
       track.scrollTo({
         left: target.offsetLeft - first.offsetLeft,
-        behavior: immediate || reduceMotion ? "auto" : "smooth",
+        behavior: immediate || reduceMotion ? "instant" : "smooth",
       });
-      setActiveIndex(nextIndex);
+      setActiveIndex(normalizeStoryIndex(requestedIndex));
     },
-    [maxIndex, reduceMotion],
+    [reduceMotion],
   );
+
+  // Map a real story to the middle round, so dot navigation is predictable.
+  const scrollToStory = useCallback(
+    (index: number) => scrollToPhysical(STORY_COUNT + normalizeStoryIndex(index)),
+    [scrollToPhysical],
+  );
+
+  // Once a swipe/animated transition finishes on a cloned round, jump to the
+  // identical slide in the middle round. The image/text stay visually identical.
+  const recenterAfterScroll = useCallback(() => {
+    const track = trackRef.current;
+    if (!track) return;
+    const first = track.children.item(0) as HTMLElement | null;
+    const second = track.children.item(1) as HTMLElement | null;
+    if (!first || !second) return;
+    const step = second.offsetLeft - first.offsetLeft;
+    if (step <= 0) return;
+    const index = Math.round(track.scrollLeft / step);
+    const logical = normalizeStoryIndex(index);
+    physicalIndexRef.current = index;
+    setActiveIndex(logical);
+
+    if (index < STORY_COUNT || index >= STORY_COUNT * 2) {
+      scrollToPhysical(STORY_COUNT + logical, true);
+    }
+  }, [scrollToPhysical]);
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -77,10 +107,19 @@ export default function TestimonialsSlider() {
     return () => window.removeEventListener("resize", syncLayout);
   }, []);
 
-  // Keep the active card in range when the viewport changes size.
+  // Start in the middle copy and recalculate position when card widths change.
+  useLayoutEffect(() => {
+    if (settleTimerRef.current) clearTimeout(settleTimerRef.current);
+    scrollToPhysical(STORY_COUNT + activeIndex, true);
+    // The current index is deliberately read only when the viewport count changes.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [visibleCount]);
+
   useEffect(() => {
-    scrollToStory(Math.min(activeIndex, maxIndex), true);
-  }, [visibleCount, maxIndex, scrollToStory]); // The scroll callback is stable for each layout.
+    return () => {
+      if (settleTimerRef.current) clearTimeout(settleTimerRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -100,15 +139,18 @@ export default function TestimonialsSlider() {
     return () => document.removeEventListener("visibilitychange", syncVisibility);
   }, []);
 
-  // Autoplay only while the section is visible; stop on hover, keyboard focus
-  // or when the visitor has requested reduced motion.
+  // Autoplay moves forward through the first card again, never reversing back.
+  // Respect pause, reduced-motion and background-tab preferences.
   useEffect(() => {
-    if (!isInView || !isPageVisible || isPaused || reduceMotion || maxIndex === 0) return;
+    if (!isInView || !isPageVisible || isPaused || reduceMotion || STORY_COUNT < 2) return;
     const interval = window.setInterval(() => {
-      scrollToStory(activeIndex >= maxIndex ? 0 : activeIndex + 1);
+      const next = physicalIndexRef.current + 1;
+      // Physical indices normally stay in the middle copy; the next card
+      // can enter the third copy before invisible repositioning occurs.
+      scrollToPhysical(next >= STORY_COUNT * 3 ? STORY_COUNT : next);
     }, AUTO_ADVANCE_MS);
     return () => window.clearInterval(interval);
-  }, [activeIndex, isInView, isPageVisible, isPaused, maxIndex, reduceMotion, scrollToStory]);
+  }, [activeIndex, isInView, isPageVisible, isPaused, reduceMotion, scrollToPhysical]);
 
   const handleScroll = () => {
     const track = trackRef.current;
@@ -117,8 +159,17 @@ export default function TestimonialsSlider() {
     if (!track || !first || !second) return;
     const step = second.offsetLeft - first.offsetLeft;
     if (step <= 0) return;
-    const closest = Math.max(0, Math.min(maxIndex, Math.round(track.scrollLeft / step)));
-    setActiveIndex((previous) => (previous === closest ? previous : closest));
+
+    const index = Math.max(0, Math.min(STORY_COUNT * 3 - visibleCount, Math.round(track.scrollLeft / step)));
+    physicalIndexRef.current = index;
+    setActiveIndex((previous) => {
+      const logical = normalizeStoryIndex(index);
+      return previous === logical ? previous : logical;
+    });
+
+    // scrollend is not supported in every older mobile browser.
+    if (settleTimerRef.current) clearTimeout(settleTimerRef.current);
+    settleTimerRef.current = setTimeout(recenterAfterScroll, 240);
   };
 
   return (
@@ -146,7 +197,7 @@ export default function TestimonialsSlider() {
               type="button"
               aria-label="Previous client story"
               aria-controls="client-stories-track"
-              onClick={() => scrollToStory(activeIndex === 0 ? maxIndex : activeIndex - 1)}
+              onClick={() => scrollToPhysical(physicalIndexRef.current - 1)}
               className="grid h-10 w-10 place-items-center rounded-full border border-white/15 text-white/75 transition-colors hover:border-[#1677FF] hover:bg-[#1677FF]/15 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
             >
               <ArrowIcon direction="previous" />
@@ -155,7 +206,7 @@ export default function TestimonialsSlider() {
               type="button"
               aria-label="Next client story"
               aria-controls="client-stories-track"
-              onClick={() => scrollToStory(activeIndex >= maxIndex ? 0 : activeIndex + 1)}
+              onClick={() => scrollToPhysical(physicalIndexRef.current + 1)}
               className="grid h-10 w-10 place-items-center rounded-full bg-[#1677FF] text-white transition-colors hover:bg-[#328aff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
             >
               <ArrowIcon direction="next" />
@@ -169,14 +220,16 @@ export default function TestimonialsSlider() {
           role="group"
           aria-label="Client story cards; swipe to see more"
           onScroll={handleScroll}
+          onScrollEnd={recenterAfterScroll}
           className="client-stories-scroll flex min-w-0 w-full snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain"
         >
-          {testimonials.map((story, index) => (
+          {loopedStories.map((story, index) => (
             <figure
-              key={story.id}
+              key={`${story.id}-${Math.floor(index / STORY_COUNT)}`}
+              aria-hidden={index < STORY_COUNT || index >= STORY_COUNT * 2 ? true : undefined}
               role="group"
               aria-roledescription="slide"
-              aria-label={`Client story ${index + 1} of ${testimonials.length}`}
+              aria-label={`Client story ${normalizeStoryIndex(index) + 1} of ${STORY_COUNT}`}
               className="flex min-h-[250px] min-w-0 shrink-0 grow-0 basis-full snap-start flex-col justify-between rounded-[17px] border border-white/10 bg-[#0c101a] p-5 md:basis-[calc((100%_-_16px)/2)] md:p-6 xl:basis-[calc((100%_-_32px)/3)]"
             >
               <div>
@@ -194,9 +247,9 @@ export default function TestimonialsSlider() {
         </div>
 
         <div role="group" aria-label="Choose a client story" className="mt-6 flex flex-wrap items-center justify-center gap-2">
-          {Array.from({ length: maxIndex + 1 }, (_, index) => (
+          {testimonials.map((story, index) => (
             <button
-              key={index}
+              key={story.id}
               type="button"
               aria-label={`Go to client story ${index + 1}`}
               aria-current={index === activeIndex ? "true" : undefined}
