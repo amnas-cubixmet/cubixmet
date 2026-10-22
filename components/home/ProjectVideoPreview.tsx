@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 type ProjectVideoPreviewProps = {
   name: string;
   image: string;
+  fallbackImage?: string;
   video?: string;
 };
 
@@ -18,10 +19,12 @@ type ProjectVideoPreviewProps = {
 export default function ProjectVideoPreview({
   name,
   image,
+  fallbackImage,
   video,
 }: ProjectVideoPreviewProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [hasPlaybackError, setHasPlaybackError] = useState(false);
+  const [hasImageError, setHasImageError] = useState(false);
 
   useEffect(() => {
     if (!video || hasPlaybackError) return;
@@ -77,8 +80,11 @@ export default function ProjectVideoPreview({
   if (!video) {
     return (
       <Image
-        src={image}
+        src={hasImageError && fallbackImage ? fallbackImage : image}
         alt={`${name} portfolio preview`}
+        onError={() => {
+          if (!hasImageError && fallbackImage) setHasImageError(true);
+        }}
         fill
         sizes="(max-width: 767px) calc(100vw - 36px), (max-width: 1279px) 50vw, 33vw"
         loading="lazy"
