@@ -454,7 +454,7 @@ function ServicesSection() {
       data-no-text-reveal
     >
       {/* Mobile/tablet: pinned scroll-driven services stage, with clickable/swipeable tabs. */}
-      <div className="services-mobile-stage sticky top-0 mx-auto flex h-[100svh] w-full max-w-[660px] flex-col justify-center overflow-hidden px-5 pb-5 pt-[74px] sm:px-8 lg:hidden">
+      <div className="services-mobile-stage sticky top-0 mx-auto flex h-[100svh] w-full max-w-[660px] flex-col justify-center overflow-hidden px-5 pb-3 pt-[64px] sm:px-8 lg:hidden">
         <div className="mb-0 flex items-center justify-end gap-4 sm:mb-4">
           <p className="font-mono text-[11px] text-white/55" aria-live="polite">
             <span className="font-semibold text-white">{current.no}</span>
@@ -531,17 +531,17 @@ function ServicesSection() {
         </div>
 
         <div key={current.no} className="service-content-enter">
-          <div className="services-mobile-media relative h-[clamp(175px,32svh,320px)] w-full overflow-hidden rounded-[12px] bg-[#101010]">
+          <div className="services-mobile-media relative h-[clamp(130px,27svh,260px)] w-full overflow-hidden rounded-[12px] bg-[#101010]">
             <img src={current.image} alt={current.title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
           </div>
-          <div className="pt-4">
-            <h3 className="text-[clamp(1.4rem,5vw,2rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
+          <div className="pt-3 sm:pt-4">
+            <h3 className="text-[clamp(1.3rem,5vw,1.9rem)] font-semibold leading-[1.1] tracking-[-0.045em]">
               {current.title}
             </h3>
-            <p className="mt-2.5 text-[12px] leading-[1.6] text-white/65 sm:text-[14px] sm:leading-6">{current.copy}</p>
-            <ul className="services-mobile-features mt-4 grid min-w-0 grid-cols-2 gap-x-3 gap-y-2 pb-1">
+            <p className="mt-2 text-[12px] leading-[1.55] text-white/65 sm:text-[14px] sm:leading-6">{current.copy}</p>
+            <ul className="services-mobile-features mt-3 grid min-w-0 grid-cols-2 gap-x-3 gap-y-1.5 pb-1">
               {current.meta.map((item) => (
-                <li key={item} className="flex min-w-0 items-start gap-2 text-[11px] leading-[1.5] text-white/65 sm:text-[12px]">
+                <li key={item} className="flex min-w-0 items-start gap-2 text-[11px] leading-[1.45] text-white/65 sm:text-[12px]">
                   <span aria-hidden="true" className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
                   <span className="min-w-0 break-words">{item}</span>
                 </li>
