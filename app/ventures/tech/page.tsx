@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { startProjectWhatsAppUrl, techServices, techTeam, techCopy } from "../../../data/tech";
+import { startProjectWhatsAppUrl, techServices, techCopy } from "../../../data/tech";
+import { getVentureTeam } from "../../../data/team";
 import SiteHeader from "../../../components/home/SiteHeader";
 import SiteFooter from "../../../components/home/SiteFooter";
 import Arrow from "../../../components/home/Arrow";
@@ -114,7 +115,7 @@ export default function CubixmetTechPage() {
             {techCopy.teamDescription}
           </p>
           <div className="mt-11 divide-y divide-white/10 border-t border-white/10 md:mt-14">
-            {techTeam.map((member) => (
+            {getVentureTeam("tech").map((member) => (
               <article
                 key={member.name}
                 className="grid grid-cols-[minmax(0,1fr)_100px] items-center gap-5 py-7 sm:grid-cols-[minmax(0,1fr)_120px] sm:gap-9 sm:py-9 md:grid-cols-[minmax(0,1fr)_136px] md:gap-12 md:py-10"
