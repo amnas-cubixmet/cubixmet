@@ -1,14 +1,7 @@
 import type { Metadata } from "next";
 import AcademyCoursePage from "../../../../components/academy/AcademyCoursePage";
-import {
-  coursePage,
-  enrollUrl,
-  brochureUrl,
-  allProgramsUrl,
-  highlights,
-  curriculum,
-  eligibleLearners,
-} from "../../../../data/academyCourses/advanced-digital-marketing-automation";
+import { academyCourses } from "../../../../data/academyCourses";
+const { coursePage, enrollUrl, brochureUrl, allProgramsUrl, highlights, curriculum, eligibleLearners } = academyCourses["advanced-digital-marketing-automation"];
 
 export const metadata: Metadata = coursePage.metadata;
 

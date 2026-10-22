@@ -13,7 +13,7 @@ const required = [
   "data/homeContent.ts",
   "data/impact.ts",
   "data/insights.ts",
-  "data/leaders.ts",
+  "data/team.ts",
   "data/marquee.ts",
   "data/process.ts",
   "data/projects.ts",
@@ -23,9 +23,7 @@ const required = [
   "data/whyChoose.ts",
   "data/site.ts",
   "data/navigation.ts",
-  "data/tech.ts",
-  "data/digital.ts",
-  "data/academy.ts",
+  "data/academyCourses.ts",
   "data/events.ts",
   "app/events/page.tsx",
   "app/events/[slug]/page.tsx",
@@ -39,7 +37,6 @@ const courseSlugs = [
   "python-full-stack-development-ai-vibe-coding",
 ];
 for (const slug of courseSlugs) {
-  required.push(`data/academyCourses/${slug}.ts`);
   required.push(`app/ventures/academy/${slug}/page.tsx`);
 }
 
@@ -107,6 +104,13 @@ if (existsSync("app/events/[slug]/page.tsx")) {
   const detail = readFileSync("app/events/[slug]/page.tsx", "utf8");
   if (!detail.includes("generateStaticParams") || !detail.includes("getEventBySlug")) {
     violations.push("Event details must resolve data records and support static routes");
+  }
+}
+
+for (const [file, expected] of [["data/ventures.ts", ["ventureDetails", "techCopy", "digitalCopy", "academyCopy"]], ["data/team.ts", ["ventureTeamIds", "getVentureTeam", "leaders", "teamMembers"]], ["data/academyCourses.ts", ["academyCourses", "academyCourseLabels"]]]) {
+  if (existsSync(file)) {
+    const text = readFileSync(file, "utf8");
+    for (const name of expected) if (!text.includes(name)) violations.push(`${file} missing required export ${name}`);
   }
 }
 

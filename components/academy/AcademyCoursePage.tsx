@@ -7,7 +7,7 @@ import {
   academyCourseLabels as labels,
   type AcademyCoursePageContent,
   type AcademyCurriculumModule,
-} from "../../data/academyCourses/common";
+} from "../../data/academyCourses";
 
 type Props = {
   content: AcademyCoursePageContent;
