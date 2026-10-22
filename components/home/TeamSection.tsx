@@ -13,7 +13,7 @@ export default function TeamSection() {
         aria-hidden="true"
         className="pointer-events-none absolute -right-44 top-12 h-[430px] w-[430px] rounded-full bg-[#1677FF]/[0.055] blur-[115px]"
       />
-      <div className="work-wrapper relative">
+      <div className="about-wrapper relative">
         <div className="grid items-end gap-6 border-b border-white/10 pb-8 md:gap-8 md:pb-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(260px,.75fr)]">
           <div>
             <p className="section-label mb-4">{homeCopy.teamLabel}</p>
@@ -63,14 +63,9 @@ export default function TeamSection() {
 
         {teamMembers.length > 0 && (
           <div className="mt-14 border-t border-white/10 pt-8 md:mt-20 md:pt-10">
-            <div className="mb-6 flex items-center justify-between gap-4 md:mb-7">
-              <h3 className="text-[11px] font-semibold uppercase tracking-[.18em] text-[#72b2ff]">
-                {homeCopy.teamMembersLabel}
-              </h3>
-              <span className="text-[10px] uppercase tracking-[.12em] text-white/40">
-                {homeCopy.marqueeAutoLoopLabel}
-              </span>
-            </div>
+            <h3 className="mb-6 text-[11px] font-semibold uppercase tracking-[.18em] text-[#72b2ff] md:mb-7">
+              {homeCopy.teamMembersLabel}
+            </h3>
 
             <div className="team-slider-viewport overflow-hidden" aria-label={homeCopy.teamMembersLabel}>
               <div className="team-slider-track flex w-max">
