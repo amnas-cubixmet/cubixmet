@@ -67,47 +67,67 @@ export default async function EventDetailPage({ params }: EventPageProps) {
   if (!event) notFound();
 
   return (
-    <main className="min-h-screen overflow-x-clip bg-[#050505] pt-[60px] text-white md:pt-[68px]">
+    <main className="min-h-screen overflow-x-clip bg-[#060912] pt-[60px] text-white md:pt-[68px]">
       <SiteHeader />
       <article>
-        <section className="relative isolate overflow-hidden border-b border-white/10">
-          <div aria-hidden="true" className="pointer-events-none absolute -right-28 -top-32 h-[480px] w-[480px] rounded-full bg-[#1677FF]/10 blur-[110px]" />
-          <div className="relative mx-auto w-[90%] max-w-[1500px] pb-14 pt-10 md:pb-20 md:pt-14">
-            <Link href="/events" className="inline-flex min-h-10 items-center gap-2.5 text-[12px] font-medium text-white/55 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]">
+        <section className="relative isolate min-h-[445px] overflow-hidden bg-[#060912] md:min-h-[490px]">
+          <EventVisual
+            imageSrc={event.listingImage}
+            imageAlt=""
+            className="absolute inset-0 h-full w-full"
+          />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(5,7,14,.97)_0%,rgba(5,7,14,.88)_42%,rgba(5,7,14,.54)_100%)]" />
+          <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#060912] via-[#060912]/25 to-transparent" />
+          <div className="relative z-10 mx-auto w-[90%] max-w-[1500px] pb-24 pt-7 sm:pb-28 md:pt-9">
+            <Link href="/events" className="inline-flex min-h-10 items-center gap-2.5 text-[12px] font-medium text-[#9cadc8] transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]">
               <BackArrow /> {eventsPageCopy.backToEvents}
             </Link>
-
-            <div className="mt-10 flex flex-wrap items-center gap-3 sm:mt-14">
-              <span className="inline-flex items-center gap-2.5 rounded-full border border-[#1677FF]/25 bg-[#1677FF]/10 px-4 py-2 text-[12px] font-semibold text-[#8cc2ff]">
+            <div className="mt-7 sm:mt-9">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[#1677FF]/55 bg-[#101b31]/65 px-3 py-1.5 text-[12px] font-medium text-[#559aff]">
                 <CalendarIcon />
                 <time dateTime={event.date}>{event.displayDate}</time>
               </span>
-              <span className="rounded-full border border-white/15 px-4 py-2 text-[11px] font-semibold uppercase tracking-[.12em] text-white/60">
-                {event.category}
-              </span>
             </div>
-            <h1 className="mt-7 max-w-[1030px] text-[clamp(2.9rem,7.3vw,7.5rem)] font-semibold leading-[.95] tracking-[-.075em]">
+            <h1 className="mt-5 max-w-[850px] text-[clamp(2.25rem,4.25vw,4.75rem)] font-bold leading-[1.07] tracking-[-.04em] text-white">
               {event.title}
             </h1>
-            <p className="mt-7 max-w-[840px] text-[15px] leading-[1.85] text-white/60 md:text-[19px]">
+            <p className="mt-4 max-w-[800px] text-[14px] leading-[1.7] text-[#a5b6d3] md:text-[17px] md:leading-[1.65]">
               {event.summary}
             </p>
-            <div className="mt-11 overflow-hidden rounded-[18px] border border-[#1677FF]/30 sm:rounded-[24px]">
-              <EventVisual
-                imageSrc={event.detailImage}
-                imageAlt={`${event.title} workshop photograph`}
-                className="aspect-[1.35/1] w-full sm:aspect-[1.9/1] lg:aspect-[2.35/1]"
-              />
+          </div>
+        </section>
+
+        <section aria-labelledby="event-gallery-heading" className="py-12 md:py-16">
+          <div className="mx-auto w-[90%] max-w-[1500px]">
+            <h2 id="event-gallery-heading" className="mb-7 flex items-center gap-2.5 text-[20px] font-bold tracking-[-.025em]">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 shrink-0 text-[#3e96ff]">
+                <rect x="7" y="3" width="14" height="16" rx="2" />
+                <path d="M3 7v13a2 2 0 0 0 2 2h12M10 15l3-3 2 2 2-3 2 4M11 7h.01" />
+              </svg>
+              {eventsPageCopy.galleryLabel}
+            </h2>
+            <div className="grid max-w-[1080px] gap-4 sm:grid-cols-2">
+              {[event.listingImage, event.detailImage].filter((image): image is string => Boolean(image)).map((image, index) => (
+                <div key={image} className="overflow-hidden rounded-[13px] border border-white/10 bg-[#0d1423]">
+                  <EventVisual
+                    imageSrc={image}
+                    imageAlt={index === 0 ? `${event.title} group photograph` : `${event.title} participants during the session`}
+                    className="aspect-[4/3] w-full"
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         <section className="py-16 md:py-24">
           <div className="mx-auto grid w-[90%] max-w-[1500px] gap-10 lg:grid-cols-[minmax(0,1.45fr)_minmax(260px,.55fr)] lg:gap-20">
-            <div className="min-w-0">
-              <p className="section-label">{eventsPageCopy.eventOverview}</p>
-              <h2 className="mb-8 text-[clamp(2rem,4vw,3.8rem)] font-semibold leading-[1] tracking-[-.06em]">
-                Learning AI by doing.
+            <div className="min-w-0 rounded-[20px] border border-white/10 bg-[#0d1321] p-6 sm:p-8 lg:p-10">
+              <h2 className="mb-6 flex items-center gap-3 text-[clamp(1.65rem,2.8vw,2.35rem)] font-bold leading-tight tracking-[-.04em]">
+                <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5 shrink-0 text-[#3e96ff]">
+                  <path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 5l-4 14" />
+                </svg>
+                {eventsPageCopy.eventOverview}
               </h2>
               <div className="space-y-6">
                 {event.paragraphs.map((paragraph, index) => (
