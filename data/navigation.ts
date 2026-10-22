@@ -3,6 +3,8 @@ export const navLinks = [
   ["#top", "Home"],
   ["#about", "About"],
   ["#ventures", "Ventures"],
+  ["/products", "Product"],
+  ["/tools", "Tool"],
   ["#services", "Services"],
   ["#work", "Portfolio"],
   ["/events", "Events"],
