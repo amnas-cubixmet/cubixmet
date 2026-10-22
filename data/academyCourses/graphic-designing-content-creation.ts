@@ -1,10 +1,7 @@
 import type { AcademyCoursePageContent } from "./common";
+import { whatsappLink } from "../site";
 
-export const enrollUrl =
-  "https://wa.me/918921592742?text=" +
-  encodeURIComponent(
-    "Hi Cubixmet Academy, I'm interested in the Graphic Designing & Content Creation Program (AI Integrated). Please share fees, batch timings and enrollment details."
-  );
+export const enrollUrl = whatsappLink("Hi Cubixmet Academy, I'm interested in the Graphic Designing & Content Creation Program (AI Integrated). Please share fees, batch timings and enrollment details.");
 
 export const brochureUrl = "/brochures/cubixmet-academy.pdf";
 export const allProgramsUrl = "/ventures/academy#programs";
