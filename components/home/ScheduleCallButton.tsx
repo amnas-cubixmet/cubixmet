@@ -3,13 +3,11 @@
 import { useEffect, useId, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import Arrow from "./Arrow";
+import { site, whatsappLink } from "../../data/site";
 
 type Props = {
   venture: "Tech" | "Digital";
 };
-
-const phoneDisplay = "+91 89215 92742";
-const phoneNumber = "+918921592742";
 
 function ActionIcon({ type }: { type: "phone" | "message" | "copy" }) {
   if (type === "phone") {
@@ -91,7 +89,7 @@ export default function ScheduleCallButton({ venture }: Props) {
 
   const copyPhone = async () => {
     try {
-      await navigator.clipboard.writeText(phoneNumber);
+      await navigator.clipboard.writeText(site.phoneDial);
       setCopyStatus("copied");
     } catch {
       phoneInputRef.current?.focus();
@@ -100,9 +98,7 @@ export default function ScheduleCallButton({ venture }: Props) {
     }
   };
 
-  const whatsappUrl = `https://wa.me/918921592742?text=${encodeURIComponent(
-    `Hi Cubixmet ${venture}, I'd like to schedule a call.`
-  )}`;
+  const whatsappUrl = whatsappLink(`Hi Cubixmet ${venture}, I'd like to schedule a call.`);
 
   return (
     <>
@@ -166,7 +162,7 @@ export default function ScheduleCallButton({ venture }: Props) {
                 id={`${titleId}-phone`}
                 ref={phoneInputRef}
                 readOnly
-                value={phoneDisplay}
+                value={site.phoneDisplay}
                 aria-label="Business phone number"
                 className="mt-2 w-full bg-transparent text-[21px] font-semibold tracking-[-.025em] text-white outline-none"
               />
@@ -174,7 +170,7 @@ export default function ScheduleCallButton({ venture }: Props) {
 
             <div className="relative mt-5 grid gap-2.5">
               <a
-                href={`tel:${phoneNumber}`}
+                href={`tel:${site.phoneDial}`}
                 className="flex min-h-[52px] items-center gap-3 rounded-[12px] bg-[#1677FF] px-4 text-[13px] font-semibold text-white transition-colors hover:bg-[#3388ff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
               >
                 <ActionIcon type="phone" />
