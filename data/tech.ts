@@ -86,3 +86,37 @@ export const techTeam: TechTeamMember[] = [
   },
 ];
 
+
+/** Text and links used by the Cubixmet Tech venture page. */
+export const techCopy = {
+  "metadata": {
+    "title": "Cubixmet Tech | Build. Deploy. Scale.",
+    "description": "End-to-end technology solutions from Cubixmet Tech: software development, product engineering, cloud, APIs, security, AI and technical consulting."
+  },
+  "verticalLabel": "Technology Vertical",
+  "brandPrefix": "Cubixmet",
+  "brandSuffix": "Tech",
+  "tagline": "Build. Deploy. Scale.",
+  "intro": "End-to-end software solutions from product engineering to technical consulting. We build technology that scales with your ambition.",
+  "servicesLabel": "What We Build",
+  "servicesTitle": "Technology that moves businesses forward.",
+  "servicesDescription": "Comprehensive technology services engineered for performance, scalability, and growth.",
+  "approachLabel": "Web Development",
+  "approachTitle": "Engineering Excellence.",
+  "approachDescription": "Every project is built with clean architecture, automated testing, and production-ready deployment pipelines.",
+  "approachItems": [
+    "Clean architecture",
+    "Automated testing",
+    "Production-ready deployment",
+    "Reliable, scalable delivery"
+  ],
+  "teamLabel": "The Tech Team",
+  "teamTitle": "People behind the technology.",
+  "teamDescription": "Engineers, architects, and problem-solvers dedicated to building your next big thing.",
+  "heroCaption": "Software. Cloud. Innovation.",
+  "ctaLabel": "Ready to Build?",
+  "ctaTitle": "Let's turn your vision into a scalable, production-ready product.",
+  "brochureHref": "/brochures/cubixmet-tech.pdf",
+  "brochureName": "cubixmet-tech.pdf",
+  "brochureLabel": "Download Tech Brochure (PDF)"
+} as const;
