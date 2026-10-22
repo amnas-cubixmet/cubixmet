@@ -12,3 +12,4 @@ export * from "./heroProjects";
 export * from "./homeContent";
 export * from "./navigation";
 export * from "./site";
+export * from "./events";
