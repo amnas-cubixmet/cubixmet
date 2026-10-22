@@ -7,13 +7,14 @@ type EventVisualProps = {
   className?: string;
   imageSrc?: string;
   imageAlt?: string;
+  showOverlay?: boolean;
 };
 
 /**
  * Inline SVG artwork, not a stock photo or a logo.
  * Resolution independent for desktop, tablet and mobile event cards.
  */
-export default function EventVisual({ className = "", imageSrc, imageAlt = "" }: EventVisualProps) {
+export default function EventVisual({ className = "", imageSrc, imageAlt = "", showOverlay = true }: EventVisualProps) {
   const [imageFailed, setImageFailed] = useState(false);
 
   return (
@@ -95,7 +96,9 @@ export default function EventVisual({ className = "", imageSrc, imageAlt = "" }:
           onError={() => setImageFailed(true)}
         />
       )}
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050505]/35 via-transparent to-transparent" />
+      {showOverlay && (
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050505]/35 via-transparent to-transparent" />
+      )}
     </div>
   );
 }
