@@ -636,7 +636,8 @@ a {
   will-change: transform;
 }
 
-.team-slider-viewport:hover .team-slider-track {
+.team-slider-viewport:hover .team-slider-track,
+.team-slider-viewport:focus-within .team-slider-track {
   animation-play-state: paused;
 }
 
@@ -651,7 +652,20 @@ a {
 
 @media (max-width: 767px) {
   .team-slider-track {
-    animation-duration: 18s;
+    animation-duration: 22s;
+  }
+}
+
+/* Visitors who prefer reduced motion can scroll the complete team list. */
+@media (prefers-reduced-motion: reduce) {
+  .team-slider-viewport {
+    overflow-x: auto;
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+  .team-slider-track {
+    animation: none;
+    transform: none;
   }
 }
 
