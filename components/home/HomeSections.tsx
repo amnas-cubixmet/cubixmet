@@ -8,7 +8,7 @@ import { aboutContent, aboutPillars } from "../../data/about";
 import { ventures } from "../../data/ventures";
 import { projects, projectFilters } from "../../data/projects";
 import { homeCopy } from "../../data/homeContent";
-import { site } from "../../data/site";
+import { site, whatsappLink } from "../../data/site";
 import { whyChoose } from "../../data/whyChoose";
 import { marqueeItems } from "../../data/marquee";
 import { testimonials } from "../../data/testimonials";
@@ -1170,14 +1170,44 @@ function ContactSection() {
             <p className="mt-6 max-w-md text-sm leading-6 text-white/70">{homeCopy.contactDescription}</p>
             <a href={`mailto:${site.email}`} className="mt-8 inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-xs font-bold text-white">{site.email} <Arrow /></a>
           </div>
-          <form className="rounded-[22px] bg-white p-5 text-black md:p-7" onSubmit={(event) => event.preventDefault()}>
+          <form
+            className="rounded-[22px] bg-white p-5 text-black md:p-7"
+            onSubmit={(event) => {
+              event.preventDefault();
+              const values = new FormData(event.currentTarget);
+              const name = String(values.get("name") ?? "").trim();
+              const email = String(values.get("email") ?? "").trim();
+              const topic = String(values.get("topic") ?? "").trim();
+              const message = String(values.get("message") ?? "").trim();
+              const draft = [
+                "Hi Cubixmet, I'd like to discuss a project.",
+                `Name: ${name}`,
+                `Email: ${email}`,
+                `Service: ${topic}`,
+                `Project details: ${message}`,
+              ].join("\n");
+              // The visitor reviews and sends the message inside WhatsApp.
+              window.location.assign(whatsappLink(draft));
+            }}
+          >
             <div className="grid gap-5 sm:grid-cols-2">
-              <label className="text-xs font-medium">Your name<input className="form-line" placeholder="Name" /></label>
-              <label className="text-xs font-medium">Email<input type="email" className="form-line" placeholder="you@company.com" /></label>
-              <label className="text-xs font-medium sm:col-span-2">What can we help with?<input className="form-line" placeholder="Brand, website, product, growth..." /></label>
-              <label className="text-xs font-medium sm:col-span-2">Tell us about the project<textarea rows={4} className="form-line resize-none" placeholder="A short project summary" /></label>
+              <label className="text-xs font-medium">Your name
+                <input name="name" required maxLength={100} autoComplete="name" className="form-line" placeholder="Name" />
+              </label>
+              <label className="text-xs font-medium">Email
+                <input name="email" type="email" required maxLength={160} autoComplete="email" className="form-line" placeholder="you@company.com" />
+              </label>
+              <label className="text-xs font-medium sm:col-span-2">What can we help with?
+                <input name="topic" required maxLength={150} className="form-line" placeholder="Brand, website, product, growth..." />
+              </label>
+              <label className="text-xs font-medium sm:col-span-2">Tell us about the project
+                <textarea name="message" required maxLength={2000} rows={4} className="form-line resize-none" placeholder="A short project summary" />
+              </label>
             </div>
-            <button type="submit" className="mt-7 inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-xs font-bold text-white">{homeCopy.contactSubmit} <Arrow /></button>
+            <button type="submit" className="mt-7 inline-flex min-h-11 items-center gap-2 rounded-full bg-black px-5 py-3 text-xs font-bold text-white transition hover:bg-[#202020]">
+              {homeCopy.contactSubmit} <Arrow />
+            </button>
+            <p className="mt-3 text-[11px] leading-5 text-black/55">{homeCopy.contactFormNote}</p>
           </form>
         </div>
       </div>
