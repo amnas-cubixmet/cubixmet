@@ -4,16 +4,8 @@ import { useEffect, useState } from "react";
 import Arrow from "./Arrow";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-
-const navLinks = [
-  ["#top", "Home"],
-  ["#about", "About"],
-  ["#ventures", "Ventures"],
-  ["#services", "Services"],
-  ["#work", "Portfolio"],
-  ["#team", "Team"],
-  ["#contact", "Contact"],
-] as const;
+import { navLinks, observedSectionIds, observerSkippedIds } from "../../data/navigation";
+import { site, contactMessages, whatsappLink } from "../../data/site";
 
 export default function SiteHeader() {
   const isHomePage = usePathname() === "/";
@@ -25,7 +17,7 @@ export default function SiteHeader() {
   useEffect(() => {
     if (!isHomePage) return;
 
-    const sectionIds = ["top", "about", "ventures", "services", "process", "work", "team", "impact", "contact"];
+    const sectionIds = observedSectionIds;
     const sections = sectionIds
       .map((id) => document.getElementById(id))
       .filter(Boolean) as HTMLElement[];
@@ -39,7 +31,7 @@ export default function SiteHeader() {
         if (!visible?.target?.id) return;
 
         const id = visible.target.id;
-        if (id === "process" || id === "impact") return;
+        if (observerSkippedIds.includes(id)) return;
         setActiveLink(`#${id}`);
       },
       { rootMargin: "-32% 0px -56% 0px", threshold: [0, 0.15, 0.35, 0.6] }
@@ -96,8 +88,8 @@ export default function SiteHeader() {
         >
           <span className="grid h-10 w-[120px] place-items-center overflow-hidden md:h-11 md:w-[136px]">
             <Image
-              src="/images/logo.png"
-              alt="Cubixmet"
+              src={site.logo}
+              alt={site.brand}
               width={272}
               height={88}
               sizes="(min-width: 768px) 136px, 120px"
@@ -133,7 +125,7 @@ export default function SiteHeader() {
         </nav>
 
         <a
-          href="https://wa.me/918921592742?text=Hi%20Cubixmet%2C%20I%27d%20like%20to%20discuss%20a%20project."
+          href={whatsappLink(contactMessages.header)}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat with Cubixmet on WhatsApp"
