@@ -783,7 +783,8 @@ a {
   scrollbar-width: none;
   -webkit-overflow-scrolling: touch;
   scroll-padding-inline: 0;
-  scroll-behavior: smooth;
+  /* JavaScript controls animated scrolls; recentering clones must be instant. */
+  scroll-behavior: auto;
 }
 .client-stories-scroll::-webkit-scrollbar {
   display: none;
