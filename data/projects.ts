@@ -119,3 +119,9 @@ export const projects: Project[] = [
       "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=84",
   },
 ];
+
+// Filter options automatically reflect the project categories present in this file.
+export const projectFilters: readonly ("All" | Project["category"])[] = [
+  "All",
+  ...new Set(projects.map(({ category }) => category)),
+];

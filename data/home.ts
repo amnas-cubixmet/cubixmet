@@ -8,3 +8,7 @@ export * from "./leaders";
 export * from "./insights";
 export * from "./impact";
 export * from "./ventures";
+export * from "./heroProjects";
+export * from "./homeContent";
+export * from "./navigation";
+export * from "./site";

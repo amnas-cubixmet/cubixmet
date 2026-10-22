@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { techCopy } from "../../data/tech";
 
 /**
  * Use the generated team image once it has been committed to public/images/ventures/.
@@ -14,10 +15,10 @@ export default function TechHeroImage() {
     <Image
       src={
         useFallback
-          ? "/images/heroProjects/workspace.png"
-          : "/images/ventures/tech-hero.png"
+          ? techCopy.heroFallback
+          : techCopy.heroImage
       }
-      alt="Cubixmet Tech: a collaborative software development workspace"
+      alt={techCopy.heroImageAlt}
       fill
       priority
       sizes="(max-width: 1023px) calc(100vw - 40px), (max-width: 1536px) 43vw, 570px"

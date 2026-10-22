@@ -6,7 +6,9 @@ import Image from "next/image";
 import { services } from "../../data/services";
 import { aboutContent, aboutPillars } from "../../data/about";
 import { ventures } from "../../data/ventures";
-import { projects } from "../../data/projects";
+import { projects, projectFilters } from "../../data/projects";
+import { homeCopy } from "../../data/homeContent";
+import { site } from "../../data/site";
 import { whyChoose } from "../../data/whyChoose";
 import { marqueeItems } from "../../data/marquee";
 import { testimonials } from "../../data/testimonials";
@@ -263,7 +265,7 @@ function VenturesSection() {
       <div className="about-wrapper relative z-10">
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-6">
           <div data-reveal className="reveal lg:col-span-3">
-            <p className="section-label">Our Ventures</p>
+            <p className="section-label">{homeCopy.venturesLabel}</p>
           </div>
 
           <div className="lg:col-span-9">
@@ -663,12 +665,12 @@ function ProcessSection() {
           <div className="relative z-10 grid gap-10 p-5 md:p-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-14 xl:p-10">
             <div className="lg:sticky lg:top-28 lg:self-start">
               <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.18em] text-[#1677FF]">
-                Why Choose Cubixmet
+                {homeCopy.whyChooseLabel}
               </p>
 
               <h2 className="max-w-[560px] text-[clamp(2.4rem,4.2vw,4.8rem)] font-medium leading-[.96] tracking-[-0.055em]">
-                We don&apos;t just deliver services —
-                <span className="block text-white/38">we engineer growth ecosystems.</span>
+                {homeCopy.whyChooseHeading}
+                <span className="block text-white/38">{homeCopy.whyChooseSubheading}</span>
               </h2>
             </div>
 
@@ -711,7 +713,7 @@ function WorkSection() {
     "All" | "Dynamic Website" | "Digital Marketing"
   >("All");
 
-  const filters = ["All", "Dynamic Website", "Digital Marketing"] as const;
+  const filters = projectFilters;
   const filteredProjects =
     portfolioFilter === "All"
       ? projects
@@ -722,14 +724,14 @@ function WorkSection() {
       <div className="about-wrapper">
         <div data-reveal className="reveal grid gap-8 lg:grid-cols-[.9fr_1.1fr] lg:items-end">
           <div>
-            <p className="section-label">Our Portfolio</p>
+            <p className="section-label">{homeCopy.portfolioLabel}</p>
             <h2 className="max-w-[720px] text-[clamp(2.8rem,5.1vw,5.8rem)] font-medium leading-[.92] tracking-[-0.06em]">
-              Selected work across web and digital growth.
+              {homeCopy.portfolioHeading}
             </h2>
           </div>
 
           <p className="max-w-[540px] text-[13px] leading-6 text-white/45 md:text-[15px] md:leading-7 lg:justify-self-end">
-            A selection of projects showcasing our web development and digital marketing capabilities.
+            {homeCopy.portfolioDescription}
           </p>
         </div>
 
@@ -856,10 +858,10 @@ function TestimonialsSection() {
     <section className="overflow-hidden pb-20 pt-12 md:pb-28 md:pt-16">
       <div className="w-full">
         <div data-reveal className="reveal mx-auto max-w-[900px] px-4 text-center md:px-8">
-          <p className="section-label mb-3">Client stories</p>
+          <p className="section-label mb-3">{homeCopy.testimonialsLabel}</p>
           <h2 className="mx-auto max-w-[580px] text-[clamp(2rem,3.6vw,4.2rem)] font-medium leading-[.94] tracking-[-0.05em]">
-            Trusted by Brands, Backed
-            <span className="block">by Stories</span>
+            {homeCopy.testimonialsHeading}
+            <span className="block">{homeCopy.testimonialsSubheading}</span>
           </h2>
         </div>
 
@@ -950,10 +952,10 @@ function LeadershipSection() {
       <div className="work-wrapper">
         <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-16">
           <div data-reveal className="reveal">
-            <p className="section-label mb-4">Meet the Team</p>
+            <p className="section-label mb-4">{homeCopy.teamLabel}</p>
             <h2 className="max-w-[370px] text-[clamp(2.2rem,3.6vw,4.1rem)] font-medium leading-[.94] tracking-[-0.05em]">
-              The minds behind
-              <span className="block">— Cubixmet</span>
+              {homeCopy.teamHeading}
+              <span className="block">{homeCopy.teamSubheading}</span>
             </h2>
           </div>
 
@@ -1023,10 +1025,10 @@ function LeadershipSection() {
           <div className="mt-12 border-t border-white/8 pt-8 md:mt-16 md:pt-10">
             <div className="mb-6 flex items-center justify-between gap-4">
               <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
-                Team Members
+                {homeCopy.teamMembersLabel}
               </p>
               <p className="text-[10px] uppercase tracking-[0.14em] text-white/22">
-                Auto loop
+                {homeCopy.marqueeAutoLoopLabel}
               </p>
             </div>
 
@@ -1123,7 +1125,7 @@ function ImpactSection() {
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_18%_18%,rgba(22,119,255,.10),transparent_26%),radial-gradient(circle_at_86%_84%,rgba(22,119,255,.06),transparent_24%)]" />
 
           <div className="relative z-10 px-5 py-8 md:px-8 md:py-10 xl:px-10">
-            <p className="section-label mb-0">Our Impact</p>
+            <p className="section-label mb-0">{homeCopy.impactLabel}</p>
           </div>
 
           <div className="relative z-10 grid border-t border-white/8 sm:grid-cols-2 lg:grid-cols-4">
@@ -1163,10 +1165,10 @@ function ContactSection() {
       <div className="site-wrapper overflow-hidden rounded-[28px] bg-[#1677FF] text-white">
         <div className="grid gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[.9fr_1.1fr] xl:px-10">
           <div>
-            <p className="text-[10px] uppercase tracking-[0.18em]">Start a project</p>
-            <h2 className="mt-5 max-w-xl text-[clamp(3rem,6.5vw,7rem)] font-semibold leading-[0.86] tracking-[-0.065em]">Have a project in mind? Let&apos;s talk.</h2>
-            <p className="mt-6 max-w-md text-sm leading-6 text-white/70">Share the goal, challenge or rough idea. We&apos;ll help shape the next step.</p>
-            <a href="mailto:hello@cubixmet.com" className="mt-8 inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-xs font-bold text-white">hello@cubixmet.com <Arrow /></a>
+            <p className="text-[10px] uppercase tracking-[0.18em]">{homeCopy.contactLabel}</p>
+            <h2 className="mt-5 max-w-xl text-[clamp(3rem,6.5vw,7rem)] font-semibold leading-[0.86] tracking-[-0.065em]">{homeCopy.contactHeading}</h2>
+            <p className="mt-6 max-w-md text-sm leading-6 text-white/70">{homeCopy.contactDescription}</p>
+            <a href={`mailto:${site.email}`} className="mt-8 inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-xs font-bold text-white">{site.email} <Arrow /></a>
           </div>
           <form className="rounded-[22px] bg-white p-5 text-black md:p-7" onSubmit={(event) => event.preventDefault()}>
             <div className="grid gap-5 sm:grid-cols-2">
@@ -1175,7 +1177,7 @@ function ContactSection() {
               <label className="text-xs font-medium sm:col-span-2">What can we help with?<input className="form-line" placeholder="Brand, website, product, growth..." /></label>
               <label className="text-xs font-medium sm:col-span-2">Tell us about the project<textarea rows={4} className="form-line resize-none" placeholder="A short project summary" /></label>
             </div>
-            <button type="submit" className="mt-7 inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-xs font-bold text-white">Send project <Arrow /></button>
+            <button type="submit" className="mt-7 inline-flex items-center gap-2 rounded-full bg-black px-5 py-3 text-xs font-bold text-white">{homeCopy.contactSubmit} <Arrow /></button>
           </form>
         </div>
       </div>

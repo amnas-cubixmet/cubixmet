@@ -1,14 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { siteMetadata } from "../data/site";
 
 const geistSans = Geist({ variable:"--font-geist-sans", subsets:["latin"] });
 const geistMono = Geist_Mono({ variable:"--font-geist-mono", subsets:["latin"] });
 
-export const metadata: Metadata = {
-  title:"Cubixmet — Technology, Development & Digital Growth",
-  description:"Cubixmet builds software, digital products, AI solutions and growth experiences for modern businesses.",
-};
+export const metadata: Metadata = siteMetadata;
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased`}><body>{children}</body></html>;

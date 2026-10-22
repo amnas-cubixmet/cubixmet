@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import { academyCopy } from "../../data/academy";
 
 /**
  * Displays the supplied Academy hero artwork once the PNG has been uploaded
@@ -17,8 +18,8 @@ export default function AcademyHeroPhoto() {
       aria-hidden={!loaded}
     >
       <Image
-        src="/images/ventures/academy-hero.png"
-        alt="Cubixmet Academy students learning and collaborating around a laptop"
+        src={academyCopy.heroImage}
+        alt={academyCopy.heroImageAlt}
         fill
         priority
         sizes="(max-width: 1023px) calc(100vw - 40px), (max-width: 1536px) 43vw, 570px"
@@ -30,10 +31,10 @@ export default function AcademyHeroPhoto() {
       <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5 sm:p-7">
         <div>
           <p className="text-[10px] font-semibold uppercase tracking-[.2em] text-[#62a5ff]">
-            Academy Vertical
+            {academyCopy.verticalLabel}
           </p>
           <p className="mt-1 text-[14px] font-medium tracking-tight text-white sm:text-[17px]">
-            Learn. Build. Launch.
+            {academyCopy.tagline}
           </p>
         </div>
         <span aria-hidden="true" className="mb-1 h-2 w-2 shrink-0 rounded-full bg-[#1677FF] shadow-[0_0_15px_#1677FF]" />
