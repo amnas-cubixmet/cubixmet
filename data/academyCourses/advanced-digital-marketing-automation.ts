@@ -1,3 +1,5 @@
+import type { AcademyCoursePageContent } from "./common";
+
 export const enrollUrl =
   "https://wa.me/918921592742?text=" +
   encodeURIComponent(
@@ -126,3 +128,27 @@ export const eligibleLearners = [
 
 export type CurriculumIconName = (typeof curriculum)[number]["icon"];
 
+
+/** Course-specific presentation text and media. */
+export const coursePage = {
+  "metadata": {
+    "title": "Advanced Digital Marketing & Automation | Cubixmet Academy",
+    "description": "Learn WordPress, lead generation, sales funnels, SEO, Meta Ads, Google Ads, video marketing, CRM, analytics and real campaigns in Cubixmet Academy's 6-month digital marketing course."
+  },
+  "breadcrumb": "Advanced Digital Marketing & Automation",
+  "headlineBefore": "Advanced",
+  "headlineEmphasis": "Digital Marketing",
+  "headlineAfter": "& Automation Program",
+  "tagline": "Learn. Automate. Optimize. Scale.",
+  "intro": "Learn how to attract the right audience, generate quality leads, run profitable ad campaigns, and build automated marketing systems that work 24/7.",
+  "heroImage": "/images/ventures/digital-hero.png",
+  "heroImageAlt": "Digital marketing professionals collaborating on campaigns, content and creative strategy",
+  "heroBadge": "Marketing in Practice",
+  "heroCaption": "Learn. Automate. Scale.",
+  "highlightsDescription": "Advertising, SEO, automation, analytics and campaign training in one intensive program.",
+  "curriculumDescription": "Explore WordPress, content creation, SEO, paid advertising, analytics, automation, communication, and live campaigns.",
+  "learnerHeading": "Your marketing journey starts here.",
+  "learnerDescription": "Whether you are starting a career or growing a business, learn practical digital marketing strategies and workflows used by modern teams.",
+  "ctaHeading": "Ready to build marketing skills that drive growth?",
+  "ctaDescription": "Get course fees, batch timings, and enrollment guidance directly from the Cubixmet Academy team."
+} satisfies AcademyCoursePageContent;
