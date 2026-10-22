@@ -38,7 +38,7 @@ export default function EventsPage() {
       <SiteHeader />
       <section className="relative isolate overflow-hidden border-b border-white/10">
         <div aria-hidden="true" className="pointer-events-none absolute -right-28 -top-32 h-[480px] w-[480px] rounded-full bg-[#1677FF]/10 blur-[110px]" />
-        <div className="relative mx-auto w-[calc(100%-40px)] max-w-[1320px] pb-16 pt-14 md:pb-24 md:pt-20">
+        <div className="relative mx-auto w-[90%] max-w-[1500px] pb-16 pt-14 md:pb-24 md:pt-20">
           <p className="mb-6 inline-flex items-center gap-2.5 text-[11px] font-bold uppercase tracking-[.2em] text-[#65a8ff]">
             <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
             {eventsPageCopy.eyebrow}
@@ -58,7 +58,7 @@ export default function EventsPage() {
       </section>
 
       <section aria-labelledby="events-heading" className="py-16 md:py-24">
-        <div className="mx-auto w-[calc(100%-40px)] max-w-[1320px]">
+        <div className="mx-auto w-[90%] max-w-[1500px]">
           <div className="mb-9 flex flex-wrap items-end justify-between gap-4 border-b border-white/10 pb-6">
             <h2 id="events-heading" className="text-[clamp(2rem,4vw,3.5rem)] font-semibold tracking-[-.055em]">
               {eventsPageCopy.featured}
@@ -67,13 +67,17 @@ export default function EventsPage() {
               {String(events.length).padStart(2, "0")} {events.length === 1 ? "EVENT" : "EVENTS"}
             </span>
           </div>
-          <div className="grid gap-7 lg:grid-cols-2">
+          <div className={events.length === 1 ? "grid gap-7" : "grid gap-7 lg:grid-cols-2"}>
             {events.map((event) => (
-              <article key={event.id} className="group flex min-w-0 flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#0b0e14] transition-colors duration-300 hover:border-[#1677FF]/55">
+              <article key={event.id} className={`group flex min-w-0 flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#0b0e14] transition-colors duration-300 hover:border-[#1677FF]/55 ${events.length === 1 ? "lg:grid lg:grid-cols-[1.05fr_.95fr]" : ""}`}>
                 <Link href={`/events/${event.slug}`} aria-label={`View ${event.title}`} className="block overflow-hidden">
-                  <EventVisual className="aspect-[1.6/1] w-full transition-transform duration-700 group-hover:scale-[1.025] sm:aspect-[1.9/1]" />
+                  <EventVisual
+                    imageSrc={event.listingImage}
+                    imageAlt={`${event.title} event cover`}
+                    className={`w-full transition-transform duration-700 group-hover:scale-[1.025] ${events.length === 1 ? "h-full min-h-[240px] sm:min-h-[350px] lg:min-h-[420px]" : "aspect-[1.6/1] sm:aspect-[1.9/1]"}`}
+                  />
                 </Link>
-                <div className="flex flex-1 flex-col p-6 sm:p-8">
+                <div className="flex min-w-0 flex-1 flex-col justify-center p-6 sm:p-8 lg:p-10">
                   <div className="mb-5 flex flex-wrap items-center gap-x-5 gap-y-3 text-[11px] font-semibold uppercase tracking-[.1em] text-white/55">
                     <span className="inline-flex items-center gap-2 text-[#75b5ff]"><CalendarIcon /> <time dateTime={event.date}>{event.displayDate}</time></span>
                     <span className="rounded-full border border-[#1677FF]/30 bg-[#1677FF]/10 px-3 py-1.5 text-[#9ecbff]">{event.status}</span>
