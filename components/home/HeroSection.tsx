@@ -9,7 +9,7 @@ import { heroContent } from "../../data/homeContent";
 import { contactMessages, whatsappLink } from "../../data/site";
 
 export default function HeroSection() {
-  const [activeCard, setActiveCard] = useState(heroContent.initialProject);
+  const [activeCard, setActiveCard] = useState<number>(heroContent.initialProject);
   const [paused, setPaused] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
   const [dragging, setDragging] = useState(false);
