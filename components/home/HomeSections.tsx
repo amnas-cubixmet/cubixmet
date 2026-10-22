@@ -821,41 +821,76 @@ function WorkSection() {
               key={project.id}
               data-scroll-card
               data-scroll-delay={(index % 6) * 70}
-              className="scroll-card group overflow-hidden border border-white/8 bg-[#0b0b0b]"
+              className="scroll-card group min-w-0 overflow-hidden rounded-[17px] border border-[#192239] bg-[#0b1120] transition-colors hover:border-[#1677FF]/50"
             >
-              <div className="relative aspect-[1.35/1] overflow-hidden bg-[#101010]">
+              <div className="relative aspect-[1.75/1] overflow-hidden bg-[#101723] sm:aspect-[2.15/1]">
                 <ProjectVideoPreview
                   key={project.id}
                   name={project.name}
                   image={project.image}
                   video={project.video}
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
-                <span className="absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-white/72 backdrop-blur">
-                  {project.category}
-                </span>
+                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0b1120]/80 via-transparent to-transparent" />
+                {project.website && (
+                  <a
+                    href={project.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${project.name} official website (opens in a new tab)`}
+                    title={`Visit ${project.name} website`}
+                    className="absolute right-3 top-3 z-20 grid h-10 w-10 place-items-center rounded-[11px] border border-white/15 bg-[#0c1527]/90 text-[#63a8ff] shadow-lg backdrop-blur-sm transition-colors hover:border-[#1677FF] hover:bg-[#1677FF] hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] sm:right-4 sm:top-4"
+                  >
+                    <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5">
+                      <circle cx="12" cy="12" r="9" />
+                      <path d="M3 12h18M12 3a15 15 0 0 0 0 18M12 3a15 15 0 0 1 0 18" />
+                    </svg>
+                  </a>
+                )}
               </div>
 
-              <div className="p-5 md:p-6">
-                <div className="flex items-start justify-between gap-5">
-                  <h3 className="text-[26px] font-semibold leading-[.98] tracking-[-0.045em] text-white md:text-[30px]">
-                    {project.name}
-                  </h3>
-
-                  <span className="text-[10px] font-medium text-white/22">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
+              <div className="flex min-h-[205px] flex-col p-5 sm:p-6">
+                <div className="flex items-start justify-between gap-3">
+                  <div className="min-w-0">
+                    <p className="text-[12px] font-semibold tracking-[.01em] text-[#65a8ff]">
+                      {project.category}
+                    </p>
+                    <h3 className="mt-2 text-[clamp(1.3rem,2vw,1.75rem)] font-bold leading-[1.12] tracking-[-.035em] text-white">
+                      {project.website ? (
+                        <a
+                          href={project.website}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="transition-colors hover:text-[#7db8ff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
+                        >
+                          {project.name}
+                        </a>
+                      ) : project.name}
+                    </h3>
+                  </div>
+                  {project.website && (
+                    <a
+                      href={project.website}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`Open ${project.name} website in a new tab`}
+                      className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-lg text-[#7b91b2] transition-colors hover:bg-[#1677FF]/15 hover:text-[#74b4ff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
+                    >
+                      <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4">
+                        <path d="M13 5h6v6M19 5l-9 9" /><path d="M19 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" />
+                      </svg>
+                    </a>
+                  )}
                 </div>
 
-                <p className="mt-5 min-h-[72px] text-[12px] leading-6 text-white/42">
+                <p className="mt-3 flex-1 text-[12px] leading-[1.7] text-[#8392ad] sm:text-[13px]">
                   {project.description}
                 </p>
 
-                <div className="mt-6 flex flex-wrap gap-2 border-t border-white/8 pt-5">
+                <div className="mt-5 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full border border-white/10 px-2.5 py-1 text-[9px] text-white/52"
+                      className="rounded-full border border-[#1d2a40] px-3 py-1.5 text-[10px] font-medium text-[#8292ae]"
                     >
                       {tag}
                     </span>
