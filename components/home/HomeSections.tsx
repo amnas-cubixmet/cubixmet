@@ -14,6 +14,7 @@ import { site, whatsappLink } from "../../data/site";
 import { whyChoose } from "../../data/whyChoose";
 import { marqueeItems } from "../../data/marquee";
 import TeamSection from "./TeamSection";
+import ProductToolsSection from "./ProductToolsSection";
 import { impactStats } from "../../data/impact";
 
 function FlowerSeparator() {
@@ -1098,6 +1099,7 @@ export default function HomeSections() {
       <MarqueeSection />
       <AboutSection />
       <VenturesSection />
+      <ProductToolsSection />
       <ServicesSection />
       <ProcessSection />
       <WorkSection />
