@@ -182,7 +182,7 @@ export default function HeroSection() {
                     src={project.image}
                     alt={isActive ? project.title : ""}
                     fill
-                    sizes="(max-width: 767px) 74vw, (max-width: 1279px) 44vw, 600px"
+                    sizes="(max-width: 767px) 74vw, (max-width: 1023px) 44vw, (max-width: 2160px) calc(25vw - 20px), 520px"
                     loading={project.index === 2 ? "eager" : "lazy"}
                     fetchPriority={isActive ? "high" : "auto"}
                     draggable={false}
