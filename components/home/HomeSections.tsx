@@ -483,7 +483,7 @@ function ServicesSection() {
               onClick={() => selectService(index)}
               aria-current={activeService === index ? "true" : undefined}
               className={
-                "shrink-0 snap-center whitespace-nowrap rounded-sm px-3.5 py-3 text-[12px] font-medium transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
+                "shrink-0 snap-center whitespace-nowrap rounded-sm px-3.5 py-3 text-center text-[12px] font-bold transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
                 (activeService === index
                   ? "bg-white text-black"
                   : "bg-white/[0.07] text-white/65 hover:text-white")
@@ -506,10 +506,7 @@ function ServicesSection() {
             <img src={current.image} alt={current.title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
           </div>
           <div className="pt-4">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1677FF]">
-              {current.no} / Service
-            </p>
-            <h3 className="mt-2 text-[clamp(1.4rem,5vw,2rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
+            <h3 className="text-[clamp(1.4rem,5vw,2rem)] font-semibold leading-[1.05] tracking-[-0.045em]">
               {current.title}
             </h3>
             <p className="mt-2.5 text-[12px] leading-[1.6] text-white/65 sm:text-[14px] sm:leading-6">{current.copy}</p>
@@ -530,7 +527,7 @@ function ServicesSection() {
         <div className="mx-auto grid h-full w-[92%] max-w-[1320px] grid-cols-[minmax(0,0.96fr)_40px_minmax(0,1.08fr)] items-center gap-7 py-8 xl:gap-12">
           <nav aria-label="Choose a service" className="flex min-w-0 flex-col items-center justify-center">
             <div className="w-full max-w-[390px]">
-              <p className="mb-6 px-5 text-left text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1677FF]">
+              <p className="mb-6 px-5 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1677FF]">
                 Services
               </p>
 
@@ -547,7 +544,7 @@ function ServicesSection() {
                     onClick={() => selectService(index)}
                     aria-current={activeService === index ? "true" : undefined}
                     className={
-                      "relative z-10 flex h-[50px] min-w-0 w-full items-center justify-start rounded-[14px] px-5 text-left text-[clamp(17px,1.55vw,22px)] font-semibold leading-[1.15] tracking-[-0.035em] transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
+                      "relative z-10 flex h-[50px] min-w-0 w-full items-center justify-center rounded-[14px] px-5 text-center text-[clamp(17px,1.55vw,22px)] font-bold leading-[1.15] tracking-[-0.035em] transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
                       (activeService === index ? "text-black" : "text-white/55 hover:text-white")
                     }
                   >
@@ -593,10 +590,7 @@ function ServicesSection() {
             </div>
 
             <div key={current.no} className="service-content-enter mt-5 min-h-[180px]">
-              <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[#1677FF]">
-                {current.no} / Service
-              </p>
-              <p className="mt-3 max-w-[560px] text-[clamp(13px,1vw,15px)] leading-[1.65] text-white/70">
+              <p className="max-w-[560px] text-[clamp(13px,1vw,15px)] leading-[1.65] text-white/70">
                 {current.copy}
               </p>
               <ul className="mt-4 grid grid-cols-2 gap-x-5 gap-y-2">
