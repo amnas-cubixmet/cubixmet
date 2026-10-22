@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 function LocationIcon() {
   return (
     <svg viewBox="0 0 24 24" className="h-4 w-4 shrink-0" fill="none" aria-hidden="true">
@@ -51,9 +53,22 @@ export default function SiteFooter() {
       <div className="site-wrapper">
         <div className="grid gap-10 border-b border-white/8 pb-12 lg:grid-cols-[1.15fr_.85fr] lg:gap-16 md:pb-16">
           <div>
-            <p className="font-bold tracking-[-0.035em]">
-              CUBIXMET<span className="text-[#1677FF]">.</span>
-            </p>
+            <a
+              href="/"
+              aria-label="Cubixmet home"
+              className="inline-flex items-center focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#1677FF]"
+            >
+              <span className="grid h-10 w-[120px] place-items-center overflow-hidden md:h-11 md:w-[136px]">
+                <Image
+                  src="/images/logo.png"
+                  alt="Cubixmet"
+                  width={272}
+                  height={88}
+                  sizes="(min-width: 768px) 136px, 120px"
+                  className="h-full w-full object-contain"
+                />
+              </span>
+            </a>
 
             <h2 className="mt-7 max-w-[760px] text-[clamp(2.4rem,5vw,5.6rem)] font-medium leading-[.93] tracking-[-0.06em]">
               Where Strategy Meets Scale.
