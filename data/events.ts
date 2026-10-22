@@ -25,7 +25,7 @@ export const events: CubixmetEvent[] = [
     slug: "event-001",
     listingImage: "/images/events/001/image.png",
     detailImage: "/images/events/001/image2.png",
-    title: "The Free AI Workshop",
+    title: "Sunfest AI – Build Websites & Business Systems Using AI",
     date: "2026-06-21",
     displayDate: "21 June 2026",
     category: "AI & Technology",
@@ -33,12 +33,7 @@ export const events: CubixmetEvent[] = [
     summary:
       "The Free AI Workshop successfully introduced students to the practical applications of Artificial Intelligence in education, business, and technology.",
     paragraphs: [
-      "The Free AI Workshop successfully introduced students to the practical applications of Artificial Intelligence in education, business, and technology.",
-      "During this hands-on session, participants learned how to use AI tools such as ChatGPT to generate business documentation, create website content, and develop complete websites with minimal coding experience.",
-      "The workshop included the installation and setup of development tools like VS Code and TrebEdit, followed by live demonstrations on generating business plans, website structures, and responsive website code using AI.",
-      "Students also explored how AI can assist with debugging, content creation, and digital innovation.",
-      "By the end of the session, participants gained a clear understanding of how AI can be used as a productivity tool for learning, entrepreneurship, and career development.",
-      "The workshop empowered students to transform ideas into real digital projects and provided valuable insights into emerging opportunities in the AI-driven world.",
+      "The Free AI Workshop successfully introduced students to the practical applications of Artificial Intelligence in education, business, and technology. During this hands-on session, participants learned how to use AI tools such as ChatGPT to generate business documentation, create website content, and develop complete websites with minimal coding experience. The workshop included the installation and setup of development tools like VS Code and TrebEdit, followed by live demonstrations on generating business plans, website structures, and responsive website code using AI. Students also explored how AI can assist with debugging, content creation, and digital innovation. By the end of the session, participants gained a clear understanding of how AI can be used as a productivity tool for learning, entrepreneurship, and career development. The workshop empowered students to transform ideas into real digital projects and provided valuable insights into emerging opportunities in the AI-driven world.",
     ],
     topics: [
       "AI tools and ChatGPT",
@@ -65,7 +60,8 @@ export const eventsPageCopy = {
   viewEvent: "View Event",
   allEvents: "Events",
   backToEvents: "Back to Events",
-  eventOverview: "About the Workshop",
+  eventOverview: "About This Event",
+  galleryLabel: "Event Gallery",
   topicsLabel: "What Participants Explored",
   outcomesLabel: "Workshop Outcomes",
   exploreMore: "Explore more events",
