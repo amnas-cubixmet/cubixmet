@@ -67,35 +67,25 @@ export default function TeamSection() {
               {homeCopy.teamMembersLabel}
             </h3>
 
-            <div className="team-slider-viewport overflow-hidden" aria-label={homeCopy.teamMembersLabel}>
-              <div className="team-slider-track flex w-max">
-                {[0, 1].map((round) => (
-                  <div
-                    key={round}
-                    aria-hidden={round === 1 ? true : undefined}
-                    className="flex shrink-0 gap-3 pr-3"
-                  >
-                    {teamMembers.map((member) => (
-                      <article
-                        key={member.name}
-                        className="flex min-h-[108px] w-[235px] shrink-0 items-center gap-4 rounded-[15px] border border-white/10 bg-[#0d111a] p-4 transition-colors hover:border-[#1677FF]/45 sm:w-[290px] sm:p-5"
-                      >
-                        <div className="grid h-12 w-12 shrink-0 place-items-center rounded-[13px] border border-[#1677FF]/35 bg-[#1677FF]/10 text-[13px] font-bold text-[#75b5ff]">
-                          {member.initials}
-                        </div>
-                        <div className="min-w-0">
-                          <h4 className="text-[15px] font-semibold leading-[1.2] tracking-[-.03em] text-white sm:text-[17px]">
-                            {member.name}
-                          </h4>
-                          <p className="mt-1.5 text-[10px] font-medium leading-[1.5] text-white/50 sm:text-[11px]">
-                            {member.role}
-                          </p>
-                        </div>
-                      </article>
-                    ))}
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4" aria-label={homeCopy.teamMembersLabel}>
+              {teamMembers.map((member) => (
+                <article
+                  key={member.name}
+                  className="flex min-h-[108px] min-w-0 items-center gap-4 rounded-[15px] border border-white/10 bg-[#0d111a] p-4 transition-colors hover:border-[#1677FF]/45 sm:p-5"
+                >
+                  <div className="grid h-12 w-12 shrink-0 place-items-center rounded-[13px] border border-[#1677FF]/35 bg-[#1677FF]/10 text-[13px] font-bold text-[#75b5ff]">
+                    {member.initials}
                   </div>
-                ))}
-              </div>
+                  <div className="min-w-0">
+                    <h4 className="text-[15px] font-semibold leading-[1.2] tracking-[-.03em] text-white sm:text-[17px]">
+                      {member.name}
+                    </h4>
+                    <p className="mt-1.5 text-[10px] font-medium leading-[1.5] text-white/50 sm:text-[11px]">
+                      {member.role}
+                    </p>
+                  </div>
+                </article>
+              ))}
             </div>
           </div>
         )}
