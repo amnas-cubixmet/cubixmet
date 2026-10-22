@@ -349,6 +349,7 @@ function ServicesSection() {
   const mobileDragRef = useRef<{ id: number; x: number; scrollLeft: number; moved: boolean } | null>(null);
   const suppressNavClickRef = useRef(false);
   const phoneSwipeRef = useRef<{ x: number; y: number } | null>(null);
+  const phoneNavRef = useRef<HTMLDivElement>(null);
   const [activeService, setActiveService] = useState(0);
   const [serviceProgress, setServiceProgress] = useState(0);
 
@@ -400,12 +401,27 @@ function ServicesSection() {
     });
   }, [activeService]);
 
+  // Keep the selected phone slide in view while the page scrolls through services.
+  useEffect(() => {
+    const track = phoneNavRef.current;
+    const active = track?.querySelector<HTMLElement>('[aria-current="true"]');
+    if (!track || !active) return;
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    track.scrollTo({
+      left: active.offsetLeft,
+      behavior: reduceMotion ? "instant" : "smooth",
+    });
+  }, [activeService]);
+
   const selectService = (index: number) => {
+    const nextIndex = Math.max(0, Math.min(services.length - 1, index));
+    setActiveService(nextIndex);
     const section = sectionRef.current;
     if (!section) return;
     const top = section.getBoundingClientRect().top + window.scrollY;
     const distance = Math.max(section.offsetHeight - window.innerHeight, 1);
-    const destination = Math.min(0.999, (index + 0.08) / services.length);
+    const destination = Math.min(0.999, (nextIndex + 0.08) / services.length);
 
     window.scrollTo({
       top: top + distance * destination,
@@ -463,31 +479,46 @@ function ServicesSection() {
           </p>
         </div>
 
-        {/* Phone: one full-width active label; swipe sideways or scroll to switch services. */}
-        <div
-          role="group"
-          aria-label="Current service — swipe left or right to change"
-          className="services-phone-controls sm:hidden"
-          onTouchStart={(event) => {
-            const touch = event.touches[0];
-            if (touch) phoneSwipeRef.current = { x: touch.clientX, y: touch.clientY };
-          }}
-          onTouchEnd={(event) => {
-            const first = phoneSwipeRef.current;
-            phoneSwipeRef.current = null;
-            const touch = event.changedTouches[0];
-            if (!first || !touch) return;
-            const dx = touch.clientX - first.x;
-            const dy = touch.clientY - first.y;
-            if (Math.abs(dx) < 45 || Math.abs(dx) < Math.abs(dy) * 1.35) return;
-            selectService(Math.min(services.length - 1, Math.max(0, activeService + (dx < 0 ? 1 : -1))));
-          }}
-          onTouchCancel={() => { phoneSwipeRef.current = null; }}
-        >
-          <div aria-live="polite" aria-atomic="true" className="flex min-h-11 w-full min-w-0 items-center justify-center rounded-none bg-white px-3 py-2 text-center text-[14px] font-extrabold leading-[1.2] tracking-[-.02em] text-black">
-            {current.title}
+        {/* Phone: a real horizontally swipeable service carousel with an active slide. */}
+        <nav aria-label="Swipe or tap to choose a service" className="services-phone-controls sm:hidden">
+          <div
+            ref={phoneNavRef}
+            className="services-phone-track relative flex w-full snap-x snap-mandatory gap-2 overflow-x-auto overscroll-x-contain"
+            onTouchStart={(event) => {
+              const touch = event.touches[0];
+              if (touch) phoneSwipeRef.current = { x: touch.clientX, y: touch.clientY };
+            }}
+            onTouchEnd={(event) => {
+              const start = phoneSwipeRef.current;
+              phoneSwipeRef.current = null;
+              const touch = event.changedTouches[0];
+              if (!start || !touch) return;
+              const dx = touch.clientX - start.x;
+              const dy = touch.clientY - start.y;
+              if (Math.abs(dx) < 40 || Math.abs(dx) < Math.abs(dy) * 1.2) return;
+              selectService(activeService + (dx < 0 ? 1 : -1));
+            }}
+            onTouchCancel={() => { phoneSwipeRef.current = null; }}
+          >
+            {services.map((service, index) => (
+              <button
+                key={service.no}
+                type="button"
+                onClick={() => selectService(index)}
+                aria-current={activeService === index ? "true" : undefined}
+                aria-label={`Service ${index + 1} of ${services.length}: ${service.title}`}
+                className={
+                  "services-phone-slide flex min-h-11 shrink-0 snap-start items-center justify-center border px-3 py-2 text-center text-[14px] font-extrabold leading-[1.2] tracking-[-.02em] transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] " +
+                  (activeService === index
+                    ? "border-white bg-white text-black"
+                    : "border-white/15 bg-[#131923] text-white/80")
+                }
+              >
+                {service.title}
+              </button>
+            ))}
           </div>
-        </div>
+        </nav>
 
         {/* Tablets: swipeable horizontal service tabs. */}
         <nav
