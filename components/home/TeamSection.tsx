@@ -6,7 +6,7 @@ export default function TeamSection() {
   return (
     <section
       id="team"
-      aria-label="Team"
+      aria-labelledby="team-section-heading"
       className="relative scroll-mt-20 overflow-hidden bg-[#050505] pb-20 pt-12 md:scroll-mt-24 md:pb-28 md:pt-20"
     >
       <div
@@ -14,6 +14,17 @@ export default function TeamSection() {
         className="pointer-events-none absolute -right-44 top-12 h-[430px] w-[430px] rounded-full bg-[#1677FF]/[0.055] blur-[115px]"
       />
       <div className="about-wrapper relative">
+        <div className="mb-8 border-b border-white/10 pb-8 md:mb-10 md:pb-10">
+          <p className="section-label mb-4">{homeCopy.teamLabel}</p>
+          <h2
+            id="team-section-heading"
+            className="max-w-[1100px] text-[clamp(2.45rem,5.1vw,5.5rem)] font-semibold leading-[.98] tracking-[-.065em] text-white"
+          >
+            {homeCopy.teamHeading}{" "}
+            <span className="text-[#1677FF]">{homeCopy.teamSubheading}</span>
+          </h2>
+        </div>
+
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {leaders.map((leader, index) => (
             <article
