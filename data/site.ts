@@ -29,6 +29,7 @@ export const footerCopy = {
 
 export const companyLinks = [
   { label: "About Us", href: "/#about" },
+  { label: "Events", href: "/events" },
   { label: "Careers", href: "/#about" },
   { label: "Contact", href: "/#contact" },
 ] as const;
