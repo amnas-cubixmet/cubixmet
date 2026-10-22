@@ -1,7 +1,5 @@
-export const academyPhone = "918921592742";
-
-export const whatsappLink = (message: string) =>
-  `https://wa.me/${academyPhone}?text=${encodeURIComponent(message)}`;
+import { whatsappLink } from "./site";
+export { whatsappLink } from "./site";
 
 export const generalEnrollUrl = whatsappLink(
   "Hi Cubixmet Academy, I'm interested in enrolling in your next batch. Please share the program details and admission process."
@@ -150,3 +148,6 @@ export const academyCopy = {
   "brochureLabel": "Download Programs Brochure (PDF)",
   "illustrationBadge": "Learn by building"
 } as const;
+
+export const programEnrollUrl = (title: string) =>
+  whatsappLink(`Hi Cubixmet Academy, I'd like to enroll in ${title}. Please share the course fees, batch timings, and admission process.`);
