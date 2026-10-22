@@ -659,6 +659,19 @@ a {
 
 
 
+
+/* Portfolio category filters: swipeable one-row navigation on narrow phones.
+   Keep every label on one line without making the page itself overflow. */
+.portfolio-filter-scroll {
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
+}
+.portfolio-filter-scroll::-webkit-scrollbar {
+  display: none;
+}
+
 /* Swipeable tabs on tablets; full-width active labels without arrows on
    phones. Feature items wrap in two columns instead of clipping. */
 .services-phone-controls {
