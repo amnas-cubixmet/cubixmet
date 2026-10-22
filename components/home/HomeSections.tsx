@@ -12,7 +12,7 @@ import { site } from "../../data/site";
 import { whyChoose } from "../../data/whyChoose";
 import { marqueeItems } from "../../data/marquee";
 import { testimonials } from "../../data/testimonials";
-import { leaders, teamMembers } from "../../data/leaders";
+import { leaders, teamMembers } from "../../data/team";
 import { impactStats } from "../../data/impact";
 
 function FlowerSeparator() {
