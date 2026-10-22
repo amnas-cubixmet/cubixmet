@@ -5,6 +5,8 @@ export type Project = {
   description: string;
   tags: string[];
   image: string;
+  /** Keep the current thumbnail visible until an uploaded local asset exists. */
+  fallbackImage?: string;
   /** Optional locally hosted project walkthrough; loaded only on user action. */
   video?: string;
   /** Verified client-provided official website URL. */
@@ -80,8 +82,8 @@ export const projects: Project[] = [
     description:
       "End-to-end digital marketing for a premium fruit brand — social media campaigns, paid ads, and conversion-focused content.",
     tags: ["Social Media", "Paid Ads", "Brand Growth"],
-    image:
-      "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=84",
+    image: "/images/Portfolio/krispfruit.webp",
+    fallbackImage: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=1200&q=84",
   },
   {
     id: "nest-rehab-web",
@@ -103,8 +105,8 @@ export const projects: Project[] = [
     description:
       "Healthcare digital marketing strategy driving patient awareness, lead generation, and community engagement online.",
     tags: ["Healthcare Marketing", "Lead Generation", "SEO"],
-    image:
-      "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=84",
+    image: "/images/Portfolio/restrehabcare.jpeg",
+    fallbackImage: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=1200&q=84",
   },
   {
     id: "toicafe-digital",
@@ -113,8 +115,8 @@ export const projects: Project[] = [
     description:
       "Cafe brand digital marketing with social media storytelling, local reach campaigns, and engagement-driven content.",
     tags: ["Social Media", "Local Marketing", "Brand Awareness"],
-    image:
-      "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=84",
+    image: "/images/Portfolio/toicafe.jpg",
+    fallbackImage: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1200&q=84",
   },
   {
     id: "finecrafts-web",
