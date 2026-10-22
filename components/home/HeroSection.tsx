@@ -5,9 +5,11 @@ import type { CSSProperties, PointerEvent as ReactPointerEvent } from "react";
 import Arrow from "./Arrow";
 import Image from "next/image";
 import { heroProjects } from "../../data/heroProjects";
+import { heroContent } from "../../data/homeContent";
+import { contactMessages, whatsappLink } from "../../data/site";
 
 export default function HeroSection() {
-  const [activeCard, setActiveCard] = useState(2);
+  const [activeCard, setActiveCard] = useState(heroContent.initialProject);
   const [paused, setPaused] = useState(false);
   const [dragOffset, setDragOffset] = useState(0);
   const [dragging, setDragging] = useState(false);
@@ -22,7 +24,7 @@ export default function HeroSection() {
     if (paused) return;
     const timer = window.setInterval(() => {
       setActiveCard((current) => (current + 1) % heroProjects.length);
-    }, 3600);
+    }, heroContent.slideIntervalMs);
     return () => window.clearInterval(timer);
   }, [paused]);
 
@@ -76,31 +78,31 @@ export default function HeroSection() {
         <div className="hero-text-wrapper grid min-w-0 flex-1 content-center gap-6 pb-4 pt-10 md:min-h-[56svh] md:gap-7 md:pb-12 md:pt-16 lg:min-h-[58svh] lg:grid-cols-[1fr_360px]">
           <div className="min-w-0 max-w-[900px]">
             <h1 className="max-w-full text-[clamp(2.3rem,11vw,3.4rem)] font-semibold leading-[0.98] tracking-[-0.055em] md:text-[clamp(2.9rem,6.4vw,6.3rem)] md:leading-[0.92]">
-              <span className="block">Growth Through</span>
-              <span className="block">Innovation.</span>
+              <span className="block">{heroContent.headingTop}</span>
+              <span className="block">{heroContent.headingBottom}</span>
             </h1>
 
             <div className="mt-6 lg:hidden">
               <div className="hidden items-center gap-3">
                 <div className="grid h-[74px] w-[74px] place-items-center rounded-[24px] bg-[#171c13] text-center">
                   <span className="text-[7px] leading-3 text-white/45">
-                    <strong className="block text-[24px] leading-none text-white">12+</strong>
-                    Your trust builds us
+                    <strong className="block text-[24px] leading-none text-white">{heroContent.trustNumber}</strong>
+                    {heroContent.trustCaption}
                   </span>
                 </div>
               </div>
 
               <p className="mt-5 max-w-[34ch] text-[12px] leading-[1.65] text-white/65 sm:max-w-[48ch] md:text-[13px]">
-                Cubixmet is a multi-venture innovation ecosystem in Pandikkad, Malappuram delivering software development, digital marketing, and IT training solutions across The World.
+                {heroContent.intro}
               </p>
 
               <a
-                href="https://api.whatsapp.com/send/?phone=918921592742&text=Hi+Cubixmet%21+I%27d+like+to+get+started.&type=phone_number&app_absent=0"
+                href={whatsappLink(contactMessages.hero)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-5 inline-flex min-h-10 items-center gap-2 rounded-full bg-[#1677FF] px-5 py-2.5 text-[12px] font-semibold text-white transition-colors hover:bg-[#3187ff] lg:mt-4" 
               >
-                Let&apos;s Talk <Arrow />
+                {heroContent.cta} <Arrow />
               </a>
             </div>
           </div>
@@ -119,23 +121,23 @@ export default function HeroSection() {
               </svg>
               <div className="relative z-10 grid h-full w-full place-items-center text-center">
                 <span className="text-[9px] leading-4 text-white/45">
-                  <strong className="block text-[34px] leading-none text-white">12+</strong>
-                  Your trust builds us
+                  <strong className="block text-[34px] leading-none text-white">{heroContent.trustNumber}</strong>
+                  {heroContent.trustCaption}
                 </span>
               </div>
             </div>
 
             <div className="max-w-[330px]">
               <p className="text-[11px] leading-[1.55] text-white/52">
-                Cubixmet is a multi-venture innovation ecosystem in Pandikkad, Malappuram delivering software development, digital marketing, and IT training solutions across The World.
+                {heroContent.intro}
               </p>
               <a
-                href="https://api.whatsapp.com/send/?phone=918921592742&text=Hi+Cubixmet%21+I%27d+like+to+get+started.&type=phone_number&app_absent=0"
+                href={whatsappLink(contactMessages.hero)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#1677FF] px-4 py-2 text-[10px] font-bold text-white"
               >
-                Let&apos;s Talk <Arrow />
+                {heroContent.cta} <Arrow />
               </a>
             </div>
           </div>
