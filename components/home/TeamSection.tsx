@@ -2,23 +2,6 @@ import TechTeamPortrait from "./TechTeamPortrait";
 import { leaders, teamMembers } from "../../data/team";
 import { homeCopy } from "../../data/homeContent";
 
-function ArrowUpRight() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="h-4 w-4"
-    >
-      <path d="M7 17 17 7M8 7h9v9" />
-    </svg>
-  );
-}
-
 export default function TeamSection() {
   return (
     <section
@@ -47,60 +30,32 @@ export default function TeamSection() {
           </p>
         </div>
 
-        <div className="mb-5 mt-9 flex items-center justify-between gap-4 md:mb-6 md:mt-12">
-          <p className="text-[11px] font-semibold uppercase tracking-[.18em] text-[#72b2ff]">
-            {homeCopy.teamLeadersLabel}
-          </p>
-          <span className="font-mono text-[11px] tracking-widest text-white/40">
-            {String(leaders.length).padStart(2, "0")}
-          </span>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div className="mt-8 grid gap-4 md:mt-10 md:grid-cols-2 xl:grid-cols-3">
           {leaders.map((leader, index) => (
             <article
               key={leader.name}
               data-scroll-card
               data-scroll-delay={index * 85}
-              className="scroll-card group relative flex min-w-0 flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#0d111a] p-5 shadow-[0_14px_45px_rgba(0,0,0,.12)] transition-colors hover:border-[#1677FF]/50 sm:p-7"
+              className="scroll-card group relative flex min-w-0 flex-col overflow-hidden rounded-[20px] border border-white/10 bg-[#0d111a] p-5 shadow-[0_14px_45px_rgba(0,0,0,.12)] transition-colors hover:border-[#1677FF]/50 sm:p-6 xl:p-7"
             >
               <div
                 aria-hidden="true"
                 className="pointer-events-none absolute -right-16 -top-24 h-64 w-64 rounded-full bg-[#1677FF]/10 blur-[65px] transition-colors duration-500 group-hover:bg-[#1677FF]/20"
               />
-              <div className="relative flex items-start justify-between gap-4">
-                <span className="font-mono text-[11px] font-semibold tracking-[.2em] text-[#82baff]">
-                  {String(index + 1).padStart(2, "0")}
-                  <span className="px-1.5 text-white/20">/</span>
-                  {String(leaders.length).padStart(2, "0")}
-                </span>
-                <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF] shadow-[0_0_12px_rgba(22,119,255,.7)]" aria-hidden="true" />
-              </div>
-
-              <div className="relative mt-2 flex min-h-[145px] items-center justify-center border-b border-white/10 pb-5">
+              <div className="relative flex min-h-[150px] items-center justify-center border-b border-white/10 pb-5">
                 <TechTeamPortrait initials={leader.initials} name={leader.name} />
               </div>
 
-              <div className="relative flex flex-1 flex-col pt-6">
-                <h3 className="text-[24px] font-bold leading-[1.12] tracking-[-.045em] text-white sm:text-[27px]">
+              <div className="relative flex flex-1 flex-col pt-5">
+                <h3 className="text-[23px] font-bold leading-[1.12] tracking-[-.04em] text-white sm:text-[26px]">
                   {leader.name}
                 </h3>
-                <p className="mt-2 min-h-[34px] text-[10px] font-semibold uppercase leading-[1.6] tracking-[.06em] text-[#81baff] sm:text-[11px]">
+                <p className="mt-2 text-[11px] font-semibold leading-[1.6] text-[#81baff] sm:text-[12px]">
                   {leader.role}
                 </p>
-                <p className="mt-4 flex-1 text-[12px] leading-[1.85] text-white/55 sm:text-[13px]">
+                <p className="mt-4 flex-1 text-[12px] leading-[1.75] text-white/60 sm:text-[13px]">
                   {leader.copy}
                 </p>
-                <a
-                  href={leader.href}
-                  aria-label={`View ${leader.name}'s department team`}
-                  className="mt-6 flex min-h-11 items-center justify-between gap-3 border-t border-white/10 pt-4 text-[12px] font-semibold text-white/75 transition-colors hover:text-[#82baff] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
-                >
-                  <span>{homeCopy.teamExploreLabel}</span>
-                  <span className="grid h-8 w-8 place-items-center rounded-full border border-[#1677FF]/40 bg-[#1677FF]/10 text-[#78b4ff] transition-colors group-hover:border-[#1677FF] group-hover:bg-[#1677FF] group-hover:text-white">
-                    <ArrowUpRight />
-                  </span>
-                </a>
               </div>
             </article>
           ))}
