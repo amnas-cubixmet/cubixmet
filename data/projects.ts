@@ -5,6 +5,8 @@ export type Project = {
   description: string;
   tags: string[];
   image: string;
+  /** Optional locally hosted project walkthrough; loaded only on user action. */
+  video?: string;
 };
 
 export const projects: Project[] = [
@@ -19,7 +21,19 @@ export const projects: Project[] = [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=84",
   },
   {
+    id: "cardflow-web",
+    name: "Cardflow",
+    category: "Dynamic Website",
+    description:
+      "A video walkthrough showcasing the Cardflow digital project and its interface.",
+    tags: ["Project Showcase", "Web Design"],
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=84",
+    video: "/videos/cardflow.mov",
+  },
+  {
     id: "alawamer-web",
+    video: "/videos/alawamer.mov",
     name: "Alawamer",
     category: "Dynamic Website",
     description:
@@ -30,6 +44,7 @@ export const projects: Project[] = [
   },
   {
     id: "infozerv-web",
+    video: "/videos/infozerv.mov",
     name: "Infozerv",
     category: "Dynamic Website",
     description:
@@ -40,6 +55,7 @@ export const projects: Project[] = [
   },
   {
     id: "almohanna-web",
+    video: "/videos/almohannasa.mov",
     name: "Almohanna SA",
     category: "Dynamic Website",
     description:
@@ -50,6 +66,7 @@ export const projects: Project[] = [
   },
   {
     id: "krispfruit-web",
+    video: "/videos/krispfruit.mov",
     name: "Krispfruit",
     category: "Dynamic Website",
     description:
@@ -70,6 +87,7 @@ export const projects: Project[] = [
   },
   {
     id: "nest-rehab-web",
+    video: "/videos/nestrehabcare.mov",
     name: "Nest Rehab Care",
     category: "Dynamic Website",
     description:
@@ -100,6 +118,7 @@ export const projects: Project[] = [
   },
   {
     id: "finecrafts-web",
+    video: "/videos/finecrafts.mov",
     name: "Finecrafts Garage",
     category: "Dynamic Website",
     description:
@@ -110,6 +129,7 @@ export const projects: Project[] = [
   },
   {
     id: "traventurous-web",
+    video: "/videos/traventurous.mov",
     name: "Traventurous",
     category: "Dynamic Website",
     description:
