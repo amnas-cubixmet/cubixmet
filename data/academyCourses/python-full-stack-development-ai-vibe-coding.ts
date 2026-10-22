@@ -1,3 +1,5 @@
+import type { AcademyCoursePageContent } from "./common";
+
 export const enrollUrl =
   "https://wa.me/918921592742?text=" +
   encodeURIComponent(
@@ -123,3 +125,27 @@ export const eligibleLearners = [
 
 export type CurriculumIconName = (typeof curriculum)[number]["icon"];
 
+
+/** Course-specific presentation text and media. */
+export const coursePage = {
+  "metadata": {
+    "title": "Python Full Stack Development & AI Vibe Coding | Cubixmet Academy",
+    "description": "Learn Python, Django, PostgreSQL, React, AI development, agentic workflows, Docker, CI/CD and cloud deployment in Cubixmet Academy's six-month intensive program."
+  },
+  "breadcrumb": "Python Full Stack Development & AI Vibe Coding",
+  "headlineBefore": "",
+  "headlineEmphasis": "Python Full Stack",
+  "headlineAfter": "Development & AI Vibe Coding",
+  "tagline": "Learn. Build. Deploy. Scale.",
+  "intro": "Master full-stack development using Python and modern frontend technologies while leveraging AI tools, agentic workflows, and cloud deployment practices used by today's software teams.",
+  "heroImage": "/images/ventures/tech-hero.png",
+  "heroImageAlt": "Software developers collaborating on coding and full-stack technology projects",
+  "heroBadge": "Software in Practice",
+  "heroCaption": "Learn. Build. Deploy.",
+  "highlightsDescription": "Software engineering, AI coding workflows, deployment and practical training in one intensive program.",
+  "curriculumDescription": "Explore Python backend development, React frontend, AI coding workflows, DevOps, hands-on projects, and professional skills.",
+  "learnerHeading": "Your software career starts here.",
+  "learnerDescription": "Whether you are starting to code or switching careers, practice the technologies and workflows used in modern software teams.",
+  "ctaHeading": "Ready to build and deploy real applications?",
+  "ctaDescription": "Get course fees, batch timings, and enrollment guidance directly from the Cubixmet Academy team."
+} satisfies AcademyCoursePageContent;
