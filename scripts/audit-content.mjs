@@ -9,13 +9,10 @@ import { join } from "node:path";
 const required = [
   "data/about.ts",
   "data/heroProjects.ts",
-  "data/home.ts",
   "data/homeContent.ts",
   "data/impact.ts",
-  "data/insights.ts",
   "data/team.ts",
   "data/marquee.ts",
-  "data/process.ts",
   "data/projects.ts",
   "data/services.ts",
   "data/testimonials.ts",
@@ -112,6 +109,23 @@ for (const [file, expected] of [["data/ventures.ts", ["ventureDetails", "techCop
     const text = readFileSync(file, "utf8");
     for (const name of expected) if (!text.includes(name)) violations.push(`${file} missing required export ${name}`);
   }
+}
+
+
+// Prevent duplicate staff files and disconnected legacy venture modules.
+for (const legacyFile of [
+  "data/leaders.ts",
+  "data/tech.ts",
+  "data/digital.ts",
+  "data/academy.ts",
+  "data/home.ts",
+  "data/insights.ts",
+  "data/process.ts",
+  "components/HeroCanvas.tsx",
+  ...courseSlugs.map((slug) => `data/academyCourses/${slug}.ts`),
+  "data/academyCourses/common.ts",
+]) {
+  if (existsSync(legacyFile)) violations.push(`Unnecessary duplicate or unused file: ${legacyFile}`);
 }
 
 if (violations.length) {

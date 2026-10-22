@@ -15,12 +15,14 @@ export type StaffMember = {
   description: string;
   isLeader: boolean;
   photoUrl?: string;
+  profileHref?: string;
   ventureDescriptions?: Partial<Record<VentureTeamId, string>>;
 };
 
 export const staff: StaffMember[] = [
   {
     id: "fadhil",
+    profileHref: "/ventures/tech#team",
     initials: "FA",
     name: "Fadhil",
     role: "Founder & Chief Executive Officer (CEO)",
@@ -29,6 +31,7 @@ export const staff: StaffMember[] = [
   },
   {
     id: "shahid",
+    profileHref: "/ventures/digital#team",
     initials: "SH",
     name: "Shahid",
     role: "Founder & Managing Director",
@@ -37,6 +40,7 @@ export const staff: StaffMember[] = [
   },
   {
     id: "ijas",
+    profileHref: "/ventures/academy#team",
     initials: "IJ",
     name: "Ijas",
     role: "Founder & Chief Operating Officer (COO)",
@@ -99,12 +103,12 @@ export type TeamMember = {
 
 export const leaders: Leader[] = staff
   .filter((person) => person.isLeader)
-  .map(({ initials, name, role, description }) => ({
+  .map(({ initials, name, role, description, profileHref }) => ({
     initials,
     name,
     role,
     copy: description,
-    href: "#",
+    href: profileHref ?? "/#team",
   }));
 
 export const teamMembers: TeamMember[] = staff
