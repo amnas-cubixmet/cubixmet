@@ -177,7 +177,7 @@ export default function TestimonialsSlider() {
               role="group"
               aria-roledescription="slide"
               aria-label={`Client story ${index + 1} of ${testimonials.length}`}
-              className="flex min-h-[250px] min-w-0 shrink-0 grow-0 basis-full snap-start flex-col justify-between rounded-[17px] border border-white/10 bg-[#0c101a] p-5 md:basis-[calc((100%-16px)/2)] md:p-6 xl:basis-[calc((100%-32px)/3)]"
+              className="flex min-h-[250px] min-w-0 shrink-0 grow-0 basis-full snap-start flex-col justify-between rounded-[17px] border border-white/10 bg-[#0c101a] p-5 md:basis-[calc((100%_-_16px)/2)] md:p-6 xl:basis-[calc((100%_-_32px)/3)]"
             >
               <div>
                 <span aria-hidden="true" className="text-[30px] leading-none text-[#1677FF]">“</span>
