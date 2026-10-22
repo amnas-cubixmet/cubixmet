@@ -98,15 +98,27 @@ function DigitalServiceIcon({ kind }: { kind: typeof digitalServices[number]["ic
 
 function GrowthVisual() {
   return (
-    <div className="group relative aspect-[16/9] w-full min-w-0 overflow-hidden rounded-[22px] border border-white/10 bg-[#0a111f]">
+    <div className="group relative isolate aspect-[4/3] w-full min-w-0 overflow-hidden rounded-[20px] border border-white/10 bg-[#0b111e] sm:aspect-[5/3] lg:aspect-[4/3]">
       <Image
         src="/images/ventures/digital-hero.png"
-        alt="Cubixmet Digital creative marketing team working together in a professional studio"
+        alt="Cubixmet Digital creative marketing team collaborating in a professional studio"
         fill
         priority
         sizes="(max-width: 1023px) calc(100vw - 40px), (max-width: 1536px) 43vw, 570px"
-        className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.025]"
+        className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.04]"
       />
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#050505]/80 via-transparent to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-5 sm:p-7">
+        <div>
+          <p className="text-[10px] font-semibold uppercase tracking-[.2em] text-[#62a5ff]">
+            Digital Marketing Vertical
+          </p>
+          <p className="mt-1 text-[14px] font-medium tracking-tight text-white sm:text-[17px]">
+            Strategize. Market. Convert.
+          </p>
+        </div>
+        <span aria-hidden="true" className="mb-1 h-2 w-2 shrink-0 rounded-full bg-[#1677FF] shadow-[0_0_15px_#1677FF]" />
+      </div>
     </div>
   );
 }
