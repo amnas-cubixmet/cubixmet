@@ -11,6 +11,9 @@ export type CubixmetEvent = {
   category: string;
   status: "Completed" | "Upcoming";
   summary: string;
+  /** Listing and detail photos in public/images/events/<event-id>/. */
+  listingImage?: string;
+  detailImage?: string;
   paragraphs: string[];
   topics: string[];
   outcomes: string[];
@@ -20,6 +23,8 @@ export const events: CubixmetEvent[] = [
   {
     id: "event-001",
     slug: "event-001",
+    listingImage: "/images/events/001/image.png",
+    detailImage: "/images/events/001/image2.png",
     title: "The Free AI Workshop",
     date: "2026-06-21",
     displayDate: "21 June 2026",
