@@ -146,7 +146,9 @@ export const academyCopy = {
   "brochureHref": "/brochures/cubixmet-academy.pdf",
   "brochureName": "cubixmet-academy.pdf",
   "brochureLabel": "Download Programs Brochure (PDF)",
-  "illustrationBadge": "Learn by building"
+  "illustrationBadge": "Learn by building",
+  "heroImage": "/images/ventures/academy-hero.png",
+  "heroImageAlt": "Cubixmet Academy students learning and collaborating around a laptop"
 } as const;
 
 export const programEnrollUrl = (title: string) =>
