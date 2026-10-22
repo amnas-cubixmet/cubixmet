@@ -283,7 +283,8 @@ export default function CubixmetAcademyPage() {
                     {program.id === "graphic-design" ? (
                       <a
                         href="/ventures/academy/graphic-designing-content-creation"
-                        className="mb-3 flex min-h-12 items-center justify-between gap-3 rounded-[12px] border border-white/10 bg-white/[.025] px-4 text-[12px] font-semibold text-white/85 transition-colors hover:border-[#1677FF]/45 hover:bg-[#1677FF]/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
+                        aria-label="Know more about the Graphic Designing and Content Creation Program"
+                        className="mb-3 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-[12px] border border-[#1677FF]/50 bg-[#1677FF]/10 px-4 text-[13px] font-semibold text-white transition-colors duration-200 hover:border-[#1677FF] hover:bg-[#1677FF]/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
                       >
                         Know More <Arrow />
                       </a>
