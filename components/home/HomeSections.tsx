@@ -8,7 +8,7 @@ import { services } from "../../data/services";
 import { aboutContent, aboutPillars } from "../../data/about";
 import { ventures } from "../../data/ventures";
 import { projects, projectFilters } from "../../data/projects";
-import { testimonials } from "../../data/testimonials";
+import TestimonialsSlider from "./TestimonialsSlider";
 import { homeCopy } from "../../data/homeContent";
 import { site, whatsappLink } from "../../data/site";
 import { whyChoose } from "../../data/whyChoose";
@@ -940,40 +940,6 @@ function MarqueeSection() {
   );
 }
 
-function TestimonialsSection() {
-  return (
-    <section aria-labelledby="client-stories-title" className="pb-16 pt-12 md:pb-24 md:pt-16">
-      <div className="about-wrapper">
-        <h2
-          id="client-stories-title"
-          className="section-label mb-7 md:mb-10"
-        >
-          {homeCopy.testimonialsLabel}
-        </h2>
-        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-          {testimonials.map((story) => (
-            <figure
-              key={story.id}
-              className="flex min-w-0 flex-col justify-between rounded-[17px] border border-white/10 bg-[#0c101a] p-5 sm:p-6"
-            >
-              <div>
-                <span aria-hidden="true" className="text-[30px] leading-none text-[#1677FF]">“</span>
-                <blockquote className="mt-2 text-[13px] leading-[1.8] text-white/75 sm:text-[14px]">
-                  {story.quote}
-                </blockquote>
-              </div>
-              <figcaption className="mt-7 border-t border-white/10 pt-4">
-                <p className="text-[14px] font-semibold text-white">{story.name}</p>
-                <p className="mt-1 text-[12px] leading-[1.5] text-white/45">{story.role}</p>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function LeadershipSection() {
   return (
     <section id="team" className="pb-20 pt-12 md:pb-28 md:pt-16">
@@ -1253,7 +1219,7 @@ export default function HomeSections() {
       <ServicesSection />
       <ProcessSection />
       <WorkSection />
-      <TestimonialsSection />
+      <TestimonialsSlider />
       <LeadershipSection />
       <ImpactSection />
       <ContactSection />
