@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { whatsappLink, generalEnrollUrl, programs, benefits, team } from "../../../data/academy";
+import { whatsappLink, generalEnrollUrl, programs, benefits, team, academyCopy } from "../../../data/academy";
 import type { BenefitIcon, ProgramIcon } from "../../../data/academy";
 import SiteHeader from "../../../components/home/SiteHeader";
 import SiteFooter from "../../../components/home/SiteFooter";
@@ -7,11 +7,7 @@ import Arrow from "../../../components/home/Arrow";
 import TechTeamPortrait from "../../../components/home/TechTeamPortrait";
 import AcademyHeroPhoto from "../../../components/home/AcademyHeroPhoto";
 
-export const metadata: Metadata = {
-  title: "Cubixmet Academy | Learn. Build. Launch.",
-  description:
-    "Explore six-month design, digital marketing, and Python full stack programs at Cubixmet Academy, with practical projects, internship opportunities and placement assistance.",
-};
+export const metadata: Metadata = academyCopy.metadata;
 
 function ProgramSymbol({ type }: { type: ProgramIcon }) {
   const shapes = {
@@ -91,11 +87,11 @@ function AcademyVisual() {
       </div>
       <div className="absolute bottom-[13%] left-[6%] flex items-center gap-2 rounded-full border border-[#1677FF]/35 bg-[#101e37] px-4 py-2.5 text-[11px] font-semibold text-white shadow-lg sm:text-[13px]">
         <span className="grid h-6 w-6 place-items-center rounded-full bg-[#1677FF]"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4"><path d="m5 12 4 4L19 6"/></svg></span>
-        Learn by building
+        {academyCopy.illustrationBadge}
       </div>
       <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#050505]/75 to-transparent" aria-hidden="true" />
       <div className="absolute bottom-4 right-5 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[.12em] text-white/65 sm:right-7">
-        <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]"/> Academy Vertical
+        <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]"/> {academyCopy.verticalLabel}
       </div>
       <AcademyHeroPhoto />
     </div>
@@ -113,27 +109,27 @@ export default function CubixmetAcademyPage() {
           <div className="min-w-0">
             <a href="/#ventures" className="mb-8 inline-flex min-h-9 items-center gap-2 text-[12px] font-medium text-white/50 transition-colors hover:text-white">
               <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-4 w-4"><path d="m14 5-7 7 7 7M7 12h13" strokeLinecap="round" strokeLinejoin="round"/></svg>
-              Back to Home
+              {academyCopy.backLabel}
             </a>
             <p className="mb-6 flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[.22em] text-[#1677FF]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
-              Academy Vertical
+              {academyCopy.verticalLabel}
             </p>
             <h1 className="text-[clamp(2.8rem,6.2vw,6.1rem)] font-semibold leading-[.99] tracking-[-.067em]">
-              Cubixmet <span className="text-[#1677FF]">Academy</span>
+              {academyCopy.brandPrefix} <span className="text-[#1677FF]">{academyCopy.brandSuffix}</span>
             </h1>
             <p className="mt-6 text-[clamp(1.3rem,2.7vw,2.3rem)] font-medium leading-tight tracking-[-.045em] text-white/90">
-              Learn. Build. Launch.
+              {academyCopy.tagline}
             </p>
             <p className="mt-6 max-w-[59ch] text-[14px] leading-[1.8] text-white/65 md:text-[16px]">
-              Career transformation programs designed to create industry-ready professionals with real-world skills and portfolio projects.
+              {academyCopy.intro}
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <a href="#programs" className="inline-flex min-h-12 items-center gap-3 rounded-full bg-[#1677FF] px-6 text-[13px] font-semibold text-white transition-colors hover:bg-[#3187ff]">
-                View Programs <Arrow />
+                {academyCopy.viewProgramsLabel} <Arrow />
               </a>
               <a href={generalEnrollUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 items-center gap-3 rounded-full border border-white/20 px-6 text-[13px] font-semibold text-white transition-colors hover:border-white/60">
-                Enroll Now <Arrow />
+                {academyCopy.enrollNowLabel} <Arrow />
               </a>
             </div>
           </div>
@@ -143,10 +139,10 @@ export default function CubixmetAcademyPage() {
 
       <section id="programs" className="scroll-mt-20 py-20 md:py-28">
         <div className="mx-auto w-[calc(100%-40px)] max-w-[1320px]">
-          <p className="section-label">Our Programs</p>
+          <p className="section-label">{academyCopy.programsLabel}</p>
           <div className="mb-12 flex flex-col gap-5 md:mb-16 md:flex-row md:items-end md:justify-between">
-            <h2 className="max-w-[700px] text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-[.97] tracking-[-.06em]">Build skills. Launch careers.</h2>
-            <p className="max-w-[410px] text-[14px] leading-[1.8] text-white/55">Industry-aligned courses designed for career transformation and skill mastery.</p>
+            <h2 className="max-w-[700px] text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-[.97] tracking-[-.06em]">{academyCopy.programsTitle}</h2>
+            <p className="max-w-[410px] text-[14px] leading-[1.8] text-white/55">{academyCopy.programsDescription}</p>
           </div>
 
           <div className="grid items-stretch gap-5 lg:grid-cols-3">
@@ -171,8 +167,8 @@ export default function CubixmetAcademyPage() {
                     ))}
                   </ul>
                   <div className="mt-6 space-y-2 border-t border-white/10 pt-5">
-                    <p className="flex items-start gap-2 text-[12px] font-medium leading-6 text-white/85"><span className="text-[#62a5ff]" aria-hidden="true">✓</span>Internship Assured — up to 2 to 6 months with all courses</p>
-                    <p className="flex items-start gap-2 text-[12px] font-medium leading-6 text-white/85"><span className="text-[#62a5ff]" aria-hidden="true">✓</span>100% Placement Assistance</p>
+                    <p className="flex items-start gap-2 text-[12px] font-medium leading-6 text-white/85"><span className="text-[#62a5ff]" aria-hidden="true">✓</span>{academyCopy.programAssurance}</p>
+                    <p className="flex items-start gap-2 text-[12px] font-medium leading-6 text-white/85"><span className="text-[#62a5ff]" aria-hidden="true">✓</span>{academyCopy.programPlacement}</p>
                   </div>
                   <div className="mt-auto pt-7">
                     <a
@@ -180,10 +176,10 @@ export default function CubixmetAcademyPage() {
                       aria-label={`Know more about ${program.title}`}
                       className="mb-3 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-[12px] border border-[#1677FF]/50 bg-[#1677FF]/10 px-4 text-[13px] font-semibold text-white transition-colors duration-200 hover:border-[#1677FF] hover:bg-[#1677FF]/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
                     >
-                      Know More <Arrow />
+                      {academyCopy.knowMoreLabel} <Arrow />
                     </a>
                     <a href={enrollUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-[12px] bg-[#1677FF] px-4 text-[13px] font-semibold text-white transition-colors hover:bg-[#348aff]">
-                      Enroll via WhatsApp <Arrow />
+                      {academyCopy.enrollLabel} <Arrow />
                     </a>
                   </div>
                 </article>
@@ -210,12 +206,12 @@ export default function CubixmetAcademyPage() {
       <section className="border-b border-white/10 py-20 md:py-28">
         <div className="mx-auto grid w-[calc(100%-40px)] max-w-[1320px] items-center gap-10 md:grid-cols-[1fr_.85fr] md:gap-20">
           <div>
-            <p className="section-label">Academy Training</p>
-            <h2 className="text-[clamp(2.5rem,4.6vw,5rem)] font-semibold leading-[.97] tracking-[-.06em]">Learn by Building.</h2>
-            <p className="mt-7 max-w-[590px] text-[14px] leading-[1.85] text-white/60 md:text-[16px]">Every program includes real-world projects that go straight into your portfolio.</p>
+            <p className="section-label">{academyCopy.trainingLabel}</p>
+            <h2 className="text-[clamp(2.5rem,4.6vw,5rem)] font-semibold leading-[.97] tracking-[-.06em]">{academyCopy.trainingTitle}</h2>
+            <p className="mt-7 max-w-[590px] text-[14px] leading-[1.85] text-white/60 md:text-[16px]">{academyCopy.trainingDescription}</p>
           </div>
           <div className="grid gap-3">
-            {["Practical learning", "Project-driven curriculum", "Portfolio development", "Career guidance"].map((item,index) => (
+            {academyCopy.trainingItems.map((item,index) => (
               <div key={item} className="flex items-center gap-4 rounded-[14px] border border-white/10 bg-white/[.025] px-5 py-4">
                 <span className="font-mono text-[12px] text-[#1677FF]">0{index+1}</span>
                 <span className="text-[14px] font-medium text-white/85">{item}</span>
@@ -228,9 +224,9 @@ export default function CubixmetAcademyPage() {
 
       <section id="team" className="scroll-mt-20 py-20 md:py-28">
         <div className="mx-auto w-[calc(100%-40px)] max-w-[1320px]">
-          <p className="section-label">The Academy Team</p>
-          <h2 className="max-w-[800px] text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-[.97] tracking-[-.06em]">People behind the learning.</h2>
-          <p className="mt-6 max-w-[660px] text-[14px] leading-[1.85] text-white/55">Experienced educators and mentors dedicated to your career success.</p>
+          <p className="section-label">{academyCopy.teamLabel}</p>
+          <h2 className="max-w-[800px] text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-[.97] tracking-[-.06em]">{academyCopy.teamTitle}</h2>
+          <p className="mt-6 max-w-[660px] text-[14px] leading-[1.85] text-white/55">{academyCopy.teamDescription}</p>
           <div className="mt-11 divide-y divide-white/10 border-t border-white/10 md:mt-14">
             {team.map((member) => (
               <article key={member.name} className="grid grid-cols-[minmax(0,1fr)_100px] items-center gap-5 py-7 sm:grid-cols-[minmax(0,1fr)_120px] sm:gap-9 sm:py-9 md:grid-cols-[minmax(0,1fr)_136px] md:gap-12 md:py-10">
@@ -249,13 +245,13 @@ export default function CubixmetAcademyPage() {
       <section className="pb-20 md:pb-28">
         <div className="relative mx-auto w-[calc(100%-40px)] max-w-[1320px] overflow-hidden rounded-[22px] bg-[#1677FF] px-6 py-12 sm:px-10 md:px-14 md:py-16">
           <div aria-hidden="true" className="pointer-events-none absolute -right-20 -top-40 h-[400px] w-[400px] rounded-full border border-white/20" />
-          <p className="relative text-[11px] font-semibold uppercase tracking-[.2em] text-white/75">Start Your Journey</p>
-          <h2 className="relative mt-5 max-w-[780px] text-[clamp(2.5rem,5.8vw,5.5rem)] font-semibold leading-[.98] tracking-[-.06em]">Transform your career with industry-ready skills. Enroll in our next batch today.</h2>
+          <p className="relative text-[11px] font-semibold uppercase tracking-[.2em] text-white/75">{academyCopy.ctaLabel}</p>
+          <h2 className="relative mt-5 max-w-[780px] text-[clamp(2.5rem,5.8vw,5.5rem)] font-semibold leading-[.98] tracking-[-.06em]">{academyCopy.ctaTitle}</h2>
           <div className="relative mt-9 flex flex-wrap gap-3">
-            <a href={generalEnrollUrl} target="_blank" rel="noopener noreferrer" style={{ color: "#050505" }} className="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-white px-5 text-[13px] font-semibold transition-colors hover:bg-white/85">Enroll Now <Arrow /></a>
-            <a href="/brochures/cubixmet-academy.pdf" download="cubixmet-academy.pdf" className="inline-flex min-h-12 items-center gap-2.5 rounded-full border border-white/65 px-5 text-[13px] font-semibold text-white transition-colors hover:bg-white/10">
+            <a href={generalEnrollUrl} target="_blank" rel="noopener noreferrer" style={{ color: "#050505" }} className="inline-flex min-h-12 items-center gap-2.5 rounded-full bg-white px-5 text-[13px] font-semibold transition-colors hover:bg-white/85">{academyCopy.enrollNowLabel} <Arrow /></a>
+            <a href={academyCopy.brochureHref} download={academyCopy.brochureName} className="inline-flex min-h-12 items-center gap-2.5 rounded-full border border-white/65 px-5 text-[13px] font-semibold text-white transition-colors hover:bg-white/10">
               <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3v12m0 0 4-4m-4 4-4-4M5 17v3h14v-3" /></svg>
-              Download Programs Brochure (PDF)
+              {academyCopy.brochureLabel}
             </a>
           </div>
         </div>
