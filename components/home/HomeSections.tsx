@@ -455,7 +455,7 @@ function ServicesSection() {
     >
       {/* Mobile/tablet: pinned scroll-driven services stage, with clickable/swipeable tabs. */}
       <div className="services-mobile-stage sticky top-0 mx-auto flex h-[100svh] w-full max-w-[660px] flex-col justify-center overflow-hidden px-5 pb-5 pt-[74px] sm:px-8 lg:hidden">
-        <div className="mb-4 flex items-center justify-end gap-4">
+        <div className="mb-0 flex items-center justify-end gap-4 sm:mb-4">
           <p className="font-mono text-[11px] text-white/55" aria-live="polite">
             <span className="font-semibold text-white">{current.no}</span>
             <span className="mx-2 text-white/35">—</span>
@@ -467,7 +467,7 @@ function ServicesSection() {
         <div
           role="group"
           aria-label="Current service — swipe left or right to change"
-          className="services-phone-controls mb-3 sm:hidden"
+          className="services-phone-controls sm:hidden"
           onTouchStart={(event) => {
             const touch = event.touches[0];
             if (touch) phoneSwipeRef.current = { x: touch.clientX, y: touch.clientY };
@@ -484,7 +484,7 @@ function ServicesSection() {
           }}
           onTouchCancel={() => { phoneSwipeRef.current = null; }}
         >
-          <div aria-live="polite" aria-atomic="true" className="flex min-h-11 w-full min-w-0 items-center justify-center rounded-[10px] bg-white px-3 py-2 text-center text-[14px] font-extrabold leading-[1.2] tracking-[-.02em] text-black">
+          <div aria-live="polite" aria-atomic="true" className="flex min-h-11 w-full min-w-0 items-center justify-center rounded-none bg-white px-3 py-2 text-center text-[14px] font-extrabold leading-[1.2] tracking-[-.02em] text-black">
             {current.title}
           </div>
         </div>
@@ -523,7 +523,7 @@ function ServicesSection() {
           ))}
         </nav>
 
-        <div className="mb-4 h-[2px] w-full bg-white/15" aria-hidden="true">
+        <div className="mb-0 h-[2px] w-full bg-white/15 sm:mb-4" aria-hidden="true">
           <div
             className="h-full origin-left bg-[#1677FF] transition-[width] duration-300"
             style={{ width: `${((activeService + 1) / services.length) * 100}%` }}
