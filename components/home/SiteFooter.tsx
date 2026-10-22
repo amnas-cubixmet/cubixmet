@@ -95,7 +95,7 @@ export default function SiteFooter() {
               {[
                 ["Cubixmet Tech", "/ventures/tech"],
                 ["Cubixmet Digital", "/ventures/digital"],
-                ["Cubixmet Academy", "https://www.cubixmet.com/ventures/academy"],
+                ["Cubixmet Academy", "/ventures/academy"],
               ].map(([label, href]) => (
                 <a
                   key={label}
