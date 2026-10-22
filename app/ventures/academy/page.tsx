@@ -3,6 +3,7 @@ import SiteHeader from "../../../components/home/SiteHeader";
 import SiteFooter from "../../../components/home/SiteFooter";
 import Arrow from "../../../components/home/Arrow";
 import TechTeamPortrait from "../../../components/home/TechTeamPortrait";
+import AcademyHeroPhoto from "../../../components/home/AcademyHeroPhoto";
 
 export const metadata: Metadata = {
   title: "Cubixmet Academy | Learn. Build. Launch.",
@@ -180,6 +181,7 @@ function AcademyVisual() {
       <div className="absolute bottom-4 right-5 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[.12em] text-white/65 sm:right-7">
         <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]"/> Academy Vertical
       </div>
+      <AcademyHeroPhoto />
     </div>
   );
 }
