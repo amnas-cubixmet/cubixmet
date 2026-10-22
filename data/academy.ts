@@ -10,6 +10,7 @@ export const generalEnrollUrl = whatsappLink(
 export const programs = [
   {
     id: "graphic-design",
+    href: "/ventures/academy/graphic-designing-content-creation",
     type: "design" as const,
     duration: "6 Months",
     title: "Graphic Designing & Content Creation Program (AI Integrated)",
@@ -26,6 +27,7 @@ export const programs = [
   },
   {
     id: "digital-marketing",
+    href: "/ventures/academy/advanced-digital-marketing-automation",
     type: "marketing" as const,
     duration: "6 Months",
     title: "Advanced Digital Marketing & Automation Program",
@@ -42,6 +44,7 @@ export const programs = [
   },
   {
     id: "python-full-stack",
+    href: "/ventures/academy/python-full-stack-development-ai-vibe-coding",
     type: "code" as const,
     duration: "6 Months",
     title: "Python Full Stack Development & AI Vibe Coding",
