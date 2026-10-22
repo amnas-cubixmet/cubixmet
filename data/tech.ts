@@ -116,6 +116,7 @@ export const techCopy = {
   "heroCaption": "Software. Cloud. Innovation.",
   "ctaLabel": "Ready to Build?",
   "ctaTitle": "Let's turn your vision into a scalable, production-ready product.",
+  "startProjectLabel": "Start a Project",
   "brochureHref": "/brochures/cubixmet-tech.pdf",
   "brochureName": "cubixmet-tech.pdf",
   "brochureLabel": "Download Tech Brochure (PDF)"
