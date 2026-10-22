@@ -32,5 +32,6 @@ export const homeCopy = {
   contactLabel: "Start a project",
   contactHeading: "Have a project in mind? Let's talk.",
   contactDescription: "Share the goal, challenge or rough idea. We'll help shape the next step.",
-  contactSubmit: "Send project",
+  contactSubmit: "Continue on WhatsApp",
+  contactFormNote: "Opens WhatsApp with a draft. Review it and press Send to contact our team.",
 } as const;
