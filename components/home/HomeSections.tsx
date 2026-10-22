@@ -791,10 +791,12 @@ function WorkSection() {
                     const button = event.currentTarget;
                     const track = button.parentElement;
                     if (track) {
-                      const desired = button.offsetLeft + button.offsetWidth / 2 - track.offsetWidth / 2;
+                      const buttonBounds = button.getBoundingClientRect();
+                      const trackBounds = track.getBoundingClientRect();
+                      const desired = track.scrollLeft + buttonBounds.left - trackBounds.left + buttonBounds.width / 2 - trackBounds.width / 2;
                       track.scrollTo({
                         left: Math.max(0, desired),
-                        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+                        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
                       });
                     }
                   }}
