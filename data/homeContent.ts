@@ -27,7 +27,6 @@ export const homeCopy = {
   teamIntro:
     "Meet the people building our technology, digital experiences, and practical learning programs.",
   teamMembersLabel: "Team Members",
-  marqueeAutoLoopLabel: "Auto loop",
   impactLabel: "Our Impact",
   contactLabel: "Start a project",
   contactHeading: "Have a project in mind? Let's talk.",
