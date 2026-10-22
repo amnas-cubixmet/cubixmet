@@ -1,5 +1,6 @@
-export const whatsappUrl =
-  "https://wa.me/918921592742?text=Hi%20Cubixmet%20Digital%2C%20I%27d%20like%20to%20grow%20my%20brand.%20Please%20share%20the%20next%20steps.";
+import { whatsappLink } from "./site";
+
+export const whatsappUrl = whatsappLink("Hi Cubixmet Digital, I'd like to grow my brand. Please share the next steps.");
 
 export const digitalServices = [
   {
