@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Arrow from "./Arrow";
+import ProjectVideoPreview from "./ProjectVideoPreview";
 import Image from "next/image";
 import { services } from "../../data/services";
 import { aboutContent, aboutPillars } from "../../data/about";
@@ -823,13 +824,11 @@ function WorkSection() {
               className="scroll-card group overflow-hidden border border-white/8 bg-[#0b0b0b]"
             >
               <div className="relative aspect-[1.35/1] overflow-hidden bg-[#101010]">
-                <Image
-                  src={project.image}
-                  alt={project.name}
-                  fill
-                  sizes="(max-width: 767px) calc(100vw - 36px), (max-width: 1279px) 50vw, 33vw"
-                  loading="lazy"
-                  className="object-cover transition duration-700 group-hover:scale-105"
+                <ProjectVideoPreview
+                  key={project.id}
+                  name={project.name}
+                  image={project.image}
+                  video={project.video}
                 />
                 <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
                 <span className="absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-white/72 backdrop-blur">
