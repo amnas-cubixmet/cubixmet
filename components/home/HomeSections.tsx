@@ -383,7 +383,7 @@ function ServicesSection() {
   }, []);
 
   useEffect(() => {
-    if (window.innerWidth >= 1024) return;
+    if (window.innerWidth < 640 || window.innerWidth >= 1024) return;
     const track = mobileNavRef.current;
     const active = track?.querySelector<HTMLElement>('[aria-current="true"]');
     if (!track || !active) return;
@@ -411,7 +411,7 @@ function ServicesSection() {
   };
 
   const handleNavPointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
-    if (!event.isPrimary || event.pointerType !== "mouse" || event.button !== 0) return;
+    if (window.innerWidth < 640 || !event.isPrimary || event.pointerType !== "mouse" || event.button !== 0) return;
     const track = mobileNavRef.current;
     if (!track) return;
     suppressNavClickRef.current = false;
@@ -460,6 +460,32 @@ function ServicesSection() {
           </p>
         </div>
 
+        {/* Compact phones: full active name and explicit navigation, no clipped side labels. */}
+        <div role="group" aria-label="Choose a service" className="services-phone-controls mb-3 grid grid-cols-[42px_minmax(0,1fr)_42px] gap-2 sm:hidden">
+          <button
+            type="button"
+            aria-label="Previous service"
+            onClick={() => selectService(Math.max(0, activeService - 1))}
+            disabled={activeService === 0}
+            className="grid min-h-11 place-items-center rounded-[10px] border border-white/15 bg-white/[0.06] text-white transition-colors hover:border-[#1677FF]/60 hover:bg-[#1677FF]/15 disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="m15 18-6-6 6-6" /></svg>
+          </button>
+          <div aria-live="polite" aria-atomic="true" className="flex min-h-11 min-w-0 items-center justify-center rounded-[10px] bg-white px-2 text-center text-[13px] font-extrabold leading-[1.2] tracking-[-.02em] text-black">
+            {current.title}
+          </div>
+          <button
+            type="button"
+            aria-label="Next service"
+            onClick={() => selectService(Math.min(services.length - 1, activeService + 1))}
+            disabled={activeService === services.length - 1}
+            className="grid min-h-11 place-items-center rounded-[10px] border border-white/15 bg-white/[0.06] text-white transition-colors hover:border-[#1677FF]/60 hover:bg-[#1677FF]/15 disabled:cursor-not-allowed disabled:opacity-30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="h-5 w-5"><path d="m9 6 6 6-6 6" /></svg>
+          </button>
+        </div>
+
+        {/* Tablets: swipeable horizontal service tabs. */}
         <nav
           aria-label="Choose a service"
           ref={mobileNavRef}
@@ -473,7 +499,7 @@ function ServicesSection() {
             event.stopPropagation();
             suppressNavClickRef.current = false;
           }}
-          className="services-mobile-nav flex w-full snap-x snap-mandatory gap-2 overflow-x-auto pb-3"
+          className="services-mobile-nav hidden w-full snap-x snap-mandatory gap-2 overflow-x-auto pb-3 sm:flex"
         >
           {services.map((service, index) => (
             <button
@@ -501,7 +527,7 @@ function ServicesSection() {
         </div>
 
         <div key={current.no} className="service-content-enter">
-          <div className="services-mobile-media relative h-[clamp(130px,24svh,225px)] w-full overflow-hidden rounded-[10px] bg-[#101010]">
+          <div className="services-mobile-media relative h-[clamp(120px,23svh,225px)] w-full overflow-hidden rounded-[12px] bg-[#101010]">
             <img src={current.image} alt={current.title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
           </div>
           <div className="pt-4">
@@ -509,11 +535,11 @@ function ServicesSection() {
               {current.title}
             </h3>
             <p className="mt-2.5 text-[12px] leading-[1.6] text-white/65 sm:text-[14px] sm:leading-6">{current.copy}</p>
-            <ul className="services-mobile-features mt-4 flex gap-3 overflow-x-auto pb-1 sm:grid sm:grid-cols-2 sm:gap-y-2">
+            <ul className="services-mobile-features mt-4 grid min-w-0 grid-cols-2 gap-x-3 gap-y-2 pb-1">
               {current.meta.map((item) => (
-                <li key={item} className="flex shrink-0 items-center gap-2 text-[11px] leading-5 text-white/60 sm:shrink sm:items-start sm:text-[12px]">
-                  <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF] sm:mt-[7px]" />
-                  {item}
+                <li key={item} className="flex min-w-0 items-start gap-2 text-[11px] leading-[1.5] text-white/65 sm:text-[12px]">
+                  <span aria-hidden="true" className="mt-[5px] h-1.5 w-1.5 shrink-0 rounded-full bg-[#1677FF]" />
+                  <span className="min-w-0 break-words">{item}</span>
                 </li>
               ))}
             </ul>
