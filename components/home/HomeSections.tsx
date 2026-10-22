@@ -527,7 +527,7 @@ function ServicesSection() {
         <div className="mx-auto grid h-full w-[92%] max-w-[1320px] grid-cols-[minmax(0,0.96fr)_40px_minmax(0,1.08fr)] items-center gap-7 py-8 xl:gap-12">
           <nav aria-label="Choose a service" className="flex min-w-0 flex-col items-center justify-center">
             <div className="w-full max-w-[390px]">
-              <p className="mb-6 px-5 text-center text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1677FF]">
+              <p className="mb-6 px-5 text-left text-[11px] font-semibold uppercase tracking-[0.2em] text-[#1677FF]">
                 Services
               </p>
 
