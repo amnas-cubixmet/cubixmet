@@ -740,6 +740,15 @@ function WorkSection() {
   const [portfolioFilter, setPortfolioFilter] = useState<
     "All" | "Dynamic Website" | "Digital Marketing"
   >("All");
+  const portfolioGridRef = useRef<HTMLDivElement>(null);
+
+  // Newly filtered cards are mounted after the page-wide scroll observer's
+  // initial scan; make them visible so filter changes never yield blank cards.
+  useEffect(() => {
+    portfolioGridRef.current?.querySelectorAll<HTMLElement>("[data-scroll-card]").forEach(
+      (card) => card.classList.add("is-card-visible")
+    );
+  }, [portfolioFilter]);
 
   const filters = projectFilters;
   const filteredProjects =
@@ -763,29 +772,47 @@ function WorkSection() {
           </p>
         </div>
 
-        <div className="mt-10 flex flex-wrap gap-2 border-y border-white/8 py-4">
-          {filters.map((filter) => {
-            const active = portfolioFilter === filter;
+        <div className="mt-8 min-w-0 border-y border-white/10 sm:mt-10">
+          <div
+            role="group"
+            aria-label="Filter portfolio by category"
+            className="portfolio-filter-scroll flex min-w-0 w-full flex-nowrap items-center gap-2 overflow-x-auto overscroll-x-contain py-3.5 sm:py-4"
+          >
+            {filters.map((filter) => {
+              const active = portfolioFilter === filter;
 
-            return (
-              <button
-                key={filter}
-                type="button"
-                onClick={() => setPortfolioFilter(filter)}
-                className={
-                  "rounded-full border px-4 py-2 text-[11px] font-medium transition-all duration-300 " +
-                  (active
-                    ? "border-[#1677FF] bg-[#1677FF] text-white"
-                    : "border-white/10 text-white/45 hover:border-white/25 hover:text-white")
-                }
-              >
-                {filter}
-              </button>
-            );
-          })}
+              return (
+                <button
+                  key={filter}
+                  type="button"
+                  aria-pressed={active}
+                  onClick={(event) => {
+                    setPortfolioFilter(filter);
+                    const button = event.currentTarget;
+                    const track = button.parentElement;
+                    if (track) {
+                      const desired = button.offsetLeft + button.offsetWidth / 2 - track.offsetWidth / 2;
+                      track.scrollTo({
+                        left: Math.max(0, desired),
+                        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
+                      });
+                    }
+                  }}
+                  className={
+                    "flex min-h-10 shrink-0 snap-center items-center justify-center whitespace-nowrap rounded-full border px-4 py-2 text-[12px] font-semibold transition-colors duration-200 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] sm:min-h-11 sm:px-5 sm:text-[13px] " +
+                    (active
+                      ? "border-[#1677FF] bg-[#1677FF] text-white shadow-[0_5px_18px_rgba(22,119,255,.2)]"
+                      : "border-white/15 bg-white/[0.025] text-white/75 hover:border-white/35 hover:bg-white/[0.06] hover:text-white")
+                  }
+                >
+                  {filter}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
-        <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <div ref={portfolioGridRef} className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {filteredProjects.map((project, index) => (
             <article
               key={project.id}
