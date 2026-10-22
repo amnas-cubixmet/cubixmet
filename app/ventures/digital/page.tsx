@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { whatsappUrl, digitalServices, team, digitalCopy } from "../../../data/digital";
+import { whatsappUrl, digitalServices, digitalCopy } from "../../../data/digital";
+import { getVentureTeam } from "../../../data/team";
 import SiteHeader from "../../../components/home/SiteHeader";
 import SiteFooter from "../../../components/home/SiteFooter";
 import Arrow from "../../../components/home/Arrow";
@@ -119,7 +120,7 @@ export default function CubixmetDigitalPage() {
           <h2 className="max-w-[800px] text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-[.97] tracking-[-.06em]">{digitalCopy.teamTitle}</h2>
           <p className="mt-6 max-w-[660px] text-[14px] leading-[1.85] text-white/55">{digitalCopy.teamDescription}</p>
           <div className="mt-11 divide-y divide-white/10 border-t border-white/10 md:mt-14">
-            {team.map((member)=>(
+            {getVentureTeam("digital").map((member)=>(
               <article key={member.name} className="grid grid-cols-[minmax(0,1fr)_100px] items-center gap-5 py-7 sm:grid-cols-[minmax(0,1fr)_120px] sm:gap-9 sm:py-9 md:grid-cols-[minmax(0,1fr)_136px] md:gap-12 md:py-10">
                 <div className="min-w-0">
                   <h3 className="text-[19px] font-semibold tracking-[-.035em] text-white md:text-[24px]">{member.name}</h3>
