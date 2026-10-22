@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { whatsappLink, generalEnrollUrl, programs, benefits, team, academyCopy } from "../../../data/academy";
+import { programEnrollUrl, generalEnrollUrl, programs, benefits, team, academyCopy } from "../../../data/academy";
 import type { BenefitIcon, ProgramIcon } from "../../../data/academy";
 import SiteHeader from "../../../components/home/SiteHeader";
 import SiteFooter from "../../../components/home/SiteFooter";
@@ -147,9 +147,7 @@ export default function CubixmetAcademyPage() {
 
           <div className="grid items-stretch gap-5 lg:grid-cols-3">
             {programs.map((program) => {
-              const enrollUrl = whatsappLink(
-                `Hi Cubixmet Academy, I'd like to enroll in ${program.title}. Please share the course fees, batch timings, and admission process.`
-              );
+              const enrollUrl = programEnrollUrl(program.title);
               return (
                 <article key={program.id} id={program.id} className="group flex min-w-0 flex-col scroll-mt-24 rounded-[20px] border border-white/10 bg-[#0d0d0d] p-6 transition-[border-color,transform] duration-300 hover:-translate-y-1 hover:border-[#1677FF]/45 sm:p-7">
                   <div className="flex items-center justify-between gap-3">
