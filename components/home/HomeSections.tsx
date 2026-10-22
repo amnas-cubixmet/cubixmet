@@ -410,7 +410,7 @@ function ServicesSection() {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     track.scrollTo({
       left: active.offsetLeft,
-      behavior: reduceMotion ? "instant" : "smooth",
+      behavior: reduceMotion ? "auto" : "smooth",
     });
   }, [activeService]);
 
