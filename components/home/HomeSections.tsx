@@ -12,7 +12,6 @@ import { homeCopy } from "../../data/homeContent";
 import { site, whatsappLink } from "../../data/site";
 import { whyChoose } from "../../data/whyChoose";
 import { marqueeItems } from "../../data/marquee";
-import { testimonials } from "../../data/testimonials";
 import { leaders, teamMembers } from "../../data/team";
 import { impactStats } from "../../data/impact";
 
@@ -941,98 +940,12 @@ function MarqueeSection() {
 }
 
 function TestimonialsSection() {
-  const [current, setCurrent] = useState(0);
-
-  const nextSlide = () => setCurrent((prev) => (prev + 1) % testimonials.length);
-  const prevSlide = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-
+  // Keep the requested section label without unverified customer quotes,
+  // names, headshots, ratings, or testimonial slider controls.
   return (
-    <section className="overflow-hidden pb-20 pt-12 md:pb-28 md:pt-16">
-      <div className="w-full">
-        <div data-reveal className="reveal mx-auto max-w-[900px] px-4 text-center md:px-8">
-          <p className="section-label mb-3">{homeCopy.testimonialsLabel}</p>
-          <h2 className="mx-auto max-w-[580px] text-[clamp(2rem,3.6vw,4.2rem)] font-medium leading-[.94] tracking-[-0.05em]">
-            {homeCopy.testimonialsHeading}
-            <span className="block">{homeCopy.testimonialsSubheading}</span>
-          </h2>
-        </div>
-
-        <div className="mt-10 overflow-hidden">
-          <div
-            className="flex transition-transform duration-700 ease-[cubic-bezier(.22,1,.36,1)]"
-            style={{ transform: `translateX(-${current * 100}%)` }}
-          >
-            {testimonials.map((_, index) => (
-              <div key={index} className="w-full shrink-0 px-4 md:px-6 lg:px-8">
-                <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                  {[0, 1, 2].map((offset) => {
-                    const itemIndex = (index + offset) % testimonials.length;
-                    const card = testimonials[itemIndex];
-
-                    return (
-                      <blockquote
-                        key={`${card.name}-${offset}`}
-                        data-scroll-card
-                        data-scroll-delay={offset * 80}
-                        className="scroll-card flex min-h-[260px] flex-col justify-between rounded-[16px] border border-white/8 bg-[#0b0b0b] p-5 md:min-h-[280px] md:p-6"
-                      >
-                        <div>
-                          <span className="text-[18px] leading-none text-[#1677FF]">“</span>
-                          <p className="mt-5 text-[12px] leading-6 text-white/52 md:text-[13px]">
-                            {card.quote}
-                          </p>
-                        </div>
-
-                        <footer className="mt-8 flex items-center gap-3 border-t border-white/7 pt-4">
-                          <img
-                            src={card.avatar}
-                            alt={card.name}
-                            width={40}
-                            height={40}
-                            loading="lazy"
-                            decoding="async"
-                            className="h-10 w-10 rounded-full object-cover"
-                          />
-                          <div>
-                            <p className="text-[12px] font-medium text-white">{card.name}</p>
-                            <p className="mt-0.5 text-[10px] text-white/32">{card.role}</p>
-                          </div>
-                        </footer>
-                      </blockquote>
-                    );
-                  })}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="mx-auto mt-6 flex w-full max-w-[1400px] items-center gap-3 px-4 md:px-6 lg:px-8">
-          <button
-            type="button"
-            onClick={prevSlide}
-            aria-label="Previous testimonial"
-            className="grid h-10 w-10 place-items-center rounded-full border border-white/10 text-[13px] text-white/45 transition hover:border-[#1677FF]/60 hover:text-white"
-          >
-            ←
-          </button>
-
-          <button
-            type="button"
-            onClick={nextSlide}
-            aria-label="Next testimonial"
-            className="grid h-10 w-10 place-items-center rounded-full bg-[#1677FF] text-[13px] text-white transition hover:scale-105"
-          >
-            →
-          </button>
-
-          <div className="ml-1 h-px flex-1 bg-white/10">
-            <div
-              className="h-px bg-[#1677FF] transition-all duration-500"
-              style={{ width: `${((current + 1) / testimonials.length) * 100}%` }}
-            />
-          </div>
-        </div>
+    <section aria-label={homeCopy.testimonialsLabel} className="py-7 md:py-10">
+      <div className="about-wrapper">
+        <p className="section-label">{homeCopy.testimonialsLabel}</p>
       </div>
     </section>
   );

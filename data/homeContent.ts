@@ -21,8 +21,6 @@ export const homeCopy = {
   portfolioDescription:
     "A selection of projects showcasing our web development and digital marketing capabilities.",
   testimonialsLabel: "Client stories",
-  testimonialsHeading: "Trusted by Brands, Backed",
-  testimonialsSubheading: "by Stories",
   teamLabel: "Meet the Team",
   teamHeading: "The minds behind",
   teamSubheading: "— Cubixmet",
