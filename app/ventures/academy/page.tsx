@@ -280,10 +280,10 @@ export default function CubixmetAcademyPage() {
                     <p className="flex items-start gap-2 text-[12px] font-medium leading-6 text-white/85"><span className="text-[#62a5ff]" aria-hidden="true">✓</span>100% Placement Assistance</p>
                   </div>
                   <div className="mt-auto pt-7">
-                    {program.id === "graphic-design" ? (
+                    {(program.id === "graphic-design" || program.id === "digital-marketing") ? (
                       <a
-                        href="/ventures/academy/graphic-designing-content-creation"
-                        aria-label="Know more about the Graphic Designing and Content Creation Program"
+                        href={program.id === "graphic-design" ? "/ventures/academy/graphic-designing-content-creation" : "/ventures/academy/advanced-digital-marketing-automation"}
+                        aria-label={`Know more about ${program.title}`}
                         className="mb-3 inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-[12px] border border-[#1677FF]/50 bg-[#1677FF]/10 px-4 text-[13px] font-semibold text-white transition-colors duration-200 hover:border-[#1677FF] hover:bg-[#1677FF]/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
                       >
                         Know More <Arrow />
