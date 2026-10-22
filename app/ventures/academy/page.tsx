@@ -280,16 +280,25 @@ export default function CubixmetAcademyPage() {
                     <p className="flex items-start gap-2 text-[12px] font-medium leading-6 text-white/85"><span className="text-[#62a5ff]" aria-hidden="true">✓</span>100% Placement Assistance</p>
                   </div>
                   <div className="mt-auto pt-7">
-                    <details className="group/details mb-3 rounded-[12px] border border-white/10 bg-white/[.025]">
-                      <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-4 text-[12px] font-semibold text-white/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] [&::-webkit-details-marker]:hidden">
-                        Know More
-                        <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-[#62a5ff] transition-transform group-open/details:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
-                      </summary>
-                      <div className="border-t border-white/10 px-4 pb-4 pt-3 text-[12px] leading-[1.8] text-white/60">
-                        {program.detail}
-                        <p className="mt-3 text-white/45">For course fees, eligibility and upcoming batches, contact our admissions team.</p>
-                      </div>
-                    </details>
+                    {program.id === "graphic-design" ? (
+                      <a
+                        href="/ventures/academy/graphic-designing-content-creation"
+                        className="mb-3 flex min-h-12 items-center justify-between gap-3 rounded-[12px] border border-white/10 bg-white/[.025] px-4 text-[12px] font-semibold text-white/85 transition-colors hover:border-[#1677FF]/45 hover:bg-[#1677FF]/10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF]"
+                      >
+                        Know More <Arrow />
+                      </a>
+                    ) : (
+                      <details className="group/details mb-3 rounded-[12px] border border-white/10 bg-white/[.025]">
+                        <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-3 px-4 text-[12px] font-semibold text-white/85 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1677FF] [&::-webkit-details-marker]:hidden">
+                          Know More
+                          <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" className="h-4 w-4 text-[#62a5ff] transition-transform group-open/details:rotate-180"><path d="m6 9 6 6 6-6"/></svg>
+                        </summary>
+                        <div className="border-t border-white/10 px-4 pb-4 pt-3 text-[12px] leading-[1.8] text-white/60">
+                          {program.detail}
+                          <p className="mt-3 text-white/45">For course fees, eligibility and upcoming batches, contact our admissions team.</p>
+                        </div>
+                      </details>
+                    )}
                     <a href={enrollUrl} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-12 w-full items-center justify-center gap-3 rounded-[12px] bg-[#1677FF] px-4 text-[13px] font-semibold text-white transition-colors hover:bg-[#348aff]">
                       Enroll via WhatsApp <Arrow />
                     </a>
