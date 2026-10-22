@@ -106,7 +106,7 @@ export default function SiteHeader() {
           </span>
         </a>
 
-        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-4 lg:flex xl:gap-6">
+        <nav className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-3 xl:flex 2xl:gap-5">
           {navLinks.map(([href, label]) => (
             <a
               key={href}
@@ -136,7 +136,7 @@ export default function SiteHeader() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat with Cubixmet on WhatsApp"
-          className="hidden items-center gap-2 rounded-full border border-white/12 bg-white/[0.035] px-4 py-2 text-[10px] font-semibold text-white transition hover:border-[#1677FF]/60 hover:bg-[#1677FF] lg:inline-flex"
+          className="hidden items-center gap-2 rounded-full border border-white/12 bg-white/[0.035] px-4 py-2 text-[10px] font-semibold text-white transition hover:border-[#1677FF]/60 hover:bg-[#1677FF] xl:inline-flex"
         >
           <span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]" />
           Let&apos;s Talk
@@ -148,7 +148,7 @@ export default function SiteHeader() {
           aria-expanded={menuOpen}
           aria-controls="mobile-site-menu"
           onClick={() => setMenuOpen((value) => !value)}
-          className="relative z-50 grid h-10 w-10 place-items-center border-0 bg-transparent text-white outline-none transition-colors hover:text-[#1677FF] focus-visible:rounded focus-visible:ring-2 focus-visible:ring-[#1677FF] lg:hidden"
+          className="relative z-50 grid h-10 w-10 place-items-center border-0 bg-transparent text-white outline-none transition-colors hover:text-[#1677FF] focus-visible:rounded focus-visible:ring-2 focus-visible:ring-[#1677FF] xl:hidden"
         >
           <span className="flex w-4 flex-col gap-[5px]">
             <span
@@ -170,7 +170,7 @@ export default function SiteHeader() {
       {menuOpen && (
         <div
           id="mobile-site-menu"
-          className="mobile-menu-panel fixed inset-x-0 bottom-0 top-[60px] md:top-[68px] z-40 flex flex-col overflow-y-auto overscroll-contain bg-[#050505] px-6 pb-[max(16px,env(safe-area-inset-bottom))] pt-3 lg:hidden"
+          className="mobile-menu-panel fixed inset-x-0 bottom-0 top-[60px] md:top-[68px] z-40 flex flex-col overflow-y-auto overscroll-contain bg-[#050505] px-6 pb-[max(16px,env(safe-area-inset-bottom))] pt-3 xl:hidden"
         >
           <nav aria-label="Mobile navigation" className="flex flex-1 flex-col justify-center gap-1 py-2">
             {navLinks.map(([href, label]) => {
