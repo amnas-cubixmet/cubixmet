@@ -141,14 +141,14 @@ export default async function EventDetailPage({ params }: EventPageProps) {
               </svg>
               {eventsPageCopy.galleryLabel}
             </h2>
-            <div className="grid max-w-[1080px] gap-4 sm:grid-cols-2">
+            <div className="grid w-full max-w-[720px] gap-3 sm:grid-cols-2 sm:gap-4">
               {[event.listingImage, event.detailImage].filter((image): image is string => Boolean(image)).map((image, index) => (
                 <div key={image} className="overflow-hidden rounded-[13px] border border-white/10 bg-[#0d1423]">
                   <EventVisual
                     imageSrc={image}
                     imageAlt={index === 0 ? `${event.title} group photograph` : `${event.title} participants during the session`}
                     showOverlay={false}
-                    className="aspect-[4/3] w-full"
+                    className="aspect-[16/10] w-full"
                   />
                 </div>
               ))}
