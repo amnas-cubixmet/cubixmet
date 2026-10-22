@@ -6,7 +6,7 @@ export default function TeamSection() {
   return (
     <section
       id="team"
-      aria-labelledby="team-section-heading"
+      aria-label="Team"
       className="relative scroll-mt-20 overflow-hidden bg-[#050505] pb-20 pt-12 md:scroll-mt-24 md:pb-28 md:pt-20"
     >
       <div
@@ -14,23 +14,7 @@ export default function TeamSection() {
         className="pointer-events-none absolute -right-44 top-12 h-[430px] w-[430px] rounded-full bg-[#1677FF]/[0.055] blur-[115px]"
       />
       <div className="about-wrapper relative">
-        <div className="grid items-end gap-6 border-b border-white/10 pb-8 md:gap-8 md:pb-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(260px,.75fr)]">
-          <div>
-            <p className="section-label mb-4">{homeCopy.teamLabel}</p>
-            <h2
-              id="team-section-heading"
-              className="max-w-[750px] text-[clamp(2.45rem,5.1vw,5.5rem)] font-semibold leading-[.98] tracking-[-.065em] text-white"
-            >
-              {homeCopy.teamHeading}
-              <span className="block text-[#1677FF]">{homeCopy.teamSubheading}</span>
-            </h2>
-          </div>
-          <p className="max-w-[440px] text-[13px] leading-[1.85] text-white/55 md:text-[15px] lg:justify-self-end">
-            {homeCopy.teamIntro}
-          </p>
-        </div>
-
-        <div className="mt-8 grid gap-4 md:mt-10 md:grid-cols-2 xl:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {leaders.map((leader, index) => (
             <article
               key={leader.name}
