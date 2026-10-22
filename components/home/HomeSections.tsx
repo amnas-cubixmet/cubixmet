@@ -685,18 +685,18 @@ function WhyChooseIcon({ type }: { type: string }) {
 
 function ProcessSection() {
   return (
-    <section id="process" className="relative z-10 bg-[#050505] pb-20 pt-10 md:pb-28 md:pt-14">
+    <section id="process" className="relative z-10 bg-[#050505] pb-14 pt-7 md:pb-28 md:pt-14">
       <div data-reveal className="reveal about-wrapper">
-        <div className="relative overflow-hidden rounded-[22px] border border-white/8 bg-[#0b0b0b]">
+        <div className="relative overflow-hidden rounded-[16px] border border-white/8 bg-[#0b0b0b] md:rounded-[22px]">
           <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_14%_18%,rgba(22,119,255,.11),transparent_24%),radial-gradient(circle_at_88%_84%,rgba(22,119,255,.08),transparent_26%)]" />
 
-          <div className="relative z-10 grid gap-10 p-5 md:p-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-14 xl:p-10">
+          <div className="relative z-10 grid gap-6 p-4 sm:p-5 md:gap-10 md:p-8 lg:grid-cols-[.9fr_1.1fr] lg:gap-14 xl:p-10">
             <div className="lg:sticky lg:top-28 lg:self-start">
-              <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.18em] text-[#1677FF]">
+              <p className="mb-3 text-[10px] font-medium uppercase tracking-[0.18em] text-[#1677FF] md:mb-4">
                 {homeCopy.whyChooseLabel}
               </p>
 
-              <h2 className="max-w-[560px] text-[clamp(2.4rem,4.2vw,4.8rem)] font-medium leading-[.96] tracking-[-0.055em]">
+              <h2 className="max-w-[560px] text-[clamp(1.9rem,4.2vw,4.8rem)] font-medium leading-[1.04] tracking-[-0.055em] md:leading-[.96]">
                 {homeCopy.whyChooseHeading}
                 <span className="block text-white/38">{homeCopy.whyChooseSubheading}</span>
               </h2>
@@ -708,22 +708,22 @@ function ProcessSection() {
                   key={item.title}
                   data-scroll-card
                   data-scroll-delay={index * 80}
-                  className="scroll-card grid gap-5 py-6 first:pt-6 md:grid-cols-[54px_1fr_auto] md:items-start md:py-7"
+                  className="scroll-card grid grid-cols-[36px_minmax(0,1fr)_24px] items-start gap-3 py-4 first:pt-4 md:grid-cols-[54px_minmax(0,1fr)_auto] md:gap-5 md:py-7 md:first:pt-7"
                 >
-                  <div className="grid h-11 w-11 place-items-center border border-[#1677FF]/25 bg-[#1677FF]/5 text-[#1677FF]">
-                    <WhyChooseIcon type={item.icon} />
+                  <div className="grid h-9 w-9 place-items-center border border-[#1677FF]/25 bg-[#1677FF]/5 text-[#1677FF] md:h-11 md:w-11">
+                    <span className="[&>svg]:h-5 [&>svg]:w-5 md:[&>svg]:h-6 md:[&>svg]:w-6"><WhyChooseIcon type={item.icon} /></span>
                   </div>
 
                   <div>
-                    <h3 className="text-[18px] font-medium tracking-[-0.03em] text-white md:text-[22px]">
+                    <h3 className="text-[15px] font-medium leading-[1.25] tracking-[-0.03em] text-white sm:text-[16px] md:text-[22px]">
                       {item.title}
                     </h3>
-                    <p className="mt-2 max-w-[500px] text-[11px] leading-5 text-white/40 md:text-[12px] md:leading-6">
+                    <p className="mt-1 max-w-[500px] text-[11px] leading-[1.55] text-white/55 md:mt-2 md:text-[12px] md:leading-6 md:text-white/40">
                       {item.copy}
                     </p>
                   </div>
 
-                  <span className="text-[10px] font-semibold tracking-[0.12em] text-white/20">
+                  <span className="text-right text-[10px] font-semibold tracking-[0.12em] text-white/25">
                     0{index + 1}
                   </span>
                 </article>
