@@ -291,7 +291,7 @@ a {
 
 .hero-slider-card[data-offset="0"] {
   --hero-x: 0px;
-  --hero-scale: 1;
+  --hero-scale: 1.05;
   --hero-opacity: 1;
   z-index: 6;
   filter: brightness(1);
@@ -352,6 +352,10 @@ a {
     aspect-ratio: 1.72 / 1;
   }
 
+  .hero-slider-card[data-offset="0"] {
+    --hero-scale: 1.08;
+  }
+
   .hero-slider-card[data-offset="-1"] {
     --hero-x: max(-41vw, -650px);
   }
@@ -395,6 +399,13 @@ a {
   .hero-slider-card {
     width: min(calc(25vw - 20px), 520px);
     aspect-ratio: 1.5 / 1;
+  }
+
+  /* Center project lifts forward without changing the five-card layout. */
+  .hero-slider-card[data-offset="0"] {
+    --hero-scale: 1.13;
+    box-shadow: 0 28px 75px rgba(0, 0, 0, 0.65),
+      0 0 0 1px rgba(22, 119, 255, 0.32);
   }
 
   .hero-slider-card[data-offset="-1"] {
