@@ -112,6 +112,7 @@ export default async function EventDetailPage({ params }: EventPageProps) {
                   <EventVisual
                     imageSrc={image}
                     imageAlt={index === 0 ? `${event.title} group photograph` : `${event.title} participants during the session`}
+                    showOverlay={false}
                     className="aspect-[4/3] w-full"
                   />
                 </div>
