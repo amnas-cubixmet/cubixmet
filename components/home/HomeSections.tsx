@@ -13,7 +13,7 @@ import { homeCopy } from "../../data/homeContent";
 import { site, whatsappLink } from "../../data/site";
 import { whyChoose } from "../../data/whyChoose";
 import { marqueeItems } from "../../data/marquee";
-import { leaders, teamMembers } from "../../data/team";
+import TeamSection from "./TeamSection";
 import { impactStats } from "../../data/impact";
 
 function FlowerSeparator() {
@@ -940,122 +940,6 @@ function MarqueeSection() {
   );
 }
 
-function LeadershipSection() {
-  return (
-    <section id="team" className="pb-20 pt-12 md:pb-28 md:pt-16">
-      <div className="work-wrapper">
-        <div className="grid gap-10 lg:grid-cols-[.72fr_1.28fr] lg:gap-16">
-          <div data-reveal className="reveal">
-            <p className="section-label mb-4">{homeCopy.teamLabel}</p>
-            <h2 className="max-w-[370px] text-[clamp(2.2rem,3.6vw,4.1rem)] font-medium leading-[.94] tracking-[-0.05em]">
-              {homeCopy.teamHeading}
-              <span className="block">{homeCopy.teamSubheading}</span>
-            </h2>
-          </div>
-
-          <div className="divide-y divide-white/8">
-            {leaders.map((leader, index) => (
-              <article
-                key={leader.name}
-                data-reveal
-                data-scroll-card
-                data-scroll-delay={index * 100}
-                className="reveal scroll-card grid gap-6 py-8 first:pt-0 md:grid-cols-[1fr_150px] md:items-center md:gap-10"
-              >
-                <div>
-                  <h3 className="text-[18px] font-semibold text-white md:text-[20px]">
-                    {leader.name}
-                  </h3>
-
-                  <p className="mt-1 text-[10px] font-medium uppercase leading-5 tracking-[0.1em] text-white/38">
-                    {leader.role}
-                  </p>
-
-                  <p className="mt-6 max-w-[500px] text-[11px] leading-5 text-white/38 md:text-[12px] md:leading-6">
-                    {leader.copy}
-                  </p>
-                </div>
-
-                <div className="relative mx-auto h-[136px] w-[136px] md:mx-0 md:justify-self-end">
-                  <svg
-                    viewBox="0 0 100 100"
-                    className="h-full w-full overflow-visible"
-                    role="img"
-                    aria-label={leader.name}
-                  >
-                    <path
-                      d="M31 8C39 8 44 13 50 18C56 13 61 8 69 8C83 8 92 19 92 33C92 41 87 46 82 50C87 54 92 59 92 67C92 81 81 92 67 92C59 92 54 87 50 82C46 87 41 92 33 92C19 92 8 81 8 67C8 59 13 54 18 50C13 46 8 41 8 33C8 19 19 8 31 8Z"
-                      fill="#0d0d0d"
-                      stroke="rgba(255,255,255,.12)"
-                      strokeWidth="1"
-                    />
-                    <text
-                      x="50"
-                      y="56"
-                      textAnchor="middle"
-                      fill="#1677FF"
-                      fontSize="22"
-                      fontWeight="700"
-                      letterSpacing="-1"
-                    >
-                      {leader.initials}
-                    </text>
-                  </svg>
-
-                  <a
-                    href={leader.href}
-                    aria-label={`Open ${leader.name} profile`}
-                    className="absolute bottom-0 right-0 grid h-8 w-8 place-items-center rounded-full bg-[#1677FF] text-[9px] text-white transition hover:scale-105"
-                  >
-                    <Arrow />
-                  </a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-
-        {teamMembers.length > 0 && (
-          <div className="mt-12 border-t border-white/8 pt-8 md:mt-16 md:pt-10">
-            <div className="mb-6 flex items-center justify-between gap-4">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-[#1677FF]">
-                {homeCopy.teamMembersLabel}
-              </p>
-              <p className="text-[10px] uppercase tracking-[0.14em] text-white/22">
-                {homeCopy.marqueeAutoLoopLabel}
-              </p>
-            </div>
-
-            <div className="team-slider-viewport overflow-hidden">
-              <div className="team-slider-track flex w-max gap-3">
-                {[...teamMembers, ...teamMembers].map((member, index) => (
-                  <article
-                    key={`${member.name}-${index}`}
-                    className="flex w-[250px] shrink-0 items-center gap-4 border border-white/8 bg-[#0b0b0b] p-4 md:w-[310px] md:p-5"
-                  >
-                    <div className="grid h-12 w-12 shrink-0 place-items-center border border-[#1677FF]/25 bg-[#1677FF]/5 text-[12px] font-semibold text-[#1677FF]">
-                      {member.initials}
-                    </div>
-
-                    <div className="min-w-0">
-                      <h3 className="truncate text-[15px] font-semibold tracking-[-0.025em] text-white md:text-[17px]">
-                        {member.name}
-                      </h3>
-                      <p className="mt-1 line-clamp-2 text-[9px] uppercase leading-4 tracking-[0.08em] text-white/38 md:text-[10px]">
-                        {member.role}
-                      </p>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
-      </div>
-    </section>
-  );
-}
-
 function ImpactCounter({ value }: { value: string }) {
   const numberRef = useRef<HTMLSpanElement>(null);
   const [count, setCount] = useState(0);
@@ -1220,7 +1104,7 @@ export default function HomeSections() {
       <ProcessSection />
       <WorkSection />
       <TestimonialsSlider />
-      <LeadershipSection />
+      <TeamSection />
       <ImpactSection />
       <ContactSection />
     </>
