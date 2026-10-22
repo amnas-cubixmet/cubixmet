@@ -775,3 +775,21 @@ a {
 .service-content-enter {
   animation: service-content-enter 420ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
+
+
+/* Client stories: native touch/trackpad swipe, snap to one card at a time.
+   The slider hides its scrollbar but keeps keyboard and wheel navigation. */
+.client-stories-scroll {
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  scroll-padding-inline: 0;
+  scroll-behavior: smooth;
+}
+.client-stories-scroll::-webkit-scrollbar {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .client-stories-scroll {
+    scroll-behavior: auto;
+  }
+}
