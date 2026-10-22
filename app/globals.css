@@ -380,6 +380,63 @@ a {
 }
 
 
+/*
+ * Desktop hero carousel: 3 complete projects with one half-visible
+ * preview on either edge. Adjacent centers sit exactly 25vw apart:
+ * cards are 25vw minus a 20px gutter and +/-2 cards are centered
+ * on the viewport edges, so their inner halves remain visible.
+ * Mobile and tablet positioning above intentionally stays unchanged.
+ */
+@media (min-width: 1024px) {
+  .hero-slider-stage {
+    height: clamp(235px, 20.8vw, 355px);
+  }
+
+  .hero-slider-card {
+    width: min(calc(25vw - 20px), 520px);
+    aspect-ratio: 1.5 / 1;
+  }
+
+  .hero-slider-card[data-offset="-1"] {
+    --hero-x: -25vw;
+    --hero-scale: 1;
+    --hero-opacity: 0.9;
+    filter: brightness(0.86);
+  }
+
+  .hero-slider-card[data-offset="1"] {
+    --hero-x: 25vw;
+    --hero-scale: 1;
+    --hero-opacity: 0.9;
+    filter: brightness(0.86);
+  }
+
+  .hero-slider-card[data-offset="-2"] {
+    --hero-x: -50vw;
+    --hero-scale: 1;
+    --hero-opacity: 0.58;
+    filter: brightness(0.72);
+  }
+
+  .hero-slider-card[data-offset="2"] {
+    --hero-x: 50vw;
+    --hero-scale: 1;
+    --hero-opacity: 0.58;
+    filter: brightness(0.72);
+  }
+
+  .hero-slider-card[data-offset="-3"] {
+    --hero-x: -75vw;
+    --hero-opacity: 0;
+  }
+
+  .hero-slider-card[data-offset="3"] {
+    --hero-x: 75vw;
+    --hero-opacity: 0;
+  }
+}
+
+
 
 
 
