@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import SiteHeader from "../../../components/home/SiteHeader";
 import SiteFooter from "../../../components/home/SiteFooter";
 import Arrow from "../../../components/home/Arrow";
+import Image from "next/image";
 import ScheduleCallButton from "../../../components/home/ScheduleCallButton";
 import TechTeamPortrait from "../../../components/home/TechTeamPortrait";
 
@@ -97,36 +98,15 @@ function DigitalServiceIcon({ kind }: { kind: typeof digitalServices[number]["ic
 
 function GrowthVisual() {
   return (
-    <div className="relative isolate min-h-[315px] overflow-hidden rounded-[22px] border border-white/10 bg-[#0a111f] p-5 sm:min-h-[390px] sm:p-8">
-      <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-60" style={{backgroundImage:"linear-gradient(rgba(22,119,255,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(22,119,255,.10) 1px,transparent 1px)", backgroundSize:"32px 32px",maskImage:"linear-gradient(to bottom,black,transparent 88%)"}} />
-      <div aria-hidden="true" className="absolute -right-24 top-10 h-72 w-72 rounded-full bg-[#1677FF]/20 blur-[90px]" />
-      <div className="relative flex items-center justify-between">
-        <span className="text-[11px] font-semibold uppercase tracking-[.18em] text-[#63a6ff]">Growth intelligence</span>
-        <span className="inline-flex items-center gap-2 rounded-full border border-[#1677FF]/30 bg-[#1677FF]/10 px-3 py-1.5 text-[10px] font-medium text-white/70"><span className="h-1.5 w-1.5 rounded-full bg-[#1677FF]"/> Marketing strategy</span>
-      </div>
-
-      <div className="relative mt-8 rounded-[17px] border border-white/10 bg-[#0a0f19]/90 p-5 shadow-[0_24px_70px_rgba(0,0,0,.4)] sm:p-7">
-        <div className="flex items-center justify-between gap-4">
-          <div>
-            <span className="text-[10px] uppercase tracking-[.16em] text-white/45">Business growth</span>
-            <p className="mt-2 text-[clamp(1.1rem,2.3vw,1.75rem)] font-semibold tracking-[-.045em] text-white">From insight to impact.</p>
-          </div>
-          <div className="grid h-11 w-11 place-items-center rounded-[12px] bg-[#1677FF]/15 text-[#58a1ff]">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" className="h-6 w-6"><path d="M4 20V4m0 16h16M7 16l4-4 3 2 6-8" strokeLinecap="round" strokeLinejoin="round"/></svg>
-          </div>
-        </div>
-        <svg role="img" aria-label="Illustrative upward growth trend, not real performance data" viewBox="0 0 400 152" preserveAspectRatio="none" className="mt-7 h-[110px] w-full sm:h-[160px]">
-          <defs><linearGradient id="digital-growth-fill" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stopColor="#1677FF" stopOpacity=".38"/><stop offset="100%" stopColor="#1677FF" stopOpacity="0"/></linearGradient></defs>
-          {[25,65,105,145].map((y)=><line key={y} x1="0" x2="400" y1={y} y2={y} stroke="#ffffff" strokeOpacity=".1"/>)}
-          <path d="M0 130 C45 127 60 98 94 105 S151 110 189 70 240 94 284 48 339 59 400 10 L400 152 H0Z" fill="url(#digital-growth-fill)"/>
-          <path d="M0 130 C45 127 60 98 94 105 S151 110 189 70 240 94 284 48 339 59 400 10" fill="none" stroke="#388AFF" strokeWidth="4" strokeLinecap="round"/>
-          <circle cx="400" cy="10" r="6" fill="#ffffff" stroke="#1677FF" strokeWidth="4"/>
-        </svg>
-        <div className="mt-4 grid grid-cols-3 gap-2 border-t border-white/10 pt-4">
-          {["Reach","Engage","Convert"].map((label,i)=><div key={label} className="text-center"><p className="font-mono text-[10px] text-[#62a5ff]">0{i+1}</p><p className="mt-1 text-[11px] font-medium text-white/65">{label}</p></div>)}
-        </div>
-      </div>
-      <p className="relative mt-4 text-right text-[10px] tracking-[.1em] text-white/35">Illustrative marketing journey</p>
+    <div className="group relative aspect-[16/9] w-full min-w-0 overflow-hidden rounded-[22px] border border-white/10 bg-[#0a111f]">
+      <Image
+        src="/images/ventures/digital-hero.png"
+        alt="Cubixmet Digital creative marketing team working together in a professional studio"
+        fill
+        priority
+        sizes="(max-width: 1023px) calc(100vw - 40px), (max-width: 1536px) 43vw, 570px"
+        className="object-cover object-center transition-transform duration-700 group-hover:scale-[1.025]"
+      />
     </div>
   );
 }
