@@ -43,7 +43,7 @@ export const ventures: Venture[] = [
       "Advanced Digital Marketing & Automation Program",
       "Python Full Stack Development & AI Vibe Coding",
     ],
-    href: "https://www.cubixmet.com/ventures/academy",
+    href: "/ventures/academy",
     icon: "academy",
   },
 ];
