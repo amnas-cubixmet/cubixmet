@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { techCopy } from "../../data/tech";
+import { techCopy } from "../../data/ventures";
 
 /**
  * Use the generated team image once it has been committed to public/images/ventures/.

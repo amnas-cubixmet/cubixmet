@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { whatsappUrl, digitalServices, digitalCopy } from "../../../data/digital";
+import { whatsappUrl, digitalServices, digitalCopy } from "../../../data/ventures";
 import { getVentureTeam } from "../../../data/team";
 import SiteHeader from "../../../components/home/SiteHeader";
 import SiteFooter from "../../../components/home/SiteFooter";

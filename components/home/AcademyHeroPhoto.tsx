@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { academyCopy } from "../../data/academy";
+import { academyCopy } from "../../data/ventures";
 
 /**
  * Displays the supplied Academy hero artwork once the PNG has been uploaded

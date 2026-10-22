@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { programEnrollUrl, generalEnrollUrl, programs, benefits, academyCopy } from "../../../data/academy";
+import { programEnrollUrl, generalEnrollUrl, programs, benefits, academyCopy } from "../../../data/ventures";
 import { getVentureTeam } from "../../../data/team";
-import type { BenefitIcon, ProgramIcon } from "../../../data/academy";
+import type { BenefitIcon, ProgramIcon } from "../../../data/ventures";
 import SiteHeader from "../../../components/home/SiteHeader";
 import SiteFooter from "../../../components/home/SiteFooter";
 import Arrow from "../../../components/home/Arrow";

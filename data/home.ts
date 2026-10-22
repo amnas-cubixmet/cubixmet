@@ -4,7 +4,7 @@ export * from "./process";
 export * from "./whyChoose";
 export * from "./marquee";
 export * from "./testimonials";
-export * from "./leaders";
+export * from "./team";
 export * from "./insights";
 export * from "./impact";
 export * from "./ventures";

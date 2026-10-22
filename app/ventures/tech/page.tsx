@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { startProjectWhatsAppUrl, techServices, techCopy } from "../../../data/tech";
+import { startProjectWhatsAppUrl, techServices, techCopy } from "../../../data/ventures";
 import { getVentureTeam } from "../../../data/team";
 import SiteHeader from "../../../components/home/SiteHeader";
 import SiteFooter from "../../../components/home/SiteFooter";
