@@ -563,7 +563,18 @@ function ServicesSection() {
 
         <div key={current.no} className="service-content-enter">
           <div className="services-mobile-media relative h-[clamp(130px,27svh,260px)] w-full overflow-hidden rounded-[12px] bg-[#101010]">
-            <img src={current.image} alt={current.title} loading="lazy" decoding="async" className="h-full w-full object-cover" />
+            <img
+              src={current.image}
+              alt={current.title}
+              loading="lazy"
+              decoding="async"
+              className="h-full w-full object-cover"
+              onError={(event) => {
+                if (event.currentTarget.getAttribute("src") !== current.fallbackImage) {
+                  event.currentTarget.src = current.fallbackImage;
+                }
+              }}
+            />
           </div>
           <div className="pt-3 sm:pt-4">
             <h3 className="text-[clamp(1.3rem,5vw,1.9rem)] font-semibold leading-[1.1] tracking-[-0.045em]">
@@ -635,6 +646,11 @@ function ServicesSection() {
                   aria-hidden={index !== activeService}
                   loading="lazy"
                   decoding="async"
+                  onError={(event) => {
+                    if (event.currentTarget.getAttribute("src") !== service.fallbackImage) {
+                      event.currentTarget.src = service.fallbackImage;
+                    }
+                  }}
                   className={
                     "pointer-events-none absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out " +
                     (index === activeService
