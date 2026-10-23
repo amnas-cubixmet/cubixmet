@@ -40,13 +40,13 @@ export const services: Service[] = [
     title: "Creative & Content",
     copy: "Graphic design, content systems and campaign-ready visual communication created for modern brands across digital channels.",
     meta: ["Graphic Design", "Content Creation", "Branding", "Video Editing", "AI-assisted Creative"],
-    image: "/images/services/creative-content.webp",
+    image: "/images/services/creative-content.png",
   },
   {
     no: "06",
     title: "Tech & AI Training",
     copy: "Practical career-focused learning in digital marketing, Python full stack development, AI tools and modern automation workflows.",
     meta: ["Python Full Stack", "AI Vibe Coding", "Digital Marketing", "Automation", "Project-based Learning"],
-    image: "/images/services/tech-ai-training.webp",
+    image: "/images/services/tech-ai-training.png",
   },
 ];
