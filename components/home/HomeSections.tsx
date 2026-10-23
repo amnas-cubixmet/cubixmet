@@ -569,11 +569,6 @@ function ServicesSection() {
               loading="lazy"
               decoding="async"
               className="h-full w-full object-cover"
-              onError={(event) => {
-                if (event.currentTarget.getAttribute("src") !== current.fallbackImage) {
-                  event.currentTarget.src = current.fallbackImage;
-                }
-              }}
             />
           </div>
           <div className="pt-3 sm:pt-4">
@@ -646,11 +641,6 @@ function ServicesSection() {
                   aria-hidden={index !== activeService}
                   loading="lazy"
                   decoding="async"
-                  onError={(event) => {
-                    if (event.currentTarget.getAttribute("src") !== service.fallbackImage) {
-                      event.currentTarget.src = service.fallbackImage;
-                    }
-                  }}
                   className={
                     "pointer-events-none absolute inset-0 h-full w-full object-cover transition-[opacity,transform] duration-700 ease-out " +
                     (index === activeService
